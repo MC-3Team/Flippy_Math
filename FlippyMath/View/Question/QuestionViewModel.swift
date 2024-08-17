@@ -34,6 +34,7 @@ class QuestionViewModel: ObservableObject {
    
     init() {
         getInCompleteQuestion()
+        audioHelper.playMusic(named: "birthday-party", fileType: "wav")
     }
     
     func getInCompleteQuestion() {
@@ -47,7 +48,8 @@ class QuestionViewModel: ObservableObject {
                                 sequence: Int(story.sequence),
                                 story: story.story ?? "",
                                 audio: story.audio ?? "",
-                                appretiation: story.apretiation ?? ""
+                                appretiation: story.apretiation ?? "",
+                                audio_apretiation: story.audio_apretiation ?? ""
                             )
                         } ?? []
 
@@ -155,10 +157,11 @@ class QuestionViewModel: ObservableObject {
                     currentMathIndex = 0
                     userAnswer = ""
                 }
-            } 
+            }
             else if currentProblem.isQuestion && apretiation.isEmpty {
                 if userAnswer == currentProblem.problem {
                     stopRecognition()
+                    audioHelper.playSoundEffect(named: "correct", fileType: "wav")
                     apretiation = currentQuestionData.stories[currentMessageIndex].appretiation
                     riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0)),
                                  BambiniRiveInput(key: .isRightHandsUp, value: .bool(true))
@@ -172,12 +175,25 @@ class QuestionViewModel: ObservableObject {
                     audioHelper.playSoundEffect(named: "failure-drum", fileType: "wav")
                     riveInput = [
                     BambiniRiveInput(key: .isSad, value: .bool(true))]
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                        self?.repeatQuestion = !(self?.repeatQuestion ?? true)
+                    let options = ["hmmm", "oops"]
+                    audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                         self?.riveInput = [
-                            BambiniRiveInput(key: .isSad, value: .bool(false)),
-                            BambiniRiveInput(key: .talking, value: .float(0.0)),
-                            BambiniRiveInput(key: .talking, value: .float(2.0))]
+                            BambiniRiveInput(key: .isSad, value: .bool(false))
+                        ]
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self?.riveInput = [
+                                BambiniRiveInput(key: .talking, value: .float(0.0))
+                            ]
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self?.riveInput = [
+                                    BambiniRiveInput(key: .talking, value: .float(2.0))
+                                ]
+                                self?.repeatQuestion = !(self?.repeatQuestion ?? false)
+                            }
+                        }
                     }
                 }
             } else {
@@ -186,7 +202,12 @@ class QuestionViewModel: ObservableObject {
                     currentMathIndex += 1
                 }
                 if currentQuestionData.problems[currentMathIndex].isQuestion {
-                    startRecognition()
+                    if currentQuestionData.problems[currentMathIndex].isSpeech {
+                        startRecognition()
+                    } else {
+                        
+                    }
+                    
                 }
                 currentMessageIndex += 1
                 riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]

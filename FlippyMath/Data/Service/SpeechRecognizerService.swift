@@ -11,5 +11,4 @@ import RxSwift
 protocol SpeechRecognizerService {
     func startRecognition() -> Observable<(String?, Bool)>
     func stopRecognition()
-    func resetRecognition()
 }

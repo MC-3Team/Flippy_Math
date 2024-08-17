@@ -45,7 +45,6 @@ struct QuestionView: View {
                             }
                             
                             if viewModel.currentMessageIndex > 1 {
-                                // Change image to Q2_PenguinWithHats after currentQuestionIndex 1
                                 Image("Q2_PenguinWithHats")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)

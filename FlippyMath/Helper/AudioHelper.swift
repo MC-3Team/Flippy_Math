@@ -43,11 +43,28 @@ class AudioHelper: ObservableObject {
                 musicPlayer = try AVAudioPlayer(contentsOf: url)
                 musicPlayer?.numberOfLoops = loop ? -1 : 0
                 musicPlayer?.play()
+                setMusicVolume(0.3)
             } catch {
                 print("Error playing music: \(error.localizedDescription)")
             }
         }
     }
+    
+    func getAudioDuration(named name: String, fileType: String) -> TimeInterval? {
+            if let path = Bundle.main.path(forResource: name, ofType: fileType) {
+                let url = URL(fileURLWithPath: path)
+                do {
+                    let audioPlayer = try AVAudioPlayer(contentsOf: url)
+                    return audioPlayer.duration
+                } catch {
+                    print("Error getting audio duration: \(error)")
+                    return nil
+                }
+            } else {
+                print("Audio file not found")
+                return nil
+            }
+        }
     
     func stopSoundEffect() {
         soundEffectPlayer?.stop()
