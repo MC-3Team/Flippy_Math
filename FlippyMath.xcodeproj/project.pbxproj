@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		133573B22C707FD9007696A8 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 133573B02C707FD9007696A8 /* DataModel.xcdatamodeld */; };
 		13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */; };
 		13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F892C7059A100EBFCD1 /* TypewriterText.swift */; };
 		13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */; };
@@ -29,7 +30,6 @@
 		13B75FD12C705E8B00EBFCD1 /* MathQuestionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */; };
 		13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */; };
 		13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */; };
-		13B75FD42C705E8B00EBFCD1 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCF2C705E8B00EBFCD1 /* DataModel.xcdatamodeld */; };
 		13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FD52C705E9700EBFCD1 /* DataService.swift */; };
 		13B75FDA2C705E9700EBFCD1 /* SoundAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FD62C705E9700EBFCD1 /* SoundAnalysisService.swift */; };
 		13B75FDB2C705E9700EBFCD1 /* TextToSpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FD72C705E9700EBFCD1 /* TextToSpeechService.swift */; };
@@ -57,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		133573B12C707FD9007696A8 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionLayout.swift; sourceTree = "<group>"; };
 		13B75F892C7059A100EBFCD1 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
 		13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioHelper.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathQuestionJSON.swift; sourceTree = "<group>"; };
 		13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnowData.swift; sourceTree = "<group>"; };
 		13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
-		13B75FD02C705E8B00EBFCD1 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		13B75FD52C705E9700EBFCD1 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		13B75FD62C705E9700EBFCD1 /* SoundAnalysisService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundAnalysisService.swift; sourceTree = "<group>"; };
 		13B75FD72C705E9700EBFCD1 /* TextToSpeechService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeechService.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 		13B75FB42C705C0A00EBFCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				13B75FCF2C705E8B00EBFCD1 /* DataModel.xcdatamodeld */,
+				133573B02C707FD9007696A8 /* DataModel.xcdatamodeld */,
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
@@ -483,7 +483,6 @@
 				13B75FBF2C705E1800EBFCD1 /* ClappingModel.mlmodel in Sources */,
 				13B75FDB2C705E9700EBFCD1 /* TextToSpeechService.swift in Sources */,
 				13B75FDA2C705E9700EBFCD1 /* SoundAnalysisService.swift in Sources */,
-				13B75FD42C705E8B00EBFCD1 /* DataModel.xcdatamodeld in Sources */,
 				13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */,
 				13B75FE52C70675000EBFCD1 /* SplashViewModel.swift in Sources */,
 				13B75FC22C705E3100EBFCD1 /* AppContainer.swift in Sources */,
@@ -491,6 +490,7 @@
 				13B75FE12C705F9900EBFCD1 /* VideoViewModel.swift in Sources */,
 				13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */,
 				13B75FED2C70676200EBFCD1 /* QuestionViewModel.swift in Sources */,
+				133573B22C707FD9007696A8 /* DataModel.xcdatamodeld in Sources */,
 				13B75FE92C70675900EBFCD1 /* HomeViewModel.swift in Sources */,
 				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
 				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
@@ -783,14 +783,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		13B75FCF2C705E8B00EBFCD1 /* DataModel.xcdatamodeld */ = {
+		133573B02C707FD9007696A8 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				13B75FD02C705E8B00EBFCD1 /* DataModel.xcdatamodel */,
+				133573B12C707FD9007696A8 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 13B75FD02C705E8B00EBFCD1 /* DataModel.xcdatamodel */;
+			currentVersion = 133573B12C707FD9007696A8 /* DataModel.xcdatamodel */;
 			name = DataModel.xcdatamodeld;
-			path = "/Users/williamhandoko/Documents/Sound Download/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
+			path = "/Users/williamhandoko/Documents/Apple Developer Academy/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
