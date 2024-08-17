@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */; };
 		13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F892C7059A100EBFCD1 /* TypewriterText.swift */; };
-		13B75F8D2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F8C2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */; };
 		13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */; };
 		13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F9B2C705AE200EBFCD1 /* aku tinggal di.wav */; };
 		13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */; };
@@ -60,7 +59,6 @@
 /* Begin PBXFileReference section */
 		13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionLayout.swift; sourceTree = "<group>"; };
 		13B75F892C7059A100EBFCD1 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
-		13B75F8C2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PilcrowRoundedVariable-Regular.ttf"; path = "../../../../../Downloads/Bambini Math 2/BambiniMath/CustomFonts/PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
 		13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioHelper.swift; sourceTree = "<group>"; };
 		13B75F9B2C705AE200EBFCD1 /* aku tinggal di.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "aku tinggal di.wav"; sourceTree = "<group>"; };
 		13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "comedy-kids.wav"; sourceTree = "<group>"; };
@@ -99,6 +97,7 @@
 		13B75FEC2C70676200EBFCD1 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BambiniRiveView.swift; sourceTree = "<group>"; };
 		13B75FF12C70689300EBFCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		13B760212C707DEE00EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
 		D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippyMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippyMathApp.swift; sourceTree = "<group>"; };
 		D934AF922C6F3EBC00D41B9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -135,7 +134,7 @@
 		13B75F8B2C7059AF00EBFCD1 /* CustomFonts */ = {
 			isa = PBXGroup;
 			children = (
-				13B75F8C2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */,
+				13B760212C707DEE00EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */,
 			);
 			path = CustomFonts;
 			sourceTree = "<group>";
@@ -453,7 +452,6 @@
 				13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */,
 				13B75FAC2C705B7C00EBFCD1 /* correct.wav in Resources */,
 				13B75FA92C705B7C00EBFCD1 /* click.wav in Resources */,
-				13B75F8D2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf in Resources */,
 				13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */,
 				D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */,
 				13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */,
