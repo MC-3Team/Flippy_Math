@@ -7,6 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */; };
+		13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F892C7059A100EBFCD1 /* TypewriterText.swift */; };
+		13B75F8D2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F8C2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */; };
+		13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */; };
+		13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F9B2C705AE200EBFCD1 /* aku tinggal di.wav */; };
+		13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */; };
+		13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA02C705B0100EBFCD1 /* birthday-party.wav */; };
+		13B75FA42C705B6D00EBFCD1 /* hai aku bambini.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA32C705B6D00EBFCD1 /* hai aku bambini.wav */; };
+		13B75FA92C705B7C00EBFCD1 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA52C705B7C00EBFCD1 /* click.wav */; };
+		13B75FAA2C705B7C00EBFCD1 /* failure-drum.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA62C705B7C00EBFCD1 /* failure-drum.wav */; };
+		13B75FAB2C705B7C00EBFCD1 /* level-completed.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA72C705B7C00EBFCD1 /* level-completed.wav */; };
+		13B75FAC2C705B7C00EBFCD1 /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA82C705B7C00EBFCD1 /* correct.wav */; };
+		13B75FBD2C705DC900EBFCD1 /* dataRaw.json in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FBC2C705DC900EBFCD1 /* dataRaw.json */; };
+		13B75FBF2C705E1800EBFCD1 /* ClappingModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FBE2C705E1800EBFCD1 /* ClappingModel.mlmodel */; };
+		13B75FC22C705E3100EBFCD1 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FC02C705E3100EBFCD1 /* AppContainer.swift */; };
+		13B75FC32C705E3100EBFCD1 /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FC12C705E3100EBFCD1 /* Inject.swift */; };
+		13B75FC82C705E8300EBFCD1 /* SoundAnalysisManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FC42C705E8200EBFCD1 /* SoundAnalysisManager.swift */; };
+		13B75FC92C705E8300EBFCD1 /* TextToSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FC52C705E8200EBFCD1 /* TextToSpeechManager.swift */; };
+		13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FC62C705E8300EBFCD1 /* CoreDataManager.swift */; };
+		13B75FCB2C705E8300EBFCD1 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FC72C705E8300EBFCD1 /* SpeechRecognizerManager.swift */; };
+		13B75FD12C705E8B00EBFCD1 /* MathQuestionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */; };
+		13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */; };
+		13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */; };
+		13B75FD42C705E8B00EBFCD1 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FCF2C705E8B00EBFCD1 /* DataModel.xcdatamodeld */; };
+		13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FD52C705E9700EBFCD1 /* DataService.swift */; };
+		13B75FDA2C705E9700EBFCD1 /* SoundAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FD62C705E9700EBFCD1 /* SoundAnalysisService.swift */; };
+		13B75FDB2C705E9700EBFCD1 /* TextToSpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FD72C705E9700EBFCD1 /* TextToSpeechService.swift */; };
+		13B75FDC2C705E9700EBFCD1 /* SpeechRecognizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FD82C705E9700EBFCD1 /* SpeechRecognizerService.swift */; };
+		13B75FE02C705F9900EBFCD1 /* CustomVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FDD2C705F9800EBFCD1 /* CustomVideoPlayerView.swift */; };
+		13B75FE12C705F9900EBFCD1 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FDE2C705F9900EBFCD1 /* VideoViewModel.swift */; };
+		13B75FE22C705F9900EBFCD1 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FDF2C705F9900EBFCD1 /* VideoView.swift */; };
+		13B75FE52C70675000EBFCD1 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FE32C70674F00EBFCD1 /* SplashViewModel.swift */; };
+		13B75FE62C70675000EBFCD1 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FE42C70675000EBFCD1 /* SplashView.swift */; };
+		13B75FE92C70675900EBFCD1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FE72C70675900EBFCD1 /* HomeViewModel.swift */; };
+		13B75FEA2C70675900EBFCD1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FE82C70675900EBFCD1 /* HomeView.swift */; };
+		13B75FED2C70676200EBFCD1 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FEB2C70676200EBFCD1 /* QuestionViewModel.swift */; };
+		13B75FEE2C70676200EBFCD1 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FEC2C70676200EBFCD1 /* QuestionView.swift */; };
+		13B75FF02C70676D00EBFCD1 /* BambiniRiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */; };
+		13B760112C706CA600EBFCD1 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 13B760102C706CA600EBFCD1 /* RxBlocking */; };
+		13B760132C706CA600EBFCD1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 13B760122C706CA600EBFCD1 /* RxCocoa */; };
+		13B760152C706CA600EBFCD1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 13B760142C706CA600EBFCD1 /* RxRelay */; };
+		13B760172C706CA600EBFCD1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 13B760162C706CA600EBFCD1 /* RxSwift */; };
+		13B7601C2C706CB300EBFCD1 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601B2C706CB300EBFCD1 /* Swinject */; };
+		13B7601F2C706CBB00EBFCD1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601E2C706CBB00EBFCD1 /* RiveRuntime */; };
 		D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */; };
 		D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF922C6F3EBC00D41B9A /* ContentView.swift */; };
 		D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF942C6F3EBD00D41B9A /* Assets.xcassets */; };
@@ -14,6 +58,47 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionLayout.swift; sourceTree = "<group>"; };
+		13B75F892C7059A100EBFCD1 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
+		13B75F8C2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PilcrowRoundedVariable-Regular.ttf"; path = "../../../../../Downloads/Bambini Math 2/BambiniMath/CustomFonts/PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
+		13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioHelper.swift; sourceTree = "<group>"; };
+		13B75F9B2C705AE200EBFCD1 /* aku tinggal di.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "aku tinggal di.wav"; sourceTree = "<group>"; };
+		13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "comedy-kids.wav"; sourceTree = "<group>"; };
+		13B75FA02C705B0100EBFCD1 /* birthday-party.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "birthday-party.wav"; sourceTree = "<group>"; };
+		13B75FA32C705B6D00EBFCD1 /* hai aku bambini.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hai aku bambini.wav"; sourceTree = "<group>"; };
+		13B75FA52C705B7C00EBFCD1 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
+		13B75FA62C705B7C00EBFCD1 /* failure-drum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "failure-drum.wav"; sourceTree = "<group>"; };
+		13B75FA72C705B7C00EBFCD1 /* level-completed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "level-completed.wav"; sourceTree = "<group>"; };
+		13B75FA82C705B7C00EBFCD1 /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
+		13B75FAD2C705B8500EBFCD1 /* bambini.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = bambini.riv; sourceTree = "<group>"; };
+		13B75FAE2C705B9100EBFCD1 /* TestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestVideo.mp4; sourceTree = "<group>"; };
+		13B75FBC2C705DC900EBFCD1 /* dataRaw.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataRaw.json; sourceTree = "<group>"; };
+		13B75FBE2C705E1800EBFCD1 /* ClappingModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClappingModel.mlmodel; sourceTree = "<group>"; };
+		13B75FC02C705E3100EBFCD1 /* AppContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		13B75FC12C705E3100EBFCD1 /* Inject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
+		13B75FC42C705E8200EBFCD1 /* SoundAnalysisManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundAnalysisManager.swift; sourceTree = "<group>"; };
+		13B75FC52C705E8200EBFCD1 /* TextToSpeechManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeechManager.swift; sourceTree = "<group>"; };
+		13B75FC62C705E8300EBFCD1 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		13B75FC72C705E8300EBFCD1 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
+		13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathQuestionJSON.swift; sourceTree = "<group>"; };
+		13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnowData.swift; sourceTree = "<group>"; };
+		13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
+		13B75FD02C705E8B00EBFCD1 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		13B75FD52C705E9700EBFCD1 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		13B75FD62C705E9700EBFCD1 /* SoundAnalysisService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundAnalysisService.swift; sourceTree = "<group>"; };
+		13B75FD72C705E9700EBFCD1 /* TextToSpeechService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeechService.swift; sourceTree = "<group>"; };
+		13B75FD82C705E9700EBFCD1 /* SpeechRecognizerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerService.swift; sourceTree = "<group>"; };
+		13B75FDD2C705F9800EBFCD1 /* CustomVideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayerView.swift; sourceTree = "<group>"; };
+		13B75FDE2C705F9900EBFCD1 /* VideoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		13B75FDF2C705F9900EBFCD1 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		13B75FE32C70674F00EBFCD1 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		13B75FE42C70675000EBFCD1 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		13B75FE72C70675900EBFCD1 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		13B75FE82C70675900EBFCD1 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		13B75FEB2C70676200EBFCD1 /* QuestionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
+		13B75FEC2C70676200EBFCD1 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BambiniRiveView.swift; sourceTree = "<group>"; };
+		13B75FF12C70689300EBFCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippyMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippyMathApp.swift; sourceTree = "<group>"; };
 		D934AF922C6F3EBC00D41B9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,12 +111,225 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13B760152C706CA600EBFCD1 /* RxRelay in Frameworks */,
+				13B7601F2C706CBB00EBFCD1 /* RiveRuntime in Frameworks */,
+				13B760132C706CA600EBFCD1 /* RxCocoa in Frameworks */,
+				13B760172C706CA600EBFCD1 /* RxSwift in Frameworks */,
+				13B760112C706CA600EBFCD1 /* RxBlocking in Frameworks */,
+				13B7601C2C706CB300EBFCD1 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13B75F802C70584200EBFCD1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */,
+				13B75F892C7059A100EBFCD1 /* TypewriterText.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		13B75F8B2C7059AF00EBFCD1 /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+				13B75F8C2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf */,
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
+		13B75F8E2C705A0000EBFCD1 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		13B75F912C705A2300EBFCD1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				13B75F962C705A7A00EBFCD1 /* Video */,
+				13B75F952C705A7200EBFCD1 /* Animation */,
+				13B75F942C705A5D00EBFCD1 /* SoundEffects */,
+				13B75F932C705A4400EBFCD1 /* Music */,
+				13B75F922C705A3400EBFCD1 /* VoiceOver */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		13B75F922C705A3400EBFCD1 /* VoiceOver */ = {
+			isa = PBXGroup;
+			children = (
+				13B75F9B2C705AE200EBFCD1 /* aku tinggal di.wav */,
+				13B75FA32C705B6D00EBFCD1 /* hai aku bambini.wav */,
+			);
+			path = VoiceOver;
+			sourceTree = "<group>";
+		};
+		13B75F932C705A4400EBFCD1 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FA02C705B0100EBFCD1 /* birthday-party.wav */,
+				13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		13B75F942C705A5D00EBFCD1 /* SoundEffects */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FA52C705B7C00EBFCD1 /* click.wav */,
+				13B75FA82C705B7C00EBFCD1 /* correct.wav */,
+				13B75FA62C705B7C00EBFCD1 /* failure-drum.wav */,
+				13B75FA72C705B7C00EBFCD1 /* level-completed.wav */,
+			);
+			path = SoundEffects;
+			sourceTree = "<group>";
+		};
+		13B75F952C705A7200EBFCD1 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FAD2C705B8500EBFCD1 /* bambini.riv */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		13B75F962C705A7A00EBFCD1 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FAE2C705B9100EBFCD1 /* TestVideo.mp4 */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		13B75FAF2C705BD300EBFCD1 /* DataAsset */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FBC2C705DC900EBFCD1 /* dataRaw.json */,
+			);
+			path = DataAsset;
+			sourceTree = "<group>";
+		};
+		13B75FB02C705BE500EBFCD1 /* ModelAsset */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FBE2C705E1800EBFCD1 /* ClappingModel.mlmodel */,
+			);
+			path = ModelAsset;
+			sourceTree = "<group>";
+		};
+		13B75FB12C705BEE00EBFCD1 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FC02C705E3100EBFCD1 /* AppContainer.swift */,
+				13B75FC12C705E3100EBFCD1 /* Inject.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		13B75FB22C705BF300EBFCD1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FB52C705C1F00EBFCD1 /* Service */,
+				13B75FB42C705C0A00EBFCD1 /* Model */,
+				13B75FB32C705C0100EBFCD1 /* Manager */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		13B75FB32C705C0100EBFCD1 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FC62C705E8300EBFCD1 /* CoreDataManager.swift */,
+				13B75FC42C705E8200EBFCD1 /* SoundAnalysisManager.swift */,
+				13B75FC72C705E8300EBFCD1 /* SpeechRecognizerManager.swift */,
+				13B75FC52C705E8200EBFCD1 /* TextToSpeechManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		13B75FB42C705C0A00EBFCD1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FCF2C705E8B00EBFCD1 /* DataModel.xcdatamodeld */,
+				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
+				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
+				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13B75FB52C705C1F00EBFCD1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FD52C705E9700EBFCD1 /* DataService.swift */,
+				13B75FD62C705E9700EBFCD1 /* SoundAnalysisService.swift */,
+				13B75FD82C705E9700EBFCD1 /* SpeechRecognizerService.swift */,
+				13B75FD72C705E9700EBFCD1 /* TextToSpeechService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		13B75FB62C705C3400EBFCD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FBB2C705C7E00EBFCD1 /* Question */,
+				13B75FBA2C705C6B00EBFCD1 /* Video */,
+				13B75FB92C705C6000EBFCD1 /* Home */,
+				13B75FB82C705C5400EBFCD1 /* Splash */,
+				13B75FB72C705C4100EBFCD1 /* Animation */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13B75FB72C705C4100EBFCD1 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		13B75FB82C705C5400EBFCD1 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FE42C70675000EBFCD1 /* SplashView.swift */,
+				13B75FE32C70674F00EBFCD1 /* SplashViewModel.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		13B75FB92C705C6000EBFCD1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FE82C70675900EBFCD1 /* HomeView.swift */,
+				13B75FE72C70675900EBFCD1 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		13B75FBA2C705C6B00EBFCD1 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FDD2C705F9800EBFCD1 /* CustomVideoPlayerView.swift */,
+				13B75FDF2C705F9900EBFCD1 /* VideoView.swift */,
+				13B75FDE2C705F9900EBFCD1 /* VideoViewModel.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		13B75FBB2C705C7E00EBFCD1 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				13B75FEC2C70676200EBFCD1 /* QuestionView.swift */,
+				13B75FEB2C70676200EBFCD1 /* QuestionViewModel.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
 		D934AF842C6F3EBC00D41B9A = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +349,16 @@
 		D934AF8F2C6F3EBC00D41B9A /* FlippyMath */ = {
 			isa = PBXGroup;
 			children = (
+				13B75FF12C70689300EBFCD1 /* Info.plist */,
+				13B75F802C70584200EBFCD1 /* Components */,
+				13B75F8B2C7059AF00EBFCD1 /* CustomFonts */,
+				13B75F8E2C705A0000EBFCD1 /* Helper */,
+				13B75FAF2C705BD300EBFCD1 /* DataAsset */,
+				13B75F912C705A2300EBFCD1 /* Assets */,
+				13B75FB02C705BE500EBFCD1 /* ModelAsset */,
+				13B75FB12C705BEE00EBFCD1 /* DI */,
+				13B75FB22C705BF300EBFCD1 /* Data */,
+				13B75FB62C705C3400EBFCD1 /* View */,
 				D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */,
 				D934AF922C6F3EBC00D41B9A /* ContentView.swift */,
 				D934AF942C6F3EBD00D41B9A /* Assets.xcassets */,
@@ -83,6 +391,14 @@
 			dependencies = (
 			);
 			name = FlippyMath;
+			packageProductDependencies = (
+				13B760102C706CA600EBFCD1 /* RxBlocking */,
+				13B760122C706CA600EBFCD1 /* RxCocoa */,
+				13B760142C706CA600EBFCD1 /* RxRelay */,
+				13B760162C706CA600EBFCD1 /* RxSwift */,
+				13B7601B2C706CB300EBFCD1 /* Swinject */,
+				13B7601E2C706CBB00EBFCD1 /* RiveRuntime */,
+			);
 			productName = FlippyMath;
 			productReference = D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +427,11 @@
 				Base,
 			);
 			mainGroup = D934AF842C6F3EBC00D41B9A;
+			packageReferences = (
+				13B7600F2C706CA600EBFCD1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				13B7601A2C706CB300EBFCD1 /* XCRemoteSwiftPackageReference "Swinject" */,
+				13B7601D2C706CBB00EBFCD1 /* XCRemoteSwiftPackageReference "rive-ios" */,
+			);
 			productRefGroup = D934AF8E2C6F3EBC00D41B9A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,8 +446,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13B75FBD2C705DC900EBFCD1 /* dataRaw.json in Resources */,
 				D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */,
+				13B75FAA2C705B7C00EBFCD1 /* failure-drum.wav in Resources */,
+				13B75FA42C705B6D00EBFCD1 /* hai aku bambini.wav in Resources */,
+				13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */,
+				13B75FAC2C705B7C00EBFCD1 /* correct.wav in Resources */,
+				13B75FA92C705B7C00EBFCD1 /* click.wav in Resources */,
+				13B75F8D2C7059F900EBFCD1 /* PilcrowRoundedVariable-Regular.ttf in Resources */,
+				13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */,
 				D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */,
+				13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */,
+				13B75FAB2C705B7C00EBFCD1 /* level-completed.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +468,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13B75FEA2C70675900EBFCD1 /* HomeView.swift in Sources */,
+				13B75FF02C70676D00EBFCD1 /* BambiniRiveView.swift in Sources */,
 				D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */,
+				13B75FD12C705E8B00EBFCD1 /* MathQuestionJSON.swift in Sources */,
+				13B75FE62C70675000EBFCD1 /* SplashView.swift in Sources */,
+				13B75FEE2C70676200EBFCD1 /* QuestionView.swift in Sources */,
+				13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */,
+				13B75FC82C705E8300EBFCD1 /* SoundAnalysisManager.swift in Sources */,
+				13B75FCB2C705E8300EBFCD1 /* SpeechRecognizerManager.swift in Sources */,
+				13B75FDC2C705E9700EBFCD1 /* SpeechRecognizerService.swift in Sources */,
+				13B75FE22C705F9900EBFCD1 /* VideoView.swift in Sources */,
 				D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */,
+				13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */,
+				13B75FC32C705E3100EBFCD1 /* Inject.swift in Sources */,
+				13B75FBF2C705E1800EBFCD1 /* ClappingModel.mlmodel in Sources */,
+				13B75FDB2C705E9700EBFCD1 /* TextToSpeechService.swift in Sources */,
+				13B75FDA2C705E9700EBFCD1 /* SoundAnalysisService.swift in Sources */,
+				13B75FD42C705E8B00EBFCD1 /* DataModel.xcdatamodeld in Sources */,
+				13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */,
+				13B75FE52C70675000EBFCD1 /* SplashViewModel.swift in Sources */,
+				13B75FC22C705E3100EBFCD1 /* AppContainer.swift in Sources */,
+				13B75FC92C705E8300EBFCD1 /* TextToSpeechManager.swift in Sources */,
+				13B75FE12C705F9900EBFCD1 /* VideoViewModel.swift in Sources */,
+				13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */,
+				13B75FED2C70676200EBFCD1 /* QuestionViewModel.swift in Sources */,
+				13B75FE92C70675900EBFCD1 /* HomeViewModel.swift in Sources */,
+				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
+				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
+				13B75FE02C705F9900EBFCD1 /* CustomVideoPlayerView.swift in Sources */,
+				13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,11 +631,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
+				DEVELOPMENT_TEAM = 459W9TDYSS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlippyMath/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Flippy Math";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "To get voice input from user.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "To get voice input from user.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -287,7 +649,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.childhood.FlippyMath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -296,7 +658,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -308,11 +670,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
+				DEVELOPMENT_TEAM = 459W9TDYSS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlippyMath/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Flippy Math";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "To get voice input from user.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "To get voice input from user.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -323,7 +688,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.childhood.FlippyMath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -332,7 +697,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -358,6 +723,80 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		13B7600F2C706CA600EBFCD1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+		13B7601A2C706CB300EBFCD1 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		13B7601D2C706CBB00EBFCD1 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		13B760102C706CA600EBFCD1 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B7600F2C706CA600EBFCD1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		13B760122C706CA600EBFCD1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B7600F2C706CA600EBFCD1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		13B760142C706CA600EBFCD1 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B7600F2C706CA600EBFCD1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		13B760162C706CA600EBFCD1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B7600F2C706CA600EBFCD1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		13B7601B2C706CB300EBFCD1 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B7601A2C706CB300EBFCD1 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		13B7601E2C706CBB00EBFCD1 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B7601D2C706CBB00EBFCD1 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		13B75FCF2C705E8B00EBFCD1 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				13B75FD02C705E8B00EBFCD1 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 13B75FD02C705E8B00EBFCD1 /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = "/Users/williamhandoko/Documents/Sound Download/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D934AF852C6F3EBC00D41B9A /* Project object */;
 }
