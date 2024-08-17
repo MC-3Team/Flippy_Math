@@ -14,9 +14,10 @@ struct SplashView: View {
 
     var body: some View {
         if isNavigating {
-            QuestionView()
+            HomeView()
+//            QuestionView(viewModel: QuestionViewModel(level: 0))
         } else {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).onAppear {
+            Text("Flippy Math").onAppear {
                 if isFirst {
                     viewModel.insertAllData()
                     isFirst = false

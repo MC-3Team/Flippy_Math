@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		133573B82C70BC9F007696A8 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 133573B62C70BC9F007696A8 /* DataModel.xcdatamodeld */; };
+		133573BA2C70BFD3007696A8 /* ButtonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573B92C70BFD3007696A8 /* ButtonData.swift */; };
+		133573BF2C70C140007696A8 /* HistoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573BE2C70C140007696A8 /* HistoryGridView.swift */; };
+		133573C12C70C180007696A8 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573C02C70C180007696A8 /* HistoryViewModel.swift */; };
+		133573C32C70C8E4007696A8 /* QuestionViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573C22C70C8E4007696A8 /* QuestionViewWrapper.swift */; };
 		13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */; };
 		13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F892C7059A100EBFCD1 /* TypewriterText.swift */; };
 		13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */; };
@@ -59,6 +63,10 @@
 
 /* Begin PBXFileReference section */
 		133573B72C70BC9F007696A8 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		133573B92C70BFD3007696A8 /* ButtonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonData.swift; sourceTree = "<group>"; };
+		133573BE2C70C140007696A8 /* HistoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridView.swift; sourceTree = "<group>"; };
+		133573C02C70C180007696A8 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		133573C22C70C8E4007696A8 /* QuestionViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewWrapper.swift; sourceTree = "<group>"; };
 		13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionLayout.swift; sourceTree = "<group>"; };
 		13B75F892C7059A100EBFCD1 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
 		13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioHelper.swift; sourceTree = "<group>"; };
@@ -123,6 +131,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		133573BB2C70C025007696A8 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				133573BE2C70C140007696A8 /* HistoryGridView.swift */,
+				133573C02C70C180007696A8 /* HistoryViewModel.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		13B75F802C70584200EBFCD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +275,7 @@
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
+				133573B92C70BFD3007696A8 /* ButtonData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +294,7 @@
 		13B75FB62C705C3400EBFCD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				133573BB2C70C025007696A8 /* History */,
 				13B75FBB2C705C7E00EBFCD1 /* Question */,
 				13B75FBA2C705C6B00EBFCD1 /* Video */,
 				13B75FB92C705C6000EBFCD1 /* Home */,
@@ -326,6 +345,7 @@
 			children = (
 				13B75FEC2C70676200EBFCD1 /* QuestionView.swift */,
 				13B75FEB2C70676200EBFCD1 /* QuestionViewModel.swift */,
+				133573C22C70C8E4007696A8 /* QuestionViewWrapper.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -479,16 +499,20 @@
 				13B75FCB2C705E8300EBFCD1 /* SpeechRecognizerManager.swift in Sources */,
 				13B75FDC2C705E9700EBFCD1 /* SpeechRecognizerService.swift in Sources */,
 				13B75FE22C705F9900EBFCD1 /* VideoView.swift in Sources */,
+				133573BF2C70C140007696A8 /* HistoryGridView.swift in Sources */,
 				D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */,
 				13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */,
 				13B75FC32C705E3100EBFCD1 /* Inject.swift in Sources */,
+				133573C32C70C8E4007696A8 /* QuestionViewWrapper.swift in Sources */,
 				13B75FBF2C705E1800EBFCD1 /* ClappingModel.mlmodel in Sources */,
 				13B75FDB2C705E9700EBFCD1 /* TextToSpeechService.swift in Sources */,
 				13B75FDA2C705E9700EBFCD1 /* SoundAnalysisService.swift in Sources */,
 				13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */,
 				13B75FE52C70675000EBFCD1 /* SplashViewModel.swift in Sources */,
 				13B75FC22C705E3100EBFCD1 /* AppContainer.swift in Sources */,
+				133573C12C70C180007696A8 /* HistoryViewModel.swift in Sources */,
 				13B75FC92C705E8300EBFCD1 /* TextToSpeechManager.swift in Sources */,
+				133573BA2C70BFD3007696A8 /* ButtonData.swift in Sources */,
 				13B75FE12C705F9900EBFCD1 /* VideoViewModel.swift in Sources */,
 				13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */,
 				13B75FED2C70676200EBFCD1 /* QuestionViewModel.swift in Sources */,

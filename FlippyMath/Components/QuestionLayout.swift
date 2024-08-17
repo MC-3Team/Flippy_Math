@@ -18,14 +18,14 @@ struct QuestionLayout<Content: View>: View {
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
-
-                Button(action: {
-                    // Navigation action to HomeView
-                }, label: {
+                
+                NavigationLink {
+                    HomeView()
+                } label: {
                     Image("HomeButton")
                         .resizable()
                         .frame(width: geometry.size.width * 0.11, height: geometry.size.height * 0.15)
-                })
+                }
                 .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
 
                 children(geometry)

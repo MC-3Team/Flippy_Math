@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @StateObject private var viewModel: QuestionViewModel = QuestionViewModel()
-
+    @StateObject private var viewModel: QuestionViewModel
+    
+    init(viewModel: QuestionViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
         NavigationStack {
             QuestionLayout(viewModel: viewModel) { geometry in
@@ -58,7 +62,6 @@ struct QuestionView: View {
                                     .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
                             }
                         }
-                        
                     } else if viewModel.currentQuestionIndex == 2 {
                         VStack {
                             Image("Q3_Balloons")
@@ -111,5 +114,5 @@ struct QuestionView: View {
 }
 
 #Preview {
-    QuestionView()
+    QuestionView(viewModel: QuestionViewModel(level: 0))
 }
