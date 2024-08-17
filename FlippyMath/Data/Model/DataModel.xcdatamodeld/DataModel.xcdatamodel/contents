@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="MathQuestion" representedClassName="MathQuestion" syncable="YES" codeGenerationType="class">
+        <attribute name="background" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="is_complete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sequence" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="problems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Problem" inverseName="math_question" inverseEntity="Problem"/>
+        <relationship name="stories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Story" inverseName="math_question" inverseEntity="Story"/>
+    </entity>
+    <entity name="Problem" representedClassName="Problem" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="is_operator" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="is_question" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="is_speech" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="problem" optional="YES" attributeType="String"/>
+        <attribute name="sequence" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="math_question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MathQuestion" inverseName="problems" inverseEntity="MathQuestion"/>
+    </entity>
+    <entity name="Story" representedClassName="Story" syncable="YES" codeGenerationType="class">
+        <attribute name="apretiation" optional="YES" attributeType="String"/>
+        <attribute name="audio" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="sequence" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="story" optional="YES" attributeType="String"/>
+        <relationship name="math_question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MathQuestion" inverseName="stories" inverseEntity="MathQuestion"/>
+    </entity>
+</model>
