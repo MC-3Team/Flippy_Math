@@ -22,6 +22,7 @@ struct StoryData: Codable {
     let story: String
     let audio: String
     let appretiation: String
+    let audio_apretiation: String
 }
 
 struct ProblemData: Codable {

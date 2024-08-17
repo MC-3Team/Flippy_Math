@@ -21,6 +21,7 @@
     <entity name="Story" representedClassName="Story" syncable="YES" codeGenerationType="class">
         <attribute name="apretiation" optional="YES" attributeType="String"/>
         <attribute name="audio" optional="YES" attributeType="String"/>
+        <attribute name="audio_apretiation" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="sequence" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="story" optional="YES" attributeType="String"/>

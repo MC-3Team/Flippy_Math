@@ -49,6 +49,7 @@ class CoreDataManager: DataService {
                     story.story = storyJSON.story
                     story.audio = storyJSON.audio
                     story.apretiation = storyJSON.apretiation
+                    story.audio_apretiation = storyJSON.audio_apretiation
                     mathQuestion.addToStories(story)
                 }
                 

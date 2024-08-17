@@ -26,6 +26,7 @@ struct StoryJSON: Codable {
     let story: String
     let audio: String
     let apretiation: String
+    let audio_apretiation: String
 }
 
 struct ProblemJSON: Codable {

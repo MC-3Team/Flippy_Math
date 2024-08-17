@@ -28,7 +28,7 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         
         if !isAudioSessionActive {
             do {
-                try audioSession?.setCategory(.record, mode: .measurement, options: .duckOthers)
+                try audioSession?.setCategory(.playAndRecord, mode: .default, options: [.duckOthers, .allowBluetooth, .defaultToSpeaker])
                 try audioSession?.setActive(true, options: .notifyOthersOnDeactivation)
                 isAudioSessionActive = true
             } catch {
@@ -36,6 +36,7 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
                 subject.onError(error)
                 return subject
             }
+
         }
         
         inputNode = audioEngine.inputNode
@@ -72,40 +73,16 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         
         return subject
     }
-
-    func resetRecognition() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
-//            guard let self = self else { return }
-//            self.stopRecognition()
-//            do {
-//                try self.startRecognition().subscribe()
-//            } catch {
-//                print("Failed to restart recognition")
-//            }
-//        }
-    }
     
     func stopRecognition() {
-        recognitionTask?.cancel()  // Cancel the current recognition task
-        recognitionTask = nil      // Set the task to nil
-        recognitionRequest?.endAudio()  // End the audio input
-        recognitionRequest = nil   // Set the request to nil
-        audioEngine.stop()         // Stop the audio engine
-        audioEngine.inputNode.removeTap(onBus: 0)  // Remove tap on input node
-//        userAnswer = ""
+        recognitionTask?.cancel()
+        recognitionTask = nil
+        recognitionRequest?.endAudio()
+        recognitionRequest = nil
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
     }
     
-//    func stopRecognition() {
-//        isStopped = true
-//        audioEngine.stop()
-//        recognitionRequest?.endAudio()
-//        recognitionTask?.finish()
-//        recognitionTask = nil
-//        recognitionRequest = nil
-//        speechRecognizer = nil
-//        inputNode?.removeTap(onBus: 0)
-//        isStopped = false
-//    }
     
     func deactivateAudioSession() {
         if isAudioSessionActive {
@@ -141,7 +118,6 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
                     let wordString = String(word)
                     return wordToNumberMap[wordString] ?? (Int(wordString) != nil ? wordString : nil)
                 }.last
-                print(wordsToNumbers as Any)
                 
                 if let wordsToNumbers = wordsToNumbers {
                     let containsOnlyNumbers = wordsToNumbers.allSatisfy { $0.isNumber }

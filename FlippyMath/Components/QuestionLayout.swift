@@ -14,13 +14,11 @@ struct QuestionLayout<Content: View>: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Background
                 Image(viewModel.currentQuestionData.background)
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
 
-                // Home Button
                 Button(action: {
                     // Navigation action to HomeView
                 }, label: {
@@ -33,7 +31,7 @@ struct QuestionLayout<Content: View>: View {
                 children(geometry)
 
                 HStack {
-                    // Bambini Message
+                    
                     BambiniRiveView(riveInput: $viewModel.riveInput)
                         .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.35)
                         .position(x: geometry.size.width * 0.07, y: geometry.size.height * 0.935)
@@ -46,6 +44,11 @@ struct QuestionLayout<Content: View>: View {
                         TypewriterText(fullText: Binding(
                             get: {
                                 viewModel.apretiation.isEmpty ? viewModel.currentQuestionData.stories[viewModel.currentMessageIndex].story : viewModel.apretiation
+                            },
+                            set: { _ in }
+                        ), audioName: Binding(
+                            get: {
+                                viewModel.apretiation.isEmpty ? viewModel.currentQuestionData.stories[viewModel.currentMessageIndex].audio : viewModel.currentQuestionData.stories[viewModel.currentMessageIndex].audio_apretiation
                             },
                             set: { _ in }
                         ), onComplete: {
@@ -65,14 +68,14 @@ struct QuestionLayout<Content: View>: View {
                     Button(action: {
                         viewModel.checkAnswerAndAdvance()
                     }, label: {
-                        Image("CorrectButton")
+                        Image(viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion ? (viewModel.userAnswer.isEmpty ? "CorrectButtonGray" : "CorrectButton") : "NextButton")
                             .resizable()
                             .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
                     })
                     .position(x: geometry.size.width * 0.23, y: geometry.size.height * 0.955)
+                    .disabled(viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty)
                 }
 
-                // Math Problem Display
                 Text(displayMathProblems())
                     .font(.custom("PilcrowRoundedVariable-Regular", size: 180))
                     .fontWeight(.heavy)
@@ -101,12 +104,7 @@ struct QuestionLayout<Content: View>: View {
 
             attributedString.append(attributedProblem)
     
-//            if problem.isQuestion {
-//                viewModel.startRecognition()
-//            }
-
             if problem.isOperator {
-                // Append the operator itself
                 
                 if (index + 1) < problems.count {
                     let nextProblem = problems[index + 1]
@@ -137,56 +135,4 @@ struct QuestionLayout<Content: View>: View {
         return attributedString
     }
 
-
-
-
 }
-
-//struct QuestionLayoutPreview: View {
-//    @StateObject private var viewModel: QuestionViewModel
-//
-//    init() {
-//        // Mock question data for preview
-//        let questionData = [
-//            QuestionData(
-//                background: "Q4_Background",
-//                homeButton: "HomeButton",
-//                bambiniImage: "Bambini",
-//                correctButtonImage: "CorrectButton",
-//                storyMessages: [
-//                    "Di atas meja, ada 8 potong kue yang terlihat sangat lezat.",
-//                    "Aku mengambil dan memakan 2 potong kue. Wah rasanya sangat lezat.",
-//                    "Jadi sekarang tersisa berapa potong kue ya?",
-//                    "Benar! 8 dikurang 2 sama dengan 6."
-//                ],
-//                mathProblems: ["8", "-", "2", "=", "?", "6"]
-//            )
-//        ]
-//
-//        _viewModel = StateObject(wrappedValue: QuestionViewModel(questionData: questionData))
-//    }
-//
-//    var body: some View {
-//        QuestionLayout(viewModel: viewModel) { geometry in
-//            HStack {
-//                if viewModel.currentMessageIndex < 1 {
-//                    Image("Q4_8Cakes")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: geometry.size.width * 0.75)
-//                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
-//                } else {
-//                    Image("Q4_6Cakes")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: geometry.size.width * 0.55)
-//                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
-//                }
-//            }
-//        }
-//    }
-//}
-
-//#Preview {
-//    QuestionLayoutPreview()
-//}
