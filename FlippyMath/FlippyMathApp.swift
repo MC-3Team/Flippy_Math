@@ -12,6 +12,7 @@ struct FlippyMathApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView()
+                .navigationBarBackButtonHidden(true)
         }
     }
 }

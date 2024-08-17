@@ -10,7 +10,7 @@ import RxSwift
 
 class QuestionViewModel: ObservableObject {
     @Inject(name: "CoreDataManager") var service: DataService
-    @Inject var speechRecognitionService : SpeechRecognizerService
+    @Inject var speechRecognitionService: SpeechRecognizerService
     
     @Published var currentMessageIndex = 0
     @Published var currentMathIndex = 0
@@ -21,68 +21,82 @@ class QuestionViewModel: ObservableObject {
     @Published var isSuccess: (String?, Bool) = (nil, false)
     @Published var isFailed: Bool = false
     @Published var riveInput: [BambiniRiveInput] = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]
-    @Published var repeatQuestion : Bool = false
-    private let disposeBag = DisposeBag()
+    @Published var repeatQuestion: Bool = false
     
+    private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
     
     var dynamicText: String {
-         apretiation.isEmpty ? currentQuestionData.stories[currentMessageIndex].story : apretiation
-     }
+        apretiation.isEmpty ? currentQuestionData.stories[currentMessageIndex].story : apretiation
+    }
     
     var questionData: [QuestionData] = []
-   
-    init() {
+    
+    // Modify to accept level parameter
+    init(level: Int) {
+        self.currentQuestionIndex = level
         getInCompleteQuestion()
         audioHelper.playMusic(named: "birthday-party", fileType: "wav")
     }
     
+    func clearNavigation() {
+        currentMessageIndex = 0
+        currentMathIndex = 0
+        currentQuestionIndex = 0
+        userAnswer = ""
+        apretiation = ""
+        isProcessing = false
+        isSuccess = (nil, false)
+        isFailed = false
+        riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]
+        repeatQuestion = false
+    }
+    
     func getInCompleteQuestion() {
-            questionData = service.getInCompleteQuestion()
-                .map { question in
-                    let storiesArray = (question.stories as? Set<Story>)?
-                        .sorted { $0.sequence < $1.sequence }
-                        .map { story in
-                            StoryData(
-                                id: Int(story.sequence),
-                                sequence: Int(story.sequence),
-                                story: story.story ?? "",
-                                audio: story.audio ?? "",
-                                appretiation: story.apretiation ?? "",
-                                audio_apretiation: story.audio_apretiation ?? ""
-                            )
-                        } ?? []
-
-                    let problemsArray = (question.problems as? Set<Problem>)?
-                        .sorted { $0.sequence < $1.sequence }
-                        .map { problem in
-                            ProblemData(
-                                id: Int(problem.sequence),
-                                sequence: Int(problem.sequence),
-                                color: problem.color ?? "",
-                                problem: problem.problem ?? "",
-                                isOperator: problem.is_operator,
-                                isQuestion: problem.is_question,
-                                isSpeech: problem.is_speech
-                            )
-                        } ?? []
-
-                    return QuestionData(
-                        id: Int(question.sequence),
-                        sequence: Int(question.sequence),
-                        background: question.background ?? "",
-                        is_complete: question.is_complete,
-                        stories: storiesArray,
-                        problems: problemsArray
-                    )
-                }
-        }
-
-
+        questionData = service.getInCompleteQuestion()
+            .map { question in
+                let storiesArray = (question.stories as? Set<Story>)?
+                    .sorted { $0.sequence < $1.sequence }
+                    .map { story in
+                        StoryData(
+                            id: Int(story.sequence),
+                            sequence: Int(story.sequence),
+                            story: story.story ?? "",
+                            audio: story.audio ?? "",
+                            appretiation: story.apretiation ?? "",
+                            audio_apretiation: story.audio_apretiation ?? ""
+                        )
+                    } ?? []
+                
+                let problemsArray = (question.problems as? Set<Problem>)?
+                    .sorted { $0.sequence < $1.sequence }
+                    .map { problem in
+                        ProblemData(
+                            id: Int(problem.sequence),
+                            sequence: Int(problem.sequence),
+                            color: problem.color ?? "",
+                            problem: problem.problem ?? "",
+                            isOperator: problem.is_operator,
+                            isQuestion: problem.is_question,
+                            isSpeech: problem.is_speech
+                        )
+                    } ?? []
+                
+                return QuestionData(
+                    id: Int(question.sequence),
+                    sequence: Int(question.sequence),
+                    background: question.background ?? "",
+                    is_complete: question.is_complete,
+                    stories: storiesArray,
+                    problems: problemsArray
+                )
+            }
+    }
+    
     var currentQuestionData: QuestionData {
         questionData[currentQuestionIndex]
     }
-
+    
     func advanceMessageAndMath() {
         let totalProblems = currentQuestionData.problems.count
         let totalMessages = currentQuestionData.stories.count
@@ -104,7 +118,7 @@ class QuestionViewModel: ObservableObject {
             currentMessageIndex = 0
             currentMathIndex = 0
         } else {
-           print("Something here")
+            print("Something here")
         }
     }
     
@@ -174,19 +188,19 @@ class QuestionViewModel: ObservableObject {
                     }
                     audioHelper.playSoundEffect(named: "failure-drum", fileType: "wav")
                     riveInput = [
-                    BambiniRiveInput(key: .isSad, value: .bool(true))]
+                        BambiniRiveInput(key: .isSad, value: .bool(true))]
                     let options = ["hmmm", "oops"]
                     audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                         self?.riveInput = [
                             BambiniRiveInput(key: .isSad, value: .bool(false))
                         ]
-
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             self?.riveInput = [
                                 BambiniRiveInput(key: .talking, value: .float(0.0))
                             ]
-
+                            
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 self?.riveInput = [
                                     BambiniRiveInput(key: .talking, value: .float(2.0))
@@ -219,5 +233,4 @@ class QuestionViewModel: ObservableObject {
             userAnswer = ""
         }
     }
-
 }
