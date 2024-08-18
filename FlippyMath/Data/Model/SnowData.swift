@@ -1,6 +1,6 @@
 //
 //  SnowData.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by William Handoko on 17/08/24.
 //

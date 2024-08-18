@@ -54,12 +54,12 @@
 		13B7601C2C706CB300EBFCD1 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601B2C706CB300EBFCD1 /* Swinject */; };
 		13B7601F2C706CBB00EBFCD1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601E2C706CBB00EBFCD1 /* RiveRuntime */; };
 		D34723CA2C70A749005C1E9F /* bambini.riv in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FAD2C705B8500EBFCD1 /* bambini.riv */; };
+		D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */; };
 		D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */; };
 		D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF922C6F3EBC00D41B9A /* ContentView.swift */; };
 		D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF942C6F3EBD00D41B9A /* Assets.xcassets */; };
 		D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */; };
 		D997DD942C719F2A005BAB34 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D997DD922C719F2A005BAB34 /* DataModel.xcdatamodeld */; };
-		D997DD962C719FC8005BAB34 /* PilcrowRounded-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D997DD952C719FC8005BAB34 /* PilcrowRounded-Variable.ttf */; };
 		D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */; };
 		D99B6AFB2C71935E00A60CD2 /* flyingballoon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */; };
 /* End PBXBuildFile section */
@@ -108,13 +108,13 @@
 		13B75FEC2C70676200EBFCD1 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BambiniRiveView.swift; sourceTree = "<group>"; };
 		13B75FF12C70689300EBFCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
 		D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippyMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippyMathApp.swift; sourceTree = "<group>"; };
 		D934AF922C6F3EBC00D41B9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D934AF942C6F3EBD00D41B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D997DD932C719F2A005BAB34 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		D997DD952C719FC8005BAB34 /* PilcrowRounded-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilcrowRounded-Variable.ttf"; sourceTree = "<group>"; };
 		D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingBalloonView.swift; sourceTree = "<group>"; };
 		D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flyingballoon.riv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,7 +157,7 @@
 		13B75F8B2C7059AF00EBFCD1 /* CustomFonts */ = {
 			isa = PBXGroup;
 			children = (
-				D997DD952C719FC8005BAB34 /* PilcrowRounded-Variable.ttf */,
+				D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */,
 			);
 			path = CustomFonts;
 			sourceTree = "<group>";
@@ -482,7 +482,7 @@
 				13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */,
 				13B75FAC2C705B7C00EBFCD1 /* correct.wav in Resources */,
 				13B75FA92C705B7C00EBFCD1 /* click.wav in Resources */,
-				D997DD962C719FC8005BAB34 /* PilcrowRounded-Variable.ttf in Resources */,
+				D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */,
 				13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */,
 				D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */,
 				13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */,

@@ -1,6 +1,6 @@
 //
 //  TextToSpeechManager.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 05/08/24.
 //

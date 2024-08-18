@@ -1,6 +1,6 @@
 //
 //  CustomVideoPlayerView.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Ayatullah Ma'arif on 10/08/24.
 //
