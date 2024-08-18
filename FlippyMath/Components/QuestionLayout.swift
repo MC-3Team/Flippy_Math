@@ -138,3 +138,17 @@ struct QuestionLayout<Content: View>: View {
     }
 
 }
+
+#Preview {
+    QuestionLayout(
+        viewModel: QuestionViewModel(level: 2), // Replace with your desired level or mock data
+        children: { geometry in
+            // Example of content you might want to preview within the layout
+            VStack {
+                Text("Preview Content")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.blue.opacity(0.3))
+            }
+        }
+    )
+}
