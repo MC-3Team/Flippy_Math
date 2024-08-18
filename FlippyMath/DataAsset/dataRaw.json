@@ -1,6 +1,48 @@
 {
     "math_question": [
         {
+            "id": 0,
+            "sequence": 0,
+            "background": "IntroBackground",
+            "is_complete": false,
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Haii! Aku Flippy, dan hari ini adalah hari yang sangat istimewa untukku.",
+                    "audio": "",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "Aku tinggal di sebuah rumah iglo yang nyaman, dan hari ini, aku merayakan ulang tahunku yang ke-7!",
+                    "audio": "",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Aku sangat senang karena ada banyak hal seru yang bisa dilakukan di hari spesial ini.",
+                    "audio": "",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Yuk, ikut bersamaku merayakan hari ulang tahunku di rumah iglo ini yang hangat dan penuh kejutan!",
+                    "audio": "",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                }
+            ],
+            "problems": []
+        }
+
+        ,{
             "id": 1,
             "sequence": 1,
             "background": "Q1_Background",
@@ -332,6 +374,110 @@
                     "isSpeech": true
                 }
             ]
+        },
+        {
+            "id": 5,
+            "sequence": 5,
+            "background": "Q5_Background",
+            "is_complete": false,
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Sambil menikmati kue, tiba-tiba ada banyak lalat yang mengganggu.",
+                    "audio": "audio-5-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "Lalat itu terbang mengelilingi meja dan membuat kami terganggu.",
+                    "audio": "audio-5-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Coba hitung, ada berapa lalat yang terbang?",
+                    "audio": "audio-5-3",
+                    "apretiation": "Benar! ada 9 lalat.",
+                    "audio_apretiation": "audio-apretiation-5-3"
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Ayo bantu mengusir lalat-lalat ini dengan menepukkan tangan.",
+                    "audio": "audio-5-4",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "story": "Kamu telah membantu mengusir lalat tersebut, dan 5 lalat yang kabur.",
+                    "audio": "audio-5-5",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 6,
+                    "sequence": 6,
+                    "story": "Jadi, ada berapa lalat yang tersisa?",
+                    "audio": "audio-5-6",
+                    "apretiation": "Luar biasa! 9 dikurang 5 sama dengan 4.",
+                    "audio_apretiation": "audio-apretiation-5-6"
+                }
+            ],
+            "problems": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "color": "orangePrimary",
+                    "problem": "9",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "color": "bluePrimary",
+                    "problem": "-",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "color": "orangePrimary",
+                    "problem": "7",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "color": "bluePrimary",
+                    "problem": "=",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "color": "orangePrimary",
+                    "problem": "2",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": true
+                }
+            ]
         }
+
     ]
 }
