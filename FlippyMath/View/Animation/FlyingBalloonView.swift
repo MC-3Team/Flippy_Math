@@ -14,6 +14,7 @@ struct FlyingBalloonView: View {
     var body: some View {
         riveVM.view()
             .ignoresSafeArea()
+            .allowsHitTesting(false)
     }
 }
 
@@ -23,6 +24,8 @@ struct IdleBalloonView: View {
     var body: some View {
         riveVM.view()
             .ignoresSafeArea()
+            .allowsHitTesting(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
+
     }
 }
 
@@ -32,6 +35,8 @@ struct IdleBalloon2View: View {
     var body: some View {
         riveVM.view()
             .ignoresSafeArea()
+            .allowsHitTesting(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
+
     }
 }
 

@@ -20,6 +20,7 @@ class HomeViewModel: ObservableObject {
     @Published var clapCount: Int = 0
     @Published var snowflakes: [Snowflake] = []
     @Published var animate = false
+    @Published var isMusicOn = true
     
     private let numberOfSnowflakes = 75
     private let disposeBag = DisposeBag()

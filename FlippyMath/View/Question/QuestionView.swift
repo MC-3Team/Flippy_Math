@@ -99,6 +99,7 @@ struct QuestionView: View {
                     }
                 }
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

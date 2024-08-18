@@ -9,6 +9,8 @@ import SwiftUI
 
 struct QuestionLayout<Content: View>: View {
     @ObservedObject var viewModel: QuestionViewModel
+    @Environment(\.dismiss) var dismiss
+    
     let children: (GeometryProxy) -> Content
 
     var body: some View {
@@ -19,8 +21,8 @@ struct QuestionLayout<Content: View>: View {
                     .scaledToFill()
                     .ignoresSafeArea()
                 
-                NavigationLink {
-                    HomeView()
+                Button {
+                    self.dismiss()
                 } label: {
                     Image("HomeButton")
                         .resizable()
