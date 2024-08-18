@@ -109,12 +109,12 @@ struct QuestionView: View {
                                     .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                             }
                             
-                            ForEach(0..<8, id: \.self) { index in
+                            ForEach(0..<9, id: \.self) { index in
                                 Image("Q5_Fly\(index + 1)")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: geometry.size.width * 0.05)
-                                    .position(viewModel.randomPosition(geometry: geometry, index: index))
+                                    .position(viewModel.randomPositionAroundCake(geometry: geometry, cakePosition: CGPoint(x: geometry.size.width * 0.7, y: geometry.size.height * 0.5)))
                             }
                         }
                         
@@ -133,5 +133,5 @@ struct QuestionView: View {
 }
 
 #Preview {
-    QuestionView(viewModel: QuestionViewModel(level: 1))
+    QuestionView(viewModel: QuestionViewModel(level: 4))
 }
