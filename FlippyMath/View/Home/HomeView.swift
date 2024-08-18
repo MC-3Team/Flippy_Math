@@ -12,6 +12,8 @@ struct HomeView: View {
     @StateObject var historyViewModel = HistoryViewModel()
     @StateObject private var viewModel = HomeViewModel()
     
+    var audioHelper = AudioHelper.shared
+    
     var body: some View {
         GeometryReader { geometry in
             NavigationStack{
@@ -31,8 +33,8 @@ struct HomeView: View {
                         .padding(.top,geometry.size.height * 0.2)
                     
                     //Ganti Button ya wil jan lupa
-                    NavigationLink {
-                        HomeView()
+                    Button{
+                        viewModel.isMusicOn.toggle()
                     } label: {
                         Image("MusicButton")
                             .resizable()
@@ -76,6 +78,14 @@ struct HomeView: View {
                     viewModel.createSnowflakes(in: geometry.size)
                     withAnimation {
                         viewModel.animate = true
+                    }
+                }
+                .onChange(of: viewModel.isMusicOn) { _, _ in
+                    switch viewModel.isMusicOn{
+                    case true :
+                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
+                    case false :
+                        audioHelper.stopMusic()
                     }
                 }
             }
