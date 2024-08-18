@@ -1,6 +1,6 @@
 //
 //  SplashViewModel.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 15/08/24.
 //

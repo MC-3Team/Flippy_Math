@@ -1,13 +1,13 @@
 //
 //  QuestionData.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Rajesh Triadi Noftarizal on 14/08/24.
 //
 
 import Foundation
 
-struct QuestionData: Codable {
+struct QuestionData: Codable, Equatable{
     let id: Int
     let sequence : Int
     let background: String
@@ -16,7 +16,7 @@ struct QuestionData: Codable {
     let problems: [ProblemData]
 }
 
-struct StoryData: Codable {
+struct StoryData: Codable, Equatable{
     let id: Int
     let sequence : Int
     let story: String
@@ -25,7 +25,7 @@ struct StoryData: Codable {
     let audio_apretiation: String
 }
 
-struct ProblemData: Codable {
+struct ProblemData: Codable, Equatable {
     let id: Int
     let sequence : Int
     let color : String

@@ -1,6 +1,6 @@
 //
 //  QuestionLayout.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Rajesh Triadi Noftarizal on 13/08/24.
 //
@@ -34,7 +34,7 @@ struct QuestionLayout<Content: View>: View {
 
                 HStack {
                     
-                    BambiniRiveView(riveInput: $viewModel.riveInput)
+                    FlippyRiveView(riveInput: $viewModel.riveInput)
                         .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.35)
                         .position(x: geometry.size.width * 0.07, y: geometry.size.height * 0.935)
 
@@ -54,8 +54,8 @@ struct QuestionLayout<Content: View>: View {
                             },
                             set: { _ in }
                         ), onComplete: {
-                            viewModel.riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(0.0)),
-                                                   BambiniRiveInput(key: .isRightHandsUp, value: .bool(false))]
+                            viewModel.riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(0.0)),
+                                                   FlippyRiveInput(key: .isRightHandsUp, value: .bool(false))]
                         }).id(viewModel.repeatQuestion)
                             .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                             .fontWeight(.bold)
@@ -70,12 +70,12 @@ struct QuestionLayout<Content: View>: View {
                     Button(action: {
                         viewModel.checkAnswerAndAdvance()
                     }, label: {
-                        Image(viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion ? (viewModel.userAnswer.isEmpty ? "CorrectButtonGray" : "CorrectButton") : "NextButton")
+                        Image(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion ? (viewModel.userAnswer.isEmpty ? "CorrectButtonGray" : "CorrectButton") :  "NextButton" : "NextButton")
                             .resizable()
                             .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
                     })
                     .position(x: geometry.size.width * 0.23, y: geometry.size.height * 0.955)
-                    .disabled(viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty)
+                    .disabled(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
                 }
 
                 Text(displayMathProblems())

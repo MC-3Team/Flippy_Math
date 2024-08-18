@@ -1,6 +1,6 @@
 //
 //  TypeWriter.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 16/08/24.
 //
