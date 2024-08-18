@@ -1,6 +1,6 @@
 //
 //  MathQuestionJSON.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 14/08/24.
 //

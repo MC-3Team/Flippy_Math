@@ -1,12 +1,13 @@
 //
 //  QuestionViewModel.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 05/08/24.
 //
 
 import Foundation
 import RxSwift
+import SwiftUI
 
 class QuestionViewModel: ObservableObject {
     @Inject(name: "CoreDataManager") var service: DataService
@@ -14,13 +15,13 @@ class QuestionViewModel: ObservableObject {
     
     @Published var currentMessageIndex = 0
     @Published var currentMathIndex = 0
-    @Published var currentQuestionIndex = 0
+    @Published var currentQuestionIndex = 2
     @Published var userAnswer = ""
     @Published var apretiation = ""
     @Published var isProcessing: Bool = false
     @Published var isSuccess: (String?, Bool) = (nil, false)
     @Published var isFailed: Bool = false
-    @Published var riveInput: [BambiniRiveInput] = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]
+    @Published var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     @Published var repeatQuestion: Bool = false
     
     private let disposeBag = DisposeBag()
@@ -42,13 +43,13 @@ class QuestionViewModel: ObservableObject {
     func clearNavigation() {
         currentMessageIndex = 0
         currentMathIndex = 0
-        currentQuestionIndex = 0
+        currentQuestionIndex = 2
         userAnswer = ""
         apretiation = ""
         isProcessing = false
         isSuccess = (nil, false)
         isFailed = false
-        riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]
+        riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
         repeatQuestion = false
     }
     
@@ -164,7 +165,7 @@ class QuestionViewModel: ObservableObject {
                         startRecognition()
                     }
                     currentMessageIndex += 1
-                    riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]
+                    riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
                 } else {
                     currentQuestionIndex += 1
                     currentMessageIndex = 0
@@ -177,33 +178,33 @@ class QuestionViewModel: ObservableObject {
                     stopRecognition()
                     audioHelper.playSoundEffect(named: "correct", fileType: "wav")
                     apretiation = currentQuestionData.stories[currentMessageIndex].appretiation
-                    riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0)),
-                                 BambiniRiveInput(key: .isRightHandsUp, value: .bool(true))
+                    riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0)),
+                                 FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
                     ]
                 } else {
                     stopRecognition()
                     userAnswer = ""
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                         self?.startRecognition()
                     }
                     audioHelper.playSoundEffect(named: "failure-drum", fileType: "wav")
                     riveInput = [
-                        BambiniRiveInput(key: .isSad, value: .bool(true))]
+                        FlippyRiveInput(key: .isSad, value: .bool(true))]
                     let options = ["hmmm", "oops"]
                     audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                         self?.riveInput = [
-                            BambiniRiveInput(key: .isSad, value: .bool(false))
+                            FlippyRiveInput(key: .isSad, value: .bool(false))
                         ]
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             self?.riveInput = [
-                                BambiniRiveInput(key: .talking, value: .float(0.0))
+                                FlippyRiveInput(key: .talking, value: .float(0.0))
                             ]
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 self?.riveInput = [
-                                    BambiniRiveInput(key: .talking, value: .float(2.0))
+                                    FlippyRiveInput(key: .talking, value: .float(2.0))
                                 ]
                                 self?.repeatQuestion = !(self?.repeatQuestion ?? false)
                             }
@@ -224,7 +225,7 @@ class QuestionViewModel: ObservableObject {
                     
                 }
                 currentMessageIndex += 1
-                riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]
+                riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
             }
         } else {
             currentQuestionIndex += 1
@@ -232,5 +233,14 @@ class QuestionViewModel: ObservableObject {
             currentMathIndex = 0
             userAnswer = ""
         }
+    }
+    
+    // Random Position fot Flies
+    func randomPosition(geometry: GeometryProxy, index: Int) -> CGPoint {
+        let radius: CGFloat = geometry.size.width * 0.25
+        let angle = CGFloat(index) * (.pi * 2 / 8)
+        let x = geometry.size.width / 2 + radius * cos(angle)
+        let y = geometry.size.height * 0.6 + radius * sin(angle)
+        return CGPoint(x: x, y: y)
     }
 }
