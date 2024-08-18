@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		133573B82C70BC9F007696A8 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 133573B62C70BC9F007696A8 /* DataModel.xcdatamodeld */; };
 		133573BA2C70BFD3007696A8 /* ButtonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573B92C70BFD3007696A8 /* ButtonData.swift */; };
 		133573BF2C70C140007696A8 /* HistoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573BE2C70C140007696A8 /* HistoryGridView.swift */; };
 		133573C12C70C180007696A8 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573C02C70C180007696A8 /* HistoryViewModel.swift */; };
@@ -59,10 +58,12 @@
 		D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF922C6F3EBC00D41B9A /* ContentView.swift */; };
 		D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF942C6F3EBD00D41B9A /* Assets.xcassets */; };
 		D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */; };
+		D99B6AF02C718A7100A60CD2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D99B6AEE2C718A7100A60CD2 /* DataModel.xcdatamodeld */; };
+		D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */; };
+		D99B6AFB2C71935E00A60CD2 /* flyingballoon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		133573B72C70BC9F007696A8 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		133573B92C70BFD3007696A8 /* ButtonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonData.swift; sourceTree = "<group>"; };
 		133573BE2C70C140007696A8 /* HistoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridView.swift; sourceTree = "<group>"; };
 		133573C02C70C180007696A8 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
@@ -112,6 +113,9 @@
 		D934AF922C6F3EBC00D41B9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D934AF942C6F3EBD00D41B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D99B6AEF2C718A7100A60CD2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingBalloonView.swift; sourceTree = "<group>"; };
+		D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flyingballoon.riv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,7 @@
 		13B75F952C705A7200EBFCD1 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */,
 				13B75FAD2C705B8500EBFCD1 /* bambini.riv */,
 			);
 			path = Animation;
@@ -271,7 +276,7 @@
 		13B75FB42C705C0A00EBFCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				133573B62C70BC9F007696A8 /* DataModel.xcdatamodeld */,
+				D99B6AEE2C718A7100A60CD2 /* DataModel.xcdatamodeld */,
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
@@ -308,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */,
+				D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -469,6 +475,7 @@
 				D34723CA2C70A749005C1E9F /* bambini.riv in Resources */,
 				13B75FBD2C705DC900EBFCD1 /* dataRaw.json in Resources */,
 				D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */,
+				D99B6AFB2C71935E00A60CD2 /* flyingballoon.riv in Resources */,
 				13B75FAA2C705B7C00EBFCD1 /* failure-drum.wav in Resources */,
 				13B75FA42C705B6D00EBFCD1 /* hai aku bambini.wav in Resources */,
 				13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */,
@@ -488,6 +495,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */,
 				13B75FEA2C70675900EBFCD1 /* HomeView.swift in Sources */,
 				13B75FF02C70676D00EBFCD1 /* BambiniRiveView.swift in Sources */,
 				D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */,
@@ -509,6 +517,7 @@
 				13B75FDA2C705E9700EBFCD1 /* SoundAnalysisService.swift in Sources */,
 				13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */,
 				13B75FE52C70675000EBFCD1 /* SplashViewModel.swift in Sources */,
+				D99B6AF02C718A7100A60CD2 /* DataModel.xcdatamodeld in Sources */,
 				13B75FC22C705E3100EBFCD1 /* AppContainer.swift in Sources */,
 				133573C12C70C180007696A8 /* HistoryViewModel.swift in Sources */,
 				13B75FC92C705E8300EBFCD1 /* TextToSpeechManager.swift in Sources */,
@@ -516,7 +525,6 @@
 				13B75FE12C705F9900EBFCD1 /* VideoViewModel.swift in Sources */,
 				13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */,
 				13B75FED2C70676200EBFCD1 /* QuestionViewModel.swift in Sources */,
-				133573B82C70BC9F007696A8 /* DataModel.xcdatamodeld in Sources */,
 				13B75FE92C70675900EBFCD1 /* HomeViewModel.swift in Sources */,
 				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
 				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
@@ -655,7 +663,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 459W9TDYSS;
+				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -667,13 +675,14 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.childhood.FlippyMath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -694,7 +703,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 459W9TDYSS;
+				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -706,13 +715,14 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.childhood.FlippyMath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -809,14 +819,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		133573B62C70BC9F007696A8 /* DataModel.xcdatamodeld */ = {
+		D99B6AEE2C718A7100A60CD2 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				133573B72C70BC9F007696A8 /* DataModel.xcdatamodel */,
+				D99B6AEF2C718A7100A60CD2 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 133573B72C70BC9F007696A8 /* DataModel.xcdatamodel */;
+			currentVersion = D99B6AEF2C718A7100A60CD2 /* DataModel.xcdatamodel */;
 			name = DataModel.xcdatamodeld;
-			path = /Users/williamhandoko/Documents/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld;
+			path = /Users/ayatullahmaarif/Documents/Projects/ADA/FlippyMath/FlippyMath/Data/Model/DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

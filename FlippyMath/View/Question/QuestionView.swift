@@ -64,24 +64,14 @@ struct QuestionView: View {
                         }
                     } else if viewModel.currentQuestionIndex == 2 {
                         VStack {
-                            Image("Q3_Balloons")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.7)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.1)
-                            
-                            if viewModel.currentMessageIndex > 1 {
-                                Image("Q3_PenguinWithBaloons")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: geometry.size.width * 0.15)
-                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.05)
-                            } else {
-                                Image("")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: geometry.size.width * 0.55)
-                                    .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                            if viewModel.currentMessageIndex < 2{
+                                IdleBalloonView()
+                            }
+                            else if viewModel.currentMessageIndex == 2{
+                                FlyingBalloonView()
+                            }
+                            else if viewModel.currentMessageIndex > 2{
+                                IdleBalloon2View()
                             }
                         }
                     } else if viewModel.currentQuestionIndex == 3{
