@@ -22,6 +22,7 @@ class QuestionViewModel: ObservableObject {
     @Published var isFailed: Bool = false
     @Published var riveInput: [BambiniRiveInput] = [BambiniRiveInput(key: .talking, value: BambiniValue.float(2.0))]
     @Published var repeatQuestion: Bool = false
+    @Published var repeatProblem: Bool = false
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
@@ -190,6 +191,7 @@ class QuestionViewModel: ObservableObject {
                     riveInput = [
                         BambiniRiveInput(key: .isSad, value: .bool(true))]
                     let options = ["hmmm", "oops"]
+                    repeatProblem = !repeatProblem
                     audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                         self?.riveInput = [
