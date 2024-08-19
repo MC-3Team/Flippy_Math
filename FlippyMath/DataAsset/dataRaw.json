@@ -77,7 +77,7 @@
                 {
                     "id": 1,
                     "sequence": 1,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "6",
                     "isOperator": false,
                     "isQuestion": false,
@@ -86,7 +86,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "-",
                     "isOperator": true,
                     "isQuestion": false,
@@ -95,7 +95,7 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "2",
                     "isOperator": false,
                     "isQuestion": false,
@@ -104,7 +104,7 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "=",
                     "isOperator": true,
                     "isQuestion": false,
@@ -331,7 +331,7 @@
                 {
                     "id": 1,
                     "sequence": 1,
-                    "color": "orangePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "8",
                     "isOperator": false,
                     "isQuestion": false,
@@ -340,7 +340,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "color": "bluePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "-",
                     "isOperator": true,
                     "isQuestion": false,
@@ -349,7 +349,7 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "color": "orangePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "2",
                     "isOperator": false,
                     "isQuestion": false,
@@ -358,7 +358,7 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "color": "bluePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "=",
                     "isOperator": true,
                     "isQuestion": false,
@@ -453,7 +453,7 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "color": "bluePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "-",
                     "isOperator": true,
                     "isQuestion": false,
@@ -471,7 +471,7 @@
                 {
                     "id": 5,
                     "sequence": 5,
-                    "color": "bluePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "=",
                     "isOperator": true,
                     "isQuestion": false,
@@ -489,114 +489,109 @@
             ]
         },
         {
-            {
-                "id": 6,
-                "sequence": 4,
-                "background": "Q6_Background",
-                "is_complete": false,
-                "stories": [
-                    {
-                        "id": 1,
-                        "sequence": 1,
-                        "story": "Setelah menikmati kue, tiba-tiba ada 2 rubah arktik kecil dan 2 rubah arktik besar yang datang ke rumah iglo.",
-                        "audio": "audio-6-1",
-                        "apretiation": "",
-                        "audio_apretiation": ""
-                    },
-                    {
-                        "id": 2,
-                        "sequence": 2,
-                        "story": "Mereka datang karena tertarik melihat keramaian di rumah iglo.",
-                        "audio": "audio-6-2",
-                        "apretiation": "",
-                        "audio_apretiation": ""
-                    },
-                    {
-                        "id": 3,
-                        "sequence": 3,
-                        "story": "Ayo ajak rubah arktiknya bermain dengan  menepukkan tangan.",
-                        "audio": "audio-6-3",
-                        "apretiation": "Yeay! mereka senang, lalu tiba tiba 4 rubah arktik kecil datang lagi.",
-                        "audio_apretiation": ""
-                    },
-                    {
-                        "id": 4,
-                        "sequence": 4,
-                        "story": "Jadi, berapa total rubah artik yang  sekarang ada di dalam rumah iglo?",
-                        "audio": "audio-6-4",
-                        "apretiation": "Hebat! 2 rubah ditambah 2 rubah ditambah lagi 4 rubah sama dengan 8 rubah.",
-                        "audio_apretiation": "audio-apretiation-6-4"
-                    },
-                    {
-                        
-                    }
-                ],
-                "problems": [
-                    {
-                        "id": 1,
-                        "sequence": 1,
-                        "color": "bluePrimary",
-                        "problem": "2",
-                        "isOperator": false,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 2,
-                        "sequence": 2,
-                        "color": "bluePrimary",
-                        "problem": "+",
-                        "isOperator": true,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 3,
-                        "sequence": 3,
-                        "color": "bluePrimary",
-                        "problem": "2",
-                        "isOperator": false,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 4,
-                        "sequence": 4,
-                        "color": "bluePrimary",
-                        "problem": "+",
-                        "isOperator": true,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 5,
-                        "sequence": 5,
-                        "color": "orangePrimary",
-                        "problem": "4",
-                        "isOperator": false,
-                        "isQuestion": true,
-                        "isSpeech": true
-                    },
-                    {
-                        "id": 6,
-                        "sequence": 6,
-                        "color": "bluePrimary",
-                        "problem": "=",
-                        "isOperator": true,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 7,
-                        "sequence": 7,
-                        "color": "orangePrimary",
-                        "problem": "8",
-                        "isOperator": false,
-                        "isQuestion": true,
-                        "isSpeech": true
-                    }
-                ]
-            }
+            "id": 6,
+            "sequence": 6,
+            "background": "Q6_Background",
+            "is_complete": false,
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Setelah menikmati kue, tiba-tiba ada 2 rubah arktik kecil dan 2 rubah arktik besar yang datang ke rumah iglo.",
+                    "audio": "audio-6-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "Mereka datang karena tertarik melihat keramaian di rumah iglo.",
+                    "audio": "audio-6-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Ayo ajak rubah arktiknya bermain dengan  menepukkan tangan.",
+                    "audio": "audio-6-3",
+                    "apretiation": "Yeay! mereka senang, lalu tiba tiba 4 rubah arktik kecil datang lagi.",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Jadi, berapa total rubah artik yang  sekarang ada di dalam rumah iglo?",
+                    "audio": "audio-6-4",
+                    "apretiation": "Hebat! 2 rubah ditambah 2 rubah ditambah lagi 4 rubah sama dengan 8 rubah.",
+                    "audio_apretiation": "audio-apretiation-6-4"
+                },
+            ],
+            "problems": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "color": "bluePrimary",
+                    "problem": "2",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "color": "bluePrimary",
+                    "problem": "+",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "color": "bluePrimary",
+                    "problem": "2",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "color": "bluePrimary",
+                    "problem": "+",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "color": "orangePrimary",
+                    "problem": "4",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": false
+                },
+                {
+                    "id": 6,
+                    "sequence": 6,
+                    "color": "bluePrimary",
+                    "problem": "=",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 7,
+                    "sequence": 7,
+                    "color": "orangePrimary",
+                    "problem": "8",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": true
+                }
+            ]
         },
         {
             "id": 7,
@@ -647,6 +642,15 @@
             ],
             "problems": [
                 {
+                    "id": 0,
+                    "sequence": 0,
+                    "color": "bluePrimary",
+                    "problem": "20",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
                     "id": 1,
                     "sequence": 1,
                     "color": "bluePrimary",
@@ -659,8 +663,8 @@
                     "id": 2,
                     "sequence": 2,
                     "color": "bluePrimary",
-                    "problem": "-",
-                    "isOperator": true,
+                    "problem": "20",
+                    "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
                 },
@@ -668,8 +672,8 @@
                     "id": 3,
                     "sequence": 3,
                     "color": "bluePrimary",
-                    "problem": "5",
-                    "isOperator": false,
+                    "problem": "-",
+                    "isOperator": true,
                     "isQuestion": false,
                     "isSpeech": false
                 },
@@ -677,14 +681,23 @@
                     "id": 4,
                     "sequence": 4,
                     "color": "bluePrimary",
-                    "problem": "=",
-                    "isOperator": true,
+                    "problem": "5",
+                    "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
                 },
                 {
                     "id": 5,
                     "sequence": 5,
+                    "color": "bluePrimary",
+                    "problem": "=",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 6,
+                    "sequence": 6,
                     "color": "orangePrimary",
                     "problem": "15",
                     "isOperator": false,
@@ -693,7 +706,6 @@
                 }
             ]
         },
-        
         {
             "id": 8,
             "sequence": 8,
@@ -799,8 +811,5 @@
                 }
             ]
         }
-        
-        
-        
     ]
 }
