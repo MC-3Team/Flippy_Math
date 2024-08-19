@@ -11,6 +11,6 @@ struct QuestionViewWrapper: View {
     let level: Int
     
     var body: some View {
-        QuestionView(viewModel: QuestionViewModel(level: level))
+        QuestionView()
     }
 }

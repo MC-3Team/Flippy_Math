@@ -12,10 +12,11 @@ import SwiftUI
 class QuestionViewModel: ObservableObject {
     @Inject(name: "CoreDataManager") var service: DataService
     @Inject var speechRecognitionService: SpeechRecognizerService
+    @Inject private var soundAnalysisService: SoundAnalysisService
     
     @Published var currentMessageIndex = 0
     @Published var currentMathIndex = 0
-    @Published var currentQuestionIndex = 2
+    @Published var currentQuestionIndex = 0
     @Published var userAnswer = ""
     @Published var apretiation = ""
     @Published var isProcessing: Bool = false
@@ -23,6 +24,7 @@ class QuestionViewModel: ObservableObject {
     @Published var isFailed: Bool = false
     @Published var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     @Published var repeatQuestion: Bool = false
+    @Published var repeatProblem: Bool = false
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
@@ -34,16 +36,15 @@ class QuestionViewModel: ObservableObject {
     var questionData: [QuestionData] = []
     
     // Modify to accept level parameter
-    init(level: Int) {
-        self.currentQuestionIndex = level
+    init() {
+//        self.currentQuestionIndex = level
         getInCompleteQuestion()
-        audioHelper.playMusic(named: "birthday-party", fileType: "wav")
     }
     
     func clearNavigation() {
         currentMessageIndex = 0
         currentMathIndex = 0
-        currentQuestionIndex = 2
+        currentQuestionIndex = 5
         userAnswer = ""
         apretiation = ""
         isProcessing = false
@@ -54,6 +55,8 @@ class QuestionViewModel: ObservableObject {
     }
     
     func getInCompleteQuestion() {
+//        let filteredQuestions = service.getInCompleteQuestion().filter{ $0.sequence == 1 }
+//        print(filteredQuestions)
         questionData = service.getInCompleteQuestion()
             .map { question in
                 let storiesArray = (question.stories as? Set<Story>)?
@@ -98,31 +101,6 @@ class QuestionViewModel: ObservableObject {
         questionData[currentQuestionIndex]
     }
     
-    func advanceMessageAndMath() {
-        let totalProblems = currentQuestionData.problems.count
-        let totalMessages = currentQuestionData.stories.count
-        
-        if currentMessageIndex < totalMessages - 1 {
-            currentMessageIndex += 1
-            if currentMathIndex < totalProblems - 1 {
-                currentMathIndex += 1
-                if currentQuestionData.problems[currentMathIndex].isOperator {
-                    currentMathIndex += 1
-                }
-            } else {
-                currentMathIndex = totalProblems - 1
-            }
-        } else if currentMathIndex < totalProblems - 1 {
-            currentMathIndex += 1
-        } else if currentQuestionIndex < questionData.count - 1 {
-            currentQuestionIndex += 1
-            currentMessageIndex = 0
-            currentMathIndex = 0
-        } else {
-            print("Something here")
-        }
-    }
-    
     func startRecognition() {
         speechRecognitionService.startRecognition()
             .do(onSubscribe: { [weak self] in
@@ -142,97 +120,199 @@ class QuestionViewModel: ObservableObject {
             .disposed(by: disposeBag)
     }
     
-    func stopRecognition() {
+    func stopRecognition(tryRepeat : Bool) {
         speechRecognitionService.stopRecognition()
+            .do(onSubscribe: { [weak self] in
+                print("Stop speech recognition...")
+                self?.isProcessing = true
+                self?.isFailed = false
+                self?.isSuccess = (nil, false)
+            })
+            .subscribe(onNext: { [self] success in
+                isProcessing = false
+                isSuccess = (nil, false)
+                isFailed = false
+            }, onError: { [weak self] error in
+                self?.isFailed = true
+                self?.isProcessing = false
+            }, onCompleted: {
+                if tryRepeat {
+                    self.startRecognition()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func startAnalysis() {
+        soundAnalysisService.startAnalysis()
+            .do(onSubscribe: { [weak self] in
+                print("Starting sound analysis...")
+                self?.isProcessing = true
+                self?.isFailed = false
+                self?.isSuccess = (nil, false)
+            })
+            .subscribe(onNext: { [weak self] (label, success) in
+                self?.isSuccess = (label, success)
+                if label == "Clap" {
+                    self?.stopAnalysis()
+                    self?.userAnswer =  self?.currentQuestionData.problems[self?.currentMathIndex ?? 0].problem ?? ""
+                    self?.audioHelper.playSoundEffect(named: "correct", fileType: "wav")
+                    self?.apretiation = self?.currentQuestionData.stories[self?.currentMessageIndex ?? 0].appretiation ?? ""
+                    self?.riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0)),
+                                 FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
+                    ]
+                }
+//                if success, label == "Clap" {
+//                    self?.clapCount += 1
+//                }
+                //                self?.isProcessing = false
+            }, onError: { [weak self] error in
+                self?.isFailed = true
+                self?.isProcessing = false
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func stopAnalysis() {
+        soundAnalysisService.stopAnalysis()
         isProcessing = false
         isSuccess = (nil, false)
         isFailed = false
     }
     
     func checkAnswerAndAdvance() {
-        if currentMathIndex < currentQuestionData.problems.count {
-            let currentProblem = currentQuestionData.problems[currentMathIndex]
-            if !apretiation.isEmpty {
-                apretiation = ""
-                userAnswer = ""
-                currentMathIndex += 1
-                if currentMathIndex < currentQuestionData.problems.count {
-                    if currentQuestionData.problems[currentMathIndex].isOperator {
-                        currentMathIndex += 1
-                    }
-                    
-                    if currentQuestionData.problems[currentMathIndex].isQuestion {
-                        startRecognition()
-                    }
-                    currentMessageIndex += 1
-                    riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-                } else {
-                    currentQuestionIndex += 1
-                    currentMessageIndex = 0
-                    currentMathIndex = 0
-                    userAnswer = ""
-                }
-            }
-            else if currentProblem.isQuestion && apretiation.isEmpty {
-                if userAnswer == currentProblem.problem {
-                    stopRecognition()
-                    audioHelper.playSoundEffect(named: "correct", fileType: "wav")
-                    apretiation = currentQuestionData.stories[currentMessageIndex].appretiation
-                    riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0)),
-                                 FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
-                    ]
-                } else {
-                    stopRecognition()
-                    userAnswer = ""
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                        self?.startRecognition()
-                    }
-                    audioHelper.playSoundEffect(named: "failure-drum", fileType: "wav")
-                    riveInput = [
-                        FlippyRiveInput(key: .isSad, value: .bool(true))]
-                    let options = ["hmmm", "oops"]
-                    audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                        self?.riveInput = [
-                            FlippyRiveInput(key: .isSad, value: .bool(false))
-                        ]
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self?.riveInput = [
-                                FlippyRiveInput(key: .talking, value: .float(0.0))
-                            ]
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                self?.riveInput = [
-                                    FlippyRiveInput(key: .talking, value: .float(2.0))
-                                ]
-                                self?.repeatQuestion = !(self?.repeatQuestion ?? false)
-                            }
-                        }
-                    }
-                }
-            } else {
-                currentMathIndex += 1
-                if currentQuestionData.problems[currentMathIndex].isOperator {
-                    currentMathIndex += 1
-                }
-                if currentQuestionData.problems[currentMathIndex].isQuestion {
-                    if currentQuestionData.problems[currentMathIndex].isSpeech {
-                        startRecognition()
-                    } else {
-                        
-                    }
-                    
-                }
-                currentMessageIndex += 1
-                riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-            }
-        } else {
-            currentQuestionIndex += 1
-            currentMessageIndex = 0
-            currentMathIndex = 0
-            userAnswer = ""
+        audioHelper.playSoundEffect(named: "click", fileType: "wav")
+        guard !currentQuestionData.problems.isEmpty else {
+            advanceToNextStory()
+            return
         }
+        
+        guard currentMathIndex < currentQuestionData.problems.count else {
+            advanceToNextQuestion()
+            return
+        }
+        
+        let currentProblem = currentQuestionData.problems[currentMathIndex]
+        
+        if !apretiation.isEmpty {
+            resetForNextProblem()
+            processNextProblem()
+            return
+        }
+        
+        if currentProblem.isQuestion {
+            handleQuestionProblem(currentProblem)
+        } else {
+            advanceMathIndex()
+            processNextProblem()
+        }
+    }
+
+    private func handleQuestionProblem(_ problem: ProblemData) {
+        if userAnswer == problem.problem {
+            handleCorrectAnswer()
+        } else {
+            handleIncorrectAnswer()
+        }
+    }
+
+    private func handleCorrectAnswer() {
+        stopRecognition(tryRepeat: false)
+        audioHelper.playSoundEffect(named: "correct", fileType: "wav")
+        apretiation = currentQuestionData.stories[currentMessageIndex].appretiation
+        riveInput = [
+            FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0)),
+            FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
+        ]
+    }
+
+    private func handleIncorrectAnswer() {
+        print("SALAH")
+        stopRecognition(tryRepeat: true)
+        userAnswer = ""
+        audioHelper.playSoundEffect(named: "failure-drum", fileType: "wav")
+        riveInput = [
+            FlippyRiveInput(key: .isSad, value: .bool(true))
+        ]
+        
+        let options = ["hmmm", "oops"]
+        audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.riveInput = [
+                FlippyRiveInput(key: .isSad, value: .bool(false))
+            ]
+            self?.repeatQuestionHandling()
+        }
+    }
+
+    private func repeatQuestionHandling() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.riveInput = [
+                FlippyRiveInput(key: .talking, value: .float(0.0))
+            ]
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.riveInput = [
+                    FlippyRiveInput(key: .talking, value: .float(2.0))
+                ]
+                self.repeatQuestion.toggle()
+            }
+        }
+    }
+
+    private func resetForNextProblem() {
+        apretiation = ""
+        userAnswer = ""
+        currentMathIndex += 1
+    }
+
+    private func processNextProblem() {
+        guard currentMathIndex < currentQuestionData.problems.count else {
+            advanceToNextQuestion()
+            return
+        }
+        
+        let nextProblem = currentQuestionData.problems[currentMathIndex]
+        
+        if nextProblem.isOperator {
+            currentMathIndex += 1
+            processNextProblem()
+            return
+        }
+        
+        if nextProblem.isQuestion {
+            if nextProblem.isSpeech {
+                startRecognition()
+            } else {
+                startAnalysis()
+            }
+        }
+        
+        currentMessageIndex += 1
+        riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
+    }
+
+    private func advanceMathIndex() {
+        currentMathIndex += 1
+    }
+
+    private func advanceToNextQuestion() {
+        currentQuestionIndex += 1
+        currentMessageIndex = 0
+        currentMathIndex = 0
+        userAnswer = ""
+    }
+
+    private func advanceToNextStory() {
+        guard currentMathIndex < currentQuestionData.stories.count - 1 else {
+            advanceToNextQuestion()
+            return
+        }
+        
+        currentMathIndex += 1
+        currentMessageIndex += 1
+        riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     }
     
     // Random Position for Flies

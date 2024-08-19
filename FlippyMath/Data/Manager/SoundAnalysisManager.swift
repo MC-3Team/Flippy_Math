@@ -26,17 +26,19 @@ class SoundAnalysisManager: NSObject, SoundAnalysisService {
         }
         self.model = loadedModel
         super.init()
+        self.setupAnalysis()
     }
     
-    func startAnalysis() -> Observable<(String?, Bool)> {
-     
-        let audioSession = AVAudioSession.sharedInstance()
+    func setupAnalysis() {
         do {
-            try audioSession.setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
+            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             fatalError("Failed to configure and activate audio session: \(error.localizedDescription)")
         }
+    }
+    
+    func startAnalysis() -> Observable<(String?, Bool)> {
 
         audioEngine = AVAudioEngine()
         
@@ -84,12 +86,13 @@ extension SoundAnalysisManager: SNResultsObserving {
         for classification in result.classifications {
             let identifier = classification.identifier
             let confidence = classification.confidence
-            print("Detected \(identifier) with confidence: \(confidence * 100)%")
+//            print("Detected \(identifier) with confidence: \(confidence * 100)%")
         }
         
         if let clapClassification = result.classifications.first(where: { $0.identifier == "Clap" && $0.confidence >= 0.9999 }) {
             DispatchQueue.main.async {
                 self.subject.onNext((clapClassification.identifier, true))
+                self.subject.onCompleted()
             }
         } else {
             DispatchQueue.main.async {

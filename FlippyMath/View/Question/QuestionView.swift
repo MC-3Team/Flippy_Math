@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @StateObject private var viewModel: QuestionViewModel
+    @StateObject private var viewModel: QuestionViewModel = QuestionViewModel()
     
-    init(viewModel: QuestionViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-    }
+//    init(viewModel: QuestionViewModel) {
+//        _viewModel = StateObject(wrappedValue: viewModel)
+//    }
     
     var body: some View {
-        NavigationStack {
+        
             QuestionLayout(viewModel: viewModel) { geometry in
                 VStack {
                     switch viewModel.currentQuestionIndex {
@@ -257,10 +257,13 @@ struct QuestionView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
-        }
+            .onAppear {
+                viewModel.audioHelper.playMusic(named: "birthday-party", fileType: "wav")
+            }
+        
     }
 }
 
-#Preview {
-    QuestionView(viewModel: QuestionViewModel(level: 1))
-}
+//#Preview {
+//    QuestionView(viewModel: QuestionViewModel(level: 1))
+//}

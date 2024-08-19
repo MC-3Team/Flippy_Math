@@ -11,6 +11,7 @@ struct HomeView: View {
     
     @StateObject var historyViewModel = HistoryViewModel()
     @StateObject private var viewModel = HomeViewModel()
+    @AppStorage("isMute") private var isMute = false
     
     var audioHelper = AudioHelper.shared
     
@@ -18,7 +19,6 @@ struct HomeView: View {
         GeometryReader { geometry in
             NavigationStack{
                 ZStack {
-                    // Background
                     Image("BG") // Replace with your background asset name
                         .resizable()
                         .scaledToFill()
@@ -32,11 +32,10 @@ struct HomeView: View {
                     Image("Penguin")
                         .padding(.top,geometry.size.height * 0.2)
                     
-                    //Ganti Button ya wil jan lupa
                     Button{
-                        viewModel.isMusicOn.toggle()
+                        isMute.toggle()
                     } label: {
-                        Image("MusicButton")
+                        Image(isMute ? "MusicButtonDisabled" : "MusicButton")
                             .resizable()
                             .frame(width: geometry.size.width * 0.07, height: geometry.size.height * 0.10)
                     }
@@ -53,7 +52,7 @@ struct HomeView: View {
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
                     
                     NavigationLink {
-                        QuestionView(viewModel: QuestionViewModel(level: 0))
+                        QuestionView()
                     } label: {
                         Image("PlayButton")
                             .resizable()
@@ -79,9 +78,12 @@ struct HomeView: View {
                     withAnimation {
                         viewModel.animate = true
                     }
+                    if !isMute {
+                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
+                    }
                 }
-                .onChange(of: viewModel.isMusicOn) { _, _ in
-                    switch viewModel.isMusicOn{
+                .onChange(of: isMute) { _, _ in
+                    switch isMute {
                     case true :
                         audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
                     case false :
