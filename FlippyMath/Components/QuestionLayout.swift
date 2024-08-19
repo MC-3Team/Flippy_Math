@@ -1,6 +1,6 @@
 //
 //  QuestionLayout.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Rajesh Triadi Noftarizal on 13/08/24.
 //
@@ -37,10 +37,8 @@ struct QuestionLayout<Content: View>: View {
                     ForEach(getMathProblems(), id: \.0) { (sequence, problemString, isQuestion, problemColor) in
                         ZStack(alignment: .topLeading) {
                             VStack(spacing: 0) {
-                                // Step 1: Initial logic, will run first
                                 let isCurrentQuestion = isQuestion && viewModel.userAnswer.isEmpty
-                                let _ = print("ATAS \(problemString)") // This runs first
-                                
+
                                 Text(problemString)
                                     .font(.custom("PilcrowRoundedVariable-Regular", size: 180))
                                     .fontWeight(.heavy)
@@ -53,7 +51,6 @@ struct QuestionLayout<Content: View>: View {
                                         GeometryReader { geo in
                                             Color.clear.onAppear {
                                                 if isCurrentQuestion {
-                                                    print("QUESTION")
                                                     let globalPosition = geo.frame(in: .global).origin
                                                     DispatchQueue.main.async {
                                                         textPositions[sequence] = globalPosition
@@ -65,7 +62,6 @@ struct QuestionLayout<Content: View>: View {
                                     )
                                     .onChange(of: viewModel.userAnswer) { _ , _ in
                                         if !viewModel.userAnswer.isEmpty {
-                                            print("TIDAK EMPTY")
                                             DispatchQueue.main.async {
                                                 textPositions.removeAll()
                                             }
@@ -86,11 +82,11 @@ struct QuestionLayout<Content: View>: View {
                 ForEach(Array(textPositions.keys.sorted()), id: \.self) { key in
                     if let position = textPositions[key] {
                         HStack(spacing: 4) {
-                            Image(systemName: "wave.3.right")
-                            Text("Sebutkan angka")
+                            Image(uiImage: (!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? UIImage(named: "handClap") : UIImage(systemName: "wave.3.right"))!)
+                            Text(!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? "Tepukkan tangan" : "Sebutkan angka")
                                 .font(.callout)
                                 .fontWeight(.bold)
-                            Text("untuk menjawab")
+                            Text(!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? "untuk memunculkan angka" : "untuk menjawab")
                                 .font(.callout)
                         }
                         .padding(.top, 32)
@@ -106,7 +102,7 @@ struct QuestionLayout<Content: View>: View {
                 }
                 
                 HStack {
-                    BambiniRiveView(riveInput: $viewModel.riveInput)
+                    FlippyRiveView(riveInput: $viewModel.riveInput)
                         .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.35)
                         .position(x: geometry.size.width * 0.07, y: geometry.size.height * 0.935)
                     
@@ -126,8 +122,8 @@ struct QuestionLayout<Content: View>: View {
                             },
                             set: { _ in }
                         ), onComplete: {
-                            viewModel.riveInput = [BambiniRiveInput(key: .talking, value: BambiniValue.float(0.0)),
-                                                   BambiniRiveInput(key: .isRightHandsUp, value: .bool(false))]
+                            viewModel.riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(0.0)),
+                                                   FlippyRiveInput(key: .isRightHandsUp, value: .bool(false))]
                         }).id(viewModel.repeatQuestion)
                             .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                             .fontWeight(.bold)
@@ -142,12 +138,12 @@ struct QuestionLayout<Content: View>: View {
                     Button(action: {
                         viewModel.checkAnswerAndAdvance()
                     }, label: {
-                        Image(viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion ? (viewModel.userAnswer.isEmpty ? "CorrectButtonGray" : "CorrectButton") : "NextButton")
+                        Image(!viewModel.apretiation.isEmpty ? "NextButton" : (viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion ? (viewModel.userAnswer.isEmpty ? "CorrectButtonGray" : "CorrectButton") : "NextButton" : "NextButton"))
                             .resizable()
                             .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
                     })
                     .position(x: geometry.size.width * 0.23, y: geometry.size.height * 0.955)
-                    .disabled(viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty)
+                    .disabled(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
                 }
             }
         }
@@ -161,16 +157,29 @@ struct QuestionLayout<Content: View>: View {
         var index = 0
         while index <= viewModel.currentMathIndex && index < problems.count {
             let problem = problems[index]
+            var problemString = ""
+            if problem.isQuestion {
+                let isQuestion = index == viewModel.currentMathIndex && viewModel.userAnswer.isEmpty
+                problemString = isQuestion ? "?" : (index < viewModel.currentMathIndex) ? problem.problem : viewModel.userAnswer
+            } else {
+                problemString = problem.problem
+            }
             let isQuestion = problem.isQuestion && index == viewModel.currentMathIndex && viewModel.userAnswer.isEmpty
-            let problemString = isQuestion ? "?" : problem.problem
             let problemColor = problem.color
             let sequencial = problem.sequence
-            problemData.append((problem.sequence, problemString, isQuestion, problemColor))
+            problemData.append((sequencial, problemString, isQuestion, problemColor))
             
             if problem.isOperator {
                 if (index + 1) < problems.count {
                     let nextProblem = problems[index + 1]
-                    let nextProblemString = nextProblem.isQuestion ? (viewModel.userAnswer.isEmpty ? "?" : viewModel.userAnswer) : nextProblem.problem
+                    var nextProblemString = ""
+                    if nextProblem.isQuestion {
+                        let isQuestion = (index + 1) == viewModel.currentMathIndex && viewModel.userAnswer.isEmpty
+                        nextProblemString = isQuestion ? "?" : index + 1 < viewModel.currentMathIndex ? nextProblem.problem : viewModel.userAnswer
+                    } else {
+                        nextProblemString = nextProblem.problem
+                    }
+                    
                     problemData.append((nextProblem.sequence, nextProblemString, nextProblem.isQuestion, nextProblem.color))
                     index += 1
                 }

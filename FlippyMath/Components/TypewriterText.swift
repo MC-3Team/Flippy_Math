@@ -1,6 +1,6 @@
 //
 //  TypeWriter.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 16/08/24.
 //
@@ -26,11 +26,9 @@ struct TypewriterText: View {
                 startTyping()
             }.onChange(of: audioName) { _ , _ in
                 updateTypingInterval()
-                print(audioName)
                 audioHelper.playVoiceOver(named: audioName, fileType: "wav")
             }.onAppear {
                 updateTypingInterval()
-                print(audioName)
                 audioHelper.playVoiceOver(named: audioName, fileType: "wav")
             }
     }

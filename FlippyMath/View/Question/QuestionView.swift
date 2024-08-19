@@ -1,6 +1,6 @@
 //
 //  QuestionView.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 05/08/24.
 //
@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @StateObject private var viewModel: QuestionViewModel
+    @StateObject private var viewModel: QuestionViewModel = QuestionViewModel()
     
-    init(viewModel: QuestionViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-    }
+//    init(viewModel: QuestionViewModel) {
+//        _viewModel = StateObject(wrappedValue: viewModel)
+//    }
     
     var body: some View {
-        NavigationStack {
+        
             QuestionLayout(viewModel: viewModel) { geometry in
                 VStack {
-                    if viewModel.currentQuestionIndex == 0 {
+                    switch viewModel.currentQuestionIndex {
+                    case 0:
+                        VStack {
+                            
+                        }
+                        
+                    case 1:
                         Image("Q1_Penguins")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width * 0.70)
                             .position(x: geometry.size.width / 2, y: geometry.size.height * 0.65)
-                    } else if viewModel.currentQuestionIndex == 1 {
+                        
+                    case 2:
                         HStack {
                             VStack {
                                 if viewModel.currentMessageIndex > 1 {
@@ -62,19 +69,20 @@ struct QuestionView: View {
                                     .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
                             }
                         }
-                    } else if viewModel.currentQuestionIndex == 2 {
+                        
+                    case 3:
                         VStack {
-                            if viewModel.currentMessageIndex < 2{
+                            switch viewModel.currentMessageIndex {
+                            case ..<2:
                                 IdleBalloonView()
-                            }
-                            else if viewModel.currentMessageIndex == 2{
+                            case 2:
                                 FlyingBalloonView()
-                            }
-                            else if viewModel.currentMessageIndex > 2{
+                            default:
                                 IdleBalloon2View()
                             }
                         }
-                    } else if viewModel.currentQuestionIndex == 3{
+                        
+                    case 4:
                         HStack {
                             if viewModel.currentMessageIndex < 1 {
                                 Image("Q4_8Cakes")
@@ -90,7 +98,27 @@ struct QuestionView: View {
                                     .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                             }
                         }
-                    } else {
+                        
+                    case 5:
+                        ZStack {
+                            HStack {
+                                Image("Q5_2Cakes")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.55)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
+                            }
+                            
+                            ForEach(0..<8, id: \.self) { index in
+                                Image("Q5_Fly\(index + 1)")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.05)
+                                    .position(viewModel.randomPosition(geometry: geometry, index: index))
+                            }
+                        }
+                        
+                    default:
                         Image("DefaultImage")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -100,10 +128,13 @@ struct QuestionView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
-        }
+            .onAppear {
+                viewModel.audioHelper.playMusic(named: "birthday-party", fileType: "wav")
+            }
+        
     }
 }
 
-#Preview {
-    QuestionView(viewModel: QuestionViewModel(level: 0))
-}
+//#Preview {
+//    QuestionView(viewModel: QuestionViewModel(level: 1))
+//}

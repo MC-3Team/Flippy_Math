@@ -1,14 +1,17 @@
 //
 //  AudioHelper.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Ayatullah Ma'arif on 14/08/24.
 //
 
 import AVFoundation
+import SwiftUI
 
 class AudioHelper: ObservableObject {
     static let shared = AudioHelper()
+    
+    @AppStorage("isMute") private var isMute = false
     
     private var soundEffectPlayer: AVAudioPlayer?
     private var musicPlayer: AVAudioPlayer?
@@ -91,6 +94,6 @@ class AudioHelper: ObservableObject {
     }
     
     func setMusicVolume(_ volume: Float) {
-        musicPlayer?.volume = volume
+        musicPlayer?.volume = isMute ? 0 : volume
     }
 }

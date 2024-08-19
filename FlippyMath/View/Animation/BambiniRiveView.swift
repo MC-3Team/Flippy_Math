@@ -1,6 +1,6 @@
 //
-//  BambiniRiveView.swift
-//  BambiniMath
+//  FlippyRiveView.swift
+//  FlippyMath
 //
 //  Created by Ayatullah Ma'arif on 14/08/24.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 import RiveRuntime
 
-enum BambiniValue: Hashable {
+enum FlippyValue: Hashable {
     case bool(Bool)
     case float(Float)
     
@@ -23,12 +23,12 @@ enum BambiniValue: Hashable {
     }
 }
 
-struct BambiniRiveInput: Hashable {
+struct FlippyRiveInput: Hashable {
     
-    var key: BambiniKeyInput
-    var value: BambiniValue
+    var key: FlippyKeyInput
+    var value: FlippyValue
     
-    static func == (lhs: BambiniRiveInput, rhs: BambiniRiveInput) -> Bool {
+    static func == (lhs: FlippyRiveInput, rhs: FlippyRiveInput) -> Bool {
         return lhs.key == rhs.key && lhs.value == rhs.value
     }
     
@@ -38,16 +38,16 @@ struct BambiniRiveInput: Hashable {
     }
 }
 
-enum BambiniKeyInput: String {
+enum FlippyKeyInput: String {
     case talking, isSad, isRightHandsUp, isLeftHandsUp
 }
 
 
-struct BambiniRiveView: View {
+struct FlippyRiveView: View {
     
     @StateObject var riveVM = RiveViewModel(fileName: "bambini", stateMachineName: "State Machine 1")
     
-    @Binding var riveInput : [BambiniRiveInput]
+    @Binding var riveInput : [FlippyRiveInput]
     
     var body: some View {
         ZStack{
@@ -72,10 +72,10 @@ struct BambiniRiveView: View {
 }
 
 //#Preview {
-//    BambiniRiveView(riveInput: [
-//        BambiniRiveInput(key: .talking, value: BambiniValue.float(0.0)),
-//        BambiniRiveInput(key: .isSad, value: .bool(true)),
-//        BambiniRiveInput(key: .isRightHandsUp, value: .bool(true)),
-//        BambiniRiveInput(key: .isLeftHandsUp, value: .bool(true))
+//    FlippyRiveView(riveInput: [
+//        FlippyRiveInput(key: .talking, value: FlippyValue.float(0.0)),
+//        FlippyRiveInput(key: .isSad, value: .bool(true)),
+//        FlippyRiveInput(key: .isRightHandsUp, value: .bool(true)),
+//        FlippyRiveInput(key: .isLeftHandsUp, value: .bool(true))
 //    ])
 //}

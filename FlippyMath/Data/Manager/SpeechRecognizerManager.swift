@@ -1,6 +1,6 @@
 //
 //  SpeechRecognizerManager.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 05/08/24.
 //
@@ -11,42 +11,39 @@ import RxSwift
 
 class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecognizerDelegate {
     
-    private var audioSession: AVAudioSession?
     private var audioEngine = AVAudioEngine()
-    private var speechRecognizer: SFSpeechRecognizer?
+    private var speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale(identifier: "id_ID"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
-    private var inputNode: AVAudioInputNode?
     private var isAudioSessionActive = false
     private var isTapInstalled = false
     private var isStopped = false
     
+    override init() {
+        super.init()
+        setupRecognition()
+    }
+    
+    func setupRecognition() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [.duckOthers, .allowBluetooth, .defaultToSpeaker])
+            try AVAudioSession.sharedInstance().setActive(true)
+            isAudioSessionActive = true
+        } catch {
+            print("Couldn't configure the audio session properly")
+        }
+    }
+    
     func startRecognition() -> Observable<(String?, Bool)> {
         let subject = PublishSubject<(String?, Bool)>()
+        isStopped = false
+        let inputNode = audioEngine.inputNode
         
-        audioSession = AVAudioSession.sharedInstance()
-        
-        if !isAudioSessionActive {
-            do {
-                try audioSession?.setCategory(.playAndRecord, mode: .default, options: [.duckOthers, .allowBluetooth, .defaultToSpeaker])
-                try audioSession?.setActive(true, options: .notifyOthersOnDeactivation)
-                isAudioSessionActive = true
-            } catch {
-                print("Couldn't configure the audio session properly")
-                subject.onError(error)
-                return subject
-            }
-
-        }
-        
-        inputNode = audioEngine.inputNode
-        speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "id_ID"))
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         
         guard let speechRecognizer = speechRecognizer,
               speechRecognizer.isAvailable,
-              let recognitionRequest = recognitionRequest,
-              let inputNode = inputNode else {
+              let recognitionRequest = recognitionRequest else {
             assertionFailure("Unable to start the speech recognition!")
             subject.onCompleted()
             return subject
@@ -55,7 +52,8 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         speechRecognizer.delegate = self
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 512, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+        
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
             recognitionRequest.append(buffer)
         }
         
@@ -68,33 +66,28 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         } catch {
             print("Couldn't start audio engine!")
             subject.onError(error)
-            stopRecognition()
         }
         
         return subject
     }
     
-    func stopRecognition() {
+    func stopRecognition() -> Observable<Bool> {
+        let subject = PublishSubject<Bool>()
+        isStopped = true
+        recognitionTask?.finish()
         recognitionTask?.cancel()
         recognitionTask = nil
         recognitionRequest?.endAudio()
-        recognitionRequest = nil
         audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
-    }
-    
-    
-    func deactivateAudioSession() {
-        if isAudioSessionActive {
-            try? audioSession?.setActive(false)
-            audioSession = nil
-            isAudioSessionActive = false
+        if audioEngine.inputNode.numberOfInputs > 0 {
+            audioEngine.inputNode.removeTap(onBus: 0)
         }
+        subject.onCompleted()
+        return subject
     }
+    
     
     private func createRecognitionTask(subject: PublishSubject<(String?, Bool)>) -> SFSpeechRecognitionTask {
-        var _: String?
-        
         return speechRecognizer!.recognitionTask(with: recognitionRequest!) { [weak self] result, error in
             guard let self = self else { return }
             
@@ -102,14 +95,12 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
                 print("Error in recognition task: \(error.localizedDescription)")
                 self.handleError(error, subject: subject)
                 subject.onCompleted()
-                self.stopRecognition()
                 return
             }
             
             if let result = result {
                 let transcription = result.bestTranscription.formattedString.lowercased()
                 
-                print(transcription)
                 let wordToNumberMap: [String: String] = ["nol": "0",
                                                          "satu": "1", "dua": "2", "tiga": "3", "empat": "4", "lima": "5",
                                                          "enam": "6", "tujuh": "7", "delapan": "8", "sembilan": "9",
@@ -123,13 +114,15 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
                     let containsOnlyNumbers = wordsToNumbers.allSatisfy { $0.isNumber }
                     if containsOnlyNumbers && !self.isStopped {
                         subject.onNext((wordsToNumbers, result.isFinal))
+                        if result.isFinal {
+                            subject.onCompleted()
+                        }
                     } else {
                         let error = NSError(domain: "SpeechRecognitionError", code: 1001, userInfo: [NSLocalizedDescriptionKey: "Bukan Angka"])
                         subject.onError(error)
                     }
                 }
                 
-
             } else {
                 subject.onNext((nil, false))
             }

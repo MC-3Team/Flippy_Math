@@ -1,6 +1,6 @@
 //
 //  SpeechRecognizerService.swift
-//  BambiniMath
+//  FlippyMath
 //
 //  Created by Enrico Maricar on 05/08/24.
 //
@@ -10,5 +10,5 @@ import RxSwift
 
 protocol SpeechRecognizerService {
     func startRecognition() -> Observable<(String?, Bool)>
-    func stopRecognition()
+    func stopRecognition() -> Observable<Bool>
 }
