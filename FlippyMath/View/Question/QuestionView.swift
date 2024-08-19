@@ -109,13 +109,142 @@ struct QuestionView: View {
                                     .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                             }
                             
-                            ForEach(0..<8, id: \.self) { index in
+                            ForEach(0..<9, id: \.self) { index in
                                 Image("Q5_Fly\(index + 1)")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: geometry.size.width * 0.05)
-                                    .position(viewModel.randomPosition(geometry: geometry, index: index))
+                                    .position(viewModel.randomPositionAroundCake(geometry: geometry, cakePosition: CGPoint(x: geometry.size.width * 0.7, y: geometry.size.height * 0.5)))
                             }
+                        }
+                        
+                    case 6:
+                        ZStack {
+                            if viewModel.currentMessageIndex < 3 {
+                                HStack {
+                                    Image("Q6_ArcticFox")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: geometry.size.width * 0.2)
+                                        .position(x: geometry.size.width / 3, y: geometry.size.height * 0.6)
+                                    
+                                    Image("Q6_ArcticFox")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: geometry.size.width * 0.2)
+                                        .position(x: geometry.size.width / 5, y: geometry.size.height * 0.6)
+                                }
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 2.1, y: geometry.size.height * 0.74)
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 1.7, y: geometry.size.height * 0.76)
+                            } else {
+                                HStack {
+                                    Image("Q6_ArcticFox")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: geometry.size.width * 0.2)
+                                        .position(x: geometry.size.width / 3, y: geometry.size.height * 0.6)
+                                    
+                                    Image("Q6_ArcticFox")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: geometry.size.width * 0.2)
+                                        .position(x: geometry.size.width / 5, y: geometry.size.height * 0.6)
+                                }
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 2.1, y: geometry.size.height * 0.74)
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 1.7, y: geometry.size.height * 0.76)
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 4.5, y: geometry.size.height * 0.70)
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 8, y: geometry.size.height * 0.74)
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 1.25, y: geometry.size.height * 0.75)
+                                
+                                Image("Q6_BabyFox")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.08)
+                                    .position(x: geometry.size.width / 1.1, y: geometry.size.height * 0.7)
+                            }
+                        }
+                        
+                    case 7:
+                        ZStack {
+                            if viewModel.currentMessageIndex < 2 {
+                                Image("Q7_PinataRope")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 1.05)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.16)
+                                
+                                Image("Q7_Pinata")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.45)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.4)
+                            } else if viewModel.currentMessageIndex < 3 {
+                                Image("Q7_PinataRope")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 1.05)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.16)
+                                
+                                Image("Q7_CrackedPinata")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.45)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.4)
+                            } else if viewModel.currentMessageIndex < 4 {
+                                Image("Q7_20Candies")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.9)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
+                            } else {
+                                Image("Q7_15Candies")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.70)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
+                            }
+                        }
+                        
+                    case 8:
+                        if viewModel.currentMessageIndex < 2 {
+                            PolarBearView(isOpen: false)
+                        } else {
+                            PolarBearView(isOpen: true)
                         }
                         
                     default:

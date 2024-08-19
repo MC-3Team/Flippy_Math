@@ -315,12 +315,13 @@ class QuestionViewModel: ObservableObject {
         riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     }
     
-    // Random Position fot Flies
-    func randomPosition(geometry: GeometryProxy, index: Int) -> CGPoint {
-        let radius: CGFloat = geometry.size.width * 0.25
-        let angle = CGFloat(index) * (.pi * 2 / 8)
-        let x = geometry.size.width / 2 + radius * cos(angle)
-        let y = geometry.size.height * 0.6 + radius * sin(angle)
-        return CGPoint(x: x, y: y)
+    // Random Position for Flies
+    func randomPositionAroundCake(geometry: GeometryProxy, cakePosition: CGPoint) -> CGPoint {
+        let offsetX = CGFloat.random(in: -800...300)
+        let offsetY = CGFloat.random(in: -300...300)
+        let xPosition = cakePosition.x + offsetX
+        let yPosition = cakePosition.y + offsetY
+        
+        return CGPoint(x: xPosition, y: yPosition)
     }
 }

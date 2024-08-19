@@ -558,6 +558,7 @@
 				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
 				D34723CF2C71C3B0005C1E9F /* DataModel.xcdatamodeld in Sources */,
 				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
+				D94762FD2C7242FB00C43600 /* DataModel.xcdatamodeld in Sources */,
 				13B75FE02C705F9900EBFCD1 /* CustomVideoPlayerView.swift in Sources */,
 				13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */,
 			);

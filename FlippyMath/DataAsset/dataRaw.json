@@ -41,7 +41,7 @@
             ],
             "problems": []
         }
-
+        
         ,{
             "id": 1,
             "sequence": 1,
@@ -487,7 +487,320 @@
                     "isSpeech": true
                 }
             ]
+        },
+        {
+            {
+                "id": 6,
+                "sequence": 4,
+                "background": "Q6_Background",
+                "is_complete": false,
+                "stories": [
+                    {
+                        "id": 1,
+                        "sequence": 1,
+                        "story": "Setelah menikmati kue, tiba-tiba ada 2 rubah arktik kecil dan 2 rubah arktik besar yang datang ke rumah iglo.",
+                        "audio": "audio-6-1",
+                        "apretiation": "",
+                        "audio_apretiation": ""
+                    },
+                    {
+                        "id": 2,
+                        "sequence": 2,
+                        "story": "Mereka datang karena tertarik melihat keramaian di rumah iglo.",
+                        "audio": "audio-6-2",
+                        "apretiation": "",
+                        "audio_apretiation": ""
+                    },
+                    {
+                        "id": 3,
+                        "sequence": 3,
+                        "story": "Ayo ajak rubah arktiknya bermain dengan  menepukkan tangan.",
+                        "audio": "audio-6-3",
+                        "apretiation": "Yeay! mereka senang, lalu tiba tiba 4 rubah arktik kecil datang lagi.",
+                        "audio_apretiation": ""
+                    },
+                    {
+                        "id": 4,
+                        "sequence": 4,
+                        "story": "Jadi, berapa total rubah artik yang  sekarang ada di dalam rumah iglo?",
+                        "audio": "audio-6-4",
+                        "apretiation": "Hebat! 2 rubah ditambah 2 rubah ditambah lagi 4 rubah sama dengan 8 rubah.",
+                        "audio_apretiation": "audio-apretiation-6-4"
+                    },
+                    {
+                        
+                    }
+                ],
+                "problems": [
+                    {
+                        "id": 1,
+                        "sequence": 1,
+                        "color": "bluePrimary",
+                        "problem": "2",
+                        "isOperator": false,
+                        "isQuestion": false,
+                        "isSpeech": false
+                    },
+                    {
+                        "id": 2,
+                        "sequence": 2,
+                        "color": "bluePrimary",
+                        "problem": "+",
+                        "isOperator": true,
+                        "isQuestion": false,
+                        "isSpeech": false
+                    },
+                    {
+                        "id": 3,
+                        "sequence": 3,
+                        "color": "bluePrimary",
+                        "problem": "2",
+                        "isOperator": false,
+                        "isQuestion": false,
+                        "isSpeech": false
+                    },
+                    {
+                        "id": 4,
+                        "sequence": 4,
+                        "color": "bluePrimary",
+                        "problem": "+",
+                        "isOperator": true,
+                        "isQuestion": false,
+                        "isSpeech": false
+                    },
+                    {
+                        "id": 5,
+                        "sequence": 5,
+                        "color": "orangePrimary",
+                        "problem": "4",
+                        "isOperator": false,
+                        "isQuestion": true,
+                        "isSpeech": true
+                    },
+                    {
+                        "id": 6,
+                        "sequence": 6,
+                        "color": "bluePrimary",
+                        "problem": "=",
+                        "isOperator": true,
+                        "isQuestion": false,
+                        "isSpeech": false
+                    },
+                    {
+                        "id": 7,
+                        "sequence": 7,
+                        "color": "orangePrimary",
+                        "problem": "8",
+                        "isOperator": false,
+                        "isQuestion": true,
+                        "isSpeech": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 7,
+            "sequence": 7,
+            "background": "Q7_Background",
+            "is_complete": false,
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Mari kita bermain pinata! Ada sebuah pinata berbentuk bintang dan di dalamnya terdapat berbagai macam permen.",
+                    "audio": "audio-7-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "Yuk! bergantian memukul pinata hingga pecah dan menghamburkan permen yang banyak.",
+                    "audio": "audio-7-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Jika dari pinata ada sebanyak 20 permen yang jatuh dan aku berhasil mengumpulkan 5 permen",
+                    "audio": "audio-7-3",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Jadi ada berapa permen yang masih tersisa di lantai?",
+                    "audio": "audio-7-4",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "story": "Benar! 20 permen dikurang 5 permen sama dengan 15 permen.",
+                    "audio": "audio-7-5",
+                    "apretiation": "Hebat! 20 dikurang 5 sama dengan 15.",
+                    "audio_apretiation": "audio-apretiation-7-5"
+                }
+            ],
+            "problems": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "color": "bluePrimary",
+                    "problem": "20",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "color": "bluePrimary",
+                    "problem": "-",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "color": "bluePrimary",
+                    "problem": "5",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "color": "bluePrimary",
+                    "problem": "=",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "color": "orangePrimary",
+                    "problem": "15",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": true
+                }
+            ]
+        },
+        
+        {
+            "id": 8,
+            "sequence": 8,
+            "background": "Q8_Background",
+            "is_complete": false,
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Setelah bermain pinata, ada tamu istimewa yang datang ke pesta, seekor beruang kutub besar yang ramah!",
+                    "audio": "audio-8-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "Beruang kutub ini datang membawa 2 karung berisi kado untukku.",
+                    "audio": "audio-8-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Karung yang besar berisi 6 kado dan yang kecil berisi 4 kado.",
+                    "audio": "audio-8-3",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Jika Aku sudah menerima 6 kado sebelumnya, berapa total kado yang sekarang kumiliki?",
+                    "audio": "audio-8-4",
+                    "apretiation": "Bagus sekali! 6 kado ditambah 4 kado kemudian ditambah 6 kado lagi sama dengan 16 kado.",
+                    "audio_apretiation": ""
+                }
+            ],
+            "problems": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "color": "bluePrimary",
+                    "problem": "6",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "color": "bluePrimary",
+                    "problem": "+",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "color": "bluePrimary",
+                    "problem": "4",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "color": "bluePrimary",
+                    "problem": "+",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "color": "bluePrimary",
+                    "problem": "6",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 6,
+                    "sequence": 6,
+                    "color": "bluePrimary",
+                    "problem": "=",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 7,
+                    "sequence": 7,
+                    "color": "orangePrimary",
+                    "problem": "16",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": true
+                }
+            ]
         }
-
+        
+        
+        
     ]
 }
