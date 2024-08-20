@@ -35,6 +35,7 @@ struct HistoryGridView: View {
                                         let index = row * 3 + col
                                         if index < viewModel.buttons.count {
                                             let button = viewModel.buttons[index]
+                                    
                                             
                                             NavigationLink(destination: button.destinationView, tag: Int(button.sequence), selection: $viewModel.activeButtonIndex) {
                                                 Image(button.imageName)
@@ -50,7 +51,7 @@ struct HistoryGridView: View {
                                                             .cornerRadius(16)
                                                     )
                                             }
-//                                            .disabled(!button.isPassed)
+                                            .disabled(!button.isPassed)
                                         } else {
                                             Spacer()
                                                 .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
