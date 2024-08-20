@@ -19,7 +19,7 @@ struct HomeView: View {
         GeometryReader { geometry in
             NavigationStack{
                 ZStack {
-                    Image("BG") // Replace with your background asset name
+                    Image("BG")
                         .resizable()
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.all)
@@ -30,9 +30,9 @@ struct HomeView: View {
                         .ignoresSafeArea(.all)
                     
                     Image("Penguin")
-                        .padding(.top,geometry.size.height * 0.2)
+                        .padding(.top, geometry.size.height * 0.2)
                     
-                    Button{
+                    Button {
                         isMute.toggle()
                     } label: {
                         Image(isMute ? "MusicButtonDisabled" : "MusicButton")
@@ -48,20 +48,25 @@ struct HomeView: View {
                             .resizable()
                             .frame(width: geometry.size.width * 0.07, height: geometry.size.height * 0.10)
                     }
-                    .padding(.top,geometry.size.width * 0.17)
+                    .padding(.top, geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
                     
                     NavigationLink {
-                        QuestionView()
+//                        if let lastCompletedLevel = historyViewModel.buttons.last(where: { $0.isPassed })?.sequence {
+//                            QuestionView(viewModel: QuestionViewModel())
+//                        } else {
+//                            QuestionView(viewModel: QuestionViewModel(level: 0))
+//                        }
+                        QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
+                        
                     } label: {
                         Image("PlayButton")
                             .resizable()
                             .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.18)
                     }
-                    .padding(.top,geometry.size.width * 0.17)
+                    .padding(.top, geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3)
                     
-                    // Snowflakes
                     ForEach(viewModel.snowflakes) { snowflake in
                         Image(snowflake.imageName)
                             .resizable()
@@ -81,6 +86,8 @@ struct HomeView: View {
                     if !isMute {
                         audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
                     }
+                    
+                    let _ = print(QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home)))
                 }
                 .onChange(of: isMute) { _, _ in
                     switch isMute {
@@ -94,6 +101,7 @@ struct HomeView: View {
         }
     }
 }
+
 #Preview {
     HomeView()
 }

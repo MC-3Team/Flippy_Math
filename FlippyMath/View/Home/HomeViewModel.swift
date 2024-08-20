@@ -35,7 +35,6 @@ class HomeViewModel: ObservableObject {
             })
             .subscribe(onNext: { [weak self] (text, success) in
                 self?.isSuccess = (text, success)
-                //                self?.isProcessing = false
             }, onError: { [weak self] error in
                 self?.isFailed = true
                 self?.isProcessing = false
@@ -63,7 +62,6 @@ class HomeViewModel: ObservableObject {
                 if success, label == "Clap" {
                     self?.clapCount += 1
                 }
-                //                self?.isProcessing = false
             }, onError: { [weak self] error in
                 self?.isFailed = true
                 self?.isProcessing = false
@@ -85,15 +83,21 @@ class HomeViewModel: ObservableObject {
             let duration = Double.random(in: 5...15)
             let delay = Double.random(in: 0...20)
             let snowflakeSize = CGFloat.random(in: 10...30)
-            let imageName = Bool.random() ? "snow1" : "snow2" // Replace with your snowflake asset names
+            let imageName = Bool.random() ? "snow1" : "snow2"
             let rotationDuration = Double.random(in: 3...10)
             let snowflake = Snowflake(xPosition: xPosition, duration: duration, delay: delay, size: snowflakeSize, imageName: imageName, rotationDuration: rotationDuration)
             snowflakes.append(snowflake)
         }
     }
     
-//    func testingData() {
-//        service.insertAllData()
-//        print(service.getInCompleteQuestion().count)
-//    }
+    // Method to get the last completed level
+    func getLastCompletedLevel() -> Int {
+        let completedQuestions = service.getInCompleteQuestion()
+        print(completedQuestions.last!)
+        if let lastCompleted = completedQuestions.first {
+            return Int(lastCompleted.sequence)
+        } else {
+            return 0 // Start from the first level if no level is completed
+        }
+    }
 }

@@ -19,11 +19,11 @@ class CoreDataManager: DataService {
         }
         return container
     }()
-
+    
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-
+    
     func insertAllData() {
         guard let fileURL = Bundle.main.url(forResource: "dataRaw", withExtension: "json") else {
             print("File not found in bundle")
@@ -41,6 +41,7 @@ class CoreDataManager: DataService {
                 mathQuestion.sequence = Int64(mathQuestionJSON.sequence)
                 mathQuestion.background = mathQuestionJSON.background
                 mathQuestion.is_complete = mathQuestionJSON.is_complete
+                mathQuestion.historyLevel = mathQuestionJSON.historyLevel
                 
                 for storyJSON in mathQuestionJSON.stories {
                     let story = Story(context: viewContext)
@@ -75,34 +76,59 @@ class CoreDataManager: DataService {
         }
     }
     
-    func getInCompleteQuestion() -> [MathQuestion] {
+    func getAllQuestion() -> [MathQuestion] {
         let fetchRequest: NSFetchRequest<MathQuestion> = MathQuestion.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "is_complete == %d", false)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sequence", ascending: true)]
-
+        
         do {
             return try viewContext.fetch(fetchRequest)
         } catch {
             print("Failed to fetch questions: \(error)")
             return []
         }
-
+    }
+    
+    func getInCompleteQuestion() -> [MathQuestion] {
+        let fetchRequest: NSFetchRequest<MathQuestion> = MathQuestion.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "is_complete == %d", false)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sequence", ascending: true)]
+        
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Failed to fetch questions: \(error)")
+            return []
+        }
+        
     }
     
     func getCompleteQuestion() -> [MathQuestion] {
         let fetchRequest: NSFetchRequest<MathQuestion> = MathQuestion.fetchRequest()
-               fetchRequest.predicate = NSPredicate(format: "is_complete == %d", true)
-               do {
-                   return try viewContext.fetch(fetchRequest)
-               } catch {
-                   print("Failed to fetch questions: \(error)")
-                   return []
-               }
+        fetchRequest.predicate = NSPredicate(format: "is_complete == %d", true)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Failed to fetch questions: \(error)")
+            return []
+        }
     }
     
     func updateCompletedQuestion(mathQuestion: MathQuestion, isComplete: Bool) {
         mathQuestion.is_complete = isComplete
         saveContext()
+    }
+    
+    func getMathQuestion(by sequence: Int) -> MathQuestion? {
+        let fetchRequest: NSFetchRequest<MathQuestion> = MathQuestion.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "sequence == %d", sequence)
+        
+        do {
+            let result = try viewContext.fetch(fetchRequest)
+            return result.first
+        } catch {
+            print("Failed to fetch MathQuestion: \(error)")
+            return nil
+        }
     }
     
     private func saveContext() {

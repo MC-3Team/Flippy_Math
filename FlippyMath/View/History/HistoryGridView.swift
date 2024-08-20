@@ -13,13 +13,11 @@ struct HistoryGridView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                
                 Image("BG")
                     .resizable()
                     .ignoresSafeArea(.all)
                 
                 GeometryReader { geometry in
-                    
                     NavigationLink {
                         HomeView()
                     } label: {
@@ -29,38 +27,41 @@ struct HistoryGridView: View {
                     }
                     .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
                     
-                    VStack(spacing: 20) {
-                        ForEach(0..<3) { row in
-                            HStack(spacing: 20) {
-                                ForEach(0..<3) { col in
-                                    let index = row * 3 + col
-                                    if index < viewModel.buttons.count {
-                                        let button = viewModel.buttons[index]
-                                        NavigationLink(destination: button.destinationView, tag: index, selection: $viewModel.activeButtonIndex) {
-                                            Image(button.imageName)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
+                    ScrollView([.vertical, .horizontal], showsIndicators: false) {
+                        VStack(spacing: 20) {
+                            ForEach(0..<3) { row in
+                                HStack(spacing: 20) {
+                                    ForEach(0..<3) { col in
+                                        let index = row * 3 + col
+                                        if index < viewModel.buttons.count {
+                                            let button = viewModel.buttons[index]
+                                            
+                                            NavigationLink(destination: button.destinationView, tag: Int(button.sequence), selection: $viewModel.activeButtonIndex) {
+                                                Image(button.imageName)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
+                                                    .cornerRadius(16)
+                                                    .overlay(
+                                                        button.isPassed ? nil : Image("lock")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
+                                                            .cornerRadius(16)
+                                                    )
+                                            }
+//                                            .disabled(!button.isPassed)
+                                        } else {
+                                            Spacer()
                                                 .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
-                                                .cornerRadius(16)
-                                                .overlay(
-                                                    button.isPassed ? nil : Image("lock")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
-                                                        .cornerRadius(16)
-                                                )
                                         }
-                                        .disabled(!button.isPassed)
-                                    } else {
-                                        Spacer()
-                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
                                     }
                                 }
                             }
                         }
+                        .padding()
+                        .padding(.top, geometry.size.height * 0.2)
                     }
-                    .padding()
-                    .padding(.top, geometry.size.height * 0.2)
                     .onDisappear(perform: {
                         viewModel.clearNavigation()
                     })
@@ -70,9 +71,7 @@ struct HistoryGridView: View {
     }
 }
 
-struct HistoryGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryGridView()
-            .previewInterfaceOrientation(.landscapeLeft)
-    }
+#Preview {
+    HistoryGridView()
+        .previewInterfaceOrientation(.landscapeLeft)
 }

@@ -12,12 +12,22 @@ class HistoryViewModel: ObservableObject {
     @Published var activeButtonIndex: Int? = nil
     
     init() {
-        buttons = [
-            ButtonData(title: "Button 1", imageName: "intro", destinationView: AnyView(QuestionViewWrapper(level: 0)), isPassed: true, questionIndex: 0),
-            ButtonData(title: "Button 2", imageName: "teman", destinationView: AnyView(QuestionViewWrapper(level: 1)), isPassed: true, questionIndex: 1),
-            ButtonData(title: "Button 3", imageName: "topi", destinationView: AnyView(QuestionViewWrapper(level: 2)), isPassed: true, questionIndex: 2),
-            ButtonData(title: "Button 4", imageName: "balon", destinationView: AnyView(QuestionViewWrapper(level: 3)), isPassed: true, questionIndex: 3)
-        ]
+        loadQuestions()
+    }
+    
+    func loadQuestions() {
+        let questions = CoreDataManager().getAllQuestion()
+        buttons = questions.map { question in
+          ButtonData(
+                title: "Level \(question.sequence)",
+                imageName: question.historyLevel!,
+                destinationView: AnyView(QuestionViewWrapper(sequenceLevel: Int(Int64(question.sequence)), parameter: .history)),
+                isPassed: question.is_complete,
+                sequence: question.sequence
+            )
+        }
+        
+        print(buttons)
     }
     
     func clearNavigation() {

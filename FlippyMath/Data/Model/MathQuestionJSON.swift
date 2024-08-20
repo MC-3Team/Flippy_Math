@@ -16,6 +16,7 @@ struct MathQuestionJSON: Codable {
     let sequence : Int
     let background: String
     let is_complete: Bool
+    let historyLevel: String
     let stories: [StoryJSON]
     let problems: [ProblemJSON]
 }

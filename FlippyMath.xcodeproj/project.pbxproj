@@ -11,6 +11,7 @@
 		133573BF2C70C140007696A8 /* HistoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573BE2C70C140007696A8 /* HistoryGridView.swift */; };
 		133573C12C70C180007696A8 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573C02C70C180007696A8 /* HistoryViewModel.swift */; };
 		133573C32C70C8E4007696A8 /* QuestionViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133573C22C70C8E4007696A8 /* QuestionViewWrapper.swift */; };
+		1395B6572C743954004327EA /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1395B6552C743954004327EA /* DataModel.xcdatamodeld */; };
 		13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */; };
 		13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F892C7059A100EBFCD1 /* TypewriterText.swift */; };
 		13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */; };
@@ -55,7 +56,6 @@
 		13B7601F2C706CBB00EBFCD1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601E2C706CBB00EBFCD1 /* RiveRuntime */; };
 		D34723CA2C70A749005C1E9F /* bambini.riv in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FAD2C705B8500EBFCD1 /* bambini.riv */; };
 		D34723D12C71C4B7005C1E9F /* ChatBubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34723D02C71C4B7005C1E9F /* ChatBubbleShape.swift */; };
-		D34723D42C732834005C1E9F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D34723D22C732834005C1E9F /* DataModel.xcdatamodeld */; };
 		D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */; };
 		D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */; };
 		D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF922C6F3EBC00D41B9A /* ContentView.swift */; };
@@ -76,6 +76,7 @@
 		133573BE2C70C140007696A8 /* HistoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridView.swift; sourceTree = "<group>"; };
 		133573C02C70C180007696A8 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		133573C22C70C8E4007696A8 /* QuestionViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewWrapper.swift; sourceTree = "<group>"; };
+		1395B6562C743954004327EA /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionLayout.swift; sourceTree = "<group>"; };
 		13B75F892C7059A100EBFCD1 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
 		13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioHelper.swift; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BambiniRiveView.swift; sourceTree = "<group>"; };
 		13B75FF12C70689300EBFCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D34723D02C71C4B7005C1E9F /* ChatBubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleShape.swift; sourceTree = "<group>"; };
-		D34723D32C732834005C1E9F /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
 		D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippyMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippyMathApp.swift; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 		13B75FB42C705C0A00EBFCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D34723D22C732834005C1E9F /* DataModel.xcdatamodeld */,
+				1395B6552C743954004327EA /* DataModel.xcdatamodeld */,
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
@@ -522,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */,
+				1395B6572C743954004327EA /* DataModel.xcdatamodeld in Sources */,
 				D34723D12C71C4B7005C1E9F /* ChatBubbleShape.swift in Sources */,
 				13B75FEA2C70675900EBFCD1 /* HomeView.swift in Sources */,
 				13B75FF02C70676D00EBFCD1 /* BambiniRiveView.swift in Sources */,
@@ -557,7 +558,6 @@
 				13B75FE92C70675900EBFCD1 /* HomeViewModel.swift in Sources */,
 				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
 				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
-				D34723D42C732834005C1E9F /* DataModel.xcdatamodeld in Sources */,
 				13B75FE02C705F9900EBFCD1 /* CustomVideoPlayerView.swift in Sources */,
 				13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */,
 			);
@@ -693,7 +693,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
+				DEVELOPMENT_TEAM = 459W9TDYSS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -733,7 +733,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
+				DEVELOPMENT_TEAM = 459W9TDYSS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -849,14 +849,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		D34723D22C732834005C1E9F /* DataModel.xcdatamodeld */ = {
+		1395B6552C743954004327EA /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D34723D32C732834005C1E9F /* DataModel.xcdatamodel */,
+				1395B6562C743954004327EA /* DataModel.xcdatamodel */,
 			);
-			currentVersion = D34723D32C732834005C1E9F /* DataModel.xcdatamodel */;
+			currentVersion = 1395B6562C743954004327EA /* DataModel.xcdatamodel */;
 			name = DataModel.xcdatamodeld;
-			path = "/Users/enricomaricar/Documents/XCode Project/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
+			path = "/Users/williamhandoko/Documents/Flippy_Math#1/FlippyMath/Data/Model/DataModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
