@@ -12,13 +12,27 @@ struct PolarBearView: View {
     
     @StateObject var riveVM = RiveViewModel(fileName: "polarbear", stateMachineName: "State Machine 1")
     
-    var isOpen: Bool
+    var key: String
+    var value: Bool
     
     var body: some View {
         riveVM.view()
             .onAppear() {
-                riveVM.setInput("isOpen", value: isOpen)
+                if key == "bearOnly"{
+                    riveVM.stop()
+                }
+                riveVM.setInput(key, value: value)
+                
             }
+    }
+}
+
+struct PolarBearOnlyView: View {
+    
+    @StateObject var riveVM = RiveViewModel(fileName: "polarbear", stateMachineName: "State Machine 2")
+    
+    var body: some View {
+        riveVM.view()
     }
 }
 
@@ -29,9 +43,10 @@ struct PolarBearView: View {
 struct TestView: View {
     @State var isOpen = true
     var body: some View {
-        PolarBearView(isOpen: false)
-         
-        
-  
+        PolarBearView(key: "bearOnly", value: true)
     }
+}
+
+#Preview {
+    PolarBearOnlyView()
 }

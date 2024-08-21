@@ -42,8 +42,8 @@ class QuestionViewModel: ObservableObject {
     init(sequenceLevel: Int, parameter: Parameter) {
         switch parameter {
         case .history:
-//            currentQuestionIndex = Int(mathQuestion.sequence)
-           getAllQuestion()
+            //            currentQuestionIndex = Int(mathQuestion.sequence)
+            getAllQuestion()
             currentQuestionIndex = sequenceLevel
             
         case .home :
@@ -229,7 +229,7 @@ class QuestionViewModel: ObservableObject {
                 self.audioHelper.playSoundEffect(named: "correct", fileType: "wav")
                 self.apretiation = self.currentQuestionData.stories[self.currentMessageIndex].appretiation
                 self.riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0)),
-                                   FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
+                                  FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
                 ]
                 
             })
@@ -245,11 +245,11 @@ class QuestionViewModel: ObservableObject {
     
     func checkAnswerAndAdvance() {
         if currentQuestionIndex >= questionData.count - 1 {
-                let sequence = currentQuestionData.sequence
-                if let mathQuestion = service.getMathQuestion(by: sequence) {
-                    service.updateCompletedQuestion(mathQuestion: mathQuestion, isComplete: true)
-                }
+            let sequence = currentQuestionData.sequence
+            if let mathQuestion = service.getMathQuestion(by: sequence) {
+                service.updateCompletedQuestion(mathQuestion: mathQuestion, isComplete: true)
             }
+        }
         
         audioHelper.playSoundEffect(named: "click", fileType: "wav")
         guard !currentQuestionData.problems.isEmpty else {
@@ -388,12 +388,105 @@ class QuestionViewModel: ObservableObject {
         riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     }
     
-    func randomPositionAroundCake(geometry: GeometryProxy, cakePosition: CGPoint) -> CGPoint {
-        let offsetX = CGFloat.random(in: -800...300)
-        let offsetY = CGFloat.random(in: -300...300)
-        let xPosition = cakePosition.x + offsetX
-        let yPosition = cakePosition.y + offsetY
-        
-        return CGPoint(x: xPosition, y: yPosition)
+//    func randomPositionAroundCake(geometry: GeometryProxy, cakePosition: CGPoint) -> CGPoint {
+//        let offsetX = CGFloat.random(in: -800...300)
+//        let offsetY = CGFloat.random(in: -300...300)
+//        let xPosition = cakePosition.x + offsetX
+//        let yPosition = cakePosition.y + offsetY
+//        
+//        return CGPoint(x: xPosition, y: yPosition)
+//    }
+    
+    /// MARK: SOAL NOMOR 5: Cakes & Flies
+    var flyPositions: [(x: CGFloat, y: CGFloat)] = [
+        (x: 0.1, y: 0.7),
+        (x: 0.16, y: 0.4),
+        (x: 0.2, y: 0.8),
+        (x: 0.3, y: 0.35),
+        (x: 0.5, y: 0.55),
+        (x: 0.45, y: 0.81),
+        (x: 0.8, y: 0.8),
+        (x: 0.75, y: 0.4),
+        (x: 0.9, y: 0.6)
+    ]
+    
+    var flyCount: Int {
+        return (currentMessageIndex >= 4) ? 2 : flyPositions.count
     }
+    
+    func flyPosition(for index: Int, geometry: GeometryProxy) -> (x: CGFloat, y: CGFloat) {
+        let position = flyPositions[index]
+        return (x: geometry.size.width * position.x, y: geometry.size.height * position.y)
+    }
+    
+    func flyAnimation(for index: Int, geometry: GeometryProxy) {
+        let startPosition = flyPositions[index]
+        let animation = Animation.easeInOut(duration: Double.random(in: 2...5))
+            .repeatForever(autoreverses: true)
+        
+        withAnimation(animation) {
+            flyPositions[index] = (
+                x: startPosition.x + CGFloat.random(in: -0.1...0.1),
+                y: startPosition.y + CGFloat.random(in: -0.1...0.1)
+            )
+        }
+    }
+    
+    /// MARK: SOAL NOMOR 6: Arctic Fox
+    @Published var isPlaying: Bool = false
+    let babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
+        (x: 0.476, y: 0.74),
+        (x: 0.588, y: 0.76),
+        (x: 0.222, y: 0.70),
+        (x: 0.125, y: 0.74),
+        (x: 0.8, y: 0.75),
+        (x: 0.909, y: 0.7)
+    ]
+    
+    var foxCount: Int {
+        return (currentMessageIndex < 3) ? 2 : babyFoxPositions.count
+    }
+    
+    func babyFoxPosition(for index: Int, geometry: GeometryProxy) -> (x: CGFloat, y: CGFloat) {
+        let position = babyFoxPositions[index]
+        return (x: geometry.size.width * position.x, y: geometry.size.height * position.y)
+    }
+    
+    /// MARK: SOAL NOMOR 7: PINATA
+    @Published var tapCount = 0
+    @Published var isTapped = false
+    
+    /// MARK: SOAL NOMOR 9: Outro
+    @Published var rotation: Double = 0
+    @Published var scale: CGFloat = 0.5
+    
+    
+    ///MARK: SHARED
+    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5) {
+        isTapped = true
+        
+        if let threshold = tapThreshold {
+            tapCount += 1
+            if tapCount >= threshold {
+                tapCount = 0
+                moveToNextMessage(upperLimit: 2)
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + tapDelay) {
+            self.isTapped = false
+            if tapThreshold == nil {
+                self.moveToNextMessage(upperLimit: 2)
+            }
+        }
+    }
+    
+    private func moveToNextMessage(upperLimit: Int) {
+        if currentMessageIndex < upperLimit {
+            currentMessageIndex += 1
+        }
+    }
+    
+    
+    
 }

@@ -21,24 +21,33 @@ struct HomeView: View {
         GeometryReader { geometry in
             NavigationStack{
                 ZStack {
-                    Image("BG")
+                    Image("Home_Background")
                         .resizable()
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.all)
                     
-                    Image("Iglo")
+                    Image("Home_Iglo")
                         .resizable()
                         .scaledToFit()
-                        .ignoresSafeArea(.all)
+                        .frame(width: geometry.size.width * 1.05)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                     
-                    Image("Penguin")
-                        .padding(.top, geometry.size.height * 0.2)
+                    Image("LogoFlippyMath")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.45)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
+                    
+                    PenguinsHomeView()
+                        .frame(width: geometry.size.width * 0.65)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.68)
                     
                     Button {
                         isMute.toggle()
                     } label: {
                         Image(isMute ? "MusicButtonDisabled" : "MusicButton")
                             .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width * 0.07, height: geometry.size.height * 0.10)
                     }
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
@@ -47,12 +56,14 @@ struct HomeView: View {
                         HistoryGridView()
                     } label: {
                         Image("Record")
+                        
                             .resizable()
-                            .frame(width: geometry.size.width * 0.07, height: geometry.size.height * 0.10)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: geometry.size.width * 0.07)
                     }
-                    .padding(.top, geometry.size.width * 0.17)
+                    .padding(.top,geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
-                    
+
                     Button(action: {
                         viewModel.requestPermissions()
                     }, label: {

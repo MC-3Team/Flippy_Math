@@ -15,7 +15,7 @@ struct HistoryGridView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Image("BG")
+                Image("Home_Background")
                     .resizable()
                     .ignoresSafeArea(.all)
                 

@@ -1,3 +1,4 @@
+
 {
     "math_question": [
         {
@@ -634,7 +635,15 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Jika ada sebanyak 20 permen yang jatuh berhamburan dan aku berhasil mengumpulkan 5 permen ",
+                    "story": "Jika ada sebanyak 20 permen yang jatuh berhamburan.",
+                    "audio": "audio-7-4",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Dan Aku berhasil mengumpulkan 5 permen",
                     "audio": "audio-7-4",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -642,9 +651,9 @@
                 {
                     "id": 5,
                     "sequence": 5,
-                    "story": "Benar! 20 permen dikurang 5 permen sama dengan 15 permen.",
+                    "story": "Jadi ada berapa permen yang masih tersisa di lantai?",
                     "audio": "audio-7-5",
-                    "apretiation": "Hebat! 20 dikurang 5 sama dengan 15.",
+                    "apretiation": "Benar! 20 permen dikurang 5 permen sama dengan 15 permen.",
                     "audio_apretiation": "audio-apretiation-7-5"
                 }
             ],
@@ -653,7 +662,7 @@
                     "id": 0,
                     "sequence": 0,
                     "color": "bluePrimary",
-                    "problem": "20",
+                    "problem": "",
                     "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
@@ -662,7 +671,7 @@
                     "id": 1,
                     "sequence": 1,
                     "color": "bluePrimary",
-                    "problem": "20",
+                    "problem": "",
                     "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
@@ -748,10 +757,18 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Jika Aku sudah menerima 6 kado sebelumnya, berapa total kado yang sekarang kumiliki?",
+                    "story": "Sebelumnya, Aku sudah mendapatkan 6 kado.",
                     "audio": "audio-8-4",
-                    "apretiation": "Bagus sekali! 6 kado ditambah 4 kado kemudian ditambah 6 kado lagi sama dengan 16 kado.",
+                    "apretiation": "",
                     "audio_apretiation": ""
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "story": "Jadi, berapa total kado yang kumiliki sekarang?",
+                    "audio": "audio-8-5",
+                    "apretiation": "Bagus sekali! 6 kado ditambah 4 kado kemudian ditambah 6 kado lagi sama dengan 16 kado.",
+                    "audio_apretiation": "audio-apretiation-8-5"
                 }
             ],
             "problems": [
@@ -819,6 +836,57 @@
                     "isSpeech": true
                 }
             ]
-        }
+        },
+        {
+                    "id": 9,
+                    "sequence": 9,
+                    "background": "Outro_Background",
+                    "is_complete": false,
+                    "historyLevel": "Outro",
+                    "stories": [
+                        {
+                            "id": 1,
+                            "sequence": 1,
+                            "story": "Tak terasa, pesta sudah hampir berakhir. Aku sangat senang karena kamu telah ikut merayakan hari spesialku ini!",
+                            "audio": "audio-9-1",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 2,
+                            "sequence": 2,
+                            "story": "Sebelum kita berpisah, aku ingin memberikan hadiah istimewa untukmu, sebagai tanda terima kasihku.",
+                            "audio": "audio-9-2",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 3,
+                            "sequence": 3,
+                            "story": "Ayo buka hadiahnya! ",
+                            "audio": "audio-9-3",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 4,
+                            "sequence": 4,
+                            "story": "Yeay, kamu mendapatkan syal, beanie, dan sarung tangan itu terlihat sangat cocok untukmu.",
+                            "audio": "audio-9-4",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 5,
+                            "sequence": 5,
+                            "story": "Terima kasih sudah datang dan memeriahkan pesta ulang tahunku! Sampai jumpa di petualangan berikutnya!",
+                            "audio": "audio-9-5",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        }
+                    ],
+                    "problems": []
+                }
+        
     ]
 }
