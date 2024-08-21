@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import RiveRuntime
+import Routing
 
 struct QuestionLayout<Content: View>: View {
     @ObservedObject var viewModel: QuestionViewModel
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var router: Router<NavigationRoute>
     
     let children: (GeometryProxy) -> Content
     @State private var textPositions: [Int: CGPoint] = [:]
@@ -18,6 +21,8 @@ struct QuestionLayout<Content: View>: View {
           self.viewModel = viewModel
           self.children = children
       }
+    @StateObject var riveVM = RiveViewModel(fileName: "clap", autoPlay: true)
+    
     @State private var currentImage: String = ""
     
     var body: some View {
@@ -29,7 +34,7 @@ struct QuestionLayout<Content: View>: View {
                     .ignoresSafeArea()
                 
                 Button {
-                    dismiss()
+                    router.navigateToRoot()
                 } label: {
                     Image("HomeButton")
                         .resizable()
@@ -138,11 +143,19 @@ struct QuestionLayout<Content: View>: View {
                             .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                             .fontWeight(.bold)
                             .padding(.leading, 80)
-                            .padding(.trailing, 10)
+                            .padding(.trailing, viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 ? 100 : 10)
                             .padding(.bottom, 10)
                             .lineLimit(nil)
                             .frame(width: geometry.size.width * 0.7, alignment: .leading)
                             .multilineTextAlignment(.leading)
+                        
+                        if viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
+                            HStack {
+                                Spacer()
+                                riveVM.view().frame(width: 120, height: 120).padding(.trailing, 20).padding(.bottom, 10)
+                            }
+                        }
+                       
                     }
                     .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.94)
                     
@@ -157,19 +170,26 @@ struct QuestionLayout<Content: View>: View {
                     .disabled(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
                 }
                 .onDisappear {
-                    // Clear the text positions or any other states that might lead to memory leaks
                     textPositions.removeAll()
                 }
             }
         }.onAppear {
             currentImage = viewModel.currentQuestionData.background
+            viewModel.audioHelper.playMusicQuestion(named: "birthday-party", fileType: "mp3")
         }
         .onChange(of: viewModel.currentQuestionData) {_, _ in
             currentImage = viewModel.currentQuestionData.background
         }
+        .onChange(of: viewModel.navigateToHome) { _ , _ in
+            if viewModel.navigateToHome {
+                router.navigateToRoot()
+                viewModel.navigateToHome = false
+            }
+        }
         .onDisappear {
             currentImage = ""
             viewModel.audioHelper.stopVoice()
+            viewModel.audioHelper.stopMusicQuestion()
         }
     }
     

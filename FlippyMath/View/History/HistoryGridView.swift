@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Routing
 
 struct HistoryGridView: View {
     @StateObject var viewModel = HistoryViewModel()
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var audioHelper: AudioHelper
+    @EnvironmentObject private var router: Router<NavigationRoute>
     
     var body: some View {
         GeometryReader { geometry in
@@ -29,12 +31,12 @@ struct HistoryGridView: View {
                                         if index < viewModel.buttons.count {
                                             let button = viewModel.buttons[index]
                                             
-                                            NavigationLink {
-                                                QuestionViewWrapper(sequenceLevel: Int(button.sequence), parameter: .history)
-                                            } label: {
+                                            Button(action: {
+                                                router.navigate(to: .question(Int(button.sequence), .history))
+                                            }, label: {
                                                 Image(button.imageName)
                                                     .resizable()
-                                                    .aspectRatio(contentMode: .fill)
+                                                    .aspectRatio(contentMode: .fit)
                                                     .cornerRadius(16)
                                                     .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
                                                     .overlay(
@@ -44,8 +46,7 @@ struct HistoryGridView: View {
                                                             .cornerRadius(16)
                                                             .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
                                                     )
-                                                
-                                            }
+                                            })
                                             .disabled(!button.isPassed)
                                         } else {
                                             Spacer()
@@ -60,23 +61,22 @@ struct HistoryGridView: View {
                                         if index < viewModel.buttons.count {
                                             let button = viewModel.buttons[index]
 
-                                            NavigationLink {
-                                                QuestionViewWrapper(sequenceLevel: Int(button.sequence), parameter: .history)
-                                            } label: {
+                                            Button(action: {
+                                                router.navigate(to: .question(Int(button.sequence), .history))
+                                            }, label: {
                                                 Image(button.imageName)
                                                     .resizable()
-                                                    .aspectRatio(contentMode: .fill)
+                                                    .aspectRatio(contentMode: .fit)
                                                     .cornerRadius(16)
                                                     .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
                                                     .overlay(
                                                         button.isPassed ? nil : Image("lock")
                                                             .resizable()
-                                                            .aspectRatio(contentMode: .fill)
+                                                            .aspectRatio(contentMode: .fit)
                                                             .cornerRadius(16)
                                                             .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
                                                     )
-                                                
-                                            }
+                                            })
                                             .disabled(!button.isPassed)
                                         } else {
                                             Spacer()
@@ -92,8 +92,7 @@ struct HistoryGridView: View {
                 }
                 
                 Button(action: {
-                    print("IsClicked")
-                    dismiss()
+                    router.navigateToRoot()
                 }, label: {
                     Image("HomeButton")
                         .resizable()

@@ -10,12 +10,11 @@ import SwiftUI
 struct QuestionView: View {
     @StateObject private var viewModel: QuestionViewModel
     
-    init(viewModel: QuestionViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    init(sequenceLevel : Int, parameter: Parameter) {
+        _viewModel = StateObject(wrappedValue: QuestionViewModel(sequenceLevel: sequenceLevel, parameter: parameter))
     }
     
     var body: some View {
-        NavigationStack {
             QuestionLayout(viewModel: viewModel) { geometry in
                 VStack {
                     switch viewModel.currentQuestionIndex {
@@ -42,10 +41,7 @@ struct QuestionView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.70)
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.65)
-                            
                         }
-                        
-                        
                         
                     case 2:
                         HStack {
@@ -69,7 +65,6 @@ struct QuestionView: View {
                                 .frame(width: geometry.size.width * 0.55)
                                 .position(x: geometry.size.width / 5.5, y: geometry.size.height * (viewModel.currentMessageIndex > 1 ? 0.60 : 0.65))
                         }
-                        
                         
                     case 3:
                         VStack {
@@ -282,7 +277,6 @@ struct QuestionView: View {
             }
             .navigationBarBackButtonHidden(true)
         }
-    }
 }
 
 //#Preview {
