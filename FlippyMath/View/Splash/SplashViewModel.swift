@@ -9,6 +9,10 @@ import Foundation
 
 class SplashViewModel : ObservableObject {
     @Inject(name: "CoreDataManager") var service: DataService
+    @Inject var speechRecognitionService: SpeechRecognizerService
+    
+    init() {
+    }
     
     func insertAllData() {
         service.insertAllData()

@@ -85,6 +85,7 @@ struct HomeView: View {
                 .onChange(of: isMute) { _, _ in
                     switch isMute {
                     case true :
+                        print("")
                         audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
                     case false :
                         audioHelper.stopMusic()

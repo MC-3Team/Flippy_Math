@@ -15,22 +15,28 @@ struct TypewriterText: View {
     @State private var displayedText: String = ""
     @State private var currentIndex: String.Index?
     var audioHelper = AudioHelper.shared
-    @State private var typingInterval: TimeInterval = 0.05
+    @State private var typingInterval: TimeInterval = 0.08
 
     var body: some View {
-        Text(displayedText)
+        Text(fullText)
             .font(.title)
             .padding()
-            .onAppear(perform: startTyping)
-            .onChange(of: fullText) { oldValue, newValue in
+            .onAppear {
                 startTyping()
-            }.onChange(of: audioName) { _ , _ in
-                updateTypingInterval()
-                audioHelper.playVoiceOver(named: audioName, fileType: "wav")
-            }.onAppear {
-                updateTypingInterval()
                 audioHelper.playVoiceOver(named: audioName, fileType: "wav")
             }
+            .onChange(of: fullText) { oldValue, newValue in
+                startTyping()
+                audioHelper.playVoiceOver(named: audioName, fileType: "wav")
+            }
+//            .onChange(of: audioName) { _ , _ in
+//                updateTypingInterval()
+//                audioHelper.playVoiceOver(named: audioName, fileType: "wav")
+//            }.onAppear {
+//                startTyping()
+//                updateTypingInterval()
+//                audioHelper.playVoiceOver(named: audioName, fileType: "wav")
+//            }
     }
     
     func startTyping() {

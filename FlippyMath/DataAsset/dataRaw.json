@@ -10,7 +10,7 @@
                     "id": 1,
                     "sequence": 1,
                     "story": "Haii! Aku Flippy, dan hari ini adalah hari yang sangat istimewa untukku.",
-                    "audio": "audio-1-1",
+                    "audio": "audio-0-1",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
@@ -18,7 +18,7 @@
                     "id": 2,
                     "sequence": 2,
                     "story": "Aku tinggal di sebuah rumah iglo yang nyaman, dan hari ini, aku merayakan ulang tahunku yang ke-7!",
-                    "audio": "audio-1-1",
+                    "audio": "audio-0-2",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
@@ -26,15 +26,15 @@
                     "id": 3,
                     "sequence": 3,
                     "story": "Aku sangat senang karena ada banyak hal seru yang bisa dilakukan di hari spesial ini.",
-                    "audio": "audio-1-1",
+                    "audio": "audio-0-3",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Yuk, ikut bersamaku merayakan hari ulang tahunku di rumah iglo ini yang hangat dan penuh kejutan!",
-                    "audio": "audio-1-1",
+                    "story": "Yuk, ikut merayakan hari ulang tahunku di rumah iglo ini yang hangat dan penuh kejutan!",
+                    "audio": "audio-0-4",
                     "apretiation": "",
                     "audio_apretiation": ""
                 }
@@ -209,7 +209,7 @@
                 {
                     "id": 1,
                     "sequence": 1,
-                    "story": "Rumah iglo ini dipenuhi dengan balon warna-warni yang tergantung di langit-langit, dan ada banyak sekali balon!",
+                    "story": "Wah, rumah iglo ini dipenuhi dengan banyak balon warna-warni yang tergantung di langit-langit!",
                     "audio": "audio-3-1",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -217,7 +217,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "story": "Ayo hitung ada berapa banyak balon yang ada di rumah iglo ini?",
+                    "story": "Yuk, hitung ada berapa banyak balon yang berada di rumah iglo ini?",
                     "audio": "audio-3-2",
                     "apretiation": "Benar! ada 9 balon di rumah ini.",
                     "audio_apretiation": "audio-apretiation-3-2"
@@ -225,8 +225,8 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "story": "Eh Snowy membawa 4 balon lagi.",
-                    "audio": "audio-3-4",
+                    "story": "Eh Snowy membawa 4 balon lagi",
+                    "audio": "audio-3-3",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
@@ -234,9 +234,9 @@
                     "id": 4,
                     "sequence": 4,
                     "story": "Ada berapa jumlah balon sekarang?",
-                    "audio": "audio-3-5",
-                    "apretiation": "Luar biasa! 9 ditambah 4 sama dengan 13.",
-                    "audio_apretiation": "audio-apretiation-3-5"
+                    "audio": "audio-3-4",
+                    "apretiation": "Luar biasa! 9 balon ditambah 4 balon sama dengan 13 balon.",
+                    "audio_apretiation": "audio-apretiation-3-4"
                 }
             ],
             "problems": [
@@ -323,7 +323,7 @@
                     "sequence": 3,
                     "story": "Jadi sekarang tersisa berapa potong kue ya?",
                     "audio": "audio-4-3",
-                    "apretiation": "Benar! 8 dikurang 2 sama dengan 6.",
+                    "apretiation": "Benar! 8 potong kue dikurangi 2 potong kue sama dengan 6 potong kue.",
                     "audio_apretiation": "audio-apretiation-4-3"
                 }
             ],
@@ -384,7 +384,7 @@
                 {
                     "id": 1,
                     "sequence": 1,
-                    "story": "Sambil menikmati kue, tiba-tiba ada banyak lalat yang mengganggu.",
+                    "story": "Saat menikmati kue, tiba-tiba ada banyak lalat yang mengganggu.",
                     "audio": "audio-5-1",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -408,9 +408,9 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Ayo bantu mengusir lalat-lalat ini dengan menepukkan tangan.",
+                    "story": "Yuk, bantu mengusir lalat-lalat ini, dengan cara menepukkan tangan.",
                     "audio": "audio-5-4",
-                    "apretiation": "Kamu telah membantu mengusir lalat tersebut, dan 7 lalat yang kabur.",
+                    "apretiation": "Yeay, kamu berhadil mengusir lalat lalat tersebut, ada 7 ekor lalat yang kabur.",
                     "audio_apretiation": "audio-apretiation-5-4"
                 },
                 {
@@ -418,7 +418,7 @@
                     "sequence": 5,
                     "story": "Jadi, ada berapa lalat yang tersisa?",
                     "audio": "audio-5-5",
-                    "apretiation": "Luar biasa! 9 dikurang 7 sama dengan 2.",
+                    "apretiation": "Luar biasa! 9 lalat dikurangi 7 lalat sama dengan 2 lalat.",
                     "audio_apretiation": "audio-apretiation-5-5"
                 }
             ],
@@ -516,7 +516,7 @@
                     "story": "Ayo ajak rubah arktiknya bermain dengan  menepukkan tangan.",
                     "audio": "audio-6-3",
                     "apretiation": "Yeay! mereka senang, lalu tiba tiba 4 rubah arktik kecil datang lagi.",
-                    "audio_apretiation": ""
+                    "audio_apretiation": "audio-apretiation-6-3"
                 },
                 {
                     "id": 4,
@@ -610,7 +610,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "story": "Yuk! bergantian memukul pinata hingga pecah dan menghamburkan permen yang banyak.",
+                    "story": "Yuk! bantu aku memukul pinata-nya hingga pecah.",
                     "audio": "audio-7-2",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -618,7 +618,7 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "story": "Jika dari pinata ada sebanyak 20 permen yang jatuh dan aku berhasil mengumpulkan 5 permen",
+                    "story": "Yeay pinata-nya pecah! banyak sekali permen yang keluar dan berhamburan",
                     "audio": "audio-7-3",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -626,7 +626,7 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Jadi ada berapa permen yang masih tersisa di lantai?",
+                    "story": "Jika ada sebanyak 20 permen yang jatuh berhamburan dan aku berhasil mengumpulkan 5 permen ",
                     "audio": "audio-7-4",
                     "apretiation": "",
                     "audio_apretiation": ""

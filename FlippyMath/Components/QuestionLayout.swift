@@ -9,21 +9,26 @@ import SwiftUI
 
 struct QuestionLayout<Content: View>: View {
     @ObservedObject var viewModel: QuestionViewModel
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     
     let children: (GeometryProxy) -> Content
     @State private var textPositions: [Int: CGPoint] = [:]
     
+    init(viewModel: QuestionViewModel, @ViewBuilder children: @escaping (GeometryProxy) -> Content) {
+          self.viewModel = viewModel
+          self.children = children
+      }
+    @State private var currentImage: String = ""
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Image(viewModel.currentQuestionData.background)
+                Image(currentImage)
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
                 
                 Button {
-                    self.dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Image("HomeButton")
                         .resizable()
@@ -129,6 +134,7 @@ struct QuestionLayout<Content: View>: View {
                             .fontWeight(.bold)
                             .padding(.leading, 80)
                             .padding(.trailing, 10)
+                            .padding(.bottom, 10)
                             .lineLimit(nil)
                             .frame(width: geometry.size.width * 0.7, alignment: .leading)
                             .multilineTextAlignment(.leading)
@@ -146,6 +152,14 @@ struct QuestionLayout<Content: View>: View {
                     .disabled(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
                 }
             }
+        }.onAppear {
+            currentImage = viewModel.currentQuestionData.background
+        }
+        .onChange(of: viewModel.currentQuestionData) {_, _ in
+            currentImage = viewModel.currentQuestionData.background
+        }
+        .onDisappear {
+            currentImage = ""
         }
     }
     
