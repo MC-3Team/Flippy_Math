@@ -45,7 +45,7 @@ enum FlippyKeyInput: String {
 
 struct FlippyRiveView: View {
     
-    @StateObject var riveVM = RiveViewModel(fileName: "bambini", stateMachineName: "State Machine 1")
+    @StateObject var riveVM = RiveViewModel(fileName: "flippy", stateMachineName: "State Machine 1")
     
     @Binding var riveInput : [FlippyRiveInput]
     

@@ -53,21 +53,29 @@
 		13B760172C706CA600EBFCD1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 13B760162C706CA600EBFCD1 /* RxSwift */; };
 		13B7601C2C706CB300EBFCD1 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601B2C706CB300EBFCD1 /* Swinject */; };
 		13B7601F2C706CBB00EBFCD1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601E2C706CBB00EBFCD1 /* RiveRuntime */; };
-		D34723CA2C70A749005C1E9F /* bambini.riv in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FAD2C705B8500EBFCD1 /* bambini.riv */; };
+		D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91242462C75DF5700C61620 /* RewardAnimationView.swift */; };
+		D912424A2C75E0A800C61620 /* reward.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242482C75E0A800C61620 /* reward.riv */; };
+		D912424B2C75E0A800C61620 /* splash.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242492C75E0A800C61620 /* splash.riv */; };
+		D912424D2C75E1C000C61620 /* SplashAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912424C2C75E1C000C61620 /* SplashAnimation.swift */; };
 		D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */; };
 		D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */; };
 		D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF922C6F3EBC00D41B9A /* ContentView.swift */; };
 		D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF942C6F3EBD00D41B9A /* Assets.xcassets */; };
 		D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */; };
-		D94762FD2C7242FB00C43600 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D94762FB2C7242FB00C43600 /* DataModel.xcdatamodeld */; };
 		D95232AF2C71ABEB0005C461 /* ArcticFoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232AE2C71ABEB0005C461 /* ArcticFoxView.swift */; };
-		D95232B52C71AFF50005C461 /* arcticfox.riv in Resources */ = {isa = PBXBuildFile; fileRef = D95232B42C71AFF50005C461 /* arcticfox.riv */; };
 		D95232B92C71B7F20005C461 /* PinataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232B82C71B7F20005C461 /* PinataView.swift */; };
-		D95232BC2C71E2310005C461 /* pinata.riv in Resources */ = {isa = PBXBuildFile; fileRef = D95232BA2C71E2310005C461 /* pinata.riv */; };
 		D95232BF2C71E2630005C461 /* PolarBearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232BE2C71E2630005C461 /* PolarBearView.swift */; };
-		D95232C12C71E3250005C461 /* polarbear.riv in Resources */ = {isa = PBXBuildFile; fileRef = D95232C02C71E3250005C461 /* polarbear.riv */; };
 		D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */; };
-		D99B6AFB2C71935E00A60CD2 /* flyingballoon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */; };
+		D9C4120F2C75C1500049C81F /* flyingballoon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412062C75C1500049C81F /* flyingballoon.riv */; };
+		D9C412102C75C1500049C81F /* penguins.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412072C75C1500049C81F /* penguins.riv */; };
+		D9C412112C75C1500049C81F /* arcticfox.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412082C75C1500049C81F /* arcticfox.riv */; };
+		D9C412132C75C1500049C81F /* balloon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C4120A2C75C1500049C81F /* balloon.riv */; };
+		D9C412142C75C1500049C81F /* flippy.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C4120B2C75C1500049C81F /* flippy.riv */; };
+		D9C4121A2C75C96F0049C81F /* pinata.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412192C75C96F0049C81F /* pinata.riv */; };
+		D9C4121C2C75CE580049C81F /* polarbear.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C4121B2C75CE570049C81F /* polarbear.riv */; };
+		D9C4121E2C75CF4D0049C81F /* PenguinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4121D2C75CF4D0049C81F /* PenguinsView.swift */; };
+		D9F19D4D2C734E43004A5D99 /* SingingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F19D4C2C734E43004A5D99 /* SingingView.swift */; };
+		D9F6C61E2C76398800CFBE16 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D9F6C61C2C76398800CFBE16 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,7 +94,6 @@
 		13B75FA62C705B7C00EBFCD1 /* failure-drum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "failure-drum.wav"; sourceTree = "<group>"; };
 		13B75FA72C705B7C00EBFCD1 /* level-completed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "level-completed.wav"; sourceTree = "<group>"; };
 		13B75FA82C705B7C00EBFCD1 /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
-		13B75FAD2C705B8500EBFCD1 /* bambini.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = bambini.riv; sourceTree = "<group>"; };
 		13B75FAE2C705B9100EBFCD1 /* TestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestVideo.mp4; sourceTree = "<group>"; };
 		13B75FBC2C705DC900EBFCD1 /* dataRaw.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataRaw.json; sourceTree = "<group>"; };
 		13B75FBE2C705E1800EBFCD1 /* ClappingModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClappingModel.mlmodel; sourceTree = "<group>"; };
@@ -114,21 +121,30 @@
 		13B75FEC2C70676200EBFCD1 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BambiniRiveView.swift; sourceTree = "<group>"; };
 		13B75FF12C70689300EBFCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D91242462C75DF5700C61620 /* RewardAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnimationView.swift; sourceTree = "<group>"; };
+		D91242482C75E0A800C61620 /* reward.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reward.riv; sourceTree = "<group>"; };
+		D91242492C75E0A800C61620 /* splash.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = splash.riv; sourceTree = "<group>"; };
+		D912424C2C75E1C000C61620 /* SplashAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimation.swift; sourceTree = "<group>"; };
 		D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
 		D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippyMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippyMathApp.swift; sourceTree = "<group>"; };
 		D934AF922C6F3EBC00D41B9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D934AF942C6F3EBD00D41B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D94762FC2C7242FB00C43600 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D95232AE2C71ABEB0005C461 /* ArcticFoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcticFoxView.swift; sourceTree = "<group>"; };
-		D95232B42C71AFF50005C461 /* arcticfox.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = arcticfox.riv; sourceTree = "<group>"; };
 		D95232B82C71B7F20005C461 /* PinataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinataView.swift; sourceTree = "<group>"; };
-		D95232BA2C71E2310005C461 /* pinata.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinata.riv; sourceTree = "<group>"; };
 		D95232BE2C71E2630005C461 /* PolarBearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarBearView.swift; sourceTree = "<group>"; };
-		D95232C02C71E3250005C461 /* polarbear.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = polarbear.riv; sourceTree = "<group>"; };
 		D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingBalloonView.swift; sourceTree = "<group>"; };
-		D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flyingballoon.riv; sourceTree = "<group>"; };
+		D9C412062C75C1500049C81F /* flyingballoon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flyingballoon.riv; sourceTree = "<group>"; };
+		D9C412072C75C1500049C81F /* penguins.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = penguins.riv; sourceTree = "<group>"; };
+		D9C412082C75C1500049C81F /* arcticfox.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = arcticfox.riv; sourceTree = "<group>"; };
+		D9C4120A2C75C1500049C81F /* balloon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = balloon.riv; sourceTree = "<group>"; };
+		D9C4120B2C75C1500049C81F /* flippy.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flippy.riv; sourceTree = "<group>"; };
+		D9C412192C75C96F0049C81F /* pinata.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinata.riv; sourceTree = "<group>"; };
+		D9C4121B2C75CE570049C81F /* polarbear.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = polarbear.riv; sourceTree = "<group>"; };
+		D9C4121D2C75CF4D0049C81F /* PenguinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenguinsView.swift; sourceTree = "<group>"; };
+		D9F19D4C2C734E43004A5D99 /* SingingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingingView.swift; sourceTree = "<group>"; };
+		D9F6C61D2C76398800CFBE16 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,11 +242,15 @@
 		13B75F952C705A7200EBFCD1 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				D95232C02C71E3250005C461 /* polarbear.riv */,
-				D95232BA2C71E2310005C461 /* pinata.riv */,
-				D95232B42C71AFF50005C461 /* arcticfox.riv */,
-				D99B6AFA2C71935E00A60CD2 /* flyingballoon.riv */,
-				13B75FAD2C705B8500EBFCD1 /* bambini.riv */,
+				D91242482C75E0A800C61620 /* reward.riv */,
+				D91242492C75E0A800C61620 /* splash.riv */,
+				D9C412192C75C96F0049C81F /* pinata.riv */,
+				D9C412082C75C1500049C81F /* arcticfox.riv */,
+				D9C4120A2C75C1500049C81F /* balloon.riv */,
+				D9C4121B2C75CE570049C81F /* polarbear.riv */,
+				D9C4120B2C75C1500049C81F /* flippy.riv */,
+				D9C412062C75C1500049C81F /* flyingballoon.riv */,
+				D9C412072C75C1500049C81F /* penguins.riv */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -292,7 +312,7 @@
 		13B75FB42C705C0A00EBFCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D94762FB2C7242FB00C43600 /* DataModel.xcdatamodeld */,
+				D9F6C61C2C76398800CFBE16 /* DataModel.xcdatamodeld */,
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
@@ -328,11 +348,15 @@
 		13B75FB72C705C4100EBFCD1 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				D9F19D4C2C734E43004A5D99 /* SingingView.swift */,
 				13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */,
 				D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */,
 				D95232AE2C71ABEB0005C461 /* ArcticFoxView.swift */,
 				D95232B82C71B7F20005C461 /* PinataView.swift */,
 				D95232BE2C71E2630005C461 /* PolarBearView.swift */,
+				D9C4121D2C75CF4D0049C81F /* PenguinsView.swift */,
+				D91242462C75DF5700C61620 /* RewardAnimationView.swift */,
+				D912424C2C75E1C000C61620 /* SplashAnimation.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -491,23 +515,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D34723CA2C70A749005C1E9F /* bambini.riv in Resources */,
 				13B75FBD2C705DC900EBFCD1 /* dataRaw.json in Resources */,
 				D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */,
-				D99B6AFB2C71935E00A60CD2 /* flyingballoon.riv in Resources */,
+				D9C412102C75C1500049C81F /* penguins.riv in Resources */,
 				13B75FAA2C705B7C00EBFCD1 /* failure-drum.wav in Resources */,
-				D95232B52C71AFF50005C461 /* arcticfox.riv in Resources */,
-				D95232BC2C71E2310005C461 /* pinata.riv in Resources */,
 				13B75FA42C705B6D00EBFCD1 /* hai aku bambini.wav in Resources */,
 				13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */,
 				13B75FAC2C705B7C00EBFCD1 /* correct.wav in Resources */,
 				13B75FA92C705B7C00EBFCD1 /* click.wav in Resources */,
-				D95232C12C71E3250005C461 /* polarbear.riv in Resources */,
 				D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */,
+				D912424B2C75E0A800C61620 /* splash.riv in Resources */,
+				D9C412132C75C1500049C81F /* balloon.riv in Resources */,
+				D9C4120F2C75C1500049C81F /* flyingballoon.riv in Resources */,
 				13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */,
+				D9C4121A2C75C96F0049C81F /* pinata.riv in Resources */,
 				D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */,
 				13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */,
+				D9C412142C75C1500049C81F /* flippy.riv in Resources */,
 				13B75FAB2C705B7C00EBFCD1 /* level-completed.wav in Resources */,
+				D9C412112C75C1500049C81F /* arcticfox.riv in Resources */,
+				D912424A2C75E0A800C61620 /* reward.riv in Resources */,
+				D9C4121C2C75CE580049C81F /* polarbear.riv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,13 +549,16 @@
 				D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */,
 				13B75FEA2C70675900EBFCD1 /* HomeView.swift in Sources */,
 				13B75FF02C70676D00EBFCD1 /* BambiniRiveView.swift in Sources */,
+				D9F6C61E2C76398800CFBE16 /* DataModel.xcdatamodeld in Sources */,
 				D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */,
 				13B75FD12C705E8B00EBFCD1 /* MathQuestionJSON.swift in Sources */,
 				13B75FE62C70675000EBFCD1 /* SplashView.swift in Sources */,
+				D9F19D4D2C734E43004A5D99 /* SingingView.swift in Sources */,
 				13B75FEE2C70676200EBFCD1 /* QuestionView.swift in Sources */,
 				13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */,
 				13B75FC82C705E8300EBFCD1 /* SoundAnalysisManager.swift in Sources */,
 				D95232BF2C71E2630005C461 /* PolarBearView.swift in Sources */,
+				D912424D2C75E1C000C61620 /* SplashAnimation.swift in Sources */,
 				13B75FCB2C705E8300EBFCD1 /* SpeechRecognizerManager.swift in Sources */,
 				13B75FDC2C705E9700EBFCD1 /* SpeechRecognizerService.swift in Sources */,
 				13B75FE22C705F9900EBFCD1 /* VideoView.swift in Sources */,
@@ -543,6 +574,7 @@
 				13B75FE52C70675000EBFCD1 /* SplashViewModel.swift in Sources */,
 				13B75FC22C705E3100EBFCD1 /* AppContainer.swift in Sources */,
 				133573C12C70C180007696A8 /* HistoryViewModel.swift in Sources */,
+				D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */,
 				D95232AF2C71ABEB0005C461 /* ArcticFoxView.swift in Sources */,
 				13B75FC92C705E8300EBFCD1 /* TextToSpeechManager.swift in Sources */,
 				133573BA2C70BFD3007696A8 /* ButtonData.swift in Sources */,
@@ -550,10 +582,10 @@
 				13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */,
 				D95232B92C71B7F20005C461 /* PinataView.swift in Sources */,
 				13B75FED2C70676200EBFCD1 /* QuestionViewModel.swift in Sources */,
+				D9C4121E2C75CF4D0049C81F /* PenguinsView.swift in Sources */,
 				13B75FE92C70675900EBFCD1 /* HomeViewModel.swift in Sources */,
 				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
 				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
-				D94762FD2C7242FB00C43600 /* DataModel.xcdatamodeld in Sources */,
 				13B75FE02C705F9900EBFCD1 /* CustomVideoPlayerView.swift in Sources */,
 				13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */,
 			);
@@ -845,14 +877,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		D94762FB2C7242FB00C43600 /* DataModel.xcdatamodeld */ = {
+		D9F6C61C2C76398800CFBE16 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D94762FC2C7242FB00C43600 /* DataModel.xcdatamodel */,
+				D9F6C61D2C76398800CFBE16 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = D94762FC2C7242FB00C43600 /* DataModel.xcdatamodel */;
+			currentVersion = D9F6C61D2C76398800CFBE16 /* DataModel.xcdatamodel */;
 			name = DataModel.xcdatamodeld;
-			path = "/Users/rajeshtriadinoftarizal/Documents/Xcode/Mini Challenge 3/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
+			path = /Users/ayatullahmaarif/Documents/Projects/ADA/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

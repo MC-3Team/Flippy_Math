@@ -17,7 +17,8 @@ struct SplashView: View {
             HomeView()
 //            QuestionView(viewModel: QuestionViewModel(level: 0))
         } else {
-            Text("Flippy Math").onAppear {
+            SplashAnimation()
+                .onAppear {
                 if isFirst {
                     viewModel.insertAllData()
                     isFirst = false

@@ -788,9 +788,55 @@
                     "isSpeech": true
                 }
             ]
+        },
+        {
+            "id": 9,
+            "sequence": 9,
+            "background": "Outro_Background",
+            "is_complete": false,
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Tak terasa, pesta sudah hampir berakhir. Aku sangat senang karena kamu telah ikut merayakan hari spesialku ini!",
+                    "audio": "audio-9-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "Sebelum kita berpisah, aku ingin memberikan hadiah istimewa untukmu, sebagai tanda terima kasihku.",
+                    "audio": "audio-9-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Ayo buka hadiahnya! ",
+                    "audio": "audio-9-3",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Yeay, kamu mendapatkan syal, beanie, dan sarung tangan itu terlihat sangat cocok untukmu.",
+                    "audio": "audio-9-4",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "story": "Terima kasih sudah datang dan memeriahkan pesta ulang tahunku! Sampai jumpa di petualangan berikutnya!",
+                    "audio": "audio-9-5",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                }
+            ],
+            "problems": []
         }
-        
-        
-        
     ]
 }
