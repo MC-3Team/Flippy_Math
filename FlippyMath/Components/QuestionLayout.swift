@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuestionLayout<Content: View>: View {
     @ObservedObject var viewModel: QuestionViewModel
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     let children: (GeometryProxy) -> Content
     @State private var textPositions: [Int: CGPoint] = [:]
@@ -19,16 +19,17 @@ struct QuestionLayout<Content: View>: View {
           self.children = children
       }
     @State private var currentImage: String = ""
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Image(currentImage)
+                Image(viewModel.currentQuestionData.background)
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
                 
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 } label: {
                     Image("HomeButton")
                         .resizable()
@@ -43,7 +44,7 @@ struct QuestionLayout<Content: View>: View {
                         ZStack(alignment: .topLeading) {
                             VStack(spacing: 0) {
                                 let isCurrentQuestion = isQuestion && viewModel.userAnswer.isEmpty
-
+                                
                                 Text(problemString)
                                     .font(.custom("PilcrowRoundedVariable-Regular", size: 180))
                                     .fontWeight(.heavy)
@@ -63,7 +64,7 @@ struct QuestionLayout<Content: View>: View {
                                                 }
                                             }
                                         }
-                                        .frame(width: 0, height: 0)
+                                            .frame(width: 0, height: 0)
                                     )
                                     .onChange(of: viewModel.userAnswer) { _ , _ in
                                         if !viewModel.userAnswer.isEmpty {
@@ -72,7 +73,7 @@ struct QuestionLayout<Content: View>: View {
                                             }
                                         }
                                     }
-                                            
+                                
                                 if isCurrentQuestion {
                                     Spacer().frame(height: 16)
                                 }
@@ -85,7 +86,7 @@ struct QuestionLayout<Content: View>: View {
                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.25)
                 
                 ForEach(Array(textPositions.keys.sorted()), id: \.self) { key in
-                    if let position = textPositions[key] {
+                    if let position = textPositions[key], viewModel.tipRecognition == true {
                         HStack(spacing: 4) {
                             Image(uiImage: (!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? UIImage(named: "handClap") : UIImage(systemName: "wave.3.right"))!)
                             Text(!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? "Tepukkan tangan" : "Sebutkan angka")
@@ -102,7 +103,7 @@ struct QuestionLayout<Content: View>: View {
                             ChatBubbleShape()
                                 .fill(Color.white)
                         )
-                        .position(x: position.x + 4 , y: position.y + 96)
+                        .position(x: position.x - 8 , y: position.y + 96)
                     }
                 }
                 
@@ -129,6 +130,10 @@ struct QuestionLayout<Content: View>: View {
                         ), onComplete: {
                             viewModel.riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(0.0)),
                                                    FlippyRiveInput(key: .isRightHandsUp, value: .bool(false))]
+                            if viewModel.readyStartRecognition {
+                                viewModel.startRecognition()
+                                viewModel.tipRecognition = true
+                            }
                         }).id(viewModel.repeatQuestion)
                             .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                             .fontWeight(.bold)
@@ -151,6 +156,10 @@ struct QuestionLayout<Content: View>: View {
                     .position(x: geometry.size.width * 0.23, y: geometry.size.height * 0.955)
                     .disabled(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
                 }
+                .onDisappear {
+                    // Clear the text positions or any other states that might lead to memory leaks
+                    textPositions.removeAll()
+                }
             }
         }.onAppear {
             currentImage = viewModel.currentQuestionData.background
@@ -160,6 +169,7 @@ struct QuestionLayout<Content: View>: View {
         }
         .onDisappear {
             currentImage = ""
+            viewModel.audioHelper.stopVoice()
         }
     }
     

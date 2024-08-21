@@ -14,6 +14,7 @@ class QuestionViewModel: ObservableObject {
     @Inject var speechRecognitionService: SpeechRecognizerService
     @Inject private var soundAnalysisService: SoundAnalysisService
     
+    @Published var repeatProblem: Int = 0
     @Published var currentMessageIndex = 0
     @Published var currentMathIndex = 0
     @Published var currentQuestionIndex = 0
@@ -24,7 +25,9 @@ class QuestionViewModel: ObservableObject {
     @Published var isFailed: Bool = false
     @Published var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     @Published var repeatQuestion: Bool = false
-    @Published var repeatProblem: Bool = false
+    @Published var parameter: Parameter = .home
+    @Published var readyStartRecognition = false
+    @Published var tipRecognition = false
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
@@ -36,10 +39,19 @@ class QuestionViewModel: ObservableObject {
     
     var questionData: [QuestionData] = []
     
-    // Modify to accept level parameter
-    init() {
-        //        self.currentQuestionIndex = level
-        getInCompleteQuestion()
+    init(sequenceLevel: Int, parameter: Parameter) {
+        switch parameter {
+        case .history:
+//            currentQuestionIndex = Int(mathQuestion.sequence)
+           getAllQuestion()
+            currentQuestionIndex = sequenceLevel
+            
+        case .home :
+            getAllQuestion()
+            currentQuestionIndex = sequenceLevel
+        default :
+            getInCompleteQuestion()
+        }
     }
     
     func clearNavigation() {
@@ -56,9 +68,48 @@ class QuestionViewModel: ObservableObject {
     }
     
     func getInCompleteQuestion() {
-        //        let filteredQuestions = service.getInCompleteQuestion().filter{ $0.sequence == 1 }
-        //        print(filteredQuestions)
         questionData = service.getInCompleteQuestion()
+            .map { question in
+                let storiesArray = (question.stories as? Set<Story>)?
+                    .sorted { $0.sequence < $1.sequence }
+                    .map { story in
+                        StoryData(
+                            id: Int(story.sequence),
+                            sequence: Int(story.sequence),
+                            story: story.story ?? "",
+                            audio: story.audio ?? "",
+                            appretiation: story.apretiation ?? "",
+                            audio_apretiation: story.audio_apretiation ?? ""
+                        )
+                    } ?? []
+                
+                let problemsArray = (question.problems as? Set<Problem>)?
+                    .sorted { $0.sequence < $1.sequence }
+                    .map { problem in
+                        ProblemData(
+                            id: Int(problem.sequence),
+                            sequence: Int(problem.sequence),
+                            color: problem.color ?? "",
+                            problem: problem.problem ?? "",
+                            isOperator: problem.is_operator,
+                            isQuestion: problem.is_question,
+                            isSpeech: problem.is_speech
+                        )
+                    } ?? []
+                
+                return QuestionData(
+                    id: Int(question.sequence),
+                    sequence: Int(question.sequence),
+                    background: question.background ?? "",
+                    is_complete: question.is_complete,
+                    stories: storiesArray,
+                    problems: problemsArray
+                )
+            }
+    }
+    
+    func getAllQuestion() {
+        questionData = service.getAllQuestion()
             .map { question in
                 let storiesArray = (question.stories as? Set<Story>)?
                     .sorted { $0.sequence < $1.sequence }
@@ -103,6 +154,7 @@ class QuestionViewModel: ObservableObject {
     }
     
     func startRecognition() {
+        readyStartRecognition = false
         speechRecognitionService.startRecognition()
             .do(onSubscribe: { [weak self] in
                 guard let self = self else { return }
@@ -151,7 +203,7 @@ class QuestionViewModel: ObservableObject {
         group.notify(queue: .main) {
             self.isRecognitionInProgress = false
             if tryRepeat {
-                self.startRecognition()
+                self.readyStartRecognition = true
             }
         }
     }
@@ -192,6 +244,13 @@ class QuestionViewModel: ObservableObject {
     }
     
     func checkAnswerAndAdvance() {
+        if currentQuestionIndex >= questionData.count - 1 {
+                let sequence = currentQuestionData.sequence
+                if let mathQuestion = service.getMathQuestion(by: sequence) {
+                    service.updateCompletedQuestion(mathQuestion: mathQuestion, isComplete: true)
+                }
+            }
+        
         audioHelper.playSoundEffect(named: "click", fileType: "wav")
         guard !currentQuestionData.problems.isEmpty else {
             advanceToNextStory()
@@ -220,6 +279,7 @@ class QuestionViewModel: ObservableObject {
     }
     
     private func handleQuestionProblem(_ problem: ProblemData) {
+        tipRecognition = false
         if userAnswer == problem.problem {
             handleCorrectAnswer()
         } else {
@@ -244,7 +304,6 @@ class QuestionViewModel: ObservableObject {
         riveInput = [
             FlippyRiveInput(key: .isSad, value: .bool(true))
         ]
-        
         let options = ["hmmm", "oops"]
         audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
         
@@ -293,7 +352,7 @@ class QuestionViewModel: ObservableObject {
         
         if nextProblem.isQuestion {
             if nextProblem.isSpeech {
-                startRecognition()
+                readyStartRecognition = true
             } else {
                 startAnalysis()
             }
@@ -308,6 +367,10 @@ class QuestionViewModel: ObservableObject {
     }
     
     private func advanceToNextQuestion() {
+        if !currentQuestionData.is_complete {
+            let filteredQuestions = service.getAllQuestion().filter{ $0.sequence == currentQuestionData.sequence }
+            service.updateCompletedQuestion(mathQuestion: filteredQuestions.first!, isComplete: true)
+        }
         currentQuestionIndex += 1
         currentMessageIndex = 0
         currentMathIndex = 0
@@ -325,7 +388,6 @@ class QuestionViewModel: ObservableObject {
         riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     }
     
-    // Random Position for Flies
     func randomPositionAroundCake(geometry: GeometryProxy, cakePosition: CGPoint) -> CGPoint {
         let offsetX = CGFloat.random(in: -800...300)
         let offsetY = CGFloat.random(in: -300...300)

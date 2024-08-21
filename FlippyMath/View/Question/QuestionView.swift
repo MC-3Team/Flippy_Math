@@ -8,29 +8,24 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @StateObject private var viewModel: QuestionViewModel = QuestionViewModel()
+    @StateObject var viewModel: QuestionViewModel
     
-    //    init(viewModel: QuestionViewModel) {
-    //        _viewModel = StateObject(wrappedValue: viewModel)
-    //    }
+    init(viewModel: QuestionViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
-        
         QuestionLayout(viewModel: viewModel) { geometry in
             VStack {
                 switch viewModel.currentQuestionIndex {
                 case 0:
-                    VStack {
-                        
-                    }
-                    
+                    VStack {}
                 case 1:
                     Image("Q1_Penguins")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 0.70)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.65)
-                    
                 case 2:
                     HStack {
                         VStack {
@@ -342,7 +337,4 @@ struct QuestionView: View {
         
     }
 }
-
-//#Preview {
-//    QuestionView(viewModel: QuestionViewModel(level: 1))
-//}
+                                  

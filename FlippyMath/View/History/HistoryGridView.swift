@@ -9,70 +9,110 @@ import SwiftUI
 
 struct HistoryGridView: View {
     @StateObject var viewModel = HistoryViewModel()
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var audioHelper: AudioHelper
     
     var body: some View {
-        NavigationStack {
+        GeometryReader { geometry in
             ZStack {
-                
                 Image("BG")
                     .resizable()
                     .ignoresSafeArea(.all)
                 
-                GeometryReader { geometry in
-                    
-                    NavigationLink {
-                        HomeView()
-                    } label: {
-                        Image("HomeButton")
-                            .resizable()
-                            .frame(width: geometry.size.width * 0.11, height: geometry.size.height * 0.15)
-                    }
-                    .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                    
+                ScrollView([.vertical], showsIndicators: false) {
                     VStack(spacing: 20) {
                         ForEach(0..<3) { row in
-                            HStack(spacing: 20) {
-                                ForEach(0..<3) { col in
-                                    let index = row * 3 + col
-                                    if index < viewModel.buttons.count {
-                                        let button = viewModel.buttons[index]
-                                        NavigationLink(destination: button.destinationView, tag: index, selection: $viewModel.activeButtonIndex) {
-                                            Image(button.imageName)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
-                                                .cornerRadius(16)
-                                                .overlay(
-                                                    button.isPassed ? nil : Image("lock")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
-                                                        .cornerRadius(16)
-                                                )
+                            if row % 2 == 0{
+                                HStack(spacing: 20) {
+                                    ForEach(0..<3) { col in
+                                        let index = row * 3 + col
+                                        if index < viewModel.buttons.count {
+                                            let button = viewModel.buttons[index]
+                                            
+                                            NavigationLink {
+                                                QuestionViewWrapper(sequenceLevel: Int(button.sequence), parameter: .history)
+                                            } label: {
+                                                Image(button.imageName)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .cornerRadius(16)
+                                                    .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                    .overlay(
+                                                        button.isPassed ? nil : Image("lock")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .cornerRadius(16)
+                                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                    )
+                                                
+                                            }
+                                            .disabled(!button.isPassed)
+                                        } else {
+                                            Spacer()
+                                                .frame(width: geometry.size.width / 3.1, height: geometry.size.height / 4.0)
                                         }
-                                        .disabled(!button.isPassed)
-                                    } else {
-                                        Spacer()
-                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
+                                    }
+                                }
+                            }else {
+                                HStack(spacing: 20) {
+                                    ForEach((0..<3).reversed(), id: \.self) { col in
+                                        let index = row * 3 + col
+                                        if index < viewModel.buttons.count {
+                                            let button = viewModel.buttons[index]
+
+                                            NavigationLink {
+                                                QuestionViewWrapper(sequenceLevel: Int(button.sequence), parameter: .history)
+                                            } label: {
+                                                Image(button.imageName)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .cornerRadius(16)
+                                                    .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                    .overlay(
+                                                        button.isPassed ? nil : Image("lock")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .cornerRadius(16)
+                                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                    )
+                                                
+                                            }
+                                            .disabled(!button.isPassed)
+                                        } else {
+                                            Spacer()
+                                                .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                     .padding()
-                    .padding(.top, geometry.size.height * 0.2)
-                    .onDisappear(perform: {
-                        viewModel.clearNavigation()
-                    })
+                    .padding(.top, geometry.size.height * 0.11)
+                }
+                
+                Button(action: {
+                    print("IsClicked")
+                    dismiss()
+                }, label: {
+                    Image("HomeButton")
+                        .resizable()
+                        .frame(width: geometry.size.width * 0.11, height: geometry.size.height * 0.15)
+                }).position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
+                
+                .onDisappear(perform: {
+                    viewModel.clearNavigation()
+//                    audioHelper.pauseMusic()
+                })
+                .onAppear {
+//                    audioHelper.resumeMusic()
                 }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
-struct HistoryGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryGridView()
-            .previewInterfaceOrientation(.landscapeLeft)
-    }
+#Preview {
+    HistoryGridView()
+        .previewInterfaceOrientation(.landscapeLeft)
 }

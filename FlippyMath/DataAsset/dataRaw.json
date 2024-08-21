@@ -5,6 +5,7 @@
             "sequence": 0,
             "background": "IntroBackground",
             "is_complete": false,
+            "historyLevel": "Intro",
             "stories": [
                 {
                     "id": 1,
@@ -47,6 +48,7 @@
             "sequence": 1,
             "background": "Q1_Background",
             "is_complete": false,
+            "historyLevel": "Teman",
             "stories": [
                 {
                     "id": 1,
@@ -126,6 +128,7 @@
             "sequence": 2,
             "background": "Q2_Background",
             "is_complete": false,
+            "historyLevel": "Topi",
             "stories": [
                 {
                     "id": 1,
@@ -205,6 +208,7 @@
             "sequence": 3,
             "background": "Q3_Background",
             "is_complete": false,
+            "historyLevel": "Balon",
             "stories": [
                 {
                     "id": 1,
@@ -301,6 +305,7 @@
             "sequence": 4,
             "background": "Q4_Background",
             "is_complete": false,
+            "historyLevel": "Kue",
             "stories": [
                 {
                     "id": 1,
@@ -380,6 +385,7 @@
             "sequence": 5,
             "background": "Q5_Background",
             "is_complete": false,
+            "historyLevel": "Lalat",
             "stories": [
                 {
                     "id": 1,
@@ -493,6 +499,7 @@
             "sequence": 6,
             "background": "Q6_Background",
             "is_complete": false,
+            "historyLevel": "Rubah",
             "stories": [
                 {
                     "id": 1,
@@ -598,6 +605,7 @@
             "sequence": 7,
             "background": "Q7_Background",
             "is_complete": false,
+            "historyLevel": "Permen",
             "stories": [
                 {
                     "id": 1,
@@ -711,6 +719,7 @@
             "sequence": 8,
             "background": "Q8_Background",
             "is_complete": false,
+            "historyLevel": "Kado",
             "stories": [
                 {
                     "id": 1,

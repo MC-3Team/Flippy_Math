@@ -26,15 +26,19 @@ class HomeViewModel: ObservableObject {
             let duration = Double.random(in: 5...15)
             let delay = Double.random(in: 0...20)
             let snowflakeSize = CGFloat.random(in: 10...30)
-            let imageName = Bool.random() ? "snow1" : "snow2" // Replace with your snowflake asset names
+            let imageName = Bool.random() ? "snow1" : "snow2"
             let rotationDuration = Double.random(in: 3...10)
             let snowflake = Snowflake(xPosition: xPosition, duration: duration, delay: delay, size: snowflakeSize, imageName: imageName, rotationDuration: rotationDuration)
             snowflakes.append(snowflake)
         }
     }
     
-//    func testingData() {
-//        service.insertAllData()
-//        print(service.getInCompleteQuestion().count)
-//    }
+    func getLastCompletedLevel() -> Int {
+        let completedQuestions = service.getInCompleteQuestion()
+        if let lastCompleted = completedQuestions.first {
+            return Int(lastCompleted.sequence)
+        } else {
+            return 0
+        }
+    }
 }

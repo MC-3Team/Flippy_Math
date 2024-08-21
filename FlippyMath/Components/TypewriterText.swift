@@ -18,7 +18,7 @@ struct TypewriterText: View {
     @State private var typingInterval: TimeInterval = 0.08
 
     var body: some View {
-        Text(fullText)
+        Text(displayedText)
             .font(.title)
             .padding()
             .onAppear {

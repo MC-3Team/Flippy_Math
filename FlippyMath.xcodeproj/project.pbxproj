@@ -15,8 +15,6 @@
 		13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F892C7059A100EBFCD1 /* TypewriterText.swift */; };
 		13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */; };
 		13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F9B2C705AE200EBFCD1 /* aku tinggal di.wav */; };
-		13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */; };
-		13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA02C705B0100EBFCD1 /* birthday-party.wav */; };
 		13B75FA42C705B6D00EBFCD1 /* hai aku bambini.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA32C705B6D00EBFCD1 /* hai aku bambini.wav */; };
 		13B75FA92C705B7C00EBFCD1 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA52C705B7C00EBFCD1 /* click.wav */; };
 		13B75FAA2C705B7C00EBFCD1 /* failure-drum.wav in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FA62C705B7C00EBFCD1 /* failure-drum.wav */; };
@@ -55,7 +53,6 @@
 		13B7601F2C706CBB00EBFCD1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 13B7601E2C706CBB00EBFCD1 /* RiveRuntime */; };
 		D34723CA2C70A749005C1E9F /* bambini.riv in Resources */ = {isa = PBXBuildFile; fileRef = 13B75FAD2C705B8500EBFCD1 /* bambini.riv */; };
 		D34723D12C71C4B7005C1E9F /* ChatBubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34723D02C71C4B7005C1E9F /* ChatBubbleShape.swift */; };
-		D34723D42C732834005C1E9F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D34723D22C732834005C1E9F /* DataModel.xcdatamodeld */; };
 		D34724082C7350E6005C1E9F /* audio-4-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = D34723D52C7350E4005C1E9F /* audio-4-3.wav */; };
 		D34724092C7350E6005C1E9F /* audio-1-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D34723D62C7350E4005C1E9F /* audio-1-1.wav */; };
 		D347240A2C7350E6005C1E9F /* audio-apretiation-4-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = D34723D72C7350E4005C1E9F /* audio-apretiation-4-3.wav */; };
@@ -108,6 +105,10 @@
 		D347243A2C7350E6005C1E9F /* audio-apretiation-5-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = D34724072C7350E6005C1E9F /* audio-apretiation-5-5.wav */; };
 		D347243D2C73518E005C1E9F /* hmmm.wav in Resources */ = {isa = PBXBuildFile; fileRef = D347243B2C73518E005C1E9F /* hmmm.wav */; };
 		D347243E2C73518E005C1E9F /* oops.wav in Resources */ = {isa = PBXBuildFile; fileRef = D347243C2C73518E005C1E9F /* oops.wav */; };
+		D3B1036F2C75C06700F61FD4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B1036D2C75C06700F61FD4 /* DataModel.xcdatamodeld */; };
+		D3B1037A2C75DBDF00F61FD4 /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = D3B103792C75DBDF00F61FD4 /* Routing */; };
+		D3B1037E2C75F79A00F61FD4 /* birthday-party.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3B1037D2C75F79A00F61FD4 /* birthday-party.mp3 */; };
+		D3B103802C75F79D00F61FD4 /* comedy-kids.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3B1037F2C75F79D00F61FD4 /* comedy-kids.mp3 */; };
 		D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */; };
 		D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */; };
 		D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF922C6F3EBC00D41B9A /* ContentView.swift */; };
@@ -132,8 +133,6 @@
 		13B75F892C7059A100EBFCD1 /* TypewriterText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterText.swift; sourceTree = "<group>"; };
 		13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioHelper.swift; sourceTree = "<group>"; };
 		13B75F9B2C705AE200EBFCD1 /* aku tinggal di.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "aku tinggal di.wav"; sourceTree = "<group>"; };
-		13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "comedy-kids.wav"; sourceTree = "<group>"; };
-		13B75FA02C705B0100EBFCD1 /* birthday-party.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "birthday-party.wav"; sourceTree = "<group>"; };
 		13B75FA32C705B6D00EBFCD1 /* hai aku bambini.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hai aku bambini.wav"; sourceTree = "<group>"; };
 		13B75FA52C705B7C00EBFCD1 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		13B75FA62C705B7C00EBFCD1 /* failure-drum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "failure-drum.wav"; sourceTree = "<group>"; };
@@ -168,7 +167,6 @@
 		13B75FEF2C70676D00EBFCD1 /* BambiniRiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BambiniRiveView.swift; sourceTree = "<group>"; };
 		13B75FF12C70689300EBFCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D34723D02C71C4B7005C1E9F /* ChatBubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleShape.swift; sourceTree = "<group>"; };
-		D34723D32C732834005C1E9F /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D34723D52C7350E4005C1E9F /* audio-4-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "audio-4-3.wav"; sourceTree = "<group>"; };
 		D34723D62C7350E4005C1E9F /* audio-1-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "audio-1-1.wav"; sourceTree = "<group>"; };
 		D34723D72C7350E4005C1E9F /* audio-apretiation-4-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "audio-apretiation-4-3.wav"; sourceTree = "<group>"; };
@@ -221,6 +219,9 @@
 		D34724072C7350E6005C1E9F /* audio-apretiation-5-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "audio-apretiation-5-5.wav"; sourceTree = "<group>"; };
 		D347243B2C73518E005C1E9F /* hmmm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hmmm.wav; sourceTree = "<group>"; };
 		D347243C2C73518E005C1E9F /* oops.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = oops.wav; sourceTree = "<group>"; };
+		D3B1036E2C75C06700F61FD4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		D3B1037D2C75F79A00F61FD4 /* birthday-party.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "birthday-party.mp3"; path = "../../../../../Convert/music/birthday-party.mp3"; sourceTree = "<group>"; };
+		D3B1037F2C75F79D00F61FD4 /* comedy-kids.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "comedy-kids.mp3"; sourceTree = "<group>"; };
 		D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
 		D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippyMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippyMathApp.swift; sourceTree = "<group>"; };
@@ -244,6 +245,7 @@
 			files = (
 				13B760152C706CA600EBFCD1 /* RxRelay in Frameworks */,
 				13B7601F2C706CBB00EBFCD1 /* RiveRuntime in Frameworks */,
+				D3B1037A2C75DBDF00F61FD4 /* Routing in Frameworks */,
 				13B760132C706CA600EBFCD1 /* RxCocoa in Frameworks */,
 				13B760172C706CA600EBFCD1 /* RxSwift in Frameworks */,
 				13B760112C706CA600EBFCD1 /* RxBlocking in Frameworks */,
@@ -363,8 +365,8 @@
 		13B75F932C705A4400EBFCD1 /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				13B75FA02C705B0100EBFCD1 /* birthday-party.wav */,
-				13B75F9F2C705B0000EBFCD1 /* comedy-kids.wav */,
+				D3B1037F2C75F79D00F61FD4 /* comedy-kids.mp3 */,
+				D3B1037D2C75F79A00F61FD4 /* birthday-party.mp3 */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -451,7 +453,7 @@
 		13B75FB42C705C0A00EBFCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D34723D22C732834005C1E9F /* DataModel.xcdatamodeld */,
+				D3B1036D2C75C06700F61FD4 /* DataModel.xcdatamodeld */,
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
@@ -602,6 +604,7 @@
 				13B760162C706CA600EBFCD1 /* RxSwift */,
 				13B7601B2C706CB300EBFCD1 /* Swinject */,
 				13B7601E2C706CBB00EBFCD1 /* RiveRuntime */,
+				D3B103792C75DBDF00F61FD4 /* Routing */,
 			);
 			productName = FlippyMath;
 			productReference = D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */;
@@ -635,6 +638,7 @@
 				13B7600F2C706CA600EBFCD1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				13B7601A2C706CB300EBFCD1 /* XCRemoteSwiftPackageReference "Swinject" */,
 				13B7601D2C706CBB00EBFCD1 /* XCRemoteSwiftPackageReference "rive-ios" */,
+				D3B103782C75DBDF00F61FD4 /* XCRemoteSwiftPackageReference "Routing" */,
 			);
 			productRefGroup = D934AF8E2C6F3EBC00D41B9A /* Products */;
 			projectDirPath = "";
@@ -670,6 +674,7 @@
 				D34724202C7350E6005C1E9F /* audio-apretiation-2-3.wav in Resources */,
 				13B75FAA2C705B7C00EBFCD1 /* failure-drum.wav in Resources */,
 				D347242A2C7350E6005C1E9F /* audio-5-4.wav in Resources */,
+				D3B103802C75F79D00F61FD4 /* comedy-kids.mp3 in Resources */,
 				D34724092C7350E6005C1E9F /* audio-1-1.wav in Resources */,
 				D34724322C7350E6005C1E9F /* audio-8-4.wav in Resources */,
 				D347241C2C7350E6005C1E9F /* audio-apretiation-5-4.wav in Resources */,
@@ -693,8 +698,8 @@
 				D347242F2C7350E6005C1E9F /* audio-apretiation-6-3.wav in Resources */,
 				13B75FA42C705B6D00EBFCD1 /* hai aku bambini.wav in Resources */,
 				D34724312C7350E6005C1E9F /* audio-5-5.wav in Resources */,
-				13B75FA22C705B0100EBFCD1 /* birthday-party.wav in Resources */,
 				D34724392C7350E6005C1E9F /* audio-5-1.wav in Resources */,
+				D3B1037E2C75F79A00F61FD4 /* birthday-party.mp3 in Resources */,
 				D34724262C7350E6005C1E9F /* audio-6-2.wav in Resources */,
 				D34724222C7350E6005C1E9F /* audio-6-4.wav in Resources */,
 				13B75FAC2C705B7C00EBFCD1 /* correct.wav in Resources */,
@@ -714,7 +719,6 @@
 				D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */,
 				D34724112C7350E6005C1E9F /* audio-0-1.wav in Resources */,
 				D347240F2C7350E6005C1E9F /* audio-apretiation-7-5.wav in Resources */,
-				13B75FA12C705B0100EBFCD1 /* comedy-kids.wav in Resources */,
 				D347242D2C7350E6005C1E9F /* audio-5-2.wav in Resources */,
 				D34724292C7350E6005C1E9F /* audio-apretiation-3-4.wav in Resources */,
 				13B75FAB2C705B7C00EBFCD1 /* level-completed.wav in Resources */,
@@ -765,7 +769,7 @@
 				13B75FE92C70675900EBFCD1 /* HomeViewModel.swift in Sources */,
 				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
 				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
-				D34723D42C732834005C1E9F /* DataModel.xcdatamodeld in Sources */,
+				D3B1036F2C75C06700F61FD4 /* DataModel.xcdatamodeld in Sources */,
 				13B75FE02C705F9900EBFCD1 /* CustomVideoPlayerView.swift in Sources */,
 				13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */,
 			);
@@ -1023,6 +1027,14 @@
 				minimumVersion = 6.0.4;
 			};
 		};
+		D3B103782C75DBDF00F61FD4 /* XCRemoteSwiftPackageReference "Routing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JamesSedlacek/Routing.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1056,15 +1068,20 @@
 			package = 13B7601D2C706CBB00EBFCD1 /* XCRemoteSwiftPackageReference "rive-ios" */;
 			productName = RiveRuntime;
 		};
+		D3B103792C75DBDF00F61FD4 /* Routing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3B103782C75DBDF00F61FD4 /* XCRemoteSwiftPackageReference "Routing" */;
+			productName = Routing;
+		};
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		D34723D22C732834005C1E9F /* DataModel.xcdatamodeld */ = {
+		D3B1036D2C75C06700F61FD4 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D34723D32C732834005C1E9F /* DataModel.xcdatamodel */,
+				D3B1036E2C75C06700F61FD4 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = D34723D32C732834005C1E9F /* DataModel.xcdatamodel */;
+			currentVersion = D3B1036E2C75C06700F61FD4 /* DataModel.xcdatamodel */;
 			name = DataModel.xcdatamodeld;
 			path = "/Users/enricomaricar/Documents/XCode Project/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
 			sourceTree = "<group>";

@@ -13,13 +13,13 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @AppStorage("isMute") private var isMute = false
     
-    var audioHelper = AudioHelper.shared
+    @EnvironmentObject var audioHelper: AudioHelper
     
     var body: some View {
         GeometryReader { geometry in
             NavigationStack{
                 ZStack {
-                    Image("BG") // Replace with your background asset name
+                    Image("BG")
                         .resizable()
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.all)
@@ -30,9 +30,9 @@ struct HomeView: View {
                         .ignoresSafeArea(.all)
                     
                     Image("Penguin")
-                        .padding(.top,geometry.size.height * 0.2)
+                        .padding(.top, geometry.size.height * 0.2)
                     
-                    Button{
+                    Button {
                         isMute.toggle()
                     } label: {
                         Image(isMute ? "MusicButtonDisabled" : "MusicButton")
@@ -48,20 +48,20 @@ struct HomeView: View {
                             .resizable()
                             .frame(width: geometry.size.width * 0.07, height: geometry.size.height * 0.10)
                     }
-                    .padding(.top,geometry.size.width * 0.17)
+                    .padding(.top, geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
                     
                     NavigationLink {
-                        QuestionView()
+                        QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
+                        
                     } label: {
                         Image("PlayButton")
                             .resizable()
                             .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.18)
                     }
-                    .padding(.top,geometry.size.width * 0.17)
+                    .padding(.top, geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3)
                     
-                    // Snowflakes
                     ForEach(viewModel.snowflakes) { snowflake in
                         Image(snowflake.imageName)
                             .resizable()
@@ -72,20 +72,32 @@ struct HomeView: View {
                             .animation(Animation.linear(duration: snowflake.duration).delay(snowflake.delay).repeatForever(autoreverses: false), value: viewModel.animate)
                     }
                 }
+                .onDisappear {
+//                    audioHelper.pauseMusic()
+                    withAnimation {
+                        viewModel.animate = false
+                    }
+                }
                 .onAppear {
                     historyViewModel.clearNavigation()
+                    
                     viewModel.createSnowflakes(in: geometry.size)
+                    
                     withAnimation {
                         viewModel.animate = true
                     }
-                    if !isMute {
-                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
-                    }
+                    if !audioHelper.isPlayingMusic() {
+                                   audioHelper.playMusic(named: "comedy-kids", fileType: "mp3")
+                               }
+                    
+//                    if !isMute {
+//                        print("Playing lagi")
+//                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
+//                    }
                 }
                 .onChange(of: isMute) { _, _ in
                     switch isMute {
                     case true :
-                        print("")
                         audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
                     case false :
                         audioHelper.stopMusic()
@@ -95,6 +107,7 @@ struct HomeView: View {
         }
     }
 }
+
 #Preview {
     HomeView()
 }
