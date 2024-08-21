@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Speech
+import AVFoundation
 
 struct HomeView: View {
     
@@ -51,16 +53,14 @@ struct HomeView: View {
                     .padding(.top, geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
                     
-                    NavigationLink {
-                        QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
-                        
-                    } label: {
+                    Button(action: {
+                        viewModel.requestPermissions()
+                    }, label: {
                         Image("PlayButton")
                             .resizable()
                             .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.18)
-                    }
-                    .padding(.top, geometry.size.width * 0.17)
-                    .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3)
+                    }).padding(.top, geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3)
                     
                     ForEach(viewModel.snowflakes) { snowflake in
                         Image(snowflake.imageName)
@@ -72,6 +72,22 @@ struct HomeView: View {
                             .animation(Animation.linear(duration: snowflake.duration).delay(snowflake.delay).repeatForever(autoreverses: false), value: viewModel.animate)
                     }
                 }
+                .navigationDestination(isPresented: $viewModel.isGranted, destination: {
+                    QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
+                })
+                .alert(isPresented: $viewModel.showSettingsAlert) {
+                            Alert(
+                                title: Text("Permissions Required"),
+                                message: Text(viewModel.alertMessage),
+                                primaryButton: .default(Text("Go to Settings")) {
+                                    // Open app settings
+                                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
                 .onDisappear {
 //                    audioHelper.pauseMusic()
                     withAnimation {
