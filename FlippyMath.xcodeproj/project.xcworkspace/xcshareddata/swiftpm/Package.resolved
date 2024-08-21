@@ -1,5 +1,5 @@
 {
-  "originHash" : "80e6bcb416570eca90ab07233fe389ad9d0842242439b51666f77d58d6cebc33",
+  "originHash" : "11cb71897200c72a900c778cf197b6f7ffe79fcb996884edaa3e9e288e2363ce",
   "pins" : [
     {
       "identity" : "rive-ios",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "9777dc79658d3e6984e1dc54f8a1510eacd6d4a8",
         "version" : "6.0.4"
+      }
+    },
+    {
+      "identity" : "routing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JamesSedlacek/Routing.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "84e3729c7771ba631cd4966cab3fd88054fc5f53"
       }
     },
     {
