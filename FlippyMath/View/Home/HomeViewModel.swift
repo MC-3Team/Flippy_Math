@@ -98,6 +98,7 @@ class HomeViewModel: ObservableObject {
     func getLastCompletedLevel() -> Int {
         let completedQuestions = service.getInCompleteQuestion()
         if let lastCompleted = completedQuestions.first {
+            print(lastCompleted.sequence)
             return Int(lastCompleted.sequence)
         } else {
             return 0

@@ -12,7 +12,7 @@ struct QuestionViewWrapper: View {
     var parameter : Parameter
     
     var body: some View {
-        QuestionView(viewModel: QuestionViewModel(sequenceLevel: sequenceLevel, parameter: parameter))
+        QuestionView(sequenceLevel: sequenceLevel, parameter: parameter)
     }
 }
 
