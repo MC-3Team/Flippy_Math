@@ -36,20 +36,23 @@ struct HistoryGridView: View {
                                         if index < viewModel.buttons.count {
                                             let button = viewModel.buttons[index]
                                     
-                                            
-                                            NavigationLink(destination: button.destinationView, tag: Int(button.sequence), selection: $viewModel.activeButtonIndex) {
-                                                Image(button.imageName)
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fill)
-                                                    .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
-                                                    .cornerRadius(16)
-                                                    .overlay(
-                                                        button.isPassed ? nil : Image("lock")
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fill)
-                                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
-                                                            .cornerRadius(16)
-                                                    )
+                                                
+                                                NavigationLink {
+                                                    QuestionViewWrapper(sequenceLevel: Int(button.sequence), parameter: .history)
+                                                } label: {
+                                                    Image(button.imageName)
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
+                                                        .cornerRadius(16)
+                                                        .overlay(
+                                                            button.isPassed ? nil : Image("lock")
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
+                                                                .cornerRadius(16)
+                                                        )
+
                                             }
                                             .disabled(!button.isPassed)
                                         } else {
