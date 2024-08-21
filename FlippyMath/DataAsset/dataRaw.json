@@ -1,3 +1,4 @@
+
 {
     "math_question": [
         {
@@ -5,12 +6,13 @@
             "sequence": 0,
             "background": "IntroBackground",
             "is_complete": false,
+            "historyLevel": "Intro",
             "stories": [
                 {
                     "id": 1,
                     "sequence": 1,
                     "story": "Haii! Aku Flippy, dan hari ini adalah hari yang sangat istimewa untukku.",
-                    "audio": "",
+                    "audio": "audio-0-1",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
@@ -18,7 +20,7 @@
                     "id": 2,
                     "sequence": 2,
                     "story": "Aku tinggal di sebuah rumah iglo yang nyaman, dan hari ini, aku merayakan ulang tahunku yang ke-7!",
-                    "audio": "",
+                    "audio": "audio-0-2",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
@@ -26,15 +28,15 @@
                     "id": 3,
                     "sequence": 3,
                     "story": "Aku sangat senang karena ada banyak hal seru yang bisa dilakukan di hari spesial ini.",
-                    "audio": "",
+                    "audio": "audio-0-3",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Yuk, ikut bersamaku merayakan hari ulang tahunku di rumah iglo ini yang hangat dan penuh kejutan!",
-                    "audio": "",
+                    "story": "Yuk, ikut merayakan hari ulang tahunku di rumah iglo ini yang hangat dan penuh kejutan!",
+                    "audio": "audio-0-4",
                     "apretiation": "",
                     "audio_apretiation": ""
                 }
@@ -47,6 +49,7 @@
             "sequence": 1,
             "background": "Q1_Background",
             "is_complete": false,
+            "historyLevel": "Teman",
             "stories": [
                 {
                     "id": 1,
@@ -77,7 +80,7 @@
                 {
                     "id": 1,
                     "sequence": 1,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "6",
                     "isOperator": false,
                     "isQuestion": false,
@@ -86,7 +89,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "-",
                     "isOperator": true,
                     "isQuestion": false,
@@ -95,7 +98,7 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "2",
                     "isOperator": false,
                     "isQuestion": false,
@@ -104,7 +107,7 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "color": "bluePrimary",
+                    "color": "whitePrimary",
                     "problem": "=",
                     "isOperator": true,
                     "isQuestion": false,
@@ -126,6 +129,7 @@
             "sequence": 2,
             "background": "Q2_Background",
             "is_complete": false,
+            "historyLevel": "Topi",
             "stories": [
                 {
                     "id": 1,
@@ -205,11 +209,12 @@
             "sequence": 3,
             "background": "Q3_Background",
             "is_complete": false,
+            "historyLevel": "Balon",
             "stories": [
                 {
                     "id": 1,
                     "sequence": 1,
-                    "story": "Rumah iglo ini dipenuhi dengan balon warna-warni yang tergantung di langit-langit, dan ada banyak sekali balon!",
+                    "story": "Wah, rumah iglo ini dipenuhi dengan banyak balon warna-warni yang tergantung di langit-langit!",
                     "audio": "audio-3-1",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -217,7 +222,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "story": "Ayo hitung ada berapa banyak balon yang ada di rumah iglo ini?",
+                    "story": "Yuk, hitung ada berapa banyak balon yang berada di rumah iglo ini?",
                     "audio": "audio-3-2",
                     "apretiation": "Benar! ada 9 balon di rumah ini.",
                     "audio_apretiation": "audio-apretiation-3-2"
@@ -225,8 +230,8 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "story": "Eh Snowy membawa 4 balon lagi.",
-                    "audio": "audio-3-4",
+                    "story": "Eh Snowy membawa 4 balon lagi",
+                    "audio": "audio-3-3",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
@@ -234,9 +239,9 @@
                     "id": 4,
                     "sequence": 4,
                     "story": "Ada berapa jumlah balon sekarang?",
-                    "audio": "audio-3-5",
-                    "apretiation": "Luar biasa! 9 ditambah 4 sama dengan 13.",
-                    "audio_apretiation": "audio-apretiation-3-5"
+                    "audio": "audio-3-4",
+                    "apretiation": "Luar biasa! 9 balon ditambah 4 balon sama dengan 13 balon.",
+                    "audio_apretiation": "audio-apretiation-3-4"
                 }
             ],
             "problems": [
@@ -301,6 +306,7 @@
             "sequence": 4,
             "background": "Q4_Background",
             "is_complete": false,
+            "historyLevel": "Kue",
             "stories": [
                 {
                     "id": 1,
@@ -323,7 +329,7 @@
                     "sequence": 3,
                     "story": "Jadi sekarang tersisa berapa potong kue ya?",
                     "audio": "audio-4-3",
-                    "apretiation": "Benar! 8 dikurang 2 sama dengan 6.",
+                    "apretiation": "Benar! 8 potong kue dikurangi 2 potong kue sama dengan 6 potong kue.",
                     "audio_apretiation": "audio-apretiation-4-3"
                 }
             ],
@@ -331,7 +337,7 @@
                 {
                     "id": 1,
                     "sequence": 1,
-                    "color": "orangePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "8",
                     "isOperator": false,
                     "isQuestion": false,
@@ -340,7 +346,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "color": "bluePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "-",
                     "isOperator": true,
                     "isQuestion": false,
@@ -349,7 +355,7 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "color": "orangePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "2",
                     "isOperator": false,
                     "isQuestion": false,
@@ -358,7 +364,7 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "color": "bluePrimary",
+                    "color": "darkBluePrimary",
                     "problem": "=",
                     "isOperator": true,
                     "isQuestion": false,
@@ -380,11 +386,12 @@
             "sequence": 5,
             "background": "Q5_Background",
             "is_complete": false,
+            "historyLevel": "Lalat",
             "stories": [
                 {
                     "id": 1,
                     "sequence": 1,
-                    "story": "Sambil menikmati kue, tiba-tiba ada banyak lalat yang mengganggu.",
+                    "story": "Saat menikmati kue, tiba-tiba ada banyak lalat yang mengganggu.",
                     "audio": "audio-5-1",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -408,34 +415,35 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Ayo bantu mengusir lalat-lalat ini dengan menepukkan tangan.",
+                    "story": "Yuk, bantu mengusir lalat-lalat ini, dengan cara menepukkan tangan.",
                     "audio": "audio-5-4",
-                    "apretiation": "",
-                    "audio_apretiation": ""
+                    "apretiation": "Yeay, kamu berhadil mengusir lalat lalat tersebut, ada 7 ekor lalat yang kabur.",
+                    "audio_apretiation": "audio-apretiation-5-4"
                 },
                 {
                     "id": 5,
                     "sequence": 5,
-                    "story": "Kamu telah membantu mengusir lalat tersebut, dan 7 lalat yang kabur.",
-                    "audio": "audio-5-5",
-                    "apretiation": "",
-                    "audio_apretiation": ""
-                },
-                {
-                    "id": 6,
-                    "sequence": 6,
                     "story": "Jadi, ada berapa lalat yang tersisa?",
-                    "audio": "audio-5-6",
-                    "apretiation": "Luar biasa! 9 dikurang 5 sama dengan 4.",
-                    "audio_apretiation": "audio-apretiation-5-6"
+                    "audio": "audio-5-5",
+                    "apretiation": "Luar biasa! 9 lalat dikurangi 7 lalat sama dengan 2 lalat.",
+                    "audio_apretiation": "audio-apretiation-5-5"
                 }
             ],
             "problems": [
                 {
+                    "id": 0,
+                    "sequence": 0,
+                    "color": "bluePrimary",
+                    "problem": "",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
                     "id": 1,
                     "sequence": 1,
-                    "color": "orangePrimary",
-                    "problem": "9",
+                    "color": "bluePrimary",
+                    "problem": "",
                     "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
@@ -443,33 +451,42 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "color": "bluePrimary",
+                    "color": "orangePrimary",
+                    "problem": "9",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": true
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "color": "darkBluePrimary",
                     "problem": "-",
                     "isOperator": true,
                     "isQuestion": false,
                     "isSpeech": false
                 },
                 {
-                    "id": 3,
-                    "sequence": 3,
+                    "id": 4,
+                    "sequence": 4,
                     "color": "orangePrimary",
                     "problem": "7",
                     "isOperator": false,
-                    "isQuestion": false,
+                    "isQuestion": true,
                     "isSpeech": false
                 },
                 {
-                    "id": 4,
-                    "sequence": 4,
-                    "color": "bluePrimary",
+                    "id": 5,
+                    "sequence": 5,
+                    "color": "darkBluePrimary",
                     "problem": "=",
                     "isOperator": true,
                     "isQuestion": false,
                     "isSpeech": false
                 },
                 {
-                    "id": 5,
-                    "sequence": 5,
+                    "id": 6,
+                    "sequence": 6,
                     "color": "orangePrimary",
                     "problem": "2",
                     "isOperator": false,
@@ -479,120 +496,117 @@
             ]
         },
         {
-            {
-                "id": 6,
-                "sequence": 4,
-                "background": "Q6_Background",
-                "is_complete": false,
-                "stories": [
-                    {
-                        "id": 1,
-                        "sequence": 1,
-                        "story": "Setelah menikmati kue, tiba-tiba ada 2 rubah arktik kecil dan 2 rubah arktik besar yang datang ke rumah iglo.",
-                        "audio": "audio-6-1",
-                        "apretiation": "",
-                        "audio_apretiation": ""
-                    },
-                    {
-                        "id": 2,
-                        "sequence": 2,
-                        "story": "Mereka datang karena tertarik melihat keramaian di rumah iglo.",
-                        "audio": "audio-6-2",
-                        "apretiation": "",
-                        "audio_apretiation": ""
-                    },
-                    {
-                        "id": 3,
-                        "sequence": 3,
-                        "story": "Ayo ajak rubah arktiknya bermain dengan  menepukkan tangan.",
-                        "audio": "audio-6-3",
-                        "apretiation": "Yeay! mereka senang, lalu tiba tiba 4 rubah arktik kecil datang lagi.",
-                        "audio_apretiation": ""
-                    },
-                    {
-                        "id": 4,
-                        "sequence": 4,
-                        "story": "Jadi, berapa total rubah artik yang  sekarang ada di dalam rumah iglo?",
-                        "audio": "audio-6-4",
-                        "apretiation": "Hebat! 2 rubah ditambah 2 rubah ditambah lagi 4 rubah sama dengan 8 rubah.",
-                        "audio_apretiation": "audio-apretiation-6-4"
-                    },
-                    {
-                        
-                    }
-                ],
-                "problems": [
-                    {
-                        "id": 1,
-                        "sequence": 1,
-                        "color": "bluePrimary",
-                        "problem": "2",
-                        "isOperator": false,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 2,
-                        "sequence": 2,
-                        "color": "bluePrimary",
-                        "problem": "+",
-                        "isOperator": true,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 3,
-                        "sequence": 3,
-                        "color": "bluePrimary",
-                        "problem": "2",
-                        "isOperator": false,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 4,
-                        "sequence": 4,
-                        "color": "bluePrimary",
-                        "problem": "+",
-                        "isOperator": true,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 5,
-                        "sequence": 5,
-                        "color": "orangePrimary",
-                        "problem": "4",
-                        "isOperator": false,
-                        "isQuestion": true,
-                        "isSpeech": true
-                    },
-                    {
-                        "id": 6,
-                        "sequence": 6,
-                        "color": "bluePrimary",
-                        "problem": "=",
-                        "isOperator": true,
-                        "isQuestion": false,
-                        "isSpeech": false
-                    },
-                    {
-                        "id": 7,
-                        "sequence": 7,
-                        "color": "orangePrimary",
-                        "problem": "8",
-                        "isOperator": false,
-                        "isQuestion": true,
-                        "isSpeech": true
-                    }
-                ]
-            }
+            "id": 6,
+            "sequence": 6,
+            "background": "Q6_Background",
+            "is_complete": false,
+            "historyLevel": "Rubah",
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Setelah menikmati kue, tiba-tiba ada 2 rubah arktik kecil dan 2 rubah arktik besar yang datang ke rumah iglo.",
+                    "audio": "audio-6-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "Mereka datang karena tertarik melihat keramaian di rumah iglo.",
+                    "audio": "audio-6-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Ayo ajak rubah arktiknya bermain dengan  menepukkan tangan.",
+                    "audio": "audio-6-3",
+                    "apretiation": "Yeay! mereka senang, lalu tiba tiba 4 rubah arktik kecil datang lagi.",
+                    "audio_apretiation": "audio-apretiation-6-3"
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Jadi, berapa total rubah artik yang  sekarang ada di dalam rumah iglo?",
+                    "audio": "audio-6-4",
+                    "apretiation": "Hebat! 2 rubah ditambah 2 rubah ditambah lagi 4 rubah sama dengan 8 rubah.",
+                    "audio_apretiation": "audio-apretiation-6-4"
+                },
+            ],
+            "problems": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "color": "bluePrimary",
+                    "problem": "2",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "color": "bluePrimary",
+                    "problem": "+",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "color": "bluePrimary",
+                    "problem": "2",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "color": "bluePrimary",
+                    "problem": "+",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "color": "orangePrimary",
+                    "problem": "4",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": false
+                },
+                {
+                    "id": 6,
+                    "sequence": 6,
+                    "color": "bluePrimary",
+                    "problem": "=",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 7,
+                    "sequence": 7,
+                    "color": "orangePrimary",
+                    "problem": "8",
+                    "isOperator": false,
+                    "isQuestion": true,
+                    "isSpeech": true
+                }
+            ]
         },
         {
             "id": 7,
             "sequence": 7,
             "background": "Q7_Background",
             "is_complete": false,
+            "historyLevel": "Permen",
             "stories": [
                 {
                     "id": 1,
@@ -605,7 +619,7 @@
                 {
                     "id": 2,
                     "sequence": 2,
-                    "story": "Yuk! bergantian memukul pinata hingga pecah dan menghamburkan permen yang banyak.",
+                    "story": "Yuk! bantu aku memukul pinata-nya hingga pecah.",
                     "audio": "audio-7-2",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -613,7 +627,7 @@
                 {
                     "id": 3,
                     "sequence": 3,
-                    "story": "Jika dari pinata ada sebanyak 20 permen yang jatuh dan aku berhasil mengumpulkan 5 permen",
+                    "story": "Yeay pinata-nya pecah! banyak sekali permen yang keluar dan berhamburan",
                     "audio": "audio-7-3",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -621,7 +635,15 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Jadi ada berapa permen yang masih tersisa di lantai?",
+                    "story": "Jika ada sebanyak 20 permen yang jatuh berhamburan.",
+                    "audio": "audio-7-4",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 4,
+                    "sequence": 4,
+                    "story": "Dan Aku berhasil mengumpulkan 5 permen",
                     "audio": "audio-7-4",
                     "apretiation": "",
                     "audio_apretiation": ""
@@ -629,18 +651,27 @@
                 {
                     "id": 5,
                     "sequence": 5,
-                    "story": "Benar! 20 permen dikurang 5 permen sama dengan 15 permen.",
+                    "story": "Jadi ada berapa permen yang masih tersisa di lantai?",
                     "audio": "audio-7-5",
-                    "apretiation": "Hebat! 20 dikurang 5 sama dengan 15.",
+                    "apretiation": "Benar! 20 permen dikurang 5 permen sama dengan 15 permen.",
                     "audio_apretiation": "audio-apretiation-7-5"
                 }
             ],
             "problems": [
                 {
+                    "id": 0,
+                    "sequence": 0,
+                    "color": "bluePrimary",
+                    "problem": "",
+                    "isOperator": false,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
                     "id": 1,
                     "sequence": 1,
                     "color": "bluePrimary",
-                    "problem": "20",
+                    "problem": "",
                     "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
@@ -649,8 +680,8 @@
                     "id": 2,
                     "sequence": 2,
                     "color": "bluePrimary",
-                    "problem": "-",
-                    "isOperator": true,
+                    "problem": "20",
+                    "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
                 },
@@ -658,8 +689,8 @@
                     "id": 3,
                     "sequence": 3,
                     "color": "bluePrimary",
-                    "problem": "5",
-                    "isOperator": false,
+                    "problem": "-",
+                    "isOperator": true,
                     "isQuestion": false,
                     "isSpeech": false
                 },
@@ -667,14 +698,23 @@
                     "id": 4,
                     "sequence": 4,
                     "color": "bluePrimary",
-                    "problem": "=",
-                    "isOperator": true,
+                    "problem": "5",
+                    "isOperator": false,
                     "isQuestion": false,
                     "isSpeech": false
                 },
                 {
                     "id": 5,
                     "sequence": 5,
+                    "color": "bluePrimary",
+                    "problem": "=",
+                    "isOperator": true,
+                    "isQuestion": false,
+                    "isSpeech": false
+                },
+                {
+                    "id": 6,
+                    "sequence": 6,
                     "color": "orangePrimary",
                     "problem": "15",
                     "isOperator": false,
@@ -683,12 +723,12 @@
                 }
             ]
         },
-        
         {
             "id": 8,
             "sequence": 8,
             "background": "Q8_Background",
             "is_complete": false,
+            "historyLevel": "Kado",
             "stories": [
                 {
                     "id": 1,
@@ -717,10 +757,18 @@
                 {
                     "id": 4,
                     "sequence": 4,
-                    "story": "Jika Aku sudah menerima 6 kado sebelumnya, berapa total kado yang sekarang kumiliki?",
+                    "story": "Sebelumnya, Aku sudah mendapatkan 6 kado.",
                     "audio": "audio-8-4",
-                    "apretiation": "Bagus sekali! 6 kado ditambah 4 kado kemudian ditambah 6 kado lagi sama dengan 16 kado.",
+                    "apretiation": "",
                     "audio_apretiation": ""
+                },
+                {
+                    "id": 5,
+                    "sequence": 5,
+                    "story": "Jadi, berapa total kado yang kumiliki sekarang?",
+                    "audio": "audio-8-5",
+                    "apretiation": "Bagus sekali! 6 kado ditambah 4 kado kemudian ditambah 6 kado lagi sama dengan 16 kado.",
+                    "audio_apretiation": "audio-apretiation-8-5"
                 }
             ],
             "problems": [
@@ -790,53 +838,55 @@
             ]
         },
         {
-            "id": 9,
-            "sequence": 9,
-            "background": "Outro_Background",
-            "is_complete": false,
-            "stories": [
-                {
-                    "id": 1,
-                    "sequence": 1,
-                    "story": "Tak terasa, pesta sudah hampir berakhir. Aku sangat senang karena kamu telah ikut merayakan hari spesialku ini!",
-                    "audio": "audio-9-1",
-                    "apretiation": "",
-                    "audio_apretiation": ""
-                },
-                {
-                    "id": 2,
-                    "sequence": 2,
-                    "story": "Sebelum kita berpisah, aku ingin memberikan hadiah istimewa untukmu, sebagai tanda terima kasihku.",
-                    "audio": "audio-9-2",
-                    "apretiation": "",
-                    "audio_apretiation": ""
-                },
-                {
-                    "id": 3,
-                    "sequence": 3,
-                    "story": "Ayo buka hadiahnya! ",
-                    "audio": "audio-9-3",
-                    "apretiation": "",
-                    "audio_apretiation": ""
-                },
-                {
-                    "id": 4,
-                    "sequence": 4,
-                    "story": "Yeay, kamu mendapatkan syal, beanie, dan sarung tangan itu terlihat sangat cocok untukmu.",
-                    "audio": "audio-9-4",
-                    "apretiation": "",
-                    "audio_apretiation": ""
-                },
-                {
-                    "id": 5,
-                    "sequence": 5,
-                    "story": "Terima kasih sudah datang dan memeriahkan pesta ulang tahunku! Sampai jumpa di petualangan berikutnya!",
-                    "audio": "audio-9-5",
-                    "apretiation": "",
-                    "audio_apretiation": ""
+                    "id": 9,
+                    "sequence": 9,
+                    "background": "Outro_Background",
+                    "is_complete": false,
+                    "historyLevel": "Outro",
+                    "stories": [
+                        {
+                            "id": 1,
+                            "sequence": 1,
+                            "story": "Tak terasa, pesta sudah hampir berakhir. Aku sangat senang karena kamu telah ikut merayakan hari spesialku ini!",
+                            "audio": "audio-9-1",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 2,
+                            "sequence": 2,
+                            "story": "Sebelum kita berpisah, aku ingin memberikan hadiah istimewa untukmu, sebagai tanda terima kasihku.",
+                            "audio": "audio-9-2",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 3,
+                            "sequence": 3,
+                            "story": "Ayo buka hadiahnya! ",
+                            "audio": "audio-9-3",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 4,
+                            "sequence": 4,
+                            "story": "Yeay, kamu mendapatkan syal, beanie, dan sarung tangan itu terlihat sangat cocok untukmu.",
+                            "audio": "audio-9-4",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        },
+                        {
+                            "id": 5,
+                            "sequence": 5,
+                            "story": "Terima kasih sudah datang dan memeriahkan pesta ulang tahunku! Sampai jumpa di petualangan berikutnya!",
+                            "audio": "audio-9-5",
+                            "apretiation": "",
+                            "audio_apretiation": ""
+                        }
+                    ],
+                    "problems": []
                 }
-            ],
-            "problems": []
-        }
+        
     ]
 }

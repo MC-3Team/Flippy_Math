@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import Speech
+import AVFoundation
 
 struct HomeView: View {
     
     @StateObject var historyViewModel = HistoryViewModel()
     @StateObject private var viewModel = HomeViewModel()
+    @AppStorage("isMute") private var isMute = false
     
-    var audioHelper = AudioHelper.shared
+    @EnvironmentObject var audioHelper: AudioHelper
     
     var body: some View {
         GeometryReader { geometry in
@@ -39,14 +42,13 @@ struct HomeView: View {
                         .frame(width: geometry.size.width * 0.65)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.68)
                     
-                    //Ganti Button ya wil jan lupa
-                    Button{
-                        viewModel.isMusicOn.toggle()
+                    Button {
+                        isMute.toggle()
                     } label: {
-                        Image("MusicButton")
+                        Image(isMute ? "MusicButtonDisabled" : "MusicButton")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.07)
+                            .frame(width: geometry.size.width * 0.07, height: geometry.size.height * 0.10)
                     }
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
                     
@@ -54,24 +56,23 @@ struct HomeView: View {
                         HistoryGridView()
                     } label: {
                         Image("Record")
+                        
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width * 0.07)
                     }
                     .padding(.top,geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
-                    
-                    NavigationLink {
-                        QuestionView(viewModel: QuestionViewModel(level: 0))
-                    } label: {
+
+                    Button(action: {
+                        viewModel.requestPermissions()
+                    }, label: {
                         Image("PlayButton")
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.1)
-                    }
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.45)
+                            .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.18)
+                    }).padding(.top, geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3)
                     
-                    // Snowflakes
                     ForEach(viewModel.snowflakes) { snowflake in
                         Image(snowflake.imageName)
                             .resizable()
@@ -82,15 +83,47 @@ struct HomeView: View {
                             .animation(Animation.linear(duration: snowflake.duration).delay(snowflake.delay).repeatForever(autoreverses: false), value: viewModel.animate)
                     }
                 }
+                .navigationDestination(isPresented: $viewModel.isGranted, destination: {
+                    QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
+                })
+                .alert(isPresented: $viewModel.showSettingsAlert) {
+                            Alert(
+                                title: Text("Permissions Required"),
+                                message: Text(viewModel.alertMessage),
+                                primaryButton: .default(Text("Go to Settings")) {
+                                    // Open app settings
+                                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+                .onDisappear {
+//                    audioHelper.pauseMusic()
+                    withAnimation {
+                        viewModel.animate = false
+                    }
+                }
                 .onAppear {
                     historyViewModel.clearNavigation()
+                    
                     viewModel.createSnowflakes(in: geometry.size)
+                    
                     withAnimation {
                         viewModel.animate = true
                     }
+                    if !audioHelper.isPlayingMusic() {
+                                   audioHelper.playMusic(named: "comedy-kids", fileType: "mp3")
+                               }
+                    
+//                    if !isMute {
+//                        print("Playing lagi")
+//                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
+//                    }
                 }
-                .onChange(of: viewModel.isMusicOn) { _, _ in
-                    switch viewModel.isMusicOn{
+                .onChange(of: isMute) { _, _ in
+                    switch isMute {
                     case true :
                         audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
                     case false :
@@ -98,10 +131,10 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationBarBackButtonHidden()
         }
     }
 }
+
 #Preview {
     HomeView()
 }

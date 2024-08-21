@@ -126,6 +126,6 @@ struct SingingView: View {
     }
 }
 
-#Preview {
-    SingingView(viewModel: QuestionViewModel(level: 1))
-}
+//#Preview {
+//    SingingView(viewModel: QuestionViewModel(level: 1))
+//}

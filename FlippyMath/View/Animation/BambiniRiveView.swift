@@ -47,26 +47,24 @@ struct FlippyRiveView: View {
     
     @StateObject var riveVM = RiveViewModel(fileName: "flippy", stateMachineName: "State Machine 1")
     
-    @Binding var riveInput : [FlippyRiveInput]
+    @Binding var riveInput: [FlippyRiveInput]
     
     var body: some View {
-        ZStack{
+        ZStack {
             riveVM.view()
                 .aspectRatio(contentMode: .fit)
-            
         }
-        .onChange(of: riveInput) {_ , _ in
-            riveInput.forEach(){ input in
-                
-                if type(of: input.value.getValue()) == Bool.self{
-                    riveVM.setInput(input.key.rawValue, value: input.value.getValue() as! Bool)
+        .onChange(of: riveInput) { _, _ in
+            riveVM.stop()
+            riveInput.forEach { input in
+                switch input.value {
+                case .bool(let boolValue):
+                    riveVM.setInput(input.key.rawValue, value: boolValue)
+                case .float(let floatValue):
+                    riveVM.setInput(input.key.rawValue, value: floatValue)
                 }
-                else{
-                    riveVM.setInput(input.key.rawValue, value: input.value.getValue() as! Float)
-                }
-                
             }
-
+            riveVM.play()
         }
     }
 }

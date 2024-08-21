@@ -22,7 +22,7 @@ extension Container {
         
         container.register(SpeechRecognizerService.self) { _ in
              SpeechRecognitionManager()
-         }
+        }.inObjectScope(.container)
         
         return container
     }

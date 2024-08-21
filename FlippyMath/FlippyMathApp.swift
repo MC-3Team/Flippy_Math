@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct FlippyMathApp: App {
+    @StateObject private var audioHelper = AudioHelper.shared
+    
     var body: some Scene {
         WindowGroup {
             SplashView()
                 .navigationBarBackButtonHidden(true)
+                .environmentObject(audioHelper)
         }
     }
 }

@@ -11,14 +11,12 @@ import SoundAnalysis
 import AVFoundation
 import RxSwift
 
-class SoundAnalysisManager: NSObject, SoundAnalysisService {
+class SoundAnalysisManager: NSObject, SoundAnalysisService, SNResultsObserving {
     private var model: MLModel
     private var audioEngine: AVAudioEngine!
     private var streamAnalyzer: SNAudioStreamAnalyzer!
     private var request: SNClassifySoundRequest!
-    
-    private let subject = PublishSubject<(String?, Bool)>()
-    
+
     override init() {
         guard let modelURL = Bundle.main.url(forResource: "ClappingModel", withExtension: "mlmodelc"),
               let loadedModel = try? MLModel(contentsOf: modelURL) else {
@@ -26,18 +24,20 @@ class SoundAnalysisManager: NSObject, SoundAnalysisService {
         }
         self.model = loadedModel
         super.init()
+        self.setupAnalysis()
     }
     
-    func startAnalysis() -> Observable<(String?, Bool)> {
-     
-        let audioSession = AVAudioSession.sharedInstance()
+    func setupAnalysis() {
         do {
-            try audioSession.setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
+            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             fatalError("Failed to configure and activate audio session: \(error.localizedDescription)")
         }
-
+    }
+    
+    func startAnalysis() -> Observable<(String?, Bool)> {
+        let subject = PublishSubject<(String?, Bool)>()
         audioEngine = AVAudioEngine()
         
         let inputNode = audioEngine.inputNode
@@ -48,7 +48,12 @@ class SoundAnalysisManager: NSObject, SoundAnalysisService {
         }
         
         streamAnalyzer = SNAudioStreamAnalyzer(format: format)
-        request = try? SNClassifySoundRequest(mlModel: model)
+        
+        do {
+            request = try SNClassifySoundRequest(mlModel: model)
+        } catch {
+            fatalError("Failed to create SNClassifySoundRequest: \(error.localizedDescription)")
+        }
         
         do {
             try audioEngine.start()
@@ -63,7 +68,16 @@ class SoundAnalysisManager: NSObject, SoundAnalysisService {
         do {
             try streamAnalyzer.add(request, withObserver: self)
         } catch {
-            print("Failed to add request to stream analyzer: \(error.localizedDescription)")
+            fatalError("Failed to add request to stream analyzer: \(error.localizedDescription)")
+        }
+
+        // Hubungkan subject ke dalam SNResultsObserving menggunakan properti tertutup (closure)
+        self.resultHandler = { identifier, success in
+            print(identifier)
+            subject.onNext((identifier, success))
+            if success {
+                subject.onCompleted()
+            }
         }
         
         return subject.asObservable()
@@ -73,38 +87,35 @@ class SoundAnalysisManager: NSObject, SoundAnalysisService {
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 0)
     }
-}
-
-extension SoundAnalysisManager: SNResultsObserving {
+    
+    // Menggunakan closure untuk menyimpan hasil observasi
+    private var resultHandler: ((String?, Bool) -> Void)?
+    
+    // Conformance to SNResultsObserving protocol
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult else {
             return
         }
         
-        for classification in result.classifications {
-            let identifier = classification.identifier
-            let confidence = classification.confidence
-            print("Detected \(identifier) with confidence: \(confidence * 100)%")
-        }
-        
         if let clapClassification = result.classifications.first(where: { $0.identifier == "Clap" && $0.confidence >= 0.9999 }) {
             DispatchQueue.main.async {
-                self.subject.onNext((clapClassification.identifier, true))
+                self.resultHandler?(clapClassification.identifier, true)
             }
         } else {
             DispatchQueue.main.async {
-                self.subject.onNext(("No 100% Clap Detected", false))
+                self.resultHandler?("No 100% Clap Detected", false)
             }
         }
     }
     
     func request(_ request: SNRequest, didFailWithError error: Error) {
         print("Request failed: \(error.localizedDescription)")
-        subject.onError(error)
+        DispatchQueue.main.async {
+            self.resultHandler?(nil, false)
+        }
     }
     
     func requestDidComplete(_ request: SNRequest) {
         print("Request complete.")
-        subject.onCompleted()
     }
 }

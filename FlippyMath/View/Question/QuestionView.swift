@@ -121,8 +121,6 @@ struct QuestionView: View {
                             }
                         }
                         
-                        
-                        
                     case 6:
                         ZStack {
                             HStack {
@@ -287,9 +285,9 @@ struct QuestionView: View {
     }
 }
 
-#Preview {
-    QuestionView(viewModel: QuestionViewModel(level: 2))
-}
+//#Preview {
+//    QuestionView(viewModel: QuestionViewModel(level: 2))
+//}
 
 struct FlyPreview: View {
     @State private var currentMessageIndex = 0

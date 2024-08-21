@@ -11,7 +11,7 @@ struct QuestionData: Codable, Equatable{
     let id: Int
     let sequence : Int
     let background: String
-    let is_complete: Bool
+    var is_complete: Bool
     let stories: [StoryData]
     let problems: [ProblemData]
 }
