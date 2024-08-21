@@ -14,6 +14,5 @@ struct ButtonData: Identifiable {
     let imageName: String
     let destinationView: AnyView
     let isPassed: Bool
-    let questionIndex: Int // New field to store the question index
+    let sequence: Int64 // New field to store the sequence from Core Data
 }
-

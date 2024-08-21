@@ -14,6 +14,7 @@ class QuestionViewModel: ObservableObject {
     @Inject var speechRecognitionService: SpeechRecognizerService
     @Inject private var soundAnalysisService: SoundAnalysisService
     
+    @Published var repeatProblem: Int = 0
     @Published var currentMessageIndex = 0
     @Published var currentMathIndex = 0
     @Published var currentQuestionIndex = 0
@@ -24,7 +25,8 @@ class QuestionViewModel: ObservableObject {
     @Published var isFailed: Bool = false
     @Published var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     @Published var repeatQuestion: Bool = false
-    @Published var repeatProblem: Bool = false
+    @Published var parameter: Parameter = .home
+    
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
@@ -35,16 +37,25 @@ class QuestionViewModel: ObservableObject {
     
     var questionData: [QuestionData] = []
     
-    // Modify to accept level parameter
-    init() {
-//        self.currentQuestionIndex = level
-        getInCompleteQuestion()
+    init(sequenceLevel: Int, parameter: Parameter) {
+        switch parameter {
+        case .history:
+//            currentQuestionIndex = Int(mathQuestion.sequence)
+           getAllQuestion()
+            currentQuestionIndex = sequenceLevel
+            
+        case .home :
+            getAllQuestion()
+            currentQuestionIndex = sequenceLevel
+        default :
+            getInCompleteQuestion()
+        }
     }
     
     func clearNavigation() {
         currentMessageIndex = 0
         currentMathIndex = 0
-        currentQuestionIndex = 5
+        currentQuestionIndex = 0
         userAnswer = ""
         apretiation = ""
         isProcessing = false
@@ -55,9 +66,48 @@ class QuestionViewModel: ObservableObject {
     }
     
     func getInCompleteQuestion() {
-//        let filteredQuestions = service.getInCompleteQuestion().filter{ $0.sequence == 1 }
-//        print(filteredQuestions)
         questionData = service.getInCompleteQuestion()
+            .map { question in
+                let storiesArray = (question.stories as? Set<Story>)?
+                    .sorted { $0.sequence < $1.sequence }
+                    .map { story in
+                        StoryData(
+                            id: Int(story.sequence),
+                            sequence: Int(story.sequence),
+                            story: story.story ?? "",
+                            audio: story.audio ?? "",
+                            appretiation: story.apretiation ?? "",
+                            audio_apretiation: story.audio_apretiation ?? ""
+                        )
+                    } ?? []
+                
+                let problemsArray = (question.problems as? Set<Problem>)?
+                    .sorted { $0.sequence < $1.sequence }
+                    .map { problem in
+                        ProblemData(
+                            id: Int(problem.sequence),
+                            sequence: Int(problem.sequence),
+                            color: problem.color ?? "",
+                            problem: problem.problem ?? "",
+                            isOperator: problem.is_operator,
+                            isQuestion: problem.is_question,
+                            isSpeech: problem.is_speech
+                        )
+                    } ?? []
+                
+                return QuestionData(
+                    id: Int(question.sequence),
+                    sequence: Int(question.sequence),
+                    background: question.background ?? "",
+                    is_complete: question.is_complete,
+                    stories: storiesArray,
+                    problems: problemsArray
+                )
+            }
+    }
+    
+    func getAllQuestion() {
+        questionData = service.getAllQuestion()
             .map { question in
                 let storiesArray = (question.stories as? Set<Story>)?
                     .sorted { $0.sequence < $1.sequence }
@@ -159,13 +209,9 @@ class QuestionViewModel: ObservableObject {
                     self?.audioHelper.playSoundEffect(named: "correct", fileType: "wav")
                     self?.apretiation = self?.currentQuestionData.stories[self?.currentMessageIndex ?? 0].appretiation ?? ""
                     self?.riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0)),
-                                 FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
+                                       FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
                     ]
                 }
-//                if success, label == "Clap" {
-//                    self?.clapCount += 1
-//                }
-                //                self?.isProcessing = false
             }, onError: { [weak self] error in
                 self?.isFailed = true
                 self?.isProcessing = false
@@ -181,6 +227,14 @@ class QuestionViewModel: ObservableObject {
     }
     
     func checkAnswerAndAdvance() {
+        
+        if currentQuestionIndex >= questionData.count - 1 {
+                let sequence = currentQuestionData.sequence
+                if let mathQuestion = service.getMathQuestion(by: sequence) {
+                    service.updateCompletedQuestion(mathQuestion: mathQuestion, isComplete: true)
+                }
+            }
+        
         audioHelper.playSoundEffect(named: "click", fileType: "wav")
         guard !currentQuestionData.problems.isEmpty else {
             advanceToNextStory()
@@ -207,7 +261,7 @@ class QuestionViewModel: ObservableObject {
             processNextProblem()
         }
     }
-
+    
     private func handleQuestionProblem(_ problem: ProblemData) {
         if userAnswer == problem.problem {
             handleCorrectAnswer()
@@ -215,7 +269,7 @@ class QuestionViewModel: ObservableObject {
             handleIncorrectAnswer()
         }
     }
-
+    
     private func handleCorrectAnswer() {
         stopRecognition(tryRepeat: false)
         audioHelper.playSoundEffect(named: "correct", fileType: "wav")
@@ -225,7 +279,7 @@ class QuestionViewModel: ObservableObject {
             FlippyRiveInput(key: .isRightHandsUp, value: .bool(true))
         ]
     }
-
+    
     private func handleIncorrectAnswer() {
         print("SALAH")
         stopRecognition(tryRepeat: true)
@@ -234,7 +288,6 @@ class QuestionViewModel: ObservableObject {
         riveInput = [
             FlippyRiveInput(key: .isSad, value: .bool(true))
         ]
-        
         let options = ["hmmm", "oops"]
         audioHelper.playVoiceOver(named: options.randomElement() ?? "hmmm", fileType: "wav")
         
@@ -245,7 +298,7 @@ class QuestionViewModel: ObservableObject {
             self?.repeatQuestionHandling()
         }
     }
-
+    
     private func repeatQuestionHandling() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.riveInput = [
@@ -260,13 +313,13 @@ class QuestionViewModel: ObservableObject {
             }
         }
     }
-
+    
     private func resetForNextProblem() {
         apretiation = ""
         userAnswer = ""
         currentMathIndex += 1
     }
-
+    
     private func processNextProblem() {
         guard currentMathIndex < currentQuestionData.problems.count else {
             advanceToNextQuestion()
@@ -292,18 +345,19 @@ class QuestionViewModel: ObservableObject {
         currentMessageIndex += 1
         riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     }
-
+    
     private func advanceMathIndex() {
         currentMathIndex += 1
     }
-
+    
     private func advanceToNextQuestion() {
+        //        service.updateCompletedQuestion(mathQuestion: currentQuestionData, isComplete: true)
         currentQuestionIndex += 1
         currentMessageIndex = 0
         currentMathIndex = 0
         userAnswer = ""
     }
-
+    
     private func advanceToNextStory() {
         guard currentMathIndex < currentQuestionData.stories.count - 1 else {
             advanceToNextQuestion()
@@ -315,7 +369,6 @@ class QuestionViewModel: ObservableObject {
         riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     }
     
-    // Random Position for Flies
     func randomPositionAroundCake(geometry: GeometryProxy, cakePosition: CGPoint) -> CGPoint {
         let offsetX = CGFloat.random(in: -800...300)
         let offsetY = CGFloat.random(in: -300...300)

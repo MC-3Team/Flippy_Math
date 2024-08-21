@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct QuestionViewWrapper: View {
-    let level: Int
+    var sequenceLevel: Int
+    var parameter : Parameter
     
     var body: some View {
-        QuestionView()
+        QuestionView(viewModel: QuestionViewModel(sequenceLevel: sequenceLevel, parameter: parameter))
     }
+}
+
+
+enum Parameter {
+    case home
+    case history
 }

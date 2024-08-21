@@ -84,8 +84,8 @@ extension SoundAnalysisManager: SNResultsObserving {
         }
         
         for classification in result.classifications {
-            let identifier = classification.identifier
-            let confidence = classification.confidence
+            _ = classification.identifier
+            _ = classification.confidence
 //            print("Detected \(identifier) with confidence: \(confidence * 100)%")
         }
         

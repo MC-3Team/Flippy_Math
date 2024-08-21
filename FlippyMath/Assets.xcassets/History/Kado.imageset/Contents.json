@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Lock.png",
+      "filename" : "Kado.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Lock 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Lock 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

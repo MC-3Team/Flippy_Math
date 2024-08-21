@@ -38,7 +38,7 @@ struct QuestionLayout<Content: View>: View {
                         ZStack(alignment: .topLeading) {
                             VStack(spacing: 0) {
                                 let isCurrentQuestion = isQuestion && viewModel.userAnswer.isEmpty
-
+                                
                                 Text(problemString)
                                     .font(.custom("PilcrowRoundedVariable-Regular", size: 180))
                                     .fontWeight(.heavy)
@@ -58,7 +58,7 @@ struct QuestionLayout<Content: View>: View {
                                                 }
                                             }
                                         }
-                                        .frame(width: 0, height: 0)
+                                            .frame(width: 0, height: 0)
                                     )
                                     .onChange(of: viewModel.userAnswer) { _ , _ in
                                         if !viewModel.userAnswer.isEmpty {
@@ -67,7 +67,7 @@ struct QuestionLayout<Content: View>: View {
                                             }
                                         }
                                     }
-                                            
+                                
                                 if isCurrentQuestion {
                                     Spacer().frame(height: 16)
                                 }
@@ -144,6 +144,10 @@ struct QuestionLayout<Content: View>: View {
                     })
                     .position(x: geometry.size.width * 0.23, y: geometry.size.height * 0.955)
                     .disabled(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
+                }
+                .onDisappear {
+                    // Clear the text positions or any other states that might lead to memory leaks
+                    textPositions.removeAll()
                 }
             }
         }
