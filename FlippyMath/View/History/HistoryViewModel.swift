@@ -26,8 +26,6 @@ class HistoryViewModel: ObservableObject {
                 sequence: question.sequence
             )
         }
-        
-        print(buttons)
     }
     
     func clearNavigation() {

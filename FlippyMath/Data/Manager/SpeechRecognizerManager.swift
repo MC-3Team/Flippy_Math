@@ -28,7 +28,6 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         do {
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [.duckOthers, .allowBluetooth, .defaultToSpeaker])
             try AVAudioSession.sharedInstance().setActive(true)
-            isAudioSessionActive = true
         } catch {
             print("Couldn't configure the audio session properly")
         }
@@ -36,15 +35,43 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
     
     func startRecognition() -> Observable<(String?, Bool)> {
         let subject = PublishSubject<(String?, Bool)>()
+        
+        if audioEngine.isRunning {
+            audioEngine.stop()
+            audioEngine.inputNode.removeTap(onBus: 0)
+        }
+        
+        recognitionTask?.cancel()
+        recognitionTask = nil
+        recognitionRequest = nil
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         isStopped = false
+        
+        let timeoutInSeconds: TimeInterval = 60
+           DispatchQueue.main.asyncAfter(deadline: .now() + timeoutInSeconds) { [weak self] in
+               guard let self = self else { return }
+               if !self.isStopped && self.recognitionTask?.state != .completed {
+                   print("Custom timeout occurred. Restarting recognition...")
+                   self.handleError(NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: [NSLocalizedDescriptionKey: "Custom timeout"]), subject: subject)
+               }
+           }
+        
         let inputNode = audioEngine.inputNode
         
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        guard let speechRecognizer = speechRecognizer else {
+            assertionFailure("Speech recognizer is not initialized!")
+            subject.onCompleted()
+            return subject
+        }
         
-        guard let speechRecognizer = speechRecognizer,
-              speechRecognizer.isAvailable,
-              let recognitionRequest = recognitionRequest else {
-            assertionFailure("Unable to start the speech recognition!")
+        guard speechRecognizer.isAvailable else {
+            assertionFailure("Speech recognizer is not available!")
+            subject.onCompleted()
+            return subject
+        }
+        
+        guard let recognitionRequest = recognitionRequest else {
+            assertionFailure("Unable to create recognition request!")
             subject.onCompleted()
             return subject
         }
@@ -101,8 +128,8 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
             if let result = result {
                 let transcription = result.bestTranscription.formattedString.lowercased()
                 
-                let wordToNumberMap: [String: String] = ["nol": "0",
-                                                         "satu": "1", "dua": "2", "tiga": "3", "empat": "4", "lima": "5",
+                let wordToNumberMap: [String: String] = ["nol": "0", "enol" : "0", "kosong" : "0",
+                                                         "satu": "1", "dua": "2", "tiga": "3", "empat": "4", "lima": "5", "nam" : "6",
                                                          "enam": "6", "tujuh": "7", "delapan": "8", "sembilan": "9",
                 ]
                 let wordsToNumbers = transcription.split(separator: " ").compactMap { word -> String? in
@@ -128,8 +155,8 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
             }
         }
     }
-
-
+    
+    
     private func handleError(_ error: Error, subject: PublishSubject<(String?, Bool)>) {
         print("Error occurred: \(error.localizedDescription)")
         subject.onError(error)

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Speech
+import AVFoundation
 
 struct HomeView: View {
     
@@ -13,7 +15,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @AppStorage("isMute") private var isMute = false
     
-    var audioHelper = AudioHelper.shared
+    @EnvironmentObject var audioHelper: AudioHelper
     
     var body: some View {
         GeometryReader { geometry in
@@ -51,21 +53,14 @@ struct HomeView: View {
                     .padding(.top, geometry.size.width * 0.17)
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
                     
-                    NavigationLink {
-//                        if let lastCompletedLevel = historyViewModel.buttons.last(where: { $0.isPassed })?.sequence {
-//                            QuestionView(viewModel: QuestionViewModel())
-//                        } else {
-//                            QuestionView(viewModel: QuestionViewModel(level: 0))
-//                        }
-                        QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
-                        
-                    } label: {
+                    Button(action: {
+                        viewModel.requestPermissions()
+                    }, label: {
                         Image("PlayButton")
                             .resizable()
                             .frame(width: geometry.size.width * 0.13, height: geometry.size.height * 0.18)
-                    }
-                    .padding(.top, geometry.size.width * 0.17)
-                    .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3)
+                    }).padding(.top, geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3)
                     
                     ForEach(viewModel.snowflakes) { snowflake in
                         Image(snowflake.imageName)
@@ -77,17 +72,44 @@ struct HomeView: View {
                             .animation(Animation.linear(duration: snowflake.duration).delay(snowflake.delay).repeatForever(autoreverses: false), value: viewModel.animate)
                     }
                 }
+                .navigationDestination(isPresented: $viewModel.isGranted, destination: {
+                    QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
+                })
+                .alert(isPresented: $viewModel.showSettingsAlert) {
+                            Alert(
+                                title: Text("Permissions Required"),
+                                message: Text(viewModel.alertMessage),
+                                primaryButton: .default(Text("Go to Settings")) {
+                                    // Open app settings
+                                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+                .onDisappear {
+//                    audioHelper.pauseMusic()
+                    withAnimation {
+                        viewModel.animate = false
+                    }
+                }
                 .onAppear {
                     historyViewModel.clearNavigation()
+                    
                     viewModel.createSnowflakes(in: geometry.size)
+                    
                     withAnimation {
                         viewModel.animate = true
                     }
-                    if !isMute {
-                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
-                    }
+                    if !audioHelper.isPlayingMusic() {
+                                   audioHelper.playMusic(named: "comedy-kids", fileType: "mp3")
+                               }
                     
-                    let _ = print(QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home)))
+//                    if !isMute {
+//                        print("Playing lagi")
+//                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
+//                    }
                 }
                 .onChange(of: isMute) { _, _ in
                     switch isMute {

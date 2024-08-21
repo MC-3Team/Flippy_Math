@@ -64,6 +64,7 @@ struct QuestionView: View {
                                 .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
                         }
                     }
+                    
                 case 3:
                     VStack {
                         switch viewModel.currentMessageIndex {
@@ -75,6 +76,7 @@ struct QuestionView: View {
                             IdleBalloon2View()
                         }
                     }
+                    
                 case 4:
                     HStack {
                         if viewModel.currentMessageIndex < 1 {
@@ -91,22 +93,103 @@ struct QuestionView: View {
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                         }
                     }
+                    
                 case 5:
-                    ZStack {
-                        HStack {
-                            Image("Q5_2Cakes")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.55)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
+                    if viewModel.currentMessageIndex < 1 {
+                        ZStack {
+                            HStack {
+                                Image("Q5_2Cakes")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.55)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
+                            }
                         }
-                        
-                        ForEach(0..<9, id: \.self) { index in
-                            Image("Q5_Fly\(index + 1)")
+                    } else if viewModel.currentMessageIndex < 4 {
+                        ZStack {
+                            HStack {
+                                Image("Q5_2Cakes")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.55)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
+                            }
+                            
+                            Image("Q5_Fly1")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.05)
-                                .position(viewModel.randomPositionAroundCake(geometry: geometry, cakePosition: CGPoint(x: geometry.size.width * 0.7, y: geometry.size.height * 0.5)))
+                                .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.7)
+                            
+                            Image("Q5_Fly2")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.16, y: geometry.size.height * 0.4)
+                            
+                            Image("Q5_Fly3")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.2, y: geometry.size.height * 0.8)
+                            
+                            Image("Q5_Fly4")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.35)
+                            
+                            Image("Q5_Fly5")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.55)
+                            
+                            Image("Q5_Fly6")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.45, y: geometry.size.height * 0.81)
+                            
+                            Image("Q5_Fly7")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.8, y: geometry.size.height * 0.80)
+                            
+                            Image("Q5_Fly8")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.75, y: geometry.size.height * 0.4)
+                            
+                            Image("Q5_Fly9")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.9, y: geometry.size.height * 0.6)
+                        }
+                    } else {
+                        ZStack {
+                            HStack {
+                                Image("Q5_2Cakes")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.55)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
+                            }
+                            
+                            Image("Q5_Fly1")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.7)
+                            
+                            Image("Q5_Fly9")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.05)
+                                .position(x: geometry.size.width * 0.9, y: geometry.size.height * 0.6)
                         }
                     }
                 case 6:
@@ -189,6 +272,7 @@ struct QuestionView: View {
                                 .position(x: geometry.size.width / 1.1, y: geometry.size.height * 0.7)
                         }
                     }
+                    
                 case 7:
                     ZStack {
                         if viewModel.currentMessageIndex < 2 {
@@ -204,6 +288,12 @@ struct QuestionView: View {
                                 .frame(width: geometry.size.width * 0.45)
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.4)
                         } else if viewModel.currentMessageIndex < 3 {
+                            Image("Q7_PinataRope")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 1.05)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.16)
+                            
                             Image("Q7_CrackedPinata")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -223,12 +313,14 @@ struct QuestionView: View {
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
                         }
                     }
+                    
                 case 8:
                     if viewModel.currentMessageIndex < 2 {
                         PolarBearView(isOpen: false)
                     } else {
                         PolarBearView(isOpen: true)
                     }
+                    
                 default:
                     Image("DefaultImage")
                         .resizable()
@@ -242,6 +334,7 @@ struct QuestionView: View {
         .onAppear {
             viewModel.audioHelper.playMusic(named: "birthday-party", fileType: "wav")
         }
+        
     }
 }
                                   

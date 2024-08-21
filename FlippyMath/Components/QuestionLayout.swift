@@ -14,6 +14,12 @@ struct QuestionLayout<Content: View>: View {
     let children: (GeometryProxy) -> Content
     @State private var textPositions: [Int: CGPoint] = [:]
     
+    init(viewModel: QuestionViewModel, @ViewBuilder children: @escaping (GeometryProxy) -> Content) {
+          self.viewModel = viewModel
+          self.children = children
+      }
+    @State private var currentImage: String = ""
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -23,7 +29,7 @@ struct QuestionLayout<Content: View>: View {
                     .ignoresSafeArea()
                 
                 Button {
-                    self.dismiss()
+                    dismiss()
                 } label: {
                     Image("HomeButton")
                         .resizable()
@@ -80,7 +86,7 @@ struct QuestionLayout<Content: View>: View {
                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.25)
                 
                 ForEach(Array(textPositions.keys.sorted()), id: \.self) { key in
-                    if let position = textPositions[key] {
+                    if let position = textPositions[key], viewModel.tipRecognition == true {
                         HStack(spacing: 4) {
                             Image(uiImage: (!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? UIImage(named: "handClap") : UIImage(systemName: "wave.3.right"))!)
                             Text(!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? "Tepukkan tangan" : "Sebutkan angka")
@@ -97,7 +103,7 @@ struct QuestionLayout<Content: View>: View {
                             ChatBubbleShape()
                                 .fill(Color.white)
                         )
-                        .position(x: position.x + 4 , y: position.y + 96)
+                        .position(x: position.x - 8 , y: position.y + 96)
                     }
                 }
                 
@@ -124,11 +130,16 @@ struct QuestionLayout<Content: View>: View {
                         ), onComplete: {
                             viewModel.riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(0.0)),
                                                    FlippyRiveInput(key: .isRightHandsUp, value: .bool(false))]
+                            if viewModel.readyStartRecognition {
+                                viewModel.startRecognition()
+                                viewModel.tipRecognition = true
+                            }
                         }).id(viewModel.repeatQuestion)
                             .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                             .fontWeight(.bold)
                             .padding(.leading, 80)
                             .padding(.trailing, 10)
+                            .padding(.bottom, 10)
                             .lineLimit(nil)
                             .frame(width: geometry.size.width * 0.7, alignment: .leading)
                             .multilineTextAlignment(.leading)
@@ -150,6 +161,15 @@ struct QuestionLayout<Content: View>: View {
                     textPositions.removeAll()
                 }
             }
+        }.onAppear {
+            currentImage = viewModel.currentQuestionData.background
+        }
+        .onChange(of: viewModel.currentQuestionData) {_, _ in
+            currentImage = viewModel.currentQuestionData.background
+        }
+        .onDisappear {
+            currentImage = ""
+            viewModel.audioHelper.stopVoice()
         }
     }
     

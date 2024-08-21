@@ -11,70 +11,16 @@ import Speech
 
 class HomeViewModel: ObservableObject {
     @Inject(name: "CoreDataManager") var service: DataService
-    @Inject private var speechRecognitionService: SpeechRecognizerService
-    @Inject private var soundAnalysisService: SoundAnalysisService
     
-    @Published var isProcessing: Bool = false
-    @Published var isSuccess: (String?, Bool) = (nil, false)
-    @Published var isFailed: Bool = false
-    @Published var clapCount: Int = 0
     @Published var snowflakes: [Snowflake] = []
     @Published var animate = false
     @Published var isMusicOn = true
+    @Published var isGranted = false
+    @Published var showSettingsAlert = false
+    @Published var alertMessage = ""
     
     private let numberOfSnowflakes = 75
     private let disposeBag = DisposeBag()
-    
-    func startRecognition() {
-        speechRecognitionService.startRecognition()
-            .do(onSubscribe: { [weak self] in
-                print("Starting speech recognition...")
-                self?.isProcessing = true
-                self?.isFailed = false
-                self?.isSuccess = (nil, false)
-            })
-            .subscribe(onNext: { [weak self] (text, success) in
-                self?.isSuccess = (text, success)
-            }, onError: { [weak self] error in
-                self?.isFailed = true
-                self?.isProcessing = false
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func stopRecognition() {
-        speechRecognitionService.stopRecognition()
-        isProcessing = false
-        isSuccess = (nil, false)
-        isFailed = false
-    }
-    
-    func startAnalysis() {
-        soundAnalysisService.startAnalysis()
-            .do(onSubscribe: { [weak self] in
-                print("Starting sound analysis...")
-                self?.isProcessing = true
-                self?.isFailed = false
-                self?.isSuccess = (nil, false)
-            })
-            .subscribe(onNext: { [weak self] (label, success) in
-                self?.isSuccess = (label, success)
-                if success, label == "Clap" {
-                    self?.clapCount += 1
-                }
-            }, onError: { [weak self] error in
-                self?.isFailed = true
-                self?.isProcessing = false
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func stopAnalysis() {
-        soundAnalysisService.stopAnalysis()
-        isProcessing = false
-        isSuccess = (nil, false)
-        isFailed = false
-    }
     
     func createSnowflakes(in size: CGSize) {
         snowflakes.removeAll()
@@ -90,14 +36,71 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    // Method to get the last completed level
+    func requestPermissions() {
+            var microphoneGranted = false
+            var speechRecognitionGranted = false
+            
+            let group = DispatchGroup()
+            
+            // Check microphone permission status
+            let microphoneStatus = AVAudioSession.sharedInstance().recordPermission
+            if microphoneStatus == .granted {
+                microphoneGranted = true
+            } else if microphoneStatus == .denied {
+                // Microphone permission was denied
+                showSettingsAlert = true
+                alertMessage = "Microphone access has been denied. Please enable it in settings."
+            } else {
+                group.enter()
+                AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                    microphoneGranted = granted
+                    if !granted {
+                        self.showSettingsAlert = true
+                        self.alertMessage = "Microphone access has been denied. Please enable it in settings."
+                    }
+                    group.leave()
+                }
+            }
+            
+            // Check speech recognition permission status
+            let speechStatus = SFSpeechRecognizer.authorizationStatus()
+            if speechStatus == .authorized {
+                speechRecognitionGranted = true
+            } else if speechStatus == .denied || speechStatus == .restricted {
+                // Speech recognition permission was denied or restricted
+                showSettingsAlert = true
+                alertMessage = "Speech recognition access has been denied or restricted. Please enable it in settings."
+            } else {
+                group.enter()
+                SFSpeechRecognizer.requestAuthorization { authStatus in
+                    switch authStatus {
+                    case .authorized:
+                        speechRecognitionGranted = true
+                    case .denied, .restricted:
+                        self.showSettingsAlert = true
+                        self.alertMessage = "Speech recognition access has been denied or restricted. Please enable it in settings."
+                    case .notDetermined:
+                        print("Speech recognition not determined")
+                    @unknown default:
+                        print("Unknown authorization status")
+                    }
+                    group.leave()
+                }
+            }
+            
+            group.notify(queue: .main) {
+                self.isGranted = microphoneGranted && speechRecognitionGranted
+                print("Both permissions granted: \(self.isGranted)")
+            }
+        }
+            
+    
     func getLastCompletedLevel() -> Int {
         let completedQuestions = service.getInCompleteQuestion()
-        print(completedQuestions.last!)
         if let lastCompleted = completedQuestions.first {
             return Int(lastCompleted.sequence)
         } else {
-            return 0 // Start from the first level if no level is completed
+            return 0
         }
     }
 }
