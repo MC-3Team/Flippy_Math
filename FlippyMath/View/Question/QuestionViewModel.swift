@@ -388,17 +388,17 @@ class QuestionViewModel: ObservableObject {
         riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
     }
     
-//    func randomPositionAroundCake(geometry: GeometryProxy, cakePosition: CGPoint) -> CGPoint {
-//        let offsetX = CGFloat.random(in: -800...300)
-//        let offsetY = CGFloat.random(in: -300...300)
-//        let xPosition = cakePosition.x + offsetX
-//        let yPosition = cakePosition.y + offsetY
-//        
-//        return CGPoint(x: xPosition, y: yPosition)
-//    }
+    //    func randomPositionAroundCake(geometry: GeometryProxy, cakePosition: CGPoint) -> CGPoint {
+    //        let offsetX = CGFloat.random(in: -800...300)
+    //        let offsetY = CGFloat.random(in: -300...300)
+    //        let xPosition = cakePosition.x + offsetX
+    //        let yPosition = cakePosition.y + offsetY
+    //
+    //        return CGPoint(x: xPosition, y: yPosition)
+    //    }
     
     /// MARK: SOAL NOMOR 5: Cakes & Flies
-    var flyPositions: [(x: CGFloat, y: CGFloat)] = [
+    @Published var flyPositions: [(x: CGFloat, y: CGFloat)] = [
         (x: 0.1, y: 0.7),
         (x: 0.16, y: 0.4),
         (x: 0.2, y: 0.8),
@@ -434,7 +434,7 @@ class QuestionViewModel: ObservableObject {
     
     /// MARK: SOAL NOMOR 6: Arctic Fox
     @Published var isPlaying: Bool = false
-    let babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
+    @Published var babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
         (x: 0.476, y: 0.74),
         (x: 0.588, y: 0.76),
         (x: 0.222, y: 0.70),
@@ -462,21 +462,21 @@ class QuestionViewModel: ObservableObject {
     
     
     ///MARK: SHARED
-    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5) {
+    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5, upperLimit: Int = 2) {
         isTapped = true
         
         if let threshold = tapThreshold {
             tapCount += 1
             if tapCount >= threshold {
                 tapCount = 0
-                moveToNextMessage(upperLimit: 2)
+                moveToNextMessage(upperLimit: upperLimit)
             }
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + tapDelay) {
             self.isTapped = false
             if tapThreshold == nil {
-                self.moveToNextMessage(upperLimit: 2)
+                self.moveToNextMessage(upperLimit: upperLimit)
             }
         }
     }
