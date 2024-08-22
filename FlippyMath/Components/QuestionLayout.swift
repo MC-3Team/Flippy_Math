@@ -139,6 +139,11 @@ struct QuestionLayout<Content: View>: View {
                                 viewModel.startRecognition()
                                 viewModel.tipRecognition = true
                             }
+                            
+                            if viewModel.readySoundAnalysis {
+                                viewModel.startAnalysis()
+                                viewModel.tipRecognition = true
+                            }
                         }).id(viewModel.repeatQuestion)
                             .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                             .fontWeight(.bold)
@@ -149,25 +154,24 @@ struct QuestionLayout<Content: View>: View {
                             .frame(width: geometry.size.width * 0.7, alignment: .leading)
                             .multilineTextAlignment(.leading)
                         
-                        if viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
-                            HStack {
-                                Spacer()
-                                riveVM.view().frame(width: 120, height: 120).padding(.trailing, 20).padding(.bottom, 10)
+                            if viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
+                                HStack {
+                                    Spacer()
+                                    riveVM.view().frame(width: 120, height: 120).padding(.trailing, 20).padding(.bottom, 10)
+                                }
                             }
-                        }
-                       
                     }
                     .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.94)
                     
                     Button(action: {
                         viewModel.checkAnswerAndAdvance()
                     }, label: {
-                        Image(!viewModel.apretiation.isEmpty ? "NextButton" : (viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion ? (viewModel.userAnswer.isEmpty ? "CorrectButtonGray" : "CorrectButton") : "NextButton" : "NextButton"))
+                        Image(determineButtonImage())
                             .resizable()
                             .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
                     })
                     .position(x: geometry.size.width * 0.23, y: geometry.size.height * 0.955)
-                    .disabled(viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
+                    .disabled((viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false) || viewModel.currentQuestionIndex == 7 && viewModel.currentMessageIndex == 1 ? true : false)
                 }
                 .onDisappear {
                     textPositions.removeAll()
@@ -193,6 +197,22 @@ struct QuestionLayout<Content: View>: View {
         }
     }
     
+    func determineButtonImage() -> String {
+        if !viewModel.apretiation.isEmpty {
+            return "NextButton"
+        } else if viewModel.currentQuestionIndex == 7 && viewModel.currentMessageIndex == 1 {
+            return "NextButtonDisable"
+        } else if !viewModel.currentQuestionData.problems.isEmpty {
+            let currentProblem = viewModel.currentQuestionData.problems[viewModel.currentMathIndex]
+            if currentProblem.isQuestion {
+                return viewModel.userAnswer.isEmpty ? "CorrectButtonGray" : "CorrectButton"
+            } else {
+                return "NextButton"
+            }
+        } else {
+            return "NextButton"
+        }
+    }
     
     func getMathProblems() -> [(Int, String, Bool, String)] {
         let problems = viewModel.currentQuestionData.problems

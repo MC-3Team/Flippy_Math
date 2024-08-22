@@ -29,17 +29,16 @@ struct QuestionView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.1)
-                                .position(x: geometry.size.width * 0.24, y: geometry.size.height * 0.665)
+                                .position(x: geometry.size.width * 0.22, y: geometry.size.height * 0.68)
                             
                             Image("Q1_UnavailablePenguin")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.1)
-                                .position(x: geometry.size.width * 0.75, y: geometry.size.height * 0.665)
+                                .position(x: geometry.size.width * 0.77, y: geometry.size.height * 0.68)
                             
                             PenguinsView()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.70)
+                                .frame(width: geometry.size.width * 0.8)
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.65)
                         }
                         
@@ -59,11 +58,16 @@ struct QuestionView: View {
                                     .position(x: geometry.size.width / 5, y: geometry.size.height * 0.1)
                             }
                             
-                            Image(viewModel.currentMessageIndex > 1 ? "Q2_PenguinWithHats" : "Q2_Penguins")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.55)
-                                .position(x: geometry.size.width / 5.5, y: geometry.size.height * (viewModel.currentMessageIndex > 1 ? 0.60 : 0.65))
+                            if viewModel.currentMessageIndex > 1 {
+                                PenguinsHatView()
+                                    .frame(width: geometry.size.width * 0.8)
+                                    .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                            } else {
+                                PenguinsView()
+                                    .frame(width: geometry.size.width * 0.8)
+                                    .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                            }
+                                
                         }
                         
                     case 3:
@@ -168,9 +172,20 @@ struct QuestionView: View {
                                     .rotationEffect(.degrees(-10))
                                     .onTapGesture {
                                         if viewModel.currentMessageIndex == 1 {
-                                            viewModel.handleTap(tapThreshold: 3, tapDelay: 0.2)
+                                            viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2)
                                         }
                                     }
+                                
+                                if viewModel.currentMessageIndex == 1 {
+                                    Text("Tekan 5x untuk memecahkan pinata!")
+                                        .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
+                                        .foregroundStyle(.black)
+                                        .opacity(0.5)
+                                        .fontWeight(.bold)
+                                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
+                                }
+                                
+                                
                             } else if viewModel.currentMessageIndex < 3 {
                                 PinataView()
                                     .aspectRatio(contentMode: .fit)
@@ -194,8 +209,12 @@ struct QuestionView: View {
                     case 8:
                         if viewModel.currentMessageIndex < 2 {
                             PolarBearView(key: "isOpen", value: false)
+                                .frame(width: geometry.size.width * 0.7)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
                         } else {
                             PolarBearView(key: "isOpen", value: true)
+                                .frame(width: geometry.size.width * 0.6)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                         }
                         
                     case 9:
@@ -241,9 +260,17 @@ struct QuestionView: View {
                                     .animation(.easeInOut(duration: 0.4), value: viewModel.isTapped)
                                     .onTapGesture {
                                         if viewModel.currentMessageIndex == 2 {
-                                            viewModel.handleTap(tapThreshold: 1, tapDelay: 0.5)
+                                            viewModel.handleTap(tapDelay: 0.5, upperLimit: 3)
                                         }
                                     }
+                                
+                                Text("Tekan Hadiah untuk membuka!")
+                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
+                                    .foregroundStyle(.black)
+                                    .opacity(0.5)
+                                    .fontWeight(.bold)
+                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
+                                
                             } else if viewModel.currentMessageIndex == 3 {
                                 Group {
                                     Image("Outro_Starburst")
@@ -263,6 +290,8 @@ struct QuestionView: View {
                                 }
                                 
                                 RewardAnimationView()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.65)
                             }
                         }
                         
@@ -443,6 +472,14 @@ struct PinataaView: View {
                                 handleTap()
                             }
                         }
+                    
+                    Text("Tekan 3x untuk memecahkan pinata!")
+                        .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
+                        .foregroundStyle(.black)
+                        .opacity(0.5)
+                        .fontWeight(.bold)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
+                    
                 } else if currentMessageIndex < 3 {
                     PinataView()
                         .aspectRatio(contentMode: .fit)
@@ -490,7 +527,7 @@ struct PinataaView: View {
 }
 
 struct OutroView: View {
-    @State private var currentMessageIndex = 1
+    @State private var currentMessageIndex = 2
     @State private var isTapped = false
     @State private var rotation: Double = 0
     @State private var scale: CGFloat = 0.5
@@ -556,6 +593,14 @@ struct OutroView: View {
                                 handleTap()
                             }
                         }
+                    
+                    Text("Tekan Hadiah untuk membuka!")
+                        .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
+                        .foregroundStyle(.black)
+                        .opacity(0.5)
+                        .fontWeight(.bold)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
+                    
                 } else if currentMessageIndex == 3 {
                     Group {
                         Image("Outro_Starburst")
@@ -584,3 +629,75 @@ struct OutroView: View {
 #Preview {
     OutroView()
 }
+
+
+struct polarbeartestView: View {
+    @State private var currentMessageIndex = 2
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                Image("Q8_Background")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                
+                if currentMessageIndex < 2 {
+                    PolarBearView(key: "isOpen", value: false)
+                        .frame(width: geometry.size.width * 0.7)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
+                } else {
+                    PolarBearView(key: "isOpen", value: true)
+                        .frame(width: geometry.size.width * 0.7)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
+                }
+            }
+        }
+        
+        
+    }
+}
+
+#Preview(body: {
+    polarbeartestView()
+})
+
+struct testView: View {
+    @State var currentMessageIndex = 2
+    
+    var body: some View {
+        GeometryReader { geometry in
+            HStack {
+                VStack {
+                    Image(currentMessageIndex > 1 ? ""  : "Q2_Hats")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.30)
+                        .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.45)
+                    
+                    Image("Q2_Table")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.45)
+                        .position(x: geometry.size.width / 5, y: geometry.size.height * 0.1)
+                }
+                
+                if currentMessageIndex > 1 {
+                    PenguinsHatView()
+                        .frame(width: geometry.size.width * 0.8)
+                        .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                } else {
+                    PenguinsView()
+                        .frame(width: geometry.size.width * 0.8)
+                        .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                }
+                    
+            }
+        }
+        
+    }
+}
+
+#Preview(body: {
+    testView()
+})
