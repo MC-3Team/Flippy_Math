@@ -11,14 +11,15 @@ struct SplashView: View {
     @AppStorage("isFirst") private var isFirst = true
     @StateObject private var viewModel : SplashViewModel = SplashViewModel()
     @State private var isNavigating = false
-
+    @EnvironmentObject var audioHelper: AudioHelper
+    
     var body: some View {
         if isNavigating {
             HomeView()
-//            QuestionView(viewModel: QuestionViewModel(level: 0))
         } else {
             SplashAnimation()
                 .onAppear {
+                    audioHelper.playSoundEffect(named: "splash-audio", fileType: "wav")
                 if isFirst {
                     viewModel.insertAllData()
                     isFirst = false

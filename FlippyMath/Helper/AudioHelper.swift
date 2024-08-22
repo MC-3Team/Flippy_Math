@@ -14,7 +14,8 @@ class AudioHelper: ObservableObject {
     @AppStorage("isMute") private var isMute = false
     
     private var soundEffectPlayer: AVAudioPlayer?
-    private var musicPlayer: AVAudioPlayer?
+    private var musicHomePlayer: AVAudioPlayer?
+    private var musicQuestionPlayer: AVAudioPlayer?
     private var voicePlayer: AVAudioPlayer?
 
     private init() {
@@ -31,7 +32,6 @@ class AudioHelper: ObservableObject {
     }
 
     func playSoundEffect(named name: String, fileType: String) {
-        guard !isMute else { return }
         stopSoundEffect()  // Stop the previous sound effect if any
         if let url = Bundle.main.url(forResource: name, withExtension: fileType) {
             do {
@@ -44,7 +44,6 @@ class AudioHelper: ObservableObject {
     }
     
     func playVoiceOver(named name: String, fileType: String) {
-        guard !isMute else { return }
         stopVoice()  // Stop the previous voice over if any
         if let url = Bundle.main.url(forResource: name, withExtension: fileType) {
             do {
@@ -56,15 +55,30 @@ class AudioHelper: ObservableObject {
         }
     }
     
-    func playMusic(named name: String, fileType: String, loop: Bool = true) {
+    func playMusicQuestion(named name: String, fileType: String, loop: Bool = true) {
         guard !isMute else { return }
-        stopMusic()  // Stop any currently playing music
+        stopMusicHome()
         if let url = Bundle.main.url(forResource: name, withExtension: fileType) {
             do {
-                musicPlayer = try AVAudioPlayer(contentsOf: url)
-                musicPlayer?.numberOfLoops = loop ? -1 : 0
-                musicPlayer?.play()
-                setMusicVolume(0.3)
+                musicQuestionPlayer = try AVAudioPlayer(contentsOf: url)
+                musicQuestionPlayer?.numberOfLoops = loop ? -1 : 0
+                musicQuestionPlayer?.play()
+                setMusicQuestionVolume(0.5)
+            } catch {
+                print("Error playing music: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func playMusicHome(named name: String, fileType: String, loop: Bool = true) {
+        guard !isMute else { return }
+        stopMusicQuestion()
+        if let url = Bundle.main.url(forResource: name, withExtension: fileType) {
+            do {
+                musicHomePlayer = try AVAudioPlayer(contentsOf: url)
+                musicHomePlayer?.numberOfLoops = loop ? -1 : 0
+                musicHomePlayer?.play()
+                setMusicHomeVolume(0.5)
             } catch {
                 print("Error playing music: \(error.localizedDescription)")
             }
@@ -87,8 +101,12 @@ class AudioHelper: ObservableObject {
         }
     }
     
-    func isPlayingMusic() -> Bool {
-        return musicPlayer?.isPlaying ?? false
+    func isPlayingMusicHome() -> Bool {
+        return musicHomePlayer?.isPlaying ?? false
+    }
+    
+    func isPlayingMusicQuestion() -> Bool {
+        return musicQuestionPlayer?.isPlaying ?? false
     }
     
     func stopSoundEffect() {
@@ -96,9 +114,14 @@ class AudioHelper: ObservableObject {
         soundEffectPlayer = nil
     }
     
-    func stopMusic() {
-        musicPlayer?.stop()
-        musicPlayer = nil
+    func stopMusicHome() {
+        musicHomePlayer?.stop()
+        musicHomePlayer = nil
+    }
+    
+    func stopMusicQuestion() {
+        musicQuestionPlayer?.stop()
+        musicQuestionPlayer = nil
     }
     
     func stopVoice() {
@@ -108,7 +131,8 @@ class AudioHelper: ObservableObject {
     
     func stopAll() {
         stopSoundEffect()
-        stopMusic()
+        stopMusicHome()
+        stopMusicQuestion()
         stopVoice()
     }
     
@@ -116,7 +140,11 @@ class AudioHelper: ObservableObject {
         soundEffectPlayer?.volume = volume
     }
     
-    func setMusicVolume(_ volume: Float) {
-        musicPlayer?.volume = isMute ? 0 : volume
+    func setMusicHomeVolume(_ volume: Float) {
+        musicHomePlayer?.volume = isMute ? 0 : volume
+    }
+    
+    func setMusicQuestionVolume(_ volume: Float) {
+        musicQuestionPlayer?.volume = isMute ? 0 : volume
     }
 }

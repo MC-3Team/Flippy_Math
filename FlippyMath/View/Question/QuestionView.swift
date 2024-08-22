@@ -10,12 +10,11 @@ import SwiftUI
 struct QuestionView: View {
     @StateObject private var viewModel: QuestionViewModel
     
-    init(viewModel: QuestionViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    init(sequenceLevel : Int, parameter: Parameter) {
+        _viewModel = StateObject(wrappedValue: QuestionViewModel(sequenceLevel: sequenceLevel, parameter: parameter))
     }
     
     var body: some View {
-        NavigationStack {
             QuestionLayout(viewModel: viewModel) { geometry in
                 VStack {
                     switch viewModel.currentQuestionIndex {
@@ -41,15 +40,12 @@ struct QuestionView: View {
                             PenguinsView()
                                 .frame(width: geometry.size.width * 0.8)
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.65)
-                            
                         }
-                        
-                        
                         
                     case 2:
                         HStack {
                             VStack {
-                                Image(viewModel.currentMessageIndex > 1 ? "" : "Q2_Hats")
+                                Image(viewModel.currentMessageIndex > 1 ? ""  : "Q2_Hats")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: geometry.size.width * 0.30)
@@ -62,13 +58,17 @@ struct QuestionView: View {
                                     .position(x: geometry.size.width / 5, y: geometry.size.height * 0.1)
                             }
                             
-                            Image(viewModel.currentMessageIndex > 1 ? "Q2_PenguinWithHats" : "Q2_Penguins")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.55)
-                                .position(x: geometry.size.width / 5.5, y: geometry.size.height * (viewModel.currentMessageIndex > 1 ? 0.60 : 0.65))
+                            if viewModel.currentMessageIndex > 1 {
+                                PenguinsHatView()
+                                    .frame(width: geometry.size.width * 0.8)
+                                    .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                            } else {
+                                PenguinsView()
+                                    .frame(width: geometry.size.width * 0.8)
+                                    .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                            }
+                                
                         }
-                        
                         
                     case 3:
                         VStack {
@@ -301,7 +301,6 @@ struct QuestionView: View {
             }
             .navigationBarBackButtonHidden(true)
         }
-    }
 }
 
 //#Preview {
@@ -656,4 +655,44 @@ struct polarbeartestView: View {
 
 #Preview(body: {
     polarbeartestView()
+})
+
+struct testView: View {
+    @State var currentMessageIndex = 2
+    
+    var body: some View {
+        GeometryReader { geometry in
+            HStack {
+                VStack {
+                    Image(currentMessageIndex > 1 ? ""  : "Q2_Hats")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.30)
+                        .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.45)
+                    
+                    Image("Q2_Table")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.45)
+                        .position(x: geometry.size.width / 5, y: geometry.size.height * 0.1)
+                }
+                
+                if currentMessageIndex > 1 {
+                    PenguinsHatView()
+                        .frame(width: geometry.size.width * 0.8)
+                        .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                } else {
+                    PenguinsView()
+                        .frame(width: geometry.size.width * 0.8)
+                        .position(x: geometry.size.width / 5.5, y: geometry.size.height * 0.65)
+                }
+                    
+            }
+        }
+        
+    }
+}
+
+#Preview(body: {
+    testView()
 })

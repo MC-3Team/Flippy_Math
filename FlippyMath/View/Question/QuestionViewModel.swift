@@ -28,6 +28,7 @@ class QuestionViewModel: ObservableObject {
     @Published var parameter: Parameter = .home
     @Published var readyStartRecognition = false
     @Published var tipRecognition = false
+    @Published var navigateToHome = false
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
@@ -36,6 +37,7 @@ class QuestionViewModel: ObservableObject {
         apretiation.isEmpty ? currentQuestionData.stories[currentMessageIndex].story : apretiation
     }
     private var isRecognitionInProgress = false
+    @Published var readySoundAnalysis = false
     
     var questionData: [QuestionData] = []
     
@@ -209,6 +211,7 @@ class QuestionViewModel: ObservableObject {
     }
     
     func startAnalysis() {
+        readySoundAnalysis = false
         soundAnalysisService.startAnalysis()
             .do(onSubscribe: { [weak self] in
                 print("Starting sound analysis...")
@@ -354,7 +357,7 @@ class QuestionViewModel: ObservableObject {
             if nextProblem.isSpeech {
                 readyStartRecognition = true
             } else {
-                startAnalysis()
+                readySoundAnalysis = true
             }
         }
         
@@ -367,14 +370,18 @@ class QuestionViewModel: ObservableObject {
     }
     
     private func advanceToNextQuestion() {
-        if !currentQuestionData.is_complete {
-            let filteredQuestions = service.getAllQuestion().filter{ $0.sequence == currentQuestionData.sequence }
-            service.updateCompletedQuestion(mathQuestion: filteredQuestions.first!, isComplete: true)
+        if currentQuestionIndex == questionData.count - 1 {
+            navigateToHome = true
+        } else {
+            if !currentQuestionData.is_complete {
+                let filteredQuestions = service.getAllQuestion().filter{ $0.sequence == currentQuestionData.sequence }
+                service.updateCompletedQuestion(mathQuestion: filteredQuestions.first!, isComplete: true)
+            }
+            currentQuestionIndex += 1
+            currentMessageIndex = 0
+            currentMathIndex = 0
+            userAnswer = ""
         }
-        currentQuestionIndex += 1
-        currentMessageIndex = 0
-        currentMathIndex = 0
-        userAnswer = ""
     }
     
     private func advanceToNextStory() {

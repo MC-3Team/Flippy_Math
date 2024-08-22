@@ -8,18 +8,19 @@
 import SwiftUI
 import Speech
 import AVFoundation
+import Routing
 
 struct HomeView: View {
     
     @StateObject var historyViewModel = HistoryViewModel()
     @StateObject private var viewModel = HomeViewModel()
     @AppStorage("isMute") private var isMute = false
-    
+    @EnvironmentObject private var router: Router<NavigationRoute>
     @EnvironmentObject var audioHelper: AudioHelper
     
     var body: some View {
         GeometryReader { geometry in
-            NavigationStack{
+            RoutingView(stack: $router.stack) {
                 ZStack {
                     Image("Home_Background")
                         .resizable()
@@ -38,6 +39,16 @@ struct HomeView: View {
                         .frame(width: geometry.size.width * 0.45)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
                     
+                    
+                //MARK: BUAT JESS
+                    BalloonView()
+                        .frame(width: geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.74, y: geometry.size.height / 2)
+
+                    BalloonView()
+                        .frame(width: geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.28, y: geometry.size.height / 2)
+
                     PenguinsHomeView()
                         .frame(width: geometry.size.width * 0.65)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.68)
@@ -52,17 +63,17 @@ struct HomeView: View {
                     }
                     .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
                     
-                    NavigationLink {
-                        HistoryGridView()
-                    } label: {
+                    Button(action: {
+                        print("Sampe sini")
+                        router.navigate(to: .history)
+                    }, label: {
                         Image("Record")
                         
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width * 0.07)
-                    }
-                    .padding(.top,geometry.size.width * 0.17)
-                    .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
+                    }).padding(.top,geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
 
                     Button(action: {
                         viewModel.requestPermissions()
@@ -83,9 +94,12 @@ struct HomeView: View {
                             .animation(Animation.linear(duration: snowflake.duration).delay(snowflake.delay).repeatForever(autoreverses: false), value: viewModel.animate)
                     }
                 }
-                .navigationDestination(isPresented: $viewModel.isGranted, destination: {
-                    QuestionView(viewModel: QuestionViewModel(sequenceLevel: viewModel.getLastCompletedLevel(), parameter: .home))
-                })
+                .onChange(of: viewModel.isGranted) {
+                    if viewModel.isGranted {
+                        router.navigate(to: .question(viewModel.getLastCompletedLevel(), .home))
+                        viewModel.isGranted = false
+                    }
+                }
                 .alert(isPresented: $viewModel.showSettingsAlert) {
                             Alert(
                                 title: Text("Permissions Required"),
@@ -104,6 +118,7 @@ struct HomeView: View {
                     withAnimation {
                         viewModel.animate = false
                     }
+                    audioHelper.stopMusicHome()
                 }
                 .onAppear {
                     historyViewModel.clearNavigation()
@@ -113,21 +128,18 @@ struct HomeView: View {
                     withAnimation {
                         viewModel.animate = true
                     }
-                    if !audioHelper.isPlayingMusic() {
-                                   audioHelper.playMusic(named: "comedy-kids", fileType: "mp3")
-                               }
                     
-//                    if !isMute {
-//                        print("Playing lagi")
-//                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
-//                    }
+                    if !isMute && !audioHelper.isPlayingMusicHome() {
+                        audioHelper.playMusicHome(named: "comedy-kids", fileType: "mp3")
+                    }
                 }
                 .onChange(of: isMute) { _, _ in
+                    print(isMute)
                     switch isMute {
                     case true :
-                        audioHelper.playMusic(named: "comedy-kids", fileType: "wav")
+                        audioHelper.stopMusicHome()
                     case false :
-                        audioHelper.stopMusic()
+                        audioHelper.playMusicHome(named: "comedy-kids", fileType: "mp3")
                     }
                 }
             }
