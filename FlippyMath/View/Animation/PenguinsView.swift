@@ -24,9 +24,20 @@ struct PenguinsHomeView: View {
         riveVM.view()
     }
 }
+struct PenguinsHatView: View {
+    
+    @StateObject var riveVM = RiveViewModel(fileName: "penguins", stateMachineName: "Hat")
+    
+    var body: some View {
+        riveVM.view()
+    }
+}
 #Preview {
     PenguinsView()
 }
 #Preview {
     PenguinsHomeView()
+}
+#Preview {
+    PenguinsHatView()
 }

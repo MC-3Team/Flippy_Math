@@ -22,10 +22,10 @@ struct HistoryGridView: View {
                     .ignoresSafeArea(.all)
                 
                 ScrollView([.vertical], showsIndicators: false) {
-                    VStack(spacing: 20) {
+                    VStack(spacing: 90) {
                         ForEach(0..<3) { row in
                             if row % 2 == 0{
-                                HStack(spacing: 20) {
+                                HStack(spacing: 160) {
                                     ForEach(0..<3) { col in
                                         let index = row * 3 + col
                                         if index < viewModel.buttons.count {
@@ -38,24 +38,28 @@ struct HistoryGridView: View {
                                                     .resizable()
                                                     .aspectRatio(contentMode: .fit)
                                                     .cornerRadius(16)
-                                                    .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                    .frame(width: geometry.size.width * 0.2)
                                                     .overlay(
-                                                        button.isPassed ? nil : Image("lock")
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fill)
-                                                            .cornerRadius(16)
-                                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                        GeometryReader{ geo2 in
+                                                            button.isPassed ? nil : Image("lock")
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fit)
+                                                                .cornerRadius(16)
+                                                                .position(x: geo2.size.width * 0.514 , y: geo2.size.height * 0.525)
+                                                                .frame(width: geo2.size.width * 1.279, height: geo2.size.height * 1.289)
+                                                        }
                                                     )
                                             })
                                             .disabled(!button.isPassed)
-                                        } else {
+                                        } 
+                                        else {
                                             Spacer()
                                                 .frame(width: geometry.size.width / 3.1, height: geometry.size.height / 4.0)
                                         }
                                     }
                                 }
                             }else {
-                                HStack(spacing: 20) {
+                                HStack(spacing: 160) {
                                     ForEach((0..<3).reversed(), id: \.self) { col in
                                         let index = row * 3 + col
                                         if index < viewModel.buttons.count {
@@ -68,17 +72,21 @@ struct HistoryGridView: View {
                                                     .resizable()
                                                     .aspectRatio(contentMode: .fit)
                                                     .cornerRadius(16)
-                                                    .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                    .frame(width: geometry.size.width * 0.2)
                                                     .overlay(
-                                                        button.isPassed ? nil : Image("lock")
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fit)
-                                                            .cornerRadius(16)
-                                                            .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 3.6)
+                                                        GeometryReader{ geo2 in
+                                                            button.isPassed ? nil : Image("lock")
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fit)
+                                                                .cornerRadius(16)
+                                                                .position(x: geo2.size.width * 0.514 , y: geo2.size.height * 0.525)
+                                                                .frame(width: geo2.size.width * 1.279, height: geo2.size.height * 1.289)
+                                                        }
                                                     )
                                             })
                                             .disabled(!button.isPassed)
-                                        } else {
+                                        } 
+                                        else {
                                             Spacer()
                                                 .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
                                         }
@@ -111,7 +119,7 @@ struct HistoryGridView: View {
     }
 }
 
-#Preview {
-    HistoryGridView()
-        .previewInterfaceOrientation(.landscapeLeft)
-}
+//#Preview {
+//    HistoryGridView()
+//        .previewInterfaceOrientation(.landscapeLeft)
+//}
