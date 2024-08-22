@@ -39,6 +39,16 @@ struct HomeView: View {
                         .frame(width: geometry.size.width * 0.45)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
                     
+                    
+                //MARK: BUAT JESS
+                    BalloonView()
+                        .frame(width: geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.74, y: geometry.size.height / 2)
+
+                    BalloonView()
+                        .frame(width: geometry.size.width * 0.17)
+                        .position(x: geometry.size.width * 0.28, y: geometry.size.height / 2)
+
                     PenguinsHomeView()
                         .frame(width: geometry.size.width * 0.65)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.68)
