@@ -23,13 +23,16 @@ struct HistoryGridView: View {
                 
                 ScrollView([.vertical], showsIndicators: false) {
                     VStack(spacing: 90) {
-                        ForEach(0..<3) { row in
+                        ForEach(0..<4) { row in
                             if row % 2 == 0{
                                 HStack(spacing: 160) {
                                     ForEach(0..<3) { col in
                                         let index = row * 3 + col
                                         if index < viewModel.buttons.count {
+
                                             let button = viewModel.buttons[index]
+                                            let _  = print(button.imageName)
+
                                             
                                             Button(action: {
                                                 router.navigate(to: .question(Int(button.sequence), .history))
@@ -45,7 +48,7 @@ struct HistoryGridView: View {
                                                                 .resizable()
                                                                 .aspectRatio(contentMode: .fit)
                                                                 .cornerRadius(16)
-                                                                .position(x: geo2.size.width * 0.514 , y: geo2.size.height * 0.525)
+                                                                .position(x: geo2.size.width * 0.514 , y: geo2.size.height * 0.524)
                                                                 .frame(width: geo2.size.width * 1.279, height: geo2.size.height * 1.289)
                                                         }
                                                     )
@@ -64,6 +67,7 @@ struct HistoryGridView: View {
                                         let index = row * 3 + col
                                         if index < viewModel.buttons.count {
                                             let button = viewModel.buttons[index]
+                                            let _  = print(button.imageName)
 
                                             Button(action: {
                                                 router.navigate(to: .question(Int(button.sequence), .history))
@@ -79,7 +83,7 @@ struct HistoryGridView: View {
                                                                 .resizable()
                                                                 .aspectRatio(contentMode: .fit)
                                                                 .cornerRadius(16)
-                                                                .position(x: geo2.size.width * 0.514 , y: geo2.size.height * 0.525)
+                                                                .position(x: geo2.size.width * 0.516 , y: geo2.size.height * 0.525)
                                                                 .frame(width: geo2.size.width * 1.279, height: geo2.size.height * 1.289)
                                                         }
                                                     )
@@ -88,7 +92,7 @@ struct HistoryGridView: View {
                                         } 
                                         else {
                                             Spacer()
-                                                .frame(width: geometry.size.width / 3.2, height: geometry.size.height / 4)
+                                                .frame(width: geometry.size.width * 0.2)
                                         }
                                     }
                                 }
@@ -113,6 +117,10 @@ struct HistoryGridView: View {
                 })
                 .onAppear {
 //                    audioHelper.resumeMusic()
+                    viewModel.buttons.forEach({
+                        index in
+                        print(index.imageName)
+                    })
                 }
             }
         }.navigationBarBackButtonHidden(true)
