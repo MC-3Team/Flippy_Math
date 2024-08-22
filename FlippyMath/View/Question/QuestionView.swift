@@ -172,16 +172,19 @@ struct QuestionView: View {
                                     .rotationEffect(.degrees(-10))
                                     .onTapGesture {
                                         if viewModel.currentMessageIndex == 1 {
-                                            viewModel.handleTap(tapThreshold: 3, tapDelay: 0.2, upperLimit: 2)
+                                            viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2)
                                         }
                                     }
                                 
-                                Text("Tekan 3x untuk memecahkan pinata!")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
-                                    .foregroundStyle(.black)
-                                    .opacity(0.5)
-                                    .fontWeight(.bold)
-                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
+                                if viewModel.currentMessageIndex == 1 {
+                                    Text("Tekan 5x untuk memecahkan pinata!")
+                                        .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
+                                        .foregroundStyle(.black)
+                                        .opacity(0.5)
+                                        .fontWeight(.bold)
+                                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
+                                }
+                                
                                 
                             } else if viewModel.currentMessageIndex < 3 {
                                 PinataView()
@@ -210,8 +213,8 @@ struct QuestionView: View {
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
                         } else {
                             PolarBearView(key: "isOpen", value: true)
-                                .frame(width: geometry.size.width * 0.7)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
+                                .frame(width: geometry.size.width * 0.6)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                         }
                         
                     case 9:
@@ -287,6 +290,8 @@ struct QuestionView: View {
                                 }
                                 
                                 RewardAnimationView()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.65)
                             }
                         }
                         

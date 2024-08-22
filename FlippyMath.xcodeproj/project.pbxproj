@@ -117,6 +117,7 @@
 		D3B103A52C767BD500F61FD4 /* splash-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = D3B103A42C767BD500F61FD4 /* splash-audio.wav */; };
 		D3B103A72C767FCB00F61FD4 /* flippy.riv in Resources */ = {isa = PBXBuildFile; fileRef = D3B103A62C767FCB00F61FD4 /* flippy.riv */; };
 		D3B103AA2C77104900F61FD4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B103A82C77104900F61FD4 /* DataModel.xcdatamodeld */; };
+		D3B103AD2C771EFE00F61FD4 /* CreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B103AC2C771EFE00F61FD4 /* CreditView.swift */; };
 		D91002B82C7685D800E65051 /* BalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91002B72C7685D800E65051 /* BalloonView.swift */; };
 		D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91242462C75DF5700C61620 /* RewardAnimationView.swift */; };
 		D912424A2C75E0A800C61620 /* reward.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242482C75E0A800C61620 /* reward.riv */; };
@@ -248,6 +249,7 @@
 		D3B103A42C767BD500F61FD4 /* splash-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "splash-audio.wav"; sourceTree = "<group>"; };
 		D3B103A62C767FCB00F61FD4 /* flippy.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flippy.riv; sourceTree = "<group>"; };
 		D3B103A92C77104900F61FD4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		D3B103AC2C771EFE00F61FD4 /* CreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditView.swift; sourceTree = "<group>"; };
 		D91002B72C7685D800E65051 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
 		D91242462C75DF5700C61620 /* RewardAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnimationView.swift; sourceTree = "<group>"; };
 		D91242482C75E0A800C61620 /* reward.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reward.riv; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		13B75FB62C705C3400EBFCD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D3B103AB2C771EF200F61FD4 /* Credit */,
 				133573BB2C70C025007696A8 /* History */,
 				13B75FBB2C705C7E00EBFCD1 /* Question */,
 				13B75FBA2C705C6B00EBFCD1 /* Video */,
@@ -593,6 +596,14 @@
 				D3B103842C7662D200F61FD4 /* NavigationRoute.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		D3B103AB2C771EF200F61FD4 /* Credit */ = {
+			isa = PBXGroup;
+			children = (
+				D3B103AC2C771EFE00F61FD4 /* CreditView.swift */,
+			);
+			path = Credit;
 			sourceTree = "<group>";
 		};
 		D934AF842C6F3EBC00D41B9A = {
@@ -843,6 +854,7 @@
 				D95232AF2C71ABEB0005C461 /* ArcticFoxView.swift in Sources */,
 				13B75FC92C705E8300EBFCD1 /* TextToSpeechManager.swift in Sources */,
 				133573BA2C70BFD3007696A8 /* ButtonData.swift in Sources */,
+				D3B103AD2C771EFE00F61FD4 /* CreditView.swift in Sources */,
 				13B75FE12C705F9900EBFCD1 /* VideoViewModel.swift in Sources */,
 				13B75FD32C705E8B00EBFCD1 /* QuestionData.swift in Sources */,
 				D95232B92C71B7F20005C461 /* PinataView.swift in Sources */,
