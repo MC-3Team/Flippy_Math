@@ -500,7 +500,7 @@
             "sequence": 6,
             "background": "Q6_Background",
             "is_complete": false,
-            "historyLevel": "Rubah",
+            "historyLevel": "Serigala",
             "stories": [
                 {
                     "id": 1,
@@ -641,16 +641,16 @@
                     "audio_apretiation": ""
                 },
                 {
-                    "id": 4,
-                    "sequence": 4,
+                    "id": 5,
+                    "sequence": 5,
                     "story": "Dan Aku berhasil mengumpulkan 5 permen",
                     "audio": "audio-7-5",
                     "apretiation": "",
                     "audio_apretiation": ""
                 },
                 {
-                    "id": 5,
-                    "sequence": 5,
+                    "id": 6,
+                    "sequence": 6,
                     "story": "Jadi ada berapa permen yang masih tersisa di lantai?",
                     "audio": "audio-7-6",
                     "apretiation": "Benar! 20 permen dikurang 5 permen sama dengan 15 permen.",

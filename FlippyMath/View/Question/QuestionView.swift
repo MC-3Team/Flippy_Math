@@ -46,7 +46,7 @@ struct QuestionView: View {
                     case 2:
                         HStack {
                             VStack {
-                                Image(viewModel.currentMessageIndex > 1 ? "" : "Q2_Hats")
+                                Image(viewModel.currentMessageIndex > 1 ? ""  : "Q2_Hats")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: geometry.size.width * 0.30)
