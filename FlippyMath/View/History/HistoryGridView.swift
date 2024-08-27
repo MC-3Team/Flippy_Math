@@ -129,6 +129,27 @@ struct HistoryGridView: View {
                             print(index.imageName)
                         })
                     }
+                
+                ForEach(viewModel.snowflakes) { snowflake in
+                    Image(snowflake.imageName)
+                        .resizable()
+                        .frame(width: snowflake.size, height: snowflake.size)
+                        .rotationEffect(.degrees(viewModel.animate ? 360 : 0))
+                        .animation(Animation.linear(duration: snowflake.rotationDuration).repeatForever(autoreverses: false), value: viewModel.animate)
+                        .position(x: snowflake.xPosition, y: viewModel.animate ? geometry.size.height + snowflake.size : -snowflake.size)
+                        .animation(Animation.linear(duration: snowflake.duration).delay(snowflake.delay).repeatForever(autoreverses: false), value: viewModel.animate)
+                }
+            }
+            .onDisappear {
+                withAnimation {
+                    viewModel.animate = false
+                }
+            }
+            .onAppear {
+                viewModel.createSnowflakes(in: geometry.size)
+                withAnimation {
+                    viewModel.animate = true
+                }
             }
         }.navigationBarBackButtonHidden(true)
     }
