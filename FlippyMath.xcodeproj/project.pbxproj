@@ -119,6 +119,7 @@
 		D3B103AA2C77104900F61FD4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B103A82C77104900F61FD4 /* DataModel.xcdatamodeld */; };
 		D3B103AD2C771EFE00F61FD4 /* CreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B103AC2C771EFE00F61FD4 /* CreditView.swift */; };
 		D91002B82C7685D800E65051 /* BalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91002B72C7685D800E65051 /* BalloonView.swift */; };
+		D91002BB2C77290300E65051 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D91002B92C77290300E65051 /* DataModel.xcdatamodeld */; };
 		D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91242462C75DF5700C61620 /* RewardAnimationView.swift */; };
 		D912424A2C75E0A800C61620 /* reward.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242482C75E0A800C61620 /* reward.riv */; };
 		D912424B2C75E0A800C61620 /* splash.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242492C75E0A800C61620 /* splash.riv */; };
@@ -251,6 +252,7 @@
 		D3B103A92C77104900F61FD4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D3B103AC2C771EFE00F61FD4 /* CreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditView.swift; sourceTree = "<group>"; };
 		D91002B72C7685D800E65051 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
+		D91002BA2C77290300E65051 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D91242462C75DF5700C61620 /* RewardAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnimationView.swift; sourceTree = "<group>"; };
 		D91242482C75E0A800C61620 /* reward.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reward.riv; sourceTree = "<group>"; };
 		D91242492C75E0A800C61620 /* splash.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = splash.riv; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				13B75FCB2C705E8300EBFCD1 /* SpeechRecognizerManager.swift in Sources */,
 				13B75FDC2C705E9700EBFCD1 /* SpeechRecognizerService.swift in Sources */,
 				13B75FE22C705F9900EBFCD1 /* VideoView.swift in Sources */,
+				D91002BB2C77290300E65051 /* DataModel.xcdatamodeld in Sources */,
 				133573BF2C70C140007696A8 /* HistoryGridView.swift in Sources */,
 				D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */,
 				D3B103852C7662D200F61FD4 /* NavigationRoute.swift in Sources */,
@@ -997,7 +1000,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
 				DEVELOPMENT_TEAM = 9QDD78HGUD;
 				ENABLE_PREVIEWS = YES;
@@ -1011,7 +1014,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1038,7 +1041,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
 				DEVELOPMENT_TEAM = 9QDD78HGUD;
 				ENABLE_PREVIEWS = YES;
@@ -1052,7 +1055,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

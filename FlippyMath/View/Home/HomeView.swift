@@ -59,7 +59,7 @@ struct HomeView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width * 0.07, height: geometry.size.height * 0.10)
                     }
-                    .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
+                    .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.08)
                     
                     Button(action: {
                         print("Sampe sini")
@@ -71,7 +71,7 @@ struct HomeView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width * 0.07)
                     }).padding(.top,geometry.size.width * 0.17)
-                        .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
+                        .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.08)
 
                     Button(action: {
                         viewModel.requestPermissions()
