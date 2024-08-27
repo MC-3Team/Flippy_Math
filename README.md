@@ -23,7 +23,7 @@ In Flippy Math, math problems are broken down into smaller, more manageable part
 
 ## Team
   - [Ayatullah Ma'arif](https://github.com/ayckermann) as UX Researcher, Content Specialist, iOS Developer
-  - [Enrico Olivian Maricar](https://github.com/Waffle000)
+  - [Enrico Olivian Maricar](https://github.com/Waffle000) as UX Researcher & iOS Developer
   - [Muh Fathin Abdillah Halik](https://www.linkedin.com/in/muh-fathin-abdillah-halik-902234219/) as UX Researcher & UI Designer
-  - [Rajesh Triadi Noftarizal](https://github.com/RajeshTriadiNoftarizal)
-  - [William Jonatahan Handoko](https://github.com/WillieHandoko)
+  - [Rajesh Triadi Noftarizal](https://github.com/RajeshTriadiNoftarizal) as UX Researcher & iOS Developer
+  - [William Jonatahan Handoko](https://github.com/WillieHandoko) as UX Researcher & iOS Developer
