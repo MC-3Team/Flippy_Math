@@ -304,6 +304,41 @@
         {
             "id": 4,
             "sequence": 4,
+            "background": "Q3_Background",
+            "is_complete": false,
+            "historyLevel": "Menyanyi",
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Yeay, sudah saatnya untuk memotong kue ulang tahun. Sebelum itu ayo kita bernyanyi bersama terlebih dahulu.",
+                    "audio": "singing-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "...",
+                    "audio": "Selamat Ulang Tahun",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Terima kasih semuanya, Ayo ambil dan makan kuenya.",
+                    "audio": "singing-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+       
+            ],
+            "problems": []
+        },
+        {
+            "id": 5,
+            "sequence": 5,
             "background": "Q4_Background",
             "is_complete": false,
             "historyLevel": "Kue",

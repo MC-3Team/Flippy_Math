@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+struct TextKaraoke{
+    var text : String
+    var duration : TimeInterval
+}
+
 struct SingingView: View {
     @StateObject var viewModel: QuestionViewModel
+    @EnvironmentObject var audioHelper: AudioHelper
     
     @State private var colorIndexes = [0, 0, 0, 0, 0]
     @State private var isAnimating = false
@@ -16,9 +22,8 @@ struct SingingView: View {
     @State private var scales: [CGFloat] = Array(repeating: 1.0, count: 5)
     @State private var throbbingTimers: [Timer] = []
     @State private var colorTimers: [Timer] = []
-    @State private var currentTextIndex = 0
-    @State private var textChangeTimer: Timer?
-    
+    @State private var currentTextIndex = 0    
+    @State private var currentText = ""
     // Colors to cycle through
     let colors: [Color] = [.pink, .indigo, .orange, .cyan]
     
@@ -40,16 +45,20 @@ struct SingingView: View {
         CGSize(width: 100, height: 100)
     ]
     
-    // Texts to display sequentially
-    let texts = [
-        "Selamat Ulang\ntahun, kami ucapkan",
-        "Selamat panjang umur,\nkita 'kan doakan",
-        "Selamat sejahtera,\nsehat, sentosa",
-        "Selamat panjang umur \ndan bahagia",
-        "Potong kuenya, \npotong kuenya,",
-        "Potong kuenya, \nsekarang juga",
-        "Sekarang juga, \nsekarang juga"
+    let textKaraoke = [
+        TextKaraoke(text: "", duration: 6.00),
+        TextKaraoke(text: "Selamat ulang\ntahun, kami ucapkan", duration: 11.36),
+        TextKaraoke(text: "Selamat panjang umur,\nkita 'kan doakan", duration: 10.64),
+        TextKaraoke(text: "Selamat sejahtera,\nsehat, sentosa", duration: 10.64),
+        TextKaraoke(text: "Selamat panjang umur \ndan bahagia", duration: 9.00),
+        TextKaraoke(text: "", duration: 1.64),
+        TextKaraoke(text: "Potong kuenya, \npotong kuenya,", duration: 5.0),
+        TextKaraoke(text: "Potong kuenya, \nsekarang juga", duration: 5.0),
+        TextKaraoke(text: "Sekarang juga, \nsekarang juga", duration: 9.0),
+        TextKaraoke(text: "", duration: 1.0)
+
     ]
+    
     
     // Function to start the animation
     func startAnimation(geometry: GeometryProxy) {
@@ -85,21 +94,73 @@ struct SingingView: View {
             }
         }
         
-        // Text change animation every 5 seconds
-        textChangeTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
-            withAnimation(.easeInOut(duration: 1.0)) {
-                if currentTextIndex < texts.count - 1 {
-                    currentTextIndex += 1
-                } else {
-                    textChangeTimer?.invalidate() // Stop the timer after reaching the last text
-                }
-            }
+    }
+    
+    func showTextsSequentially() {
+        guard currentTextIndex < textKaraoke.count else { return }
+        
+        currentText = textKaraoke[currentTextIndex].text
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + textKaraoke[currentTextIndex].duration) {
+            currentTextIndex += 1
+            showTextsSequentially()
         }
     }
     
     var body: some View {
-        QuestionLayout(viewModel: viewModel) { geometry in
-            ZStack {
+        GeometryReader{ geometry in
+            if viewModel.currentMessageIndex == 1{
+                ZStack {
+                    ForEach(0..<5) { index in
+                        Image("MusicNote\(index + 1).symbols")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: frames[index].width, height: frames[index].height)
+                            .foregroundColor(colors[colorIndexes[index]])
+                            .offset(randomOffsets[index])
+                            .scaleEffect(scales[index])
+                            .position(x: positions[index].x, y: positions[index].y)
+                    }
+                    
+                    
+                    Text(currentText)
+                        .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
+                        .fontWeight(.bold)
+                        .foregroundStyle(.blueSecondary)
+                        .multilineTextAlignment(.center)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5 )
+                        .onAppear {
+                            showTextsSequentially()
+                        }
+                }
+                .onAppear {
+                    startAnimation(geometry: geometry)
+                    audioHelper.stopMusicQuestion()
+                    audioHelper.setVoiceVolume(2.0)
+                    
+                    if let audioTime = audioHelper.getAudioDuration(named: "Selamat Ulang Tahun", fileType: "wav") {
+                        let dispatchTime = DispatchTime.now() + audioTime
+                        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+                            viewModel.currentMessageIndex += 1
+                        }
+                    } else {
+                        // Handle the case where the duration couldn't be retrieved
+                        print("Failed to get audio duration.")
+                    }
+                    //
+                    
+                    
+                    print("asdas")
+                }
+                .onDisappear(){
+                    audioHelper.setVoiceVolume(1.0)
+                    audioHelper.playMusicQuestion(named: "comedy-kids", fileType: "mp3")
+                    print("evfg")
+                }
+                
+                
+            }
+            else{
                 ForEach(0..<5) { index in
                     Image("MusicNote\(index + 1).symbols")
                         .resizable()
@@ -109,23 +170,15 @@ struct SingingView: View {
                         .offset(randomOffsets[index])
                         .scaleEffect(scales[index])
                         .position(x: positions[index].x, y: positions[index].y)
+                        .onAppear {
+                            startAnimation(geometry: geometry)
+                        }
                 }
-                
-                Text(texts[currentTextIndex])
-                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                    .fontWeight(.bold)
-                    .foregroundStyle(.blueSecondary)
-                    .multilineTextAlignment(.center)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5 )
-                    .animation(.easeInOut(duration: 1.0), value: currentTextIndex)
-            }
-            .onAppear {
-                startAnimation(geometry: geometry)
             }
         }
     }
 }
-
+//
 //#Preview {
-//    SingingView(viewModel: QuestionViewModel(level: 1))
+//    SingingView(viewModel: QuestionViewModel(sequenceLevel: 0, parameter: .home))
 //}

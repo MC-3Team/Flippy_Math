@@ -116,10 +116,9 @@
 		D3B103A12C76796700F61FD4 /* birthday-party.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D3B103A02C76796700F61FD4 /* birthday-party.mp3 */; };
 		D3B103A52C767BD500F61FD4 /* splash-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = D3B103A42C767BD500F61FD4 /* splash-audio.wav */; };
 		D3B103A72C767FCB00F61FD4 /* flippy.riv in Resources */ = {isa = PBXBuildFile; fileRef = D3B103A62C767FCB00F61FD4 /* flippy.riv */; };
-		D3B103AA2C77104900F61FD4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B103A82C77104900F61FD4 /* DataModel.xcdatamodeld */; };
 		D3B103AD2C771EFE00F61FD4 /* CreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B103AC2C771EFE00F61FD4 /* CreditView.swift */; };
 		D91002B82C7685D800E65051 /* BalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91002B72C7685D800E65051 /* BalloonView.swift */; };
-		D91002BB2C77290300E65051 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D91002B92C77290300E65051 /* DataModel.xcdatamodeld */; };
+		D91002BB2C77290300E65051 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91242462C75DF5700C61620 /* RewardAnimationView.swift */; };
 		D912424A2C75E0A800C61620 /* reward.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242482C75E0A800C61620 /* reward.riv */; };
 		D912424B2C75E0A800C61620 /* splash.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242492C75E0A800C61620 /* splash.riv */; };
@@ -132,6 +131,11 @@
 		D95232AF2C71ABEB0005C461 /* ArcticFoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232AE2C71ABEB0005C461 /* ArcticFoxView.swift */; };
 		D95232B92C71B7F20005C461 /* PinataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232B82C71B7F20005C461 /* PinataView.swift */; };
 		D95232BF2C71E2630005C461 /* PolarBearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232BE2C71E2630005C461 /* PolarBearView.swift */; };
+		D97277BF2C81B69E00B72266 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D97277BD2C81B69E00B72266 /* DataModel.xcdatamodeld */; };
+		D97277C12C81B6D000B72266 /* Selamat Ulang Tahun.wav in Resources */ = {isa = PBXBuildFile; fileRef = D97277C02C81B6D000B72266 /* Selamat Ulang Tahun.wav */; };
+		D97277C32C81B74D00B72266 /* Snowflake Birthday.wav in Resources */ = {isa = PBXBuildFile; fileRef = D97277C22C81B74D00B72266 /* Snowflake Birthday.wav */; };
+		D97277C82C82196100B72266 /* singing-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D97277C62C82196100B72266 /* singing-1.wav */; };
+		D97277C92C82196100B72266 /* singing-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D97277C72C82196100B72266 /* singing-2.wav */; };
 		D99187672C76830900BAB2EF /* penguins.riv in Resources */ = {isa = PBXBuildFile; fileRef = D99187662C76830900BAB2EF /* penguins.riv */; };
 		D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */; };
 		D9C4120F2C75C1500049C81F /* flyingballoon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412062C75C1500049C81F /* flyingballoon.riv */; };
@@ -249,10 +253,8 @@
 		D3B103A02C76796700F61FD4 /* birthday-party.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "birthday-party.mp3"; sourceTree = "<group>"; };
 		D3B103A42C767BD500F61FD4 /* splash-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "splash-audio.wav"; sourceTree = "<group>"; };
 		D3B103A62C767FCB00F61FD4 /* flippy.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flippy.riv; sourceTree = "<group>"; };
-		D3B103A92C77104900F61FD4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D3B103AC2C771EFE00F61FD4 /* CreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditView.swift; sourceTree = "<group>"; };
 		D91002B72C7685D800E65051 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
-		D91002BA2C77290300E65051 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D91242462C75DF5700C61620 /* RewardAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnimationView.swift; sourceTree = "<group>"; };
 		D91242482C75E0A800C61620 /* reward.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reward.riv; sourceTree = "<group>"; };
 		D91242492C75E0A800C61620 /* splash.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = splash.riv; sourceTree = "<group>"; };
@@ -266,6 +268,11 @@
 		D95232AE2C71ABEB0005C461 /* ArcticFoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcticFoxView.swift; sourceTree = "<group>"; };
 		D95232B82C71B7F20005C461 /* PinataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinataView.swift; sourceTree = "<group>"; };
 		D95232BE2C71E2630005C461 /* PolarBearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarBearView.swift; sourceTree = "<group>"; };
+		D97277BE2C81B69E00B72266 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		D97277C02C81B6D000B72266 /* Selamat Ulang Tahun.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Selamat Ulang Tahun.wav"; sourceTree = "<group>"; };
+		D97277C22C81B74D00B72266 /* Snowflake Birthday.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Snowflake Birthday.wav"; sourceTree = "<group>"; };
+		D97277C62C82196100B72266 /* singing-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "singing-1.wav"; sourceTree = "<group>"; };
+		D97277C72C82196100B72266 /* singing-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "singing-2.wav"; sourceTree = "<group>"; };
 		D99187662C76830900BAB2EF /* penguins.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = penguins.riv; sourceTree = "<group>"; };
 		D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingBalloonView.swift; sourceTree = "<group>"; };
 		D9C412062C75C1500049C81F /* flyingballoon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flyingballoon.riv; sourceTree = "<group>"; };
@@ -345,6 +352,8 @@
 		13B75F922C705A3400EBFCD1 /* VoiceOver */ = {
 			isa = PBXGroup;
 			children = (
+				D97277C62C82196100B72266 /* singing-1.wav */,
+				D97277C72C82196100B72266 /* singing-2.wav */,
 				D3B1038F2C76755E00F61FD4 /* audio-6-1.wav */,
 				D3B1038A2C76755D00F61FD4 /* audio-6-3.wav */,
 				D3B1038E2C76755E00F61FD4 /* audio-6-4.wav */,
@@ -409,6 +418,8 @@
 		13B75F932C705A4400EBFCD1 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				D97277C22C81B74D00B72266 /* Snowflake Birthday.wav */,
+				D97277C02C81B6D000B72266 /* Selamat Ulang Tahun.wav */,
 				D3B103A42C767BD500F61FD4 /* splash-audio.wav */,
 				D3B103A02C76796700F61FD4 /* birthday-party.mp3 */,
 				D3B1037F2C75F79D00F61FD4 /* comedy-kids.mp3 */,
@@ -503,7 +514,7 @@
 		13B75FB42C705C0A00EBFCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D3B103A82C77104900F61FD4 /* DataModel.xcdatamodeld */,
+				D97277BD2C81B69E00B72266 /* DataModel.xcdatamodeld */,
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
@@ -526,6 +537,7 @@
 		13B75FB62C705C3400EBFCD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				13B75F802C70584200EBFCD1 /* Components */,
 				D3B103AB2C771EF200F61FD4 /* Credit */,
 				133573BB2C70C025007696A8 /* History */,
 				13B75FBB2C705C7E00EBFCD1 /* Question */,
@@ -629,7 +641,6 @@
 			children = (
 				D3B103832C7662BF00F61FD4 /* Navigation */,
 				13B75FF12C70689300EBFCD1 /* Info.plist */,
-				13B75F802C70584200EBFCD1 /* Components */,
 				13B75F8B2C7059AF00EBFCD1 /* CustomFonts */,
 				13B75F8E2C705A0000EBFCD1 /* Helper */,
 				13B75FAF2C705BD300EBFCD1 /* DataAsset */,
@@ -732,6 +743,7 @@
 				13B75FBD2C705DC900EBFCD1 /* dataRaw.json in Resources */,
 				D3B1039E2C76755E00F61FD4 /* audio-9-5.wav in Resources */,
 				D34724372C7350E6005C1E9F /* audio-3-3.wav in Resources */,
+				D97277C82C82196100B72266 /* singing-1.wav in Resources */,
 				D347242B2C7350E6005C1E9F /* audio-9-2.wav in Resources */,
 				D3B1039D2C76755E00F61FD4 /* audio-7-4.wav in Resources */,
 				D34724082C7350E6005C1E9F /* audio-4-3.wav in Resources */,
@@ -745,6 +757,7 @@
 				D34724332C7350E6005C1E9F /* audio-8-2.wav in Resources */,
 				D347241E2C7350E6005C1E9F /* audio-9-3.wav in Resources */,
 				D347243E2C73518E005C1E9F /* oops.wav in Resources */,
+				D97277C12C81B6D000B72266 /* Selamat Ulang Tahun.wav in Resources */,
 				D347240A2C7350E6005C1E9F /* audio-apretiation-4-3.wav in Resources */,
 				D34724202C7350E6005C1E9F /* audio-apretiation-2-3.wav in Resources */,
 				13B75FAA2C705B7C00EBFCD1 /* failure-drum.wav in Resources */,
@@ -781,6 +794,7 @@
 				D912424B2C75E0A800C61620 /* splash.riv in Resources */,
 				D3B1039B2C76755E00F61FD4 /* audio-6-4.wav in Resources */,
 				D9C412132C75C1500049C81F /* balloon.riv in Resources */,
+				D97277C32C81B74D00B72266 /* Snowflake Birthday.wav in Resources */,
 				D9C4120F2C75C1500049C81F /* flyingballoon.riv in Resources */,
 				13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */,
 				D9C4121A2C75C96F0049C81F /* pinata.riv in Resources */,
@@ -795,6 +809,7 @@
 				D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */,
 				D347240B2C7350E6005C1E9F /* audio-apretiation-1-3.wav in Resources */,
 				13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */,
+				D97277C92C82196100B72266 /* singing-2.wav in Resources */,
 				D347240E2C7350E6005C1E9F /* audio-3-4.wav in Resources */,
 				D34724382C7350E6005C1E9F /* audio-7-6.wav in Resources */,
 				D34724242C7350E6005C1E9F /* audio-8-1.wav in Resources */,
@@ -830,7 +845,7 @@
 				13B75FD12C705E8B00EBFCD1 /* MathQuestionJSON.swift in Sources */,
 				13B75FE62C70675000EBFCD1 /* SplashView.swift in Sources */,
 				D9F19D4D2C734E43004A5D99 /* SingingView.swift in Sources */,
-				D3B103AA2C77104900F61FD4 /* DataModel.xcdatamodeld in Sources */,
+				D97277BF2C81B69E00B72266 /* DataModel.xcdatamodeld in Sources */,
 				13B75FEE2C70676200EBFCD1 /* QuestionView.swift in Sources */,
 				13B75F882C70598B00EBFCD1 /* QuestionLayout.swift in Sources */,
 				13B75FC82C705E8300EBFCD1 /* SoundAnalysisManager.swift in Sources */,
@@ -839,7 +854,7 @@
 				13B75FCB2C705E8300EBFCD1 /* SpeechRecognizerManager.swift in Sources */,
 				13B75FDC2C705E9700EBFCD1 /* SpeechRecognizerService.swift in Sources */,
 				13B75FE22C705F9900EBFCD1 /* VideoView.swift in Sources */,
-				D91002BB2C77290300E65051 /* DataModel.xcdatamodeld in Sources */,
+				D91002BB2C77290300E65051 /* (null) in Sources */,
 				133573BF2C70C140007696A8 /* HistoryGridView.swift in Sources */,
 				D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */,
 				D3B103852C7662D200F61FD4 /* NavigationRoute.swift in Sources */,
@@ -1002,7 +1017,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 9QDD78HGUD;
+				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -1043,7 +1058,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = 9QDD78HGUD;
+				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -1173,14 +1188,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		D3B103A82C77104900F61FD4 /* DataModel.xcdatamodeld */ = {
+		D97277BD2C81B69E00B72266 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D3B103A92C77104900F61FD4 /* DataModel.xcdatamodel */,
+				D97277BE2C81B69E00B72266 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = D3B103A92C77104900F61FD4 /* DataModel.xcdatamodel */;
+			currentVersion = D97277BE2C81B69E00B72266 /* DataModel.xcdatamodel */;
 			name = DataModel.xcdatamodeld;
-			path = "/Users/enricomaricar/Documents/XCode Project/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
+			path = /Users/ayatullahmaarif/Documents/Projects/ADA/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

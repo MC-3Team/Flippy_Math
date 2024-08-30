@@ -83,6 +83,9 @@ struct QuestionView: View {
                         }
                         
                     case 4:
+                        SingingView(viewModel: viewModel)
+                        
+                    case 5:
                         HStack {
                             if viewModel.currentMessageIndex < 1 {
                                 Image("Q4_8Cakes")
@@ -99,7 +102,8 @@ struct QuestionView: View {
                             }
                         }
                         
-                    case 5:
+           
+                    case 6:
                         ZStack {
                             Image("Q5_2Cakes")
                                 .resizable()
@@ -120,7 +124,7 @@ struct QuestionView: View {
                             }
                         }
                         
-                    case 6:
+                    case 7:
                         ZStack {
                             HStack {
                                 ArcticFoxView(isPlay: $viewModel.isPlaying)
@@ -151,7 +155,7 @@ struct QuestionView: View {
                         }
                         
                         
-                    case 7:
+                    case 8:
                         ZStack {
                             if viewModel.currentMessageIndex < 3 {
                                 Image("Q7_PinataRope")
@@ -206,7 +210,7 @@ struct QuestionView: View {
                             }
                         }
                         
-                    case 8:
+                    case 9:
                         if viewModel.currentMessageIndex < 2 {
                             PolarBearView(key: "isOpen", value: false)
                                 .frame(width: geometry.size.width * 0.7)
@@ -217,7 +221,7 @@ struct QuestionView: View {
                                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
                         }
                         
-                    case 9:
+                    case 10:
                         ZStack {
                             Image("Outro_Background")
                                 .resizable()

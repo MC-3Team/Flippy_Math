@@ -135,9 +135,16 @@ struct HomeView: View {
                     print(isMute)
                     switch isMute {
                     case true :
-                        audioHelper.stopMusicHome()
+//                        audioHelper.stopMusicHome()
+                        audioHelper.setMusicHomeVolume(0.0)
                     case false :
-                        audioHelper.playMusicHome(named: "comedy-kids", fileType: "mp3")
+//                        audioHelper.playMusicHome(named: "comedy-kids", fileType: "mp3")
+                        audioHelper.setMusicHomeVolume(0.3)
+                        if(!audioHelper.isPlayingMusicHome()){
+                            audioHelper.playMusicHome(named: "comedy-kids", fileType: "mp3")
+
+                        }
+
                     }
                 }
             }

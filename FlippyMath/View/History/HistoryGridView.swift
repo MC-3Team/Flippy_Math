@@ -69,8 +69,6 @@ struct HistoryGridView: View {
                                             let index = row * 3 + col
                                             if index < viewModel.buttons.count {
                                                 let button = viewModel.buttons[index]
-                                                let _  = print(button.imageName)
-                                                
                                                 Button(action: {
                                                     router.navigate(to: .question(Int(button.sequence), .history))
                                                 }, label: {
@@ -124,10 +122,7 @@ struct HistoryGridView: View {
                     })
                     .onAppear {
                         //                    audioHelper.resumeMusic()
-                        viewModel.buttons.forEach({
-                            index in
-                            print(index.imageName)
-                        })
+                        
                     }
                 
                 ForEach(viewModel.snowflakes) { snowflake in

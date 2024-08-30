@@ -253,8 +253,10 @@ class QuestionViewModel: ObservableObject {
                 service.updateCompletedQuestion(mathQuestion: mathQuestion, isComplete: true)
             }
         }
-        
+        audioHelper.setSoundEffectVolume(0.1)
         audioHelper.playSoundEffect(named: "click", fileType: "wav")
+        audioHelper.setSoundEffectVolume(1.0)
+
         guard !currentQuestionData.problems.isEmpty else {
             advanceToNextStory()
             return
