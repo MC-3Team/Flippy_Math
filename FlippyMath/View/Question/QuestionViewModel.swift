@@ -496,25 +496,34 @@ class QuestionViewModel: ObservableObject {
     @Published var rotation: Double = 0
     @Published var scale: CGFloat = 0.5
     
-    
+  
     ///MARK: SHARED
-    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5, upperLimit: Int = 2) {
+    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5, upperLimit: Int = 2, isOutro : Bool) {
         isTapped = true
         
         if let threshold = tapThreshold {
             tapCount += 1
             if tapCount >= threshold {
                 tapCount = 0
-//                moveToNextMessage(upperLimit: upperLimit)
-                self.checkAnswerAndAdvance()
+                if isOutro{
+                    self.checkAnswerAndAdvance()
+
+                } else{
+                    moveToNextMessage(upperLimit: upperLimit)
+                }
             }
         }
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + tapDelay) {
             self.isTapped = false
             if tapThreshold == nil {
-//                self.moveToNextMessage(upperLimit: upperLimit)
-                self.checkAnswerAndAdvance()
+                if isOutro{
+                    self.checkAnswerAndAdvance()
+                    
+                } else{
+                    self.moveToNextMessage(upperLimit: upperLimit)
+                }
 
             }
         }
