@@ -28,7 +28,7 @@ class QuestionViewModel: ObservableObject {
     @Published var parameter: Parameter = .home
     @Published var readyStartRecognition = false
     @Published var tipRecognition = false
-    @Published var navigateToHome = false
+    @Published var navigateToCredits = false
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
@@ -373,12 +373,19 @@ class QuestionViewModel: ObservableObject {
     
     private func advanceToNextQuestion() {
         if currentQuestionIndex == questionData.count - 1 {
-            navigateToHome = true
+            print(currentQuestionData)
+            print(questionData.count-1)
+            navigateToCredits = true
+            currentQuestionIndex = questionData.count - 1
+            currentMessageIndex = 0
+            currentMathIndex = 0
+            userAnswer = ""
         } else {
             if !currentQuestionData.is_complete {
                 let filteredQuestions = service.getAllQuestion().filter{ $0.sequence == currentQuestionData.sequence }
                 service.updateCompletedQuestion(mathQuestion: filteredQuestions.first!, isComplete: true)
             }
+            print(currentQuestionIndex)
             currentQuestionIndex += 1
             currentMessageIndex = 0
             currentMathIndex = 0
@@ -478,14 +485,17 @@ class QuestionViewModel: ObservableObject {
             tapCount += 1
             if tapCount >= threshold {
                 tapCount = 0
-                moveToNextMessage(upperLimit: upperLimit)
+//                moveToNextMessage(upperLimit: upperLimit)
+                self.checkAnswerAndAdvance()
             }
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + tapDelay) {
             self.isTapped = false
             if tapThreshold == nil {
-                self.moveToNextMessage(upperLimit: upperLimit)
+//                self.moveToNextMessage(upperLimit: upperLimit)
+                self.checkAnswerAndAdvance()
+
             }
         }
     }

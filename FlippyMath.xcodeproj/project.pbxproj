@@ -121,7 +121,6 @@
 		D91002BB2C77290300E65051 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91242462C75DF5700C61620 /* RewardAnimationView.swift */; };
 		D912424A2C75E0A800C61620 /* reward.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242482C75E0A800C61620 /* reward.riv */; };
-		D912424B2C75E0A800C61620 /* splash.riv in Resources */ = {isa = PBXBuildFile; fileRef = D91242492C75E0A800C61620 /* splash.riv */; };
 		D912424D2C75E1C000C61620 /* SplashAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912424C2C75E1C000C61620 /* SplashAnimation.swift */; };
 		D926888C2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */; };
 		D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF902C6F3EBC00D41B9A /* FlippyMathApp.swift */; };
@@ -136,12 +135,14 @@
 		D97277C32C81B74D00B72266 /* Snowflake Birthday.wav in Resources */ = {isa = PBXBuildFile; fileRef = D97277C22C81B74D00B72266 /* Snowflake Birthday.wav */; };
 		D97277C82C82196100B72266 /* singing-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D97277C62C82196100B72266 /* singing-1.wav */; };
 		D97277C92C82196100B72266 /* singing-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D97277C72C82196100B72266 /* singing-2.wav */; };
+		D97277CF2C823EB000B72266 /* splash.riv in Resources */ = {isa = PBXBuildFile; fileRef = D97277CE2C823EB000B72266 /* splash.riv */; };
+		D97277D12C82C32E00B72266 /* pinata2.riv in Resources */ = {isa = PBXBuildFile; fileRef = D97277D02C82C32E00B72266 /* pinata2.riv */; };
+		D97277D32C82F22E00B72266 /* pinata.riv in Resources */ = {isa = PBXBuildFile; fileRef = D97277D22C82F22E00B72266 /* pinata.riv */; };
 		D99187672C76830900BAB2EF /* penguins.riv in Resources */ = {isa = PBXBuildFile; fileRef = D99187662C76830900BAB2EF /* penguins.riv */; };
 		D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */; };
 		D9C4120F2C75C1500049C81F /* flyingballoon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412062C75C1500049C81F /* flyingballoon.riv */; };
 		D9C412112C75C1500049C81F /* arcticfox.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412082C75C1500049C81F /* arcticfox.riv */; };
 		D9C412132C75C1500049C81F /* balloon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C4120A2C75C1500049C81F /* balloon.riv */; };
-		D9C4121A2C75C96F0049C81F /* pinata.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412192C75C96F0049C81F /* pinata.riv */; };
 		D9C4121C2C75CE580049C81F /* polarbear.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C4121B2C75CE570049C81F /* polarbear.riv */; };
 		D9C4121E2C75CF4D0049C81F /* PenguinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4121D2C75CF4D0049C81F /* PenguinsView.swift */; };
 		D9F19D4D2C734E43004A5D99 /* SingingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F19D4C2C734E43004A5D99 /* SingingView.swift */; };
@@ -257,7 +258,6 @@
 		D91002B72C7685D800E65051 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
 		D91242462C75DF5700C61620 /* RewardAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnimationView.swift; sourceTree = "<group>"; };
 		D91242482C75E0A800C61620 /* reward.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reward.riv; sourceTree = "<group>"; };
-		D91242492C75E0A800C61620 /* splash.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = splash.riv; sourceTree = "<group>"; };
 		D912424C2C75E1C000C61620 /* SplashAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimation.swift; sourceTree = "<group>"; };
 		D926888B2C71E8C200286234 /* PilcrowRoundedVariable-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PilcrowRoundedVariable-Regular.ttf"; sourceTree = "<group>"; };
 		D934AF8D2C6F3EBC00D41B9A /* FlippyMath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlippyMath.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,12 +273,14 @@
 		D97277C22C81B74D00B72266 /* Snowflake Birthday.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Snowflake Birthday.wav"; sourceTree = "<group>"; };
 		D97277C62C82196100B72266 /* singing-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "singing-1.wav"; sourceTree = "<group>"; };
 		D97277C72C82196100B72266 /* singing-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "singing-2.wav"; sourceTree = "<group>"; };
+		D97277CE2C823EB000B72266 /* splash.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = splash.riv; sourceTree = "<group>"; };
+		D97277D02C82C32E00B72266 /* pinata2.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinata2.riv; sourceTree = "<group>"; };
+		D97277D22C82F22E00B72266 /* pinata.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinata.riv; sourceTree = "<group>"; };
 		D99187662C76830900BAB2EF /* penguins.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = penguins.riv; sourceTree = "<group>"; };
 		D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingBalloonView.swift; sourceTree = "<group>"; };
 		D9C412062C75C1500049C81F /* flyingballoon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flyingballoon.riv; sourceTree = "<group>"; };
 		D9C412082C75C1500049C81F /* arcticfox.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = arcticfox.riv; sourceTree = "<group>"; };
 		D9C4120A2C75C1500049C81F /* balloon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = balloon.riv; sourceTree = "<group>"; };
-		D9C412192C75C96F0049C81F /* pinata.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinata.riv; sourceTree = "<group>"; };
 		D9C4121B2C75CE570049C81F /* polarbear.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = polarbear.riv; sourceTree = "<group>"; };
 		D9C4121D2C75CF4D0049C81F /* PenguinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenguinsView.swift; sourceTree = "<group>"; };
 		D9F19D4C2C734E43004A5D99 /* SingingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingingView.swift; sourceTree = "<group>"; };
@@ -443,12 +445,13 @@
 		13B75F952C705A7200EBFCD1 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				D97277D22C82F22E00B72266 /* pinata.riv */,
+				D97277D02C82C32E00B72266 /* pinata2.riv */,
+				D97277CE2C823EB000B72266 /* splash.riv */,
 				D99187662C76830900BAB2EF /* penguins.riv */,
 				D3B103A62C767FCB00F61FD4 /* flippy.riv */,
 				D3B103812C765DAB00F61FD4 /* clap.riv */,
 				D91242482C75E0A800C61620 /* reward.riv */,
-				D91242492C75E0A800C61620 /* splash.riv */,
-				D9C412192C75C96F0049C81F /* pinata.riv */,
 				D9C412082C75C1500049C81F /* arcticfox.riv */,
 				D9C4120A2C75C1500049C81F /* balloon.riv */,
 				D9C4121B2C75CE570049C81F /* polarbear.riv */,
@@ -747,6 +750,7 @@
 				D347242B2C7350E6005C1E9F /* audio-9-2.wav in Resources */,
 				D3B1039D2C76755E00F61FD4 /* audio-7-4.wav in Resources */,
 				D34724082C7350E6005C1E9F /* audio-4-3.wav in Resources */,
+				D97277D12C82C32E00B72266 /* pinata2.riv in Resources */,
 				D34724182C7350E6005C1E9F /* audio-apretiation-3-2.wav in Resources */,
 				D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */,
 				D3B103A12C76796700F61FD4 /* birthday-party.mp3 in Resources */,
@@ -764,6 +768,7 @@
 				D347242A2C7350E6005C1E9F /* audio-5-4.wav in Resources */,
 				D3B103802C75F79D00F61FD4 /* comedy-kids.mp3 in Resources */,
 				D34724092C7350E6005C1E9F /* audio-1-1.wav in Resources */,
+				D97277D32C82F22E00B72266 /* pinata.riv in Resources */,
 				D3B103982C76755E00F61FD4 /* audio-8-4.wav in Resources */,
 				D347241C2C7350E6005C1E9F /* audio-apretiation-5-4.wav in Resources */,
 				D34724172C7350E6005C1E9F /* audio-7-1.wav in Resources */,
@@ -791,13 +796,11 @@
 				D3B103A52C767BD500F61FD4 /* splash-audio.wav in Resources */,
 				13B75FAC2C705B7C00EBFCD1 /* correct.wav in Resources */,
 				13B75FA92C705B7C00EBFCD1 /* click.wav in Resources */,
-				D912424B2C75E0A800C61620 /* splash.riv in Resources */,
 				D3B1039B2C76755E00F61FD4 /* audio-6-4.wav in Resources */,
 				D9C412132C75C1500049C81F /* balloon.riv in Resources */,
 				D97277C32C81B74D00B72266 /* Snowflake Birthday.wav in Resources */,
 				D9C4120F2C75C1500049C81F /* flyingballoon.riv in Resources */,
 				13B75F9D2C705AE200EBFCD1 /* aku tinggal di.wav in Resources */,
-				D9C4121A2C75C96F0049C81F /* pinata.riv in Resources */,
 				D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */,
 				13B75FAB2C705B7C00EBFCD1 /* level-completed.wav in Resources */,
 				D9C412112C75C1500049C81F /* arcticfox.riv in Resources */,
@@ -823,6 +826,7 @@
 				D347242D2C7350E6005C1E9F /* audio-5-2.wav in Resources */,
 				D34724292C7350E6005C1E9F /* audio-apretiation-3-4.wav in Resources */,
 				D99187672C76830900BAB2EF /* penguins.riv in Resources */,
+				D97277CF2C823EB000B72266 /* splash.riv in Resources */,
 				D3B103A72C767FCB00F61FD4 /* flippy.riv in Resources */,
 				13B75FAB2C705B7C00EBFCD1 /* level-completed.wav in Resources */,
 				D347241A2C7350E6005C1E9F /* audio-0-2.wav in Resources */,
@@ -1046,7 +1050,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1087,7 +1091,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

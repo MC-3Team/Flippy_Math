@@ -148,13 +148,13 @@ struct QuestionLayout<Content: View>: View {
                             .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                             .fontWeight(.bold)
                             .padding(.leading, 80)
-                            .padding(.trailing, viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 ? 100 : 10)
+                            .padding(.trailing, viewModel.currentQuestionIndex == 6 && viewModel.currentMessageIndex == 3 ? 100 : 10)
                             .padding(.bottom, 10)
                             .lineLimit(nil)
                             .frame(width: geometry.size.width * 0.7, alignment: .leading)
                             .multilineTextAlignment(.leading)
                         
-                            if viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
+                            if viewModel.currentQuestionIndex == 6 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
                                 HStack {
                                     Spacer()
                                     riveVM.view().frame(width: 120, height: 120).padding(.trailing, 20).padding(.bottom, 10)
@@ -173,8 +173,10 @@ struct QuestionLayout<Content: View>: View {
                     .position(x: geometry.size.width * 0.23, y: geometry.size.height * 0.955)
                     .disabled(
                         (viewModel.currentQuestionData.problems != [] ? viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isQuestion && viewModel.userAnswer.isEmpty : false)
-                        || viewModel.currentQuestionIndex == 7 && viewModel.currentMessageIndex == 1 ? true : false 
-                        || viewModel.currentQuestionIndex == 4 && viewModel.currentMessageIndex == 1)
+                        || viewModel.currentQuestionIndex == 8 && viewModel.currentMessageIndex == 1 ? true : false
+                        || viewModel.currentQuestionIndex == 4 && viewModel.currentMessageIndex == 1 ? true : false
+                        || viewModel.currentQuestionIndex == 10 && viewModel.currentMessageIndex == 2 ? true : false
+                    )
                 }
                 .onDisappear {
                     textPositions.removeAll()
@@ -187,10 +189,10 @@ struct QuestionLayout<Content: View>: View {
         .onChange(of: viewModel.currentQuestionData) {_, _ in
             currentImage = viewModel.currentQuestionData.background
         }
-        .onChange(of: viewModel.navigateToHome) { _ , _ in
-            if viewModel.navigateToHome {
-                router.navigateToRoot()
-                viewModel.navigateToHome = false
+        .onChange(of: viewModel.navigateToCredits) { _ , _ in
+            if viewModel.navigateToCredits {
+                router.navigate(to: .credit)
+                viewModel.navigateToCredits = false
             }
         }
         .onDisappear {
@@ -205,7 +207,9 @@ struct QuestionLayout<Content: View>: View {
             return "NextButton"
         } else if viewModel.currentQuestionIndex == 4 && viewModel.currentMessageIndex == 1{
             return "NextButtonDisable"
-        } else if viewModel.currentQuestionIndex == 7 && viewModel.currentMessageIndex == 1 {
+        } else if viewModel.currentQuestionIndex == 8 && viewModel.currentMessageIndex == 1 {
+            return "NextButtonDisable"
+        } else if  viewModel.currentQuestionIndex == 10 && viewModel.currentMessageIndex == 2{
             return "NextButtonDisable"
         } else if !viewModel.currentQuestionData.problems.isEmpty {
             let currentProblem = viewModel.currentQuestionData.problems[viewModel.currentMathIndex]

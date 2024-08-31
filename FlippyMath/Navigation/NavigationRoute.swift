@@ -13,6 +13,7 @@ enum NavigationRoute: Routable {
     case home
     case history
     case question(Int, Parameter)
+    case credit
     
     var body: some View {
         switch self {
@@ -22,6 +23,8 @@ enum NavigationRoute: Routable {
             HistoryGridView()
         case .question(let sequence, let parameter):
             QuestionView(sequenceLevel: sequence, parameter: parameter)
+        case .credit:
+            CreditsView()
         }
     }
 }

@@ -13,7 +13,7 @@ struct TextKaraoke{
 }
 
 struct SingingView: View {
-    @StateObject var viewModel: QuestionViewModel
+    @ObservedObject var viewModel: QuestionViewModel
     @EnvironmentObject var audioHelper: AudioHelper
     
     @State private var colorIndexes = [0, 0, 0, 0, 0]
@@ -141,21 +141,16 @@ struct SingingView: View {
                     if let audioTime = audioHelper.getAudioDuration(named: "Selamat Ulang Tahun", fileType: "wav") {
                         let dispatchTime = DispatchTime.now() + audioTime
                         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                            viewModel.currentMessageIndex += 1
+                            viewModel.checkAnswerAndAdvance()
                         }
                     } else {
                         // Handle the case where the duration couldn't be retrieved
                         print("Failed to get audio duration.")
                     }
-                    //
-                    
-                    
-                    print("asdas")
                 }
                 .onDisappear(){
                     audioHelper.setVoiceVolume(1.0)
                     audioHelper.playMusicQuestion(named: "comedy-kids", fileType: "mp3")
-                    print("evfg")
                 }
                 
                 

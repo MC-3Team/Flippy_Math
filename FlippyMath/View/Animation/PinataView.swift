@@ -22,7 +22,26 @@ struct PinataView: View {
     }
 }
 
+struct SwingingPinataView: View {
+    @StateObject var riveVM = RiveViewModel(fileName: "pinata2", stateMachineName: "State Machine 1")
+    
+    
+    var body: some View {
+        VStack{
+            riveVM.view()
+                .ignoresSafeArea()
+            
+        }
+        
+    }
+}
+
+
+
 #Preview {
     PinataView()
 }
 
+#Preview {
+    SwingingPinataView()
+}
