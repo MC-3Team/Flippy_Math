@@ -147,4 +147,8 @@ class AudioHelper: ObservableObject {
     func setMusicQuestionVolume(_ volume: Float) {
         musicQuestionPlayer?.volume = isMute ? 0 : volume
     }
+    
+    func setVoiceVolume(_ volume: Float) {
+        voicePlayer?.volume = volume
+    }
 }

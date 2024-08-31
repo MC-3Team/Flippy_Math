@@ -304,6 +304,41 @@
         {
             "id": 4,
             "sequence": 4,
+            "background": "Q3_Background",
+            "is_complete": false,
+            "historyLevel": "Menyanyi",
+            "stories": [
+                {
+                    "id": 1,
+                    "sequence": 1,
+                    "story": "Yeay, sudah saatnya untuk memotong kue ulang tahun. Sebelum itu ayo kita bernyanyi bersama terlebih dahulu.",
+                    "audio": "singing-2",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 2,
+                    "sequence": 2,
+                    "story": "...",
+                    "audio": "Selamat Ulang Tahun",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+                {
+                    "id": 3,
+                    "sequence": 3,
+                    "story": "Terima kasih semuanya, Ayo ambil dan makan kuenya.",
+                    "audio": "singing-1",
+                    "apretiation": "",
+                    "audio_apretiation": ""
+                },
+       
+            ],
+            "problems": []
+        },
+        {
+            "id": 5,
+            "sequence": 5,
             "background": "Q4_Background",
             "is_complete": false,
             "historyLevel": "Kue",
@@ -382,8 +417,8 @@
             ]
         },
         {
-            "id": 5,
-            "sequence": 5,
+            "id": 6,
+            "sequence": 6,
             "background": "Q5_Background",
             "is_complete": false,
             "historyLevel": "Lalat",
@@ -496,8 +531,8 @@
             ]
         },
         {
-            "id": 6,
-            "sequence": 6,
+            "id": 7,
+            "sequence": 7,
             "background": "Q6_Background",
             "is_complete": false,
             "historyLevel": "Serigala",
@@ -602,8 +637,8 @@
             ]
         },
         {
-            "id": 7,
-            "sequence": 7,
+            "id": 8,
+            "sequence": 8,
             "background": "Q7_Background",
             "is_complete": false,
             "historyLevel": "Permen",
@@ -724,8 +759,8 @@
             ]
         },
         {
-            "id": 8,
-            "sequence": 8,
+            "id": 9,
+            "sequence": 9,
             "background": "Q8_Background",
             "is_complete": false,
             "historyLevel": "Kado",
@@ -864,8 +899,8 @@
             ]
         },
         {
-                    "id": 9,
-                    "sequence": 9,
+                    "id": 10,
+                    "sequence": 10,
                     "background": "Outro_Background",
                     "is_complete": false,
                     "historyLevel": "Outro",
