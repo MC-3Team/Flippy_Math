@@ -45,24 +45,28 @@ struct QuestionView: View {
             questionThreeView(geometry: geometry)
             
         case 4:
-            questionFourView(geometry: geometry)
+            SingingView(viewModel: viewModel)
             
         case 5:
+            questionFourView(geometry: geometry)
+            
+
+        case 6:
             questionFiveView(geometry: geometry)
                 .onAppear {
                     viewModel.updateFlyPositions(for: verticalSizeClass!)
                 }
             
-        case 6:
+        case 7:
             questionSixView(geometry: geometry)
             
-        case 7:
+        case 8:
             questionSevenView(geometry: geometry)
             
-        case 8:
+        case 9:
             questionEightView(geometry: geometry)
             
-        case 9:
+        case 10:
             outroView(geometry: geometry)
             
         default:
@@ -271,6 +275,8 @@ struct QuestionView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 1.2)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.26)
+                        .allowsHitTesting(false)
+
                 }
                 
                 if viewModel.currentMessageIndex < 2 {
@@ -284,7 +290,7 @@ struct QuestionView: View {
                         .rotationEffect(.degrees(-10))
                         .onTapGesture {
                             if viewModel.currentMessageIndex == 1 {
-                                viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2)
+                                viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2, isOutro: false)
                             }
                         }
                     
@@ -325,6 +331,8 @@ struct QuestionView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 1.05)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.16)
+                        .allowsHitTesting(false)
+
                 }
                 
                 if viewModel.currentMessageIndex < 2 {
@@ -332,13 +340,13 @@ struct QuestionView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 0.40)
-                        .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.505)
+                        .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.5)
                         .scaleEffect(viewModel.isTapped ? 1.2 : 1.0)
                         .animation(.easeInOut(duration: 0.2), value: viewModel.isTapped)
                         .rotationEffect(.degrees(-10))
                         .onTapGesture {
                             if viewModel.currentMessageIndex == 1 {
-                                viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2)
+                                viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2, isOutro: false)
                             }
                         }
                     
@@ -406,17 +414,17 @@ struct QuestionView: View {
         
         if isCompact {
             ZStack {
-                Image("Outro_iPhoneBackground")
-                    .resizable()
-                    .frame(
-                        width: geometry.size.width * 1.2,
-                        height: geometry.size.height * 1.2
-                    )
-                    .position(
-                        x: geometry.size.width / 2,
-                        y: geometry.size.height / 2
-                    )
-                
+//                Image("Outro_iPhoneBackground")
+//                    .resizable()
+//                    .frame(
+//                        width: geometry.size.width * 1.2,
+//                        height: geometry.size.height * 1.2
+//                    )
+//                    .position(
+//                        x: geometry.size.width / 2,
+//                        y: geometry.size.height / 2
+//                    )
+//                
                 if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
                     Image("Outro_HBD_Banner")
                         .resizable()
@@ -453,7 +461,7 @@ struct QuestionView: View {
                         .animation(.easeInOut(duration: 0.4), value: viewModel.isTapped)
                         .onTapGesture {
                             if viewModel.currentMessageIndex == 2 {
-                                viewModel.handleTap(tapDelay: 0.5, upperLimit: 3)
+                                viewModel.handleTap(tapDelay: 0.5, upperLimit: 3, isOutro: true)
                             }
                         }
                     
@@ -490,10 +498,10 @@ struct QuestionView: View {
             }
         } else {
             ZStack {
-                Image("Outro_Background")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
+//                Image("Outro_Background")
+//                    .resizable()
+//                    .scaledToFill()
+//                    .ignoresSafeArea()
                 
                 if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
                     Image("Outro_HBD_Banner")
@@ -531,7 +539,7 @@ struct QuestionView: View {
                         .animation(.easeInOut(duration: 0.4), value: viewModel.isTapped)
                         .onTapGesture {
                             if viewModel.currentMessageIndex == 2 {
-                                viewModel.handleTap(tapDelay: 0.5, upperLimit: 3)
+                                viewModel.handleTap(tapDelay: 0.5, upperLimit: 3, isOutro: true)
                             }
                         }
                     
@@ -583,6 +591,8 @@ struct QuestionView: View {
 //    QuestionView(sequenceLevel: 1, parameter: .home)
 //}
 
+
+//preview ngapa banyak gini anjing, device udah ada tinggal run
 struct Question1View: View {
     
     @Environment(\.verticalSizeClass) var verticalSizeClass

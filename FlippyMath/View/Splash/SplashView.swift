@@ -14,21 +14,23 @@ struct SplashView: View {
     @EnvironmentObject var audioHelper: AudioHelper
     
     var body: some View {
-        if isNavigating {
-            HomeView()
-        } else {
-            SplashAnimation()
-                .onAppear {
-                    audioHelper.playSoundEffect(named: "splash-audio", fileType: "wav")
-                if isFirst {
-                    viewModel.insertAllData()
-                    isFirst = false
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                      isNavigating = true
-                                  }
+        ZStack {
+            if isNavigating {
+                HomeView()
+            } else {
+                SplashAnimation()
+                    .onAppear {
+                        audioHelper.playSoundEffect(named: "splash-audio", fileType: "wav")
+                        if isFirst {
+                            viewModel.insertAllData()
+                            isFirst = false
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            isNavigating = true
+                        }
+                    }
             }
-        }
+        }.statusBarHidden(true)
       
     }
 }
