@@ -35,7 +35,7 @@ struct QuestionView: View {
         let _ = print(viewModel.currentQuestionIndex)
         switch viewModel.currentQuestionIndex {
         case 0:
-            EmptyView()
+            introView(geometry: geometry)
             // intro
         case 1:
             questionOneView(geometry: geometry)
@@ -56,7 +56,7 @@ struct QuestionView: View {
         case 5:
             questionFourView(geometry: geometry)
             
-
+            
         case 6:
             questionFiveView(geometry: geometry)
                 .onAppear {
@@ -66,10 +66,7 @@ struct QuestionView: View {
         case 7:
             questionSixView(geometry: geometry)
                 .onAppear {
-                    viewModel.updateBabyFoxPositions(for: verticalSizeClass!
-                    
-                    
-)
+                    viewModel.updateBabyFoxPositions(for: verticalSizeClass!)
                 }
             
         case 8:
@@ -85,6 +82,14 @@ struct QuestionView: View {
             defaultView(geometry: geometry)
         }
     }
+    
+    /// Mark: Intro
+    @ViewBuilder
+    private func introView(geometry: GeometryProxy) -> some View {
+        IdleBalloonView()
+    }
+    
+    
     
     /// MARK: Question 1
     @ViewBuilder
@@ -288,7 +293,7 @@ struct QuestionView: View {
                         .frame(width: geometry.size.width * 1.2)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.26)
                         .allowsHitTesting(false)
-
+                    
                 }
                 
                 if viewModel.currentMessageIndex < 2 {
@@ -344,7 +349,7 @@ struct QuestionView: View {
                         .frame(width: geometry.size.width * 1.05)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.16)
                         .allowsHitTesting(false)
-
+                    
                 }
                 
                 if viewModel.currentMessageIndex < 2 {
@@ -426,17 +431,17 @@ struct QuestionView: View {
         
         if isCompact {
             ZStack {
-//                Image("Outro_iPhoneBackground")
-//                    .resizable()
-//                    .frame(
-//                        width: geometry.size.width * 1.2,
-//                        height: geometry.size.height * 1.2
-//                    )
-//                    .position(
-//                        x: geometry.size.width / 2,
-//                        y: geometry.size.height / 2
-//                    )
-//                
+                //                Image("Outro_iPhoneBackground")
+                //                    .resizable()
+                //                    .frame(
+                //                        width: geometry.size.width * 1.2,
+                //                        height: geometry.size.height * 1.2
+                //                    )
+                //                    .position(
+                //                        x: geometry.size.width / 2,
+                //                        y: geometry.size.height / 2
+                //                    )
+                //
                 if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
                     Image("Outro_HBD_Banner")
                         .resizable()
@@ -511,10 +516,10 @@ struct QuestionView: View {
             }
         } else {
             ZStack {
-//                Image("Outro_Background")
-//                    .resizable()
-//                    .scaledToFill()
-//                    .ignoresSafeArea()
+                //                Image("Outro_Background")
+                //                    .resizable()
+                //                    .scaledToFill()
+                //                    .ignoresSafeArea()
                 
                 if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
                     Image("Outro_HBD_Banner")
@@ -730,6 +735,7 @@ struct Question1View: View {
 }
 
 //#Preview {
+
 //    Question1View()
 //}
 
@@ -776,7 +782,7 @@ struct Question2View: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
+                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.1)
                         }
                     }
                     
@@ -838,7 +844,7 @@ struct Question2View: View {
                 let imageWidth: CGFloat = isCompact ? geometry.size.width * 0.23 : geometry.size.width * 0.30
                 let tableWidth: CGFloat = isCompact ? geometry.size.width * 0.35 : geometry.size.width * 0.45
                 let imagePositionX: CGFloat = isCompact ? geometry.size.width * 0.235 : geometry.size.width / 5.5
-                let imagePositionY: CGFloat = isCompact ? geometry.size.height * 0.46 : geometry.size.height * 0.44
+                let imagePositionY: CGFloat = isCompact ? geometry.size.height * 0.46 : geometry.size.height * 0.442
                 let tablePositionX: CGFloat = isCompact ? geometry.size.width * 0.23 : geometry.size.width * 0.175
                 let tablePositionY: CGFloat = isCompact ? geometry.size.height * 0.13 : geometry.size.height * 0.1
                 let penguinFrameWidth: CGFloat = isCompact ? geometry.size.width * 0.6 : geometry.size.width * 0.8
@@ -870,9 +876,9 @@ struct Question2View: View {
     }
 }
 
-//#Preview(body: {
-//    Question2View()
-//})
+#Preview(body: {
+    Question2View()
+})
 
 struct Question3View: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
@@ -1687,9 +1693,9 @@ struct Question7View: View {
     }
 }
 
-#Preview(body: {
-    Question7View()
-})
+//#Preview(body: {
+//    Question7View()
+//})
 
 struct Question8View: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
@@ -2111,3 +2117,129 @@ struct OutroView: View {
 //    OutroView()
 //})
 
+//struct IntroView: View {
+//
+//    @Environment(\.verticalSizeClass) var verticalSizeClass
+//
+//    var isCompact: Bool {
+//        verticalSizeClass == .compact
+//    }
+//
+//    // Constants
+//    let backgroundScale: CGFloat = 1.2
+//
+//    ///MARK: Bottom View
+//    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
+//
+//    var body: some View {
+//        GeometryReader { geometry in
+//            // Constants
+//            let penguinWidth = geometry.size.width * (isCompact ? 0.6 : 0.8)
+//            let penguinHeight = geometry.size.height * (isCompact ? 0.57 : 0.65)
+//            let unavailablePenguinWidth = geometry.size.width * (isCompact ? 0.08 : 0.1)
+//            let unavailablePenguinXPositions = isCompact ? [0.28, 0.71] : [0.22, 0.77]
+//            let unavailablePenguinYPosition = geometry.size.height * (isCompact ? 0.59 : 0.68)
+//
+//            ZStack {
+//                Group {
+//                    //MARK: Background
+//                    Image("Q1_iPhoneBackground")
+//                        .resizable()
+//                        .frame(width: geometry.size.width * backgroundScale,
+//                               height: geometry.size.height * backgroundScale)
+//                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+//
+//                    ///MARK:HomeButton
+//                    if isCompact {
+//                        Button {
+//                        } label: {
+//                            Image("HomeButton")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
+//                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
+//                        }
+//                    } else {
+//                        Button {
+//                        } label: {
+//                            Image("HomeButton")
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
+//                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
+//                        }
+//                    }
+//
+//                    ///Problem String
+//                    HStack {
+//                        ZStack(alignment: .topLeading) {
+//                            VStack(spacing: 0) {
+//                                Text("3 - 5 = 2")
+//                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
+//                                    .fontWeight(.heavy)
+//                                    .foregroundColor(.white)
+//                                    .multilineTextAlignment(.center)
+//                                    .padding(.top, 16)
+//                                    .padding(.horizontal, 16)
+//                                    .padding(.bottom, 0)
+//                            }
+//                        }
+//                    }
+//                    .frame(width: geometry.size.width * 0.9)
+//                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
+//
+//
+//
+//                    ///MARK: Bottom Background iPhone
+//                    HStack {
+//                        FlippyRiveView(riveInput: $riveInput)
+//                            .frame(width: geometry.size.width * 0.25)
+//                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
+//
+//                        ZStack(alignment: .leading) {
+//                            Image("MessagePlaceholder")
+//                                .resizable()
+//                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
+//                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
+//
+//                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
+//                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
+//                                .fontWeight(.bold)
+//                                .padding(.leading, 20)
+//                                .padding(.bottom, 10)
+//                                .lineLimit(nil)
+//                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
+//                                .multilineTextAlignment(.leading)
+//                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
+//                        }
+//
+//                        Button(action: {
+//                        }, label: {
+//                            Image("CorrectButton")
+//                                .resizable()
+//                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
+//                        })
+//                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
+//                    }
+//                }
+//
+//                PenguinsView()
+//                    .frame(width: penguinWidth)
+//                    .position(x: geometry.size.width / 2, y: penguinHeight)
+//
+//                ForEach(0..<unavailablePenguinXPositions.count) { index in
+//                    Image("Q1_UnavailablePenguin")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: unavailablePenguinWidth)
+//                        .position(x: geometry.size.width * unavailablePenguinXPositions[index],
+//                                  y: unavailablePenguinYPosition)
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//#Preview {
+//    IntroView()
+//}

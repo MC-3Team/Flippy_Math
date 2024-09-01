@@ -370,7 +370,8 @@ struct QuestionLayout<Content: View>: View {
                                 .padding(.leading, 80)
                                 .padding(.trailing, viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 ? 100 : 10)
                                 .padding(.bottom, 10)
-                                .lineLimit(nil)
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.6)
                                 .frame(width: geometry.size.width * 0.7, alignment: .leading)
                                 .multilineTextAlignment(.leading)
                             
@@ -381,7 +382,7 @@ struct QuestionLayout<Content: View>: View {
                                 }
                             }
                         }
-                        .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.94)
+                        .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.935)
                         
                         Button(action: {
                             viewModel.checkAnswerAndAdvance()
