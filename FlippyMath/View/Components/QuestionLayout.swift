@@ -300,7 +300,7 @@ struct QuestionLayout<Content: View>: View {
                                 .minimumScaleFactor(0.6)
                                 .frame(width: geometry.size.width * 0.7, alignment: .leading)
                                 .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
+                                .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.92)
                             
                             if viewModel.currentQuestionIndex == 6 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
                                 HStack {
@@ -367,7 +367,7 @@ struct QuestionLayout<Content: View>: View {
                             }).id(viewModel.repeatQuestion)
                                 .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
                                 .fontWeight(.bold)
-                                .padding(.leading, 80)
+                                .padding(.leading, 70)
                                 .padding(.trailing, viewModel.currentQuestionIndex == 5 && viewModel.currentMessageIndex == 3 ? 100 : 10)
                                 .padding(.bottom, 10)
                                 .lineLimit(2)

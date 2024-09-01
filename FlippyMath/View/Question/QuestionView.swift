@@ -126,7 +126,7 @@ struct QuestionView: View {
         let imageWidth = geometry.size.width * (isCompact ? 0.23 : 0.30)
         let tableWidth = geometry.size.width * (isCompact ? 0.35 : 0.45)
         let imagePositionX = geometry.size.width * (isCompact ? 0.235 : 1/5.5)
-        let imagePositionY = geometry.size.height * (isCompact ? 0.46 : 0.44)
+        let imagePositionY = geometry.size.height * (isCompact ? 0.46 : 0.435)
         let tablePositionX = geometry.size.width * (isCompact ? 0.23 : 0.175)
         let tablePositionY = geometry.size.height * (isCompact ? 0.13 : 0.1)
         let penguinFrameWidth = geometry.size.width * (isCompact ? 0.6 : 0.8)

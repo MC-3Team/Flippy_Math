@@ -123,8 +123,10 @@ struct HistoryGridView: View {
                 }, label: {
                     Image("HomeButton")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 0.11, height:verticalSizeClass == .compact ? nil : geometry.size.height * 0.15)
+                        .aspectRatio(contentMode: .fit)
+
+
                 }).position(x:verticalSizeClass == .compact ? geometry.size.width * 0.03 : geometry.size.width * 0.06, y:  geometry.size.height * 0.08)
                 
                     .onDisappear(perform: {
