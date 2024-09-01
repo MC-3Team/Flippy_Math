@@ -47,6 +47,7 @@ struct CreditsView: View {
                         }
                         .offset(y: animate ? -geometry.size.height : geometry.size.height)
                     }
+                    .allowsHitTesting(false)
                     
                     if showTextCredit {
                         Image("Logo")
@@ -54,8 +55,6 @@ struct CreditsView: View {
                             .frame(width: 100, height: 100)
                             .foregroundColor(.white)
                     }
-                    
-                    Rectangle().fill(Color.black.opacity(0.05)).frame(width: geometry.size.width, height: geometry.size.height)
                     
                 }
                 .position(x: geometry.size.width / 2, y: geometry.size.height * 0.5)
