@@ -75,7 +75,7 @@ struct QuestionLayout<Content: View>: View {
                             case 9 :
                                 backgroundImageName = "Q8_iPhoneBackground"
                             case 10 :
-                                backgroundImageName = "Q9_iPhoneBackground"
+                                backgroundImageName = "Outro_iPhoneBackground"
                             default:
                                 backgroundImageName = "Q0_iPhoneBackground"
                             }
@@ -103,7 +103,7 @@ struct QuestionLayout<Content: View>: View {
                             case 9 :
                                 backgroundImageName = "Q8_iPhoneBackground"
                             case 10 :
-                                backgroundImageName = "Q9_iPhoneBackground"
+                                backgroundImageName = "Outro_iPhoneBackground"
                             default:
                                 backgroundImageName = "Q0_iPhoneBackground"
                             }
@@ -240,20 +240,20 @@ struct QuestionLayout<Content: View>: View {
                         HStack(spacing: 4) {
                             Image(uiImage: (!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? UIImage(named: "handClap") : UIImage(systemName: "wave.3.right"))!)
                             Text(!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? "Tepukkan tangan" : "Sebutkan angka")
-                                .font(.callout)
+                                .font(isCompact ? .caption : .callout)
                                 .fontWeight(.bold)
                             Text(!viewModel.currentQuestionData.problems[viewModel.currentMathIndex].isSpeech ? "untuk memunculkan angka" : "untuk menjawab")
-                                .font(.callout)
+                                .font(isCompact ? .caption : .callout)
                         }
-                        .padding(.top, 32)
-                        .padding(.bottom, 16)
-                        .padding(.horizontal, 16)
+                        .padding(.top,isCompact ? 30 : 32)
+                        .padding(.bottom,isCompact ? 8 : 16)
+                        .padding(.horizontal,isCompact ? 8 : 16)
                         .foregroundColor(.black)
                         .background(
                             ChatBubbleShape()
                                 .fill(Color.white)
                         )
-                        .position(x: position.x - 8 , y: position.y + 96)
+                        .position(x: isCompact ? position.x - 60 : position.x - 8 , y: isCompact ?  position.y + 68 : position.y + 96)
                     }
                 }
                 

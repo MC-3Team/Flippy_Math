@@ -163,7 +163,7 @@ class QuestionViewModel: ObservableObject {
                 self?.showAlertInternet = true
                 return
             }
-
+            
             guard let self = self else { return }
             self.readyStartRecognition = false
             self.speechRecognitionService.startRecognition()
@@ -186,7 +186,7 @@ class QuestionViewModel: ObservableObject {
                 .disposed(by: self.disposeBag)
         }
     }
-
+    
     func stopRecognition(tryRepeat: Bool) {
         guard !isRecognitionInProgress else { return }
         isRecognitionInProgress = true
@@ -200,7 +200,7 @@ class QuestionViewModel: ObservableObject {
                 group.leave()
                 return
             }
-
+            
             self?.speechRecognitionService.stopRecognition()
                 .do(onSubscribe: { [weak self] in
                     print("Stop speech recognition...")
@@ -220,7 +220,7 @@ class QuestionViewModel: ObservableObject {
                 })
                 .disposed(by: self?.disposeBag ?? DisposeBag())
         }
-
+        
         group.notify(queue: .main) { [weak self] in
             self?.isRecognitionInProgress = false
             if tryRepeat {
@@ -275,7 +275,7 @@ class QuestionViewModel: ObservableObject {
         audioHelper.setSoundEffectVolume(0.1)
         audioHelper.playSoundEffect(named: "click", fileType: "wav")
         audioHelper.setSoundEffectVolume(1.0)
-
+        
         guard !currentQuestionData.problems.isEmpty else {
             advanceToNextStory()
             return
@@ -519,14 +519,45 @@ class QuestionViewModel: ObservableObject {
     /// MARK: SOAL NOMOR 6: Arctic Fox
     @Published var isPlaying: Bool = false
     
+    //    @Published var babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
+    //        (x: 0.476, y: 0.74),
+    //        (x: 0.588, y: 0.76),
+    //        (x: 0.222, y: 0.70),
+    //        (x: 0.125, y: 0.74),
+    //        (x: 0.8, y: 0.75),
+    //        (x: 0.909, y: 0.7)
+    //    ]
+    //    
     @Published var babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
-        (x: 0.476, y: 0.74),
-        (x: 0.588, y: 0.76),
-        (x: 0.222, y: 0.70),
-        (x: 0.125, y: 0.74),
-        (x: 0.8, y: 0.75),
-        (x: 0.909, y: 0.7)
+        (x: 0.456, y: 0.64),
+        (x: 0.568, y: 0.66),
+        (x: 0.202, y: 0.60),
+        (x: 0.105, y: 0.64),
+        (x: 0.78, y: 0.65),
+        (x: 0.89, y: 0.6)
     ]
+    
+    func updateBabyFoxPositions(for sizeClass: UserInterfaceSizeClass) {
+        if sizeClass == .compact {
+            babyFoxPositions = [
+                (x: 0.456, y: 0.64),
+                (x: 0.568, y: 0.66),
+                (x: 0.202, y: 0.60),
+                (x: 0.105, y: 0.64),
+                (x: 0.78, y: 0.65),
+                (x: 0.89, y: 0.6)
+            ]
+        } else {
+            babyFoxPositions = [
+                (x: 0.476, y: 0.74),
+                (x: 0.588, y: 0.76),
+                (x: 0.222, y: 0.70),
+                (x: 0.125, y: 0.74),
+                (x: 0.8, y: 0.75),
+                (x: 0.909, y: 0.7)
+            ]
+        }
+    }
     
     var foxCount: Int {
         return (currentMessageIndex < 3) ? 2 : babyFoxPositions.count
@@ -545,7 +576,7 @@ class QuestionViewModel: ObservableObject {
     @Published var rotation: Double = 0
     @Published var scale: CGFloat = 0.5
     
-  
+    
     ///MARK: SHARED
     func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5, upperLimit: Int = 2, isOutro : Bool) {
         isTapped = true
@@ -555,8 +586,10 @@ class QuestionViewModel: ObservableObject {
             if tapCount >= threshold {
                 tapCount = 0
                 if isOutro{
-                    self.checkAnswerAndAdvance()
-
+                    if currentMessageIndex < upperLimit {
+                        self.checkAnswerAndAdvance()
+                    }
+                    
                 } else{
                     moveToNextMessage(upperLimit: upperLimit)
                 }
@@ -568,12 +601,14 @@ class QuestionViewModel: ObservableObject {
             self.isTapped = false
             if tapThreshold == nil {
                 if isOutro{
-                    self.checkAnswerAndAdvance()
+                    if self.currentMessageIndex < upperLimit {
+                        self.checkAnswerAndAdvance()
+                    }
                     
                 } else{
                     self.moveToNextMessage(upperLimit: upperLimit)
                 }
-
+                
             }
         }
     }

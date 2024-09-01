@@ -65,6 +65,12 @@ struct QuestionView: View {
             
         case 7:
             questionSixView(geometry: geometry)
+                .onAppear {
+                    viewModel.updateBabyFoxPositions(for: verticalSizeClass!
+                    
+                    
+)
+                }
             
         case 8:
             questionSevenView(geometry: geometry)
@@ -437,6 +443,7 @@ struct QuestionView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 0.65)
                         .position(x: geometry.size.width / 2, y: geometry.size.width * 0.065)
+                        .allowsHitTesting(false)
                     
                     IdleBalloonView()
                     
