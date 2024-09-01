@@ -11,6 +11,7 @@ import Routing
 struct HistoryGridView: View {
     @StateObject var viewModel = HistoryViewModel()
     @Environment(\.dismiss) var dismiss
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @EnvironmentObject var audioHelper: AudioHelper
     @EnvironmentObject private var router: Router<NavigationRoute>
     
@@ -23,50 +24,52 @@ struct HistoryGridView: View {
                 
                 ScrollView([.vertical], showsIndicators: false) {
                     ZStack{
-                        Image("HistoryLine")
-                            .resizable()
-                            .padding(.top, geometry.size.width * 0.32)
-                            .padding(.bottom, geometry.size.width * 0.32)
-                            .padding(.leading, geometry.size.height * 0.2)
-                            .padding(.trailing, geometry.size.height * 0.2)
+                        if verticalSizeClass == .regular{
+                            Image("HistoryLine")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.8)
+                        }
+                        else{
+                            Image("HistoryLine")
+                                .resizable()
+                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 1.2)
+                                .aspectRatio(contentMode: .fill)
 
-
-                        VStack(spacing: 80) {
+                        }
+                        
+                        VStack(spacing: 20) {
                             ForEach(0..<4) { row in
                                 if row % 2 == 0{
                                     HStack(spacing: 160) {
                                         ForEach(0..<3) { col in
                                             let index = row * 3 + col
                                             if index < viewModel.buttons.count {
-                                                
                                                 let button = viewModel.buttons[index]
-                                                let _  = print(button.imageName)
-                                                
-                                                
                                                 Button(action: {
                                                     router.navigate(to: .question(Int(button.sequence), .history))
                                                 }, label: {
-                                                    Image(button.imageName)
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .cornerRadius(16)
-                                                        .frame(width: geometry.size.width * 0.2)
-                                                        .overlay(
-                                                            GeometryReader{ geo2 in
-                                                                button.isPassed ? nil : Image("lock")
-                                                                    .resizable()
-                                                                    .aspectRatio(contentMode: .fit)
-                                                                    .cornerRadius(16)
-                                                                    .position(x: geo2.size.width * 0.514 , y: geo2.size.height * 0.524)
-                                                                    .frame(width: geo2.size.width * 1.279, height: geo2.size.height * 1.289)
-                                                            }
-                                                        )
+                                                    ZStack {
+                                                        Image(button.imageName)
+                                                            .resizable()
+                                                        
+                                                        if !button.isPassed {
+                                                            Image("lock")
+                                                                .resizable()
+                                                                .padding(.top, 0.1)
+                                                        }
+                                                    }
+                                                    .cornerRadius(16)
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .shadow(color: .black.opacity(0.25), radius: 10, x: 0, y: 4)
+                                                    .frame(width: geometry.size.width * 0.18, height: geometry.size.width * 0.18)
+                                                    
                                                 })
                                                 .disabled(!button.isPassed)
                                             }
                                             else {
                                                 Spacer()
-                                                    .frame(width: geometry.size.width / 3.1, height: geometry.size.height / 4.0)
+                                                    .frame(width: geometry.size.width * 0.18)
                                             }
                                         }
                                     }
@@ -76,43 +79,43 @@ struct HistoryGridView: View {
                                             let index = row * 3 + col
                                             if index < viewModel.buttons.count {
                                                 let button = viewModel.buttons[index]
-                                                let _  = print(button.imageName)
-                                                
                                                 Button(action: {
                                                     router.navigate(to: .question(Int(button.sequence), .history))
                                                 }, label: {
-                                                    Image(button.imageName)
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .cornerRadius(16)
-                                                        .frame(width: geometry.size.width * 0.2)
-                                                        .overlay(
-                                                            GeometryReader{ geo2 in
-                                                                button.isPassed ? nil : Image("lock")
-                                                                    .resizable()
-                                                                    .aspectRatio(contentMode: .fit)
-                                                                    .cornerRadius(16)
-                                                                    .position(x: geo2.size.width * 0.516 , y: geo2.size.height * 0.525)
-                                                                    .frame(width: geo2.size.width * 1.279, height: geo2.size.height * 1.289)
-                                                            }
-                                                        )
+                                                    ZStack {
+                                                        Image(button.imageName)
+                                                            .resizable()
+                                                        
+                                                        if !button.isPassed {
+                                                            Image("lock")
+                                                                .resizable()
+                                                                .padding(.top, 0.1)
+                                                            
+                                                        }
+                                                    }
+                                                    .cornerRadius(16)
+                                                    
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .shadow(color: .black.opacity(0.25), radius: 10, x: 0, y: 4)
+                                                    .frame(width: geometry.size.width * 0.18, height: geometry.size.width * 0.18)
+                                                    
                                                 })
                                                 .disabled(!button.isPassed)
                                             }
                                             else {
                                                 Spacer()
-                                                    .frame(width: geometry.size.width * 0.2)
+                                                    .frame(width: geometry.size.width * 0.18)
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-        
+                        
                     }
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.7)
-//                    .padding()
-//                    .padding(.top, geometry.size.height * 0.11)
+                    .padding(.top, geometry.size.width * 0.1)
+                    
+                    //                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                 }
                 
                 Button(action: {
@@ -120,19 +123,38 @@ struct HistoryGridView: View {
                 }, label: {
                     Image("HomeButton")
                         .resizable()
-                        .frame(width: geometry.size.width * 0.11, height: geometry.size.height * 0.15)
-                }).position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.11, height:verticalSizeClass == .compact ? nil : geometry.size.height * 0.15)
+                }).position(x:verticalSizeClass == .compact ? geometry.size.width * 0.03 : geometry.size.width * 0.06, y:  geometry.size.height * 0.08)
                 
-                .onDisappear(perform: {
-                    viewModel.clearNavigation()
-//                    audioHelper.pauseMusic()
-                })
-                .onAppear {
-//                    audioHelper.resumeMusic()
-                    viewModel.buttons.forEach({
-                        index in
-                        print(index.imageName)
+                    .onDisappear(perform: {
+                        viewModel.clearNavigation()
+                        //                    audioHelper.pauseMusic()
                     })
+                    .onAppear {
+                        //                    audioHelper.resumeMusic()
+                        
+                    }
+                
+                ForEach(viewModel.snowflakes) { snowflake in
+                    Image(snowflake.imageName)
+                        .resizable()
+                        .frame(width: snowflake.size, height: snowflake.size)
+                        .rotationEffect(.degrees(viewModel.animate ? 360 : 0))
+                        .animation(Animation.linear(duration: snowflake.rotationDuration).repeatForever(autoreverses: false), value: viewModel.animate)
+                        .position(x: snowflake.xPosition, y: viewModel.animate ? geometry.size.height + snowflake.size : -snowflake.size)
+                        .animation(Animation.linear(duration: snowflake.duration).delay(snowflake.delay).repeatForever(autoreverses: false), value: viewModel.animate)
+                }
+            }
+            .onDisappear {
+                withAnimation {
+                    viewModel.animate = false
+                }
+            }
+            .onAppear {
+                viewModel.createSnowflakes(in: geometry.size)
+                withAnimation {
+                    viewModel.animate = true
                 }
             }
         }.navigationBarBackButtonHidden(true)
