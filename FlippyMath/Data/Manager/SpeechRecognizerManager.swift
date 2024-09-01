@@ -25,15 +25,6 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
     override init() {
         super.init()
         setupRecognition()
-        
-        // Setup restart recognition on silence or error
-        restartSubject
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance) // Delay to prevent immediate restart
-            .flatMapLatest { [weak self] _ in
-                self?.startRecognition() ?? Observable.empty()
-            }
-            .subscribe()
-            .disposed(by: disposeBag)
     }
     
     func setupRecognition() {
@@ -86,7 +77,6 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            self?.resetSilenceTimer(subject: subject)
             recognitionRequest.append(buffer)
         }
         
@@ -96,7 +86,6 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         
         do {
             try audioEngine.start()
-            resetSilenceTimer(subject: subject)
         } catch {
             print("Couldn't start audio engine!")
             subject.onError(error)
@@ -189,16 +178,5 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
     private func handleError(_ error: Error, subject: PublishSubject<(String?, Bool)>) {
         print("Error occurred: \(error.localizedDescription)")
         subject.onError(error)
-    }
-    
-    private func resetSilenceTimer(subject: PublishSubject<(String?, Bool)>) {
-        silenceTimer?.invalidate() // Menonaktifkan timer sebelumnya jika ada
-        silenceTimer = Timer.scheduledTimer(withTimeInterval: silenceDetectionTimeout, repeats: false) { [weak self] _ in
-            guard let self = self else { return }
-            if !self.isStopped {
-                print("Silence detected, restarting recognition...")
-                self.restartSubject.onNext(()) // Trigger restart on silence detection
-            }
-        }
     }
 }

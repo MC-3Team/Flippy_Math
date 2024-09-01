@@ -305,7 +305,9 @@ struct QuestionLayout<Content: View>: View {
                             if viewModel.currentQuestionIndex == 6 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
                                 HStack {
                                     Spacer()
-                                    riveVM.view().frame(width: 120, height: 120).padding(.trailing, 20).padding(.bottom, 10)
+                                    riveVM.view()
+                                        .frame(width: isCompact ? 90 : 120, height: isCompact ? 90 : 120)
+                                        .position(x: geometry.size.width * 0.47, y: geometry.size.height * 0.9)
                                 }
                             }
                         }

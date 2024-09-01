@@ -15,7 +15,8 @@ struct TypewriterText: View {
     @State private var displayedText: String = ""
     @State private var currentIndex: String.Index?
     var audioHelper = AudioHelper.shared
-    @State private var typingInterval: TimeInterval = 0.08
+    @State private var typingInterval: TimeInterval = 0.1
+    @State private var timer: Timer? = nil
 
     var body: some View {
         Text(displayedText)
@@ -42,7 +43,9 @@ struct TypewriterText: View {
     func startTyping() {
         displayedText = ""
         currentIndex = fullText.startIndex
-        Timer.scheduledTimer(withTimeInterval: typingInterval, repeats: true) { timer in
+        timer?.invalidate()
+        timer = nil
+        timer = Timer.scheduledTimer(withTimeInterval: typingInterval, repeats: true) { timer in
             if let index = currentIndex, index < fullText.endIndex {
                 displayedText += String(fullText[index])
                 currentIndex = fullText.index(after: index)
