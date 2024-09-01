@@ -11,6 +11,7 @@ import Routing
 struct HistoryGridView: View {
     @StateObject var viewModel = HistoryViewModel()
     @Environment(\.dismiss) var dismiss
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @EnvironmentObject var audioHelper: AudioHelper
     @EnvironmentObject private var router: Router<NavigationRoute>
     
@@ -23,10 +24,19 @@ struct HistoryGridView: View {
                 
                 ScrollView([.vertical], showsIndicators: false) {
                     ZStack{
-                        Image("HistoryLine")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.8)
+                        if verticalSizeClass == .regular{
+                            Image("HistoryLine")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.8)
+                        }
+                        else{
+                            Image("HistoryLine")
+                                .resizable()
+                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 1.2)
+                                .aspectRatio(contentMode: .fill)
+
+                        }
                         
                         VStack(spacing: 20) {
                             ForEach(0..<4) { row in
@@ -113,8 +123,9 @@ struct HistoryGridView: View {
                 }, label: {
                     Image("HomeButton")
                         .resizable()
-                        .frame(width: geometry.size.width * 0.11, height: geometry.size.height * 0.15)
-                }).position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.08)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.11, height:verticalSizeClass == .compact ? nil : geometry.size.height * 0.15)
+                }).position(x:verticalSizeClass == .compact ? geometry.size.width * 0.03 : geometry.size.width * 0.06, y:  geometry.size.height * 0.08)
                 
                     .onDisappear(perform: {
                         viewModel.clearNavigation()
