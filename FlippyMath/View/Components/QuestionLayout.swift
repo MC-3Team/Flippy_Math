@@ -32,6 +32,8 @@ struct QuestionLayout<Content: View>: View {
     }
     let backgroundScale: CGFloat = 1.2
     
+    @State var backgroundImageName = "Q1_iPhoneBackground"
+    
     
     
     var body: some View {
@@ -39,7 +41,7 @@ struct QuestionLayout<Content: View>: View {
             ZStack {
                 // Background
                 if isCompact {
-                    let backgroundImageName = "Q\(viewModel.currentQuestionIndex)_iPhoneBackground"
+                    
                     Image(backgroundImageName)
                         .resizable()
                         .frame(
@@ -50,6 +52,34 @@ struct QuestionLayout<Content: View>: View {
                             x: geometry.size.width / 2,
                             y: geometry.size.height / 2
                         )
+                        .onAppear(){
+                            switch viewModel.currentQuestionIndex {
+                            case 0 :
+                                backgroundImageName = "Q0_iPhoneBackground"
+                            case 1 :
+                                backgroundImageName = "Q1_iPhoneBackground"
+                            case 2 :
+                                backgroundImageName = "Q2_iPhoneBackground"
+                            case 3 :
+                                backgroundImageName = "Q3_iPhoneBackground"
+                            case 4 :
+                                backgroundImageName = "Q3_iPhoneBackground"
+                            case 5 :
+                                backgroundImageName = "Q4_iPhoneBackground"
+                            case 6 :
+                                backgroundImageName = "Q5_iPhoneBackground"
+                            case 7 :
+                                backgroundImageName = "Q6_iPhoneBackground"
+                            case 8 :
+                                backgroundImageName = "Q7_iPhoneBackground"
+                            case 9 :
+                                backgroundImageName = "Q8_iPhoneBackground"
+                            case 10 :
+                                backgroundImageName = "Q9_iPhoneBackground"
+                            default:
+                                backgroundImageName = "Q0_iPhoneBackground"
+                            }
+                        }
                 } else {
                     Image(viewModel.currentQuestionData.background)
                         .resizable()
@@ -72,19 +102,23 @@ struct QuestionLayout<Content: View>: View {
                         Image("HomeButton")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                            .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
+             
                     }
+                    .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
+                    .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.1)
                 } else {
                     Button {
+                        print("asdads")
                         router.navigateToRoot()
                     } label: {
                         Image("HomeButton")
                             .resizable()
-                            .frame(width: geometry.size.width * 0.11, height: geometry.size.height * 0.15)
-                            .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.08)
+                          
                     }
+                    .frame(width: geometry.size.width * 0.11, height: geometry.size.height * 0.15)
+                    .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.08)
                 }
+                
                 
                 children(geometry)
                 
@@ -239,16 +273,15 @@ struct QuestionLayout<Content: View>: View {
                                     viewModel.startAnalysis()
                                     viewModel.tipRecognition = true
                                 }
-                                
                             }).id(viewModel.repeatQuestion)
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 34))
+                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
                                 .fontWeight(.bold)
-                                .padding(.leading, 80)
-                                .padding(.trailing, viewModel.currentQuestionIndex == 6 && viewModel.currentMessageIndex == 3 ? 100 : 10)
+                                .padding(.leading, 20)
                                 .padding(.bottom, 10)
                                 .lineLimit(nil)
                                 .frame(width: geometry.size.width * 0.7, alignment: .leading)
                                 .multilineTextAlignment(.leading)
+                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
                             
                             if viewModel.currentQuestionIndex == 6 && viewModel.currentMessageIndex == 3 && viewModel.userAnswer.isEmpty {
                                 HStack {
@@ -271,7 +304,7 @@ struct QuestionLayout<Content: View>: View {
                             || viewModel.currentQuestionIndex == 8 && viewModel.currentMessageIndex == 1 ? true : false
                             || viewModel.currentQuestionIndex == 4 && viewModel.currentMessageIndex == 1 ? true : false
                             || viewModel.currentQuestionIndex == 10 && viewModel.currentMessageIndex == 2 ? true : false
-                        
+                            
                         )
                     }
                     .onDisappear {
@@ -327,8 +360,6 @@ struct QuestionLayout<Content: View>: View {
                                 }
                             }
                         }
-                        
-                        
                         .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.94)
                         
                         Button(action: {
@@ -435,7 +466,6 @@ struct QuestionLayout<Content: View>: View {
     
     
 }
-
 
 //#Preview {
 //    QuestionLayout(

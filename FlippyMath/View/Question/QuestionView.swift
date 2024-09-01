@@ -31,21 +31,27 @@ struct QuestionView: View {
     ///MARK: Questions
     @ViewBuilder
     private func content(for geometry: GeometryProxy) -> some View {
+        
+        let _ = print(viewModel.currentQuestionIndex)
         switch viewModel.currentQuestionIndex {
         case 0:
             EmptyView()
-            
+            // intro
         case 1:
             questionOneView(geometry: geometry)
+            //teman
             
         case 2:
             questionTwoView(geometry: geometry)
+            // topi
             
         case 3:
             questionThreeView(geometry: geometry)
+            //balon
             
         case 4:
             SingingView(viewModel: viewModel)
+            //menyanyi
             
         case 5:
             questionFourView(geometry: geometry)
@@ -253,7 +259,7 @@ struct QuestionView: View {
                 ForEach(0..<viewModel.foxCount, id: \.self) { index in
                     BabyFoxView(isPlay: $viewModel.isPlaying)
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.1)
+                        .frame(width: geometry.size.width * 0.5)
                         .position(x: viewModel.babyFoxPosition(for: index, geometry: geometry).x,
                                   y: viewModel.babyFoxPosition(for: index, geometry: geometry).y)
                         .onTapGesture {

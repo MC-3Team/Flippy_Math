@@ -377,9 +377,10 @@ class QuestionViewModel: ObservableObject {
             print(questionData.count-1)
             navigateToCredits = true
             currentQuestionIndex = questionData.count - 1
-            currentMessageIndex = 0
+            currentMessageIndex = questionData[currentQuestionIndex].stories.count - 1
             currentMathIndex = 0
             userAnswer = ""
+            audioHelper.stopVoice()
         } else {
             if !currentQuestionData.is_complete {
                 let filteredQuestions = service.getAllQuestion().filter{ $0.sequence == currentQuestionData.sequence }

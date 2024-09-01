@@ -94,7 +94,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.07)
                         }
-                        .position(x:verticalSizeClass == .compact ? geometry.size.width * 1 : geometry.size.width * 0.94, y: geometry.size.height * 0.08)
+                        .position(x:verticalSizeClass == .compact ? geometry.size.width * 1 : geometry.size.width * 0.94, y: verticalSizeClass == .compact ? geometry.size.height * 0.1 : geometry.size.height * 0.08)
                         
                         Button(action: {
                             print("Sampe sini")
@@ -106,7 +106,7 @@ struct HomeView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.07)
                         }).padding(.top,geometry.size.width * 0.17)
-                        .position(x: verticalSizeClass == .compact ? geometry.size.width * 1 : geometry.size.width * 0.94, y: geometry.size.height * 0.08)
+                        .position(x: verticalSizeClass == .compact ? geometry.size.width * 1 : geometry.size.width * 0.94, y: verticalSizeClass == .compact ? geometry.size.height * 0.1 : geometry.size.height * 0.08)
                         
                         Button(action: {
                             viewModel.requestPermissions()
@@ -184,8 +184,9 @@ struct HomeView: View {
 
                     }
                 }
+                .navigationBarHidden(true)
             }
-            .navigationBarBackButtonHidden(true)
+            
 
         }
     }
