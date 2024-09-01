@@ -313,8 +313,8 @@ struct QuestionView: View {
                 } else if viewModel.currentMessageIndex < 3 {
                     PinataView()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.7)
-                        .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.475)
+                        .frame(width: geometry.size.width * 0.45)
+                        .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.45)
                 } else if viewModel.currentMessageIndex < 4 {
                     Image("Q7_20Candies")
                         .resizable()
@@ -375,14 +375,14 @@ struct QuestionView: View {
                     Image("Q7_20Candies")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.7)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.64)
+                        .frame(width: geometry.size.width * 0.9)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
                 } else {
                     Image("Q7_15Candies")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.5)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.62)
+                        .frame(width: geometry.size.width * 0.70)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
                 }
             }
         }
@@ -1476,7 +1476,7 @@ struct Question6View: View {
 
 struct Question7View: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 3
+    @State var currentMessageIndex = 4
     var isCompact: Bool {
         verticalSizeClass == .compact
     }
@@ -1493,7 +1493,7 @@ struct Question7View: View {
             ZStack {
                 Group {
                     //MARK: Background
-                    Image("Q7_iPhoneBackground")
+                    Image("Q7_Background")
                         .resizable()
                         .frame(width: geometry.size.width * backgroundScale,
                                height: geometry.size.height * backgroundScale)
@@ -1608,8 +1608,8 @@ struct Question7View: View {
                         } else if currentMessageIndex < 3 {
                             PinataView()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.7)
-                                .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.475)
+                                .frame(width: geometry.size.width * 0.45)
+                                .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.45)
                         } else if currentMessageIndex < 4 {
                             Image("Q7_20Candies")
                                 .resizable()
@@ -1680,9 +1680,9 @@ struct Question7View: View {
     }
 }
 
-//#Preview(body: {
-//    Question7View()
-//})
+#Preview(body: {
+    Question7View()
+})
 
 struct Question8View: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
@@ -2100,7 +2100,7 @@ struct OutroView: View {
     }
 }
 
-#Preview(body: {
-    OutroView()
-})
+//#Preview(body: {
+//    OutroView()
+//})
 
