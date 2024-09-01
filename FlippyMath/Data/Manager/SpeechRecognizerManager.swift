@@ -7,6 +7,7 @@
 
 import Foundation
 import Speech
+import AVFoundation
 import RxSwift
 
 class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecognizerDelegate {
@@ -15,13 +16,24 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
     private var speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale(identifier: "id_ID"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
-    private var isAudioSessionActive = false
-    private var isTapInstalled = false
     private var isStopped = false
+    private let silenceDetectionTimeout: TimeInterval = 5.0
+    private let restartSubject = PublishSubject<Void>()
+    private var disposeBag = DisposeBag()
+    private var silenceTimer: Timer? // Menambahkan deklarasi silenceTimer
     
     override init() {
         super.init()
         setupRecognition()
+        
+        // Setup restart recognition on silence or error
+        restartSubject
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance) // Delay to prevent immediate restart
+            .flatMapLatest { [weak self] _ in
+                self?.startRecognition() ?? Observable.empty()
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
     
     func setupRecognition() {
@@ -47,15 +59,6 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         isStopped = false
         
-        let timeoutInSeconds: TimeInterval = 60
-           DispatchQueue.main.asyncAfter(deadline: .now() + timeoutInSeconds) { [weak self] in
-               guard let self = self else { return }
-               if !self.isStopped && self.recognitionTask?.state != .completed {
-                   print("Custom timeout occurred. Restarting recognition...")
-                   self.handleError(NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: [NSLocalizedDescriptionKey: "Custom timeout"]), subject: subject)
-               }
-           }
-        
         let inputNode = audioEngine.inputNode
         
         guard let speechRecognizer = speechRecognizer else {
@@ -76,11 +79,14 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
             return subject
         }
         
+        recognitionRequest.shouldReportPartialResults = true
+        
         speechRecognizer.delegate = self
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+            self?.resetSilenceTimer(subject: subject)
             recognitionRequest.append(buffer)
         }
         
@@ -90,6 +96,7 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         
         do {
             try audioEngine.start()
+            resetSilenceTimer(subject: subject)
         } catch {
             print("Couldn't start audio engine!")
             subject.onError(error)
@@ -109,10 +116,10 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
         if audioEngine.inputNode.numberOfInputs > 0 {
             audioEngine.inputNode.removeTap(onBus: 0)
         }
+        silenceTimer?.invalidate() // Menonaktifkan silenceTimer saat berhenti
         subject.onCompleted()
         return subject
     }
-    
     
     private func createRecognitionTask(subject: PublishSubject<(String?, Bool)>) -> SFSpeechRecognitionTask {
         return speechRecognizer!.recognitionTask(with: recognitionRequest!) { [weak self] result, error in
@@ -121,27 +128,51 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
             if let error = error {
                 print("Error in recognition task: \(error.localizedDescription)")
                 self.handleError(error, subject: subject)
+                self.restartSubject.onNext(()) // Trigger restart on error
                 subject.onCompleted()
                 return
             }
             
             if let result = result {
                 let transcription = result.bestTranscription.formattedString.lowercased()
-                
+
                 let wordToNumberMap: [String: String] = ["nol": "0", "enol" : "0", "kosong" : "0",
                                                          "satu": "1", "dua": "2", "tiga": "3", "empat": "4", "lima": "5", "nam" : "6",
-                                                         "enam": "6", "tujuh": "7", "delapan": "8", "sembilan": "9",
-                ]
-                let wordsToNumbers = transcription.split(separator: " ").compactMap { word -> String? in
+                                                         "enam": "6", "tujuh": "7", "delapan": "8", "sembilan": "9"]
+
+                let wordsToNumbers = transcription.split(separator: " ").compactMap { word -> [String]? in
                     let wordString = String(word)
-                    return wordToNumberMap[wordString] ?? (Int(wordString) != nil ? wordString : nil)
-                }.last
-                
-                if let wordsToNumbers = wordsToNumbers {
-                    let containsOnlyNumbers = wordsToNumbers.allSatisfy { $0.isNumber }
+                    if let numberString = wordToNumberMap[wordString] {
+                        return numberString.map { String($0) }
+                    } else if let number = Int(wordString) {
+                        return String(number).map { String($0) }
+                    } else {
+                        return nil
+                    }
+                }.flatMap { $0 }
+
+                var resultNumberString = ""
+                var currentNumber = ""
+
+                for digit in wordsToNumbers {
+                    currentNumber.append(digit)
+                    
+                    if let number = Int(currentNumber) {
+                        if number > 20 {
+                            resultNumberString = String(digit)
+                            currentNumber = String(digit)
+                        } else {
+                            resultNumberString = currentNumber
+                        }
+                    }
+                }
+
+                if !resultNumberString.isEmpty {
+                    let containsOnlyNumbers = resultNumberString.allSatisfy { $0.isNumber }
                     if containsOnlyNumbers && !self.isStopped {
-                        subject.onNext((wordsToNumbers, result.isFinal))
+                        subject.onNext((resultNumberString, result.isFinal))
                         if result.isFinal {
+                            self.restartSubject.onNext(()) // Trigger restart on final result
                             subject.onCompleted()
                         }
                     } else {
@@ -149,16 +180,25 @@ class SpeechRecognitionManager: NSObject, SpeechRecognizerService, SFSpeechRecog
                         subject.onError(error)
                     }
                 }
-                
             } else {
                 subject.onNext((nil, false))
             }
         }
     }
     
-    
     private func handleError(_ error: Error, subject: PublishSubject<(String?, Bool)>) {
         print("Error occurred: \(error.localizedDescription)")
         subject.onError(error)
+    }
+    
+    private func resetSilenceTimer(subject: PublishSubject<(String?, Bool)>) {
+        silenceTimer?.invalidate() // Menonaktifkan timer sebelumnya jika ada
+        silenceTimer = Timer.scheduledTimer(withTimeInterval: silenceDetectionTimeout, repeats: false) { [weak self] _ in
+            guard let self = self else { return }
+            if !self.isStopped {
+                print("Silence detected, restarting recognition...")
+                self.restartSubject.onNext(()) // Trigger restart on silence detection
+            }
+        }
     }
 }

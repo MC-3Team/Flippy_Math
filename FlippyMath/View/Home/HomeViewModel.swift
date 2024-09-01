@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import Speech
+import Network
 
 class HomeViewModel: ObservableObject {
     @Inject(name: "CoreDataManager") var service: DataService
@@ -18,6 +19,7 @@ class HomeViewModel: ObservableObject {
     @Published var isGranted = false
     @Published var showSettingsAlert = false
     @Published var alertMessage = ""
+    @Published var showAlertInternet = false
     
     private let numberOfSnowflakes = 75
     private let disposeBag = DisposeBag()
@@ -89,11 +91,35 @@ class HomeViewModel: ObservableObject {
             }
             
             group.notify(queue: .main) {
-                self.isGranted = microphoneGranted && speechRecognitionGranted
+                self.checkInternetConnection { isConnected in
+                    if isConnected {
+                        self.isGranted = microphoneGranted && speechRecognitionGranted
+                    } else {
+                        self.showAlertInternet = true
+                    }
+                }
+              
                 print("Both permissions granted: \(self.isGranted)")
             }
         }
-            
+    
+    func checkInternetConnection(completion: @escaping (Bool) -> Void) {
+        let monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "InternetConnectionMonitor")
+        
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                if path.status == .satisfied {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+                monitor.cancel()
+            }
+        }
+        
+        monitor.start(queue: queue)
+    }
     
     func getLastCompletedLevel() -> Int {
         let completedQuestions = service.getInCompleteQuestion()

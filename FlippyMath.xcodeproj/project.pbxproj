@@ -117,6 +117,9 @@
 		D3B103A52C767BD500F61FD4 /* splash-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = D3B103A42C767BD500F61FD4 /* splash-audio.wav */; };
 		D3B103A72C767FCB00F61FD4 /* flippy.riv in Resources */ = {isa = PBXBuildFile; fileRef = D3B103A62C767FCB00F61FD4 /* flippy.riv */; };
 		D3B103AD2C771EFE00F61FD4 /* CreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B103AC2C771EFE00F61FD4 /* CreditView.swift */; };
+		D3C53AC72C84393D008F1F38 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C53AC62C84393D008F1F38 /* CustomAlertView.swift */; };
+		D3C53AC92C84395B008F1F38 /* CustomAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C53AC82C84395B008F1F38 /* CustomAlertModifier.swift */; };
+		D3C53ACB2C843972008F1F38 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C53ACA2C843972008F1F38 /* Extension.swift */; };
 		D91002B82C7685D800E65051 /* BalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91002B72C7685D800E65051 /* BalloonView.swift */; };
 		D91002BB2C77290300E65051 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91242462C75DF5700C61620 /* RewardAnimationView.swift */; };
@@ -256,6 +259,9 @@
 		D3B103A42C767BD500F61FD4 /* splash-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "splash-audio.wav"; sourceTree = "<group>"; };
 		D3B103A62C767FCB00F61FD4 /* flippy.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flippy.riv; sourceTree = "<group>"; };
 		D3B103AC2C771EFE00F61FD4 /* CreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditView.swift; sourceTree = "<group>"; };
+		D3C53AC62C84393D008F1F38 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		D3C53AC82C84395B008F1F38 /* CustomAlertModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertModifier.swift; sourceTree = "<group>"; };
+		D3C53ACA2C843972008F1F38 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		D91002B72C7685D800E65051 /* BalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonView.swift; sourceTree = "<group>"; };
 		D91242462C75DF5700C61620 /* RewardAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnimationView.swift; sourceTree = "<group>"; };
 		D91242482C75E0A800C61620 /* reward.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reward.riv; sourceTree = "<group>"; };
@@ -320,6 +326,8 @@
 			children = (
 				13B75F872C70598B00EBFCD1 /* QuestionLayout.swift */,
 				13B75F892C7059A100EBFCD1 /* TypewriterText.swift */,
+				D3C53AC62C84393D008F1F38 /* CustomAlertView.swift */,
+				D3C53AC82C84395B008F1F38 /* CustomAlertModifier.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -337,6 +345,7 @@
 			children = (
 				13B75F8F2C705A1900EBFCD1 /* AudioHelper.swift */,
 				D34723D02C71C4B7005C1E9F /* ChatBubbleShape.swift */,
+				D3C53ACA2C843972008F1F38 /* Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -845,6 +854,7 @@
 				D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */,
 				D34723D12C71C4B7005C1E9F /* ChatBubbleShape.swift in Sources */,
 				13B75FEA2C70675900EBFCD1 /* HomeView.swift in Sources */,
+				D3C53AC92C84395B008F1F38 /* CustomAlertModifier.swift in Sources */,
 				13B75FF02C70676D00EBFCD1 /* BambiniRiveView.swift in Sources */,
 				D9F6C61E2C76398800CFBE16 /* (null) in Sources */,
 				D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */,
@@ -873,9 +883,11 @@
 				13B75F902C705A1900EBFCD1 /* AudioHelper.swift in Sources */,
 				13B75FE52C70675000EBFCD1 /* SplashViewModel.swift in Sources */,
 				13B75FC22C705E3100EBFCD1 /* AppContainer.swift in Sources */,
+				D3C53AC72C84393D008F1F38 /* CustomAlertView.swift in Sources */,
 				133573C12C70C180007696A8 /* HistoryViewModel.swift in Sources */,
 				D91242472C75DF5700C61620 /* RewardAnimationView.swift in Sources */,
 				D95232AF2C71ABEB0005C461 /* ArcticFoxView.swift in Sources */,
+				D3C53ACB2C843972008F1F38 /* Extension.swift in Sources */,
 				13B75FC92C705E8300EBFCD1 /* TextToSpeechManager.swift in Sources */,
 				133573BA2C70BFD3007696A8 /* ButtonData.swift in Sources */,
 				D3B103AD2C771EFE00F61FD4 /* CreditView.swift in Sources */,
