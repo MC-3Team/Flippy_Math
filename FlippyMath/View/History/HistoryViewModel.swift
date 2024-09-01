@@ -25,7 +25,7 @@ class HistoryViewModel: ObservableObject {
         buttons = questions.map { question in
           ButtonData(
                 title: "Level \(question.sequence)",
-                imageName: question.historyLevel!,
+                imageName: question.historyLevel ?? "",
                 destinationView: AnyView(QuestionViewWrapper(sequenceLevel: Int(Int64(question.sequence)), parameter: .history)),
                 isPassed: question.is_complete,
                 sequence: question.sequence

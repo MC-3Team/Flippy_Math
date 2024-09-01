@@ -127,6 +127,7 @@
 		D934AF932C6F3EBC00D41B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D934AF922C6F3EBC00D41B9A /* ContentView.swift */; };
 		D934AF952C6F3EBD00D41B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF942C6F3EBD00D41B9A /* Assets.xcassets */; };
 		D934AF982C6F3EBD00D41B9A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */; };
+		D93A39402C7B6D7A000F7C81 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D93A393E2C7B6D7A000F7C81 /* DataModel.xcdatamodeld */; };
 		D95232AF2C71ABEB0005C461 /* ArcticFoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232AE2C71ABEB0005C461 /* ArcticFoxView.swift */; };
 		D95232B92C71B7F20005C461 /* PinataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232B82C71B7F20005C461 /* PinataView.swift */; };
 		D95232BF2C71E2630005C461 /* PolarBearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95232BE2C71E2630005C461 /* PolarBearView.swift */; };
@@ -265,6 +266,7 @@
 		D934AF922C6F3EBC00D41B9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D934AF942C6F3EBD00D41B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D934AF972C6F3EBD00D41B9A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D93A393F2C7B6D7A000F7C81 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D95232AE2C71ABEB0005C461 /* ArcticFoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcticFoxView.swift; sourceTree = "<group>"; };
 		D95232B82C71B7F20005C461 /* PinataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinataView.swift; sourceTree = "<group>"; };
 		D95232BE2C71E2630005C461 /* PolarBearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarBearView.swift; sourceTree = "<group>"; };

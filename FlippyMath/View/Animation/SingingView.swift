@@ -15,7 +15,8 @@ struct TextKaraoke{
 struct SingingView: View {
     @ObservedObject var viewModel: QuestionViewModel
     @EnvironmentObject var audioHelper: AudioHelper
-    
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+
     @State private var colorIndexes = [0, 0, 0, 0, 0]
     @State private var isAnimating = false
     @State private var randomOffsets: [CGSize] = Array(repeating: .zero, count: 5)
@@ -43,6 +44,15 @@ struct SingingView: View {
         CGSize(width: 100, height: 100),
         CGSize(width: 80, height: 80),
         CGSize(width: 100, height: 100)
+    ]
+    
+    // Specify frame sizes for each music note
+    let framesIphone: [CGSize] = [
+        CGSize(width: 50, height: 50),
+        CGSize(width: 30, height: 30),
+        CGSize(width: 30, height: 30),
+        CGSize(width: 20, height: 20),
+        CGSize(width: 30, height: 30)
     ]
     
     let textKaraoke = [
@@ -124,7 +134,7 @@ struct SingingView: View {
                     
                     
                     Text(currentText)
-                        .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
+                        .font(.custom("PilcrowRoundedVariable-Regular", size: verticalSizeClass == .compact ? 64 : 96))
                         .fontWeight(.bold)
                         .foregroundStyle(.blueSecondary)
                         .multilineTextAlignment(.center)
@@ -160,7 +170,7 @@ struct SingingView: View {
                     Image("MusicNote\(index + 1).symbols")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: frames[index].width, height: frames[index].height)
+                        .frame(width: verticalSizeClass == .compact ? framesIphone[index].width : frames[index].width, height: verticalSizeClass == .compact ? framesIphone[index].height : frames[index].width)
                         .foregroundColor(colors[colorIndexes[index]])
                         .offset(randomOffsets[index])
                         .scaleEffect(scales[index])

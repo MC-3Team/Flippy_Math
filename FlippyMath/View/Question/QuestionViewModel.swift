@@ -377,9 +377,10 @@ class QuestionViewModel: ObservableObject {
             print(questionData.count-1)
             navigateToCredits = true
             currentQuestionIndex = questionData.count - 1
-            currentMessageIndex = 0
+            currentMessageIndex = questionData[currentQuestionIndex].stories.count - 1
             currentMathIndex = 0
             userAnswer = ""
+            audioHelper.stopVoice()
         } else {
             if !currentQuestionData.is_complete {
                 let filteredQuestions = service.getAllQuestion().filter{ $0.sequence == currentQuestionData.sequence }
@@ -414,17 +415,36 @@ class QuestionViewModel: ObservableObject {
     //    }
     
     /// MARK: SOAL NOMOR 5: Cakes & Flies
-    @Published var flyPositions: [(x: CGFloat, y: CGFloat)] = [
-        (x: 0.1, y: 0.7),
-        (x: 0.16, y: 0.4),
-        (x: 0.2, y: 0.8),
-        (x: 0.3, y: 0.35),
-        (x: 0.5, y: 0.55),
-        (x: 0.45, y: 0.81),
-        (x: 0.8, y: 0.8),
-        (x: 0.75, y: 0.4),
-        (x: 0.9, y: 0.6)
-    ]
+    @Published var flyPositions: [(x: CGFloat, y: CGFloat)] = []
+    
+    // Method to update fly positions based on the vertical size class
+    func updateFlyPositions(for sizeClass: UserInterfaceSizeClass) {
+        if sizeClass == .compact {
+            flyPositions = [
+                (x: 0.1, y: 0.6),
+                (x: 0.16, y: 0.3),
+                (x: 0.2, y: 0.7),
+                (x: 0.3, y: 0.25),
+                (x: 0.5, y: 0.45),
+                (x: 0.45, y: 0.71),
+                (x: 0.8, y: 0.7),
+                (x: 0.75, y: 0.3),
+                (x: 0.9, y: 0.5)
+            ]
+        } else {
+            flyPositions = [
+                (x: 0.1, y: 0.7),
+                (x: 0.16, y: 0.4),
+                (x: 0.2, y: 0.8),
+                (x: 0.3, y: 0.35),
+                (x: 0.5, y: 0.55),
+                (x: 0.45, y: 0.81),
+                (x: 0.8, y: 0.8),
+                (x: 0.75, y: 0.4),
+                (x: 0.9, y: 0.6)
+            ]
+        }
+    }
     
     var flyCount: Int {
         return (currentMessageIndex >= 4) ? 2 : flyPositions.count
@@ -450,6 +470,7 @@ class QuestionViewModel: ObservableObject {
     
     /// MARK: SOAL NOMOR 6: Arctic Fox
     @Published var isPlaying: Bool = false
+    
     @Published var babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
         (x: 0.476, y: 0.74),
         (x: 0.588, y: 0.76),
@@ -476,25 +497,34 @@ class QuestionViewModel: ObservableObject {
     @Published var rotation: Double = 0
     @Published var scale: CGFloat = 0.5
     
-    
+  
     ///MARK: SHARED
-    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5, upperLimit: Int = 2) {
+    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5, upperLimit: Int = 2, isOutro : Bool) {
         isTapped = true
         
         if let threshold = tapThreshold {
             tapCount += 1
             if tapCount >= threshold {
                 tapCount = 0
-//                moveToNextMessage(upperLimit: upperLimit)
-                self.checkAnswerAndAdvance()
+                if isOutro{
+                    self.checkAnswerAndAdvance()
+
+                } else{
+                    moveToNextMessage(upperLimit: upperLimit)
+                }
             }
         }
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + tapDelay) {
             self.isTapped = false
             if tapThreshold == nil {
-//                self.moveToNextMessage(upperLimit: upperLimit)
-                self.checkAnswerAndAdvance()
+                if isOutro{
+                    self.checkAnswerAndAdvance()
+                    
+                } else{
+                    self.moveToNextMessage(upperLimit: upperLimit)
+                }
 
             }
         }
