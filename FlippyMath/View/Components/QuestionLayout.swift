@@ -80,6 +80,34 @@ struct QuestionLayout<Content: View>: View {
                                 backgroundImageName = "Q0_iPhoneBackground"
                             }
                         }
+                        .onChange(of: viewModel.currentQuestionIndex){
+                            switch viewModel.currentQuestionIndex {
+                            case 0 :
+                                backgroundImageName = "Q0_iPhoneBackground"
+                            case 1 :
+                                backgroundImageName = "Q1_iPhoneBackground"
+                            case 2 :
+                                backgroundImageName = "Q2_iPhoneBackground"
+                            case 3 :
+                                backgroundImageName = "Q3_iPhoneBackground"
+                            case 4 :
+                                backgroundImageName = "Q3_iPhoneBackground"
+                            case 5 :
+                                backgroundImageName = "Q4_iPhoneBackground"
+                            case 6 :
+                                backgroundImageName = "Q5_iPhoneBackground"
+                            case 7 :
+                                backgroundImageName = "Q6_iPhoneBackground"
+                            case 8 :
+                                backgroundImageName = "Q7_iPhoneBackground"
+                            case 9 :
+                                backgroundImageName = "Q8_iPhoneBackground"
+                            case 10 :
+                                backgroundImageName = "Q9_iPhoneBackground"
+                            default:
+                                backgroundImageName = "Q0_iPhoneBackground"
+                            }
+                        }
                 } else {
                     Image(viewModel.currentQuestionData.background)
                         .resizable()
@@ -141,6 +169,7 @@ struct QuestionLayout<Content: View>: View {
                                             GeometryReader { geo in
                                                 Color.clear.onAppear {
                                                     if isCurrentQuestion {
+                                                        textPositions.removeAll()
                                                         let globalPosition = geo.frame(in: .global).origin
                                                         DispatchQueue.main.async {
                                                             textPositions[sequence] = globalPosition
@@ -150,13 +179,7 @@ struct QuestionLayout<Content: View>: View {
                                             }
                                                 .frame(width: 0, height: 0)
                                         )
-                                        .onChange(of: viewModel.userAnswer) { _ , _ in
-                                            if !viewModel.userAnswer.isEmpty {
-                                                DispatchQueue.main.async {
-                                                    textPositions.removeAll()
-                                                }
-                                            }
-                                        }
+                               
                                     
                                     if isCurrentQuestion {
                                         Spacer().frame(height: 16)
@@ -187,6 +210,8 @@ struct QuestionLayout<Content: View>: View {
                                             GeometryReader { geo in
                                                 Color.clear.onAppear {
                                                     if isCurrentQuestion {
+                                                        textPositions.removeAll()
+
                                                         let globalPosition = geo.frame(in: .global).origin
                                                         DispatchQueue.main.async {
                                                             textPositions[sequence] = globalPosition
@@ -196,14 +221,7 @@ struct QuestionLayout<Content: View>: View {
                                             }
                                                 .frame(width: 0, height: 0)
                                         )
-                                        .onChange(of: viewModel.userAnswer) { _ , _ in
-                                            if !viewModel.userAnswer.isEmpty {
-                                                DispatchQueue.main.async {
-                                                    textPositions.removeAll()
-                                                }
-                                            }
-                                        }
-                                    
+                                 
                                     if isCurrentQuestion {
                                         Spacer().frame(height: 16)
                                     }
@@ -385,6 +403,13 @@ struct QuestionLayout<Content: View>: View {
         }.onAppear {
             currentImage = viewModel.currentQuestionData.background
             viewModel.audioHelper.playMusicQuestion(named: "birthday-party", fileType: "mp3")
+        }
+        .customAlert(isPresented: $viewModel.showAlertInternet) {
+            CustomAlertView(primaryButtonTitle: "Coba Lagi", primaryButtonAction: {
+                viewModel.checkTryAgainConnection()
+            }, secondaryButtonTitle: "Beranda", secondaryButtonAction: {
+                router.navigateToRoot()
+            })
         }
         .onChange(of: viewModel.currentQuestionData) {_, _ in
             currentImage = viewModel.currentQuestionData.background

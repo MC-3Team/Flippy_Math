@@ -30,6 +30,7 @@ class QuestionViewModel: ObservableObject {
     @Published var readyStartRecognition = false
     @Published var tipRecognition = false
     @Published var navigateToCredits = false
+    @Published var showAlertInternet = false
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared

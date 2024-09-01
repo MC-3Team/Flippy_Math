@@ -38,7 +38,7 @@ struct CustomAlertView: View {
                                 Text(secondaryButtonTitle)
                                     .font(.custom("PilcrowRoundedVariable-Regular", size: 18))
                                     .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color("bluePrimary"))
                                     .padding(10)
                                     .frame(width: 100)
                                     .background(Color.white)
