@@ -29,7 +29,7 @@ class SoundAnalysisManager: NSObject, SoundAnalysisService, SNResultsObserving {
     
     func setupAnalysis() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker, .allowBluetooth])
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth])
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
             fatalError("Failed to configure and activate audio session: \(error.localizedDescription)")
