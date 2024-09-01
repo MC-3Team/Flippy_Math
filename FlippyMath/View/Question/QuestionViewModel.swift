@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import SwiftUI
+import Network
 
 class QuestionViewModel: ObservableObject {
     @Inject(name: "CoreDataManager") var service: DataService
@@ -29,6 +30,7 @@ class QuestionViewModel: ObservableObject {
     @Published var readyStartRecognition = false
     @Published var tipRecognition = false
     @Published var navigateToHome = false
+    @Published var showAlertInternet = false
     
     private let disposeBag = DisposeBag()
     var audioHelper = AudioHelper.shared
@@ -156,56 +158,73 @@ class QuestionViewModel: ObservableObject {
     }
     
     func startRecognition() {
-        readyStartRecognition = false
-        speechRecognitionService.startRecognition()
-            .do(onSubscribe: { [weak self] in
-                guard let self = self else { return }
-                print("Starting speech recognition...")
-                self.isProcessing = true
-                self.isFailed = false
-                self.isSuccess = (nil, false)
-            })
-            .subscribe(onNext: { [self] (text, success) in
-                self.isSuccess = (text, success)
-                self.userAnswer = text ?? ""
-                self.isProcessing = false
-            }, onError: { [weak self] error in
-                self?.isFailed = true
-                self?.isProcessing = false
-            })
-            .disposed(by: disposeBag)
+        checkInternetConnection { [weak self] isConnected in
+            guard isConnected else {
+                self?.showAlertInternet = true
+                return
+            }
+
+            guard let self = self else { return }
+            self.readyStartRecognition = false
+            self.speechRecognitionService.startRecognition()
+                .do(onSubscribe: { [weak self] in
+                    guard let self = self else { return }
+                    print("Starting speech recognition...")
+                    self.isProcessing = true
+                    self.isFailed = false
+                    self.isSuccess = (nil, false)
+                })
+                .subscribe(onNext: { [weak self] (text, success) in
+                    self?.tipRecognition = false
+                    self?.isSuccess = (text, success)
+                    self?.userAnswer = text ?? ""
+                    self?.isProcessing = false
+                }, onError: { [weak self] error in
+                    self?.isFailed = true
+                    self?.isProcessing = false
+                })
+                .disposed(by: self.disposeBag)
+        }
     }
-    
-    func stopRecognition(tryRepeat : Bool) {
+
+    func stopRecognition(tryRepeat: Bool) {
         guard !isRecognitionInProgress else { return }
         isRecognitionInProgress = true
         
         let group = DispatchGroup()
         group.enter()
         
-        speechRecognitionService.stopRecognition()
-            .do(onSubscribe: { [weak self] in
-                print("Stop speech recognition...")
-                self?.isProcessing = true
-                self?.isFailed = false
-                self?.isSuccess = (nil, false)
-            })
-            .subscribe(onNext: { [weak self] success in
-                self?.isProcessing = false
-                self?.isSuccess = (nil, false)
-                self?.isFailed = false
-            }, onError: { [weak self] error in
-                self?.isFailed = true
-                self?.isProcessing = false
-            }, onCompleted: {
+        checkInternetConnection { [weak self] isConnected in
+            guard isConnected else {
+                self?.showAlertInternet = true
                 group.leave()
-            })
-            .disposed(by: disposeBag)
-        
-        group.notify(queue: .main) {
-            self.isRecognitionInProgress = false
+                return
+            }
+
+            self?.speechRecognitionService.stopRecognition()
+                .do(onSubscribe: { [weak self] in
+                    print("Stop speech recognition...")
+                    self?.isProcessing = true
+                    self?.isFailed = false
+                    self?.isSuccess = (nil, false)
+                })
+                .subscribe(onNext: { [weak self] success in
+                    self?.isProcessing = false
+                    self?.isSuccess = (nil, false)
+                    self?.isFailed = false
+                }, onError: { [weak self] error in
+                    self?.isFailed = true
+                    self?.isProcessing = false
+                }, onCompleted: {
+                    group.leave()
+                })
+                .disposed(by: self?.disposeBag ?? DisposeBag())
+        }
+
+        group.notify(queue: .main) { [weak self] in
+            self?.isRecognitionInProgress = false
             if tryRepeat {
-                self.readyStartRecognition = true
+                self?.readyStartRecognition = true
             }
         }
     }
@@ -282,7 +301,6 @@ class QuestionViewModel: ObservableObject {
     }
     
     private func handleQuestionProblem(_ problem: ProblemData) {
-        tipRecognition = false
         if userAnswer == problem.problem {
             handleCorrectAnswer()
         } else {
@@ -358,11 +376,41 @@ class QuestionViewModel: ObservableObject {
                 readyStartRecognition = true
             } else {
                 readySoundAnalysis = true
+                
             }
         }
         
         currentMessageIndex += 1
         riveInput = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
+        
+    }
+    
+    func checkTryAgainConnection() {
+        checkInternetConnection { isConnected in
+            if isConnected {
+                self.showAlertInternet = false
+                self.repeatQuestionHandling()
+            } else {
+                self.showAlertInternet = true
+            }
+        }
+    }
+    func checkInternetConnection(completion: @escaping (Bool) -> Void) {
+        let monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "InternetConnectionMonitor")
+        
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                if path.status == .satisfied {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+                monitor.cancel()
+            }
+        }
+        
+        monitor.start(queue: queue)
     }
     
     private func advanceMathIndex() {

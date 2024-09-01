@@ -38,15 +38,15 @@ struct HomeView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 0.45)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                                        
+                    
                     BalloonView()
                         .frame(width: geometry.size.width * 0.17)
                         .position(x: geometry.size.width * 0.74, y: geometry.size.height / 2)
-
+                    
                     BalloonView()
                         .frame(width: geometry.size.width * 0.17)
                         .position(x: geometry.size.width * 0.28, y: geometry.size.height / 2)
-
+                    
                     PenguinsHomeView()
                         .frame(width: geometry.size.width * 0.65)
                         .position(x: geometry.size.width / 2, y: geometry.size.height * 0.68)
@@ -72,7 +72,7 @@ struct HomeView: View {
                             .frame(width: geometry.size.width * 0.07)
                     }).padding(.top,geometry.size.width * 0.17)
                         .position(x: geometry.size.width * 0.94, y: geometry.size.height * 0.06)
-
+                    
                     Button(action: {
                         viewModel.requestPermissions()
                     }, label: {
@@ -98,21 +98,26 @@ struct HomeView: View {
                         viewModel.isGranted = false
                     }
                 }
+                .customAlert(isPresented: $viewModel.showAlertInternet) {
+                    CustomAlertView(primaryButtonTitle: "Mengerti", primaryButtonAction: {
+                        viewModel.showAlertInternet = false
+                    })
+                }
                 .alert(isPresented: $viewModel.showSettingsAlert) {
-                            Alert(
-                                title: Text("Permissions Required"),
-                                message: Text(viewModel.alertMessage),
-                                primaryButton: .default(Text("Go to Settings")) {
-                                    // Open app settings
-                                    if let url = URL(string: UIApplication.openSettingsURLString) {
-                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                    }
-                                },
-                                secondaryButton: .cancel()
-                            )
-                        }
+                    Alert(
+                        title: Text("Permissions Required"),
+                        message: Text(viewModel.alertMessage),
+                        primaryButton: .default(Text("Go to Settings")) {
+                            // Open app settings
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
                 .onDisappear {
-//                    audioHelper.pauseMusic()
+                    //                    audioHelper.pauseMusic()
                     withAnimation {
                         viewModel.animate = false
                     }

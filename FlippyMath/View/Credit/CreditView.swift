@@ -29,13 +29,13 @@ struct CreditsView: View {
                             VStack(spacing: 20) {
                                 ForEach(credits, id: \.self) { credit in
                                     Text(credit)
-                                        .font(.custom("PilcrowRoundedVariable-Regular", size: 52))
+                                        .font(.custom("PilcrowRoundedVariable-Regular", size: credit == credits.first ? 80 : 52))
                                         .fontWeight(.bold)
                                         .foregroundColor(.white)
                                         .padding()
                                 }
                                 Spacer()
-                                    .frame(height: geometry.size.height / 2) // Ruang kosong untuk logo
+                                    .frame(height: geometry.size.height / 2)
                             }
                             .offset(y: animate ? -geometry.size.height : geometry.size.height)
                         }
@@ -43,7 +43,7 @@ struct CreditsView: View {
                         if showTextCredit {
                             Image("Logo")
                                 .resizable()
-                                .frame(width: 100, height: 100)
+                                .frame(width: 300, height: 300)
                                 .foregroundColor(.white)
                         }
                         

@@ -62,6 +62,7 @@ struct QuestionLayout<Content: View>: View {
                                         GeometryReader { geo in
                                             Color.clear.onAppear {
                                                 if isCurrentQuestion {
+                                                    textPositions.removeAll()
                                                     let globalPosition = geo.frame(in: .global).origin
                                                     DispatchQueue.main.async {
                                                         textPositions[sequence] = globalPosition
@@ -71,13 +72,6 @@ struct QuestionLayout<Content: View>: View {
                                         }
                                             .frame(width: 0, height: 0)
                                     )
-                                    .onChange(of: viewModel.userAnswer) { _ , _ in
-                                        if !viewModel.userAnswer.isEmpty {
-                                            DispatchQueue.main.async {
-                                                textPositions.removeAll()
-                                            }
-                                        }
-                                    }
                                 
                                 if isCurrentQuestion {
                                     Spacer().frame(height: 16)
@@ -180,6 +174,13 @@ struct QuestionLayout<Content: View>: View {
         }.onAppear {
             currentImage = viewModel.currentQuestionData.background
             viewModel.audioHelper.playMusicQuestion(named: "birthday-party", fileType: "mp3")
+        }
+        .customAlert(isPresented: $viewModel.showAlertInternet) {
+            CustomAlertView(primaryButtonTitle: "Coba Lagi", primaryButtonAction: {
+                viewModel.checkTryAgainConnection()
+            }, secondaryButtonTitle: "Beranda", secondaryButtonAction: {
+                router.navigateToRoot()
+            })
         }
         .onChange(of: viewModel.currentQuestionData) {_, _ in
             currentImage = viewModel.currentQuestionData.background
