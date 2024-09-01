@@ -16,14 +16,14 @@ struct SingingView: View {
     @ObservedObject var viewModel: QuestionViewModel
     @EnvironmentObject var audioHelper: AudioHelper
     @Environment(\.verticalSizeClass) var verticalSizeClass
-
+    
     @State private var colorIndexes = [0, 0, 0, 0, 0]
     @State private var isAnimating = false
     @State private var randomOffsets: [CGSize] = Array(repeating: .zero, count: 5)
     @State private var scales: [CGFloat] = Array(repeating: 1.0, count: 5)
     @State private var throbbingTimers: [Timer] = []
     @State private var colorTimers: [Timer] = []
-    @State private var currentTextIndex = 0    
+    @State private var currentTextIndex = 0
     @State private var currentText = ""
     // Colors to cycle through
     let colors: [Color] = [.pink, .indigo, .orange, .cyan]
@@ -37,6 +37,16 @@ struct SingingView: View {
         (x: 300, y: 150)
     ]
     
+    // Specify positions for each music note
+    let positionsIphone: [(x: CGFloat, y: CGFloat)] = [
+        (x: 50, y: 160),
+        (x: 500, y: 40),
+        (x: 680, y: 210),
+        (x: 330, y: 250),
+        (x: 300, y: 40),
+
+    ]
+    
     // Specify frame sizes for each music note
     let frames: [CGSize] = [
         CGSize(width: 150, height: 150),
@@ -48,11 +58,11 @@ struct SingingView: View {
     
     // Specify frame sizes for each music note
     let framesIphone: [CGSize] = [
+        CGSize(width: 70, height: 70),
         CGSize(width: 50, height: 50),
-        CGSize(width: 30, height: 30),
-        CGSize(width: 30, height: 30),
-        CGSize(width: 20, height: 20),
-        CGSize(width: 30, height: 30)
+        CGSize(width: 50, height: 50),
+        CGSize(width: 40, height: 40),
+        CGSize(width: 50, height: 50)
     ]
     
     let textKaraoke = [
@@ -66,7 +76,7 @@ struct SingingView: View {
         TextKaraoke(text: "Potong kuenya, \nsekarang juga", duration: 5.0),
         TextKaraoke(text: "Sekarang juga, \nsekarang juga", duration: 9.0),
         TextKaraoke(text: "", duration: 1.0)
-
+        
     ]
     
     
@@ -125,11 +135,11 @@ struct SingingView: View {
                         Image("MusicNote\(index + 1).symbols")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: frames[index].width, height: frames[index].height)
+                            .frame(width: verticalSizeClass == .compact ? framesIphone[index].width : frames[index].width, height: verticalSizeClass == .compact ? framesIphone[index].height : frames[index].width)
                             .foregroundColor(colors[colorIndexes[index]])
                             .offset(randomOffsets[index])
                             .scaleEffect(scales[index])
-                            .position(x: positions[index].x, y: positions[index].y)
+                            .position(x: verticalSizeClass == .compact ? positionsIphone[index].x  : positions[index].x , y: verticalSizeClass == .compact ? positionsIphone[index].y  : positions[index].y )
                     }
                     
                     
@@ -174,7 +184,7 @@ struct SingingView: View {
                         .foregroundColor(colors[colorIndexes[index]])
                         .offset(randomOffsets[index])
                         .scaleEffect(scales[index])
-                        .position(x: positions[index].x, y: positions[index].y)
+                        .position(x: verticalSizeClass == .compact ? positionsIphone[index].x  : positions[index].x , y: verticalSizeClass == .compact ? positionsIphone[index].y  : positions[index].y )
                         .onAppear {
                             startAnimation(geometry: geometry)
                         }
