@@ -123,14 +123,14 @@ struct QuestionView: View {
     private func questionTwoView(geometry: GeometryProxy) -> some View {
         
         // Constants
-        let imageWidth = geometry.size.width * (isCompact ? 0.23 : 0.30)
-        let tableWidth = geometry.size.width * (isCompact ? 0.35 : 0.45)
-        let imagePositionX = geometry.size.width * (isCompact ? 0.235 : 1/5.5)
-        let imagePositionY = geometry.size.height * (isCompact ? 0.46 : 0.435)
-        let tablePositionX = geometry.size.width * (isCompact ? 0.23 : 0.175)
-        let tablePositionY = geometry.size.height * (isCompact ? 0.13 : 0.1)
-        let penguinFrameWidth = geometry.size.width * (isCompact ? 0.6 : 0.8)
-        let penguinPositionY = geometry.size.height * (isCompact ? 0.58 : 0.65)
+        let imageWidth: CGFloat = isCompact ? geometry.size.width * 0.23 : geometry.size.width * 0.30
+        let tableWidth: CGFloat = isCompact ? geometry.size.width * 0.35 : geometry.size.width * 0.45
+        let imagePositionX: CGFloat = isCompact ? geometry.size.width * 0.235 : geometry.size.width / 5.5
+        let imagePositionY: CGFloat = isCompact ? geometry.size.height * 0.46 : geometry.size.height * 0.52
+        let tablePositionX: CGFloat = isCompact ? geometry.size.width * 0.23 : geometry.size.width * 0.175
+        let tablePositionY: CGFloat = isCompact ? geometry.size.height * 0.13 : geometry.size.height * 0.18
+        let penguinFrameWidth: CGFloat = isCompact ? geometry.size.width * 0.6 : geometry.size.width * 0.8
+        let penguinPositionY: CGFloat = isCompact ? geometry.size.height * 0.58 : geometry.size.height * 0.65
         
         HStack {
             VStack {
@@ -218,65 +218,39 @@ struct QuestionView: View {
     ///MARK: Question 6
     @ViewBuilder
     private func questionSixView(geometry: GeometryProxy) -> some View {
-        if isCompact {
-            ZStack {
-                HStack {
-                    ArcticFoxView(isPlay: $viewModel.isPlaying)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.35)
-                        .position(x: geometry.size.width / 3, y: geometry.size.height * 0.53)
-                        .onTapGesture {
-                            viewModel.isPlaying.toggle()
-                        }
-                    
-                    ArcticFoxView(isPlay: $viewModel.isPlaying)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.35)
-                        .position(x: geometry.size.width / 6, y: geometry.size.height * 0.55)
-                        .onTapGesture {
-                            viewModel.isPlaying.toggle()
-                        }
-                }
+        let arcticFoxFrameWidth = geometry.size.width * (isCompact ? 0.35 : 0.4)
+        let babyFoxFrameWidth = geometry.size.width * (isCompact ? 0.4 : 0.5)
+        
+        ZStack {
+            // Arctic Foxes
+            HStack {
+                ArcticFoxView(isPlay: $viewModel.isPlaying)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: arcticFoxFrameWidth)
+                    .position(x: geometry.size.width / 3, y: geometry.size.height * (isCompact ? 0.53 : 0.6))
+                    .onTapGesture {
+                        viewModel.isPlaying.toggle()
+                    }
                 
-                ForEach(0..<viewModel.foxCount, id: \.self) { index in
-                    BabyFoxView(isPlay: $viewModel.isPlaying)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.4)
-                        .position(x: viewModel.babyFoxPosition(for: index, geometry: geometry).x,
-                                  y: viewModel.babyFoxPosition(for: index, geometry: geometry).y)
-                        .onTapGesture {
-                            viewModel.isPlaying.toggle()
-                        }
-                }
+                ArcticFoxView(isPlay: $viewModel.isPlaying)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: arcticFoxFrameWidth)
+                    .position(x: geometry.size.width / (isCompact ? 6 : 5), y: geometry.size.height * (isCompact ? 0.55 : 0.6))
+                    .onTapGesture {
+                        viewModel.isPlaying.toggle()
+                    }
             }
-        } else {
-            ZStack {
-                HStack {
-                    ArcticFoxView(isPlay: $viewModel.isPlaying)
-                        .aspectRatio(contentMode: .fit)
-                        .position(x: geometry.size.width / 3, y: geometry.size.height * 0.6)
-                        .onTapGesture {
-                            viewModel.isPlaying.toggle()
-                        }
-                    
-                    ArcticFoxView(isPlay: $viewModel.isPlaying)
-                        .aspectRatio(contentMode: .fit)
-                        .position(x: geometry.size.width / 5, y: geometry.size.height * 0.6)
-                        .onTapGesture {
-                            viewModel.isPlaying.toggle()
-                        }
-                }
-                
-                ForEach(0..<viewModel.foxCount, id: \.self) { index in
-                    BabyFoxView(isPlay: $viewModel.isPlaying)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.5)
-                        .position(x: viewModel.babyFoxPosition(for: index, geometry: geometry).x,
-                                  y: viewModel.babyFoxPosition(for: index, geometry: geometry).y)
-                        .onTapGesture {
-                            viewModel.isPlaying.toggle()
-                        }
-                }
+            
+            // Baby Foxes
+            ForEach(0..<viewModel.foxCount, id: \.self) { index in
+                BabyFoxView(isPlay: $viewModel.isPlaying)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: babyFoxFrameWidth)
+                    .position(x: viewModel.babyFoxPosition(for: index, geometry: geometry).x,
+                              y: viewModel.babyFoxPosition(for: index, geometry: geometry).y)
+                    .onTapGesture {
+                        viewModel.isPlaying.toggle()
+                    }
             }
         }
     }
@@ -284,80 +258,28 @@ struct QuestionView: View {
     ///MARK: Question 7
     @ViewBuilder
     private func questionSevenView(geometry: GeometryProxy) -> some View {
-        if isCompact {
-            ZStack {
-                if viewModel.currentMessageIndex < 3 {
-                    Image("Q7_iPhonePinataRope")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 1.2)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.26)
-                        .allowsHitTesting(false)
-                    
-                }
-                
-                if viewModel.currentMessageIndex < 2 {
-                    Image("Q7_Pinata")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.25)
-                        .position(x: geometry.size.width * 0.502, y: geometry.size.height * 0.45)
-                        .scaleEffect(viewModel.isTapped ? 1.2 : 1.0)
-                        .animation(.easeInOut(duration: 0.2), value: viewModel.isTapped)
-                        .rotationEffect(.degrees(-10))
-                        .onTapGesture {
-                            if viewModel.currentMessageIndex == 1 {
-                                viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2, isOutro: false)
-                            }
-                        }
-                    
-                    if viewModel.currentMessageIndex == 1 {
-                        Text("Tekan 5x untuk memecahkan pinata!")
-                            .font(.custom("PilcrowRoundedVariable-Regular", size: 16))
-                            .foregroundStyle(.black)
-                            .opacity(0.5)
-                            .fontWeight(.bold)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
-                    }
-                    
-                    
-                } else if viewModel.currentMessageIndex < 3 {
-                    PinataView()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.45)
-                        .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.45)
-                } else if viewModel.currentMessageIndex < 4 {
-                    Image("Q7_20Candies")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.7)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.64)
-                } else {
-                    Image("Q7_15Candies")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.65)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.62)
-                }
+        let ropeWidth = geometry.size.width * (isCompact ? 1.2 : 1.05)
+        let pinataWidth = geometry.size.width * (isCompact ? 0.25 : 0.4)
+        let pinataPositionY = geometry.size.height * (isCompact ? 0.43 : 0.5)
+        let textFontSize: CGFloat = isCompact ? 16 : 48
+        let candyPositionY = geometry.size.height * (isCompact ? 0.64 : 0.75)
+        
+        ZStack {
+            if viewModel.currentMessageIndex < 3 {
+                Image(isCompact ? "Q7_iPhonePinataRope" : "Q7_PinataRope")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: ropeWidth)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height * (isCompact ? 0.26 : 0.16))
+                    .allowsHitTesting(false)
             }
-        } else {
-            ZStack {
-                if viewModel.currentMessageIndex < 3 {
-                    Image("Q7_PinataRope")
+
+            if viewModel.currentMessageIndex < 2 {
+                Image("Q7_Pinata")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 1.05)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.16)
-                        .allowsHitTesting(false)
-                    
-                }
-                
-                if viewModel.currentMessageIndex < 2 {
-                    Image("Q7_Pinata")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.40)
-                        .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.5)
+                        .frame(width: pinataWidth)
+                        .position(x: geometry.size.width / 2, y: pinataPositionY)
                         .scaleEffect(viewModel.isTapped ? 1.2 : 1.0)
                         .animation(.easeInOut(duration: 0.2), value: viewModel.isTapped)
                         .rotationEffect(.degrees(-10))
@@ -366,35 +288,32 @@ struct QuestionView: View {
                                 viewModel.handleTap(tapThreshold: 5, tapDelay: 0.2, upperLimit: 2, isOutro: false)
                             }
                         }
-                    
-                    if viewModel.currentMessageIndex == 1 {
-                        Text("Tekan 5x untuk memecahkan pinata!")
-                            .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
-                            .foregroundStyle(.black)
-                            .opacity(0.5)
-                            .fontWeight(.bold)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
-                    }
-                    
-                    
-                } else if viewModel.currentMessageIndex < 3 {
-                    PinataView()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.8)
-                        .position(x: geometry.size.width * 0.515, y: geometry.size.height * 0.495)
-                } else if viewModel.currentMessageIndex < 4 {
-                    Image("Q7_20Candies")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.9)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
-                } else {
-                    Image("Q7_15Candies")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.70)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
+                
+                if viewModel.currentMessageIndex == 1 {
+                    Text("Tekan 5x untuk memecahkan pinata!")
+                        .font(.custom("PilcrowRoundedVariable-Regular", size: textFontSize))
+                        .foregroundStyle(.black)
+                        .opacity(0.5)
+                        .fontWeight(.bold)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height * (isCompact ? 0.75 : 0.85))
                 }
+            } else if viewModel.currentMessageIndex < 3 {
+                PinataView()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geometry.size.width * (isCompact ? 0.45 : 0.8))
+                    .position(x: geometry.size.width / 2, y: pinataPositionY)
+            } else if viewModel.currentMessageIndex < 4 {
+                Image("Q7_20Candies")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geometry.size.width * (isCompact ? 0.7 : 0.9))
+                    .position(x: geometry.size.width / 2, y: candyPositionY)
+            } else {
+                Image("Q7_15Candies")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geometry.size.width * (isCompact ? 0.65 : 0.7))
+                    .position(x: geometry.size.width / 2, y: geometry.size.height * (isCompact ? 0.62 : 0.75))
             }
         }
     }
@@ -402,194 +321,117 @@ struct QuestionView: View {
     ///MARK: Question 8
     @ViewBuilder
     private func questionEightView(geometry: GeometryProxy) -> some View {
-        if isCompact {
-            if viewModel.currentMessageIndex < 2 {
-                PolarBearView(key: "isOpen", value: false)
-                    .frame(width: geometry.size.width * 0.5)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.45)
-            } else {
-                PolarBearView(key: "isOpen", value: true)
-                    .frame(width: geometry.size.width * 0.38)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
-            }
-        } else {
-            if viewModel.currentMessageIndex < 2 {
-                PolarBearView(key: "isOpen", value: false)
-                    .frame(width: geometry.size.width * 0.7)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
-            } else {
-                PolarBearView(key: "isOpen", value: true)
-                    .frame(width: geometry.size.width * 0.6)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
-            }
-        }
+        let isOpen = viewModel.currentMessageIndex >= 2
+        let frameWidth = geometry.size.width * (isCompact ? (isOpen ? 0.38 : 0.5) : (isOpen ? 0.6 : 0.7))
+        let positionY = geometry.size.height * (isCompact ? (isOpen ? 0.55 : 0.45) : (isOpen ? 0.6 : 0.55))
+        
+        PolarBearView(key: "isOpen", value: isOpen)
+            .frame(width: frameWidth)
+            .position(x: geometry.size.width / 2, y: positionY)
     }
+
     
     ///MARK: Outro
     @ViewBuilder
     private func outroView(geometry: GeometryProxy) -> some View {
-        
-        if isCompact {
-            ZStack {
-                //                Image("Outro_iPhoneBackground")
-                //                    .resizable()
-                //                    .frame(
-                //                        width: geometry.size.width * 1.2,
-                //                        height: geometry.size.height * 1.2
-                //                    )
-                //                    .position(
-                //                        x: geometry.size.width / 2,
-                //                        y: geometry.size.height / 2
-                //                    )
-                //
-                if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
-                    Image("Outro_HBD_Banner")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.65)
-                        .position(x: geometry.size.width / 2, y: geometry.size.width * 0.065)
-                        .allowsHitTesting(false)
-                    
-                    IdleBalloonView()
-                    
-                    ArcticFoxView(isPlay: .constant(true))
-                        .frame(width: geometry.size.width * 0.4)
-                        .position(x: geometry.size.width * 0.8, y: geometry.size.height * 0.55)
-                    
-                    BabyFoxView(isPlay: .constant(true))
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.4)
-                        .position(x: geometry.size.width * 0.72, y: geometry.size.height * 0.7)
-                    
-                    PenguinsView()
-                        .frame(width: geometry.size.width * 0.6)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
-                    
-                    PolarBearOnlyView()
-                        .frame(width: geometry.size.width * 0.4)
-                        .position(x: geometry.size.width * 0.2, y: geometry.size.height * 0.55)
-                    
-                } else if viewModel.currentMessageIndex == 2 {
-                    Image("Outro_Gift")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.33)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.4)
-                        .scaleEffect(viewModel.isTapped ? 1.2 : 1.0)
-                        .animation(.easeInOut(duration: 0.4), value: viewModel.isTapped)
-                        .onTapGesture {
-                            if viewModel.currentMessageIndex == 2 {
-                                viewModel.handleTap(tapDelay: 0.5, upperLimit: 3, isOutro: true)
-                            }
-                        }
-                    
-                    Text("Tekan Hadiah untuk membuka!")
-                        .font(.custom("PilcrowRoundedVariable-Regular", size: 16))
-                        .foregroundStyle(.black)
-                        .opacity(0.5)
-                        .fontWeight(.bold)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.76)
-                    
-                } else if viewModel.currentMessageIndex == 3 {
-                    Group {
-                        Image("Outro_Starburst")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.27)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                            .rotationEffect(.degrees(viewModel.rotation))
-                            .scaleEffect(viewModel.scale)
-                    }
-                    .onAppear {
-                        withAnimation(Animation.linear(duration: 8).repeatForever(autoreverses: false)) {
-                            viewModel.rotation = 360
-                        }
-                        withAnimation(Animation.easeInOut(duration: 2)) {
-                            viewModel.scale = 1.5
+        // Constants for sizing and positioning based on `isCompact`
+        let bannerWidth = geometry.size.width * 0.65
+        let bannerPositionY = geometry.size.width * 0.065
+        let foxWidth = geometry.size.width * (isCompact ? 0.4 : 0.45)
+        let foxPositionX = geometry.size.width * (isCompact ? 0.8 : 0.9)
+        let foxPositionY = geometry.size.height * (isCompact ? 0.55 : 0.64)
+        let babyFoxWidth = geometry.size.width * (isCompact ? 0.4 : 0.5)
+        let babyFoxPositionX = geometry.size.width * (isCompact ? 0.72 : 0.8)
+        let babyFoxPositionY = geometry.size.height * (isCompact ? 0.7 : 0.75)
+        let penguinsWidth = geometry.size.width * (isCompact ? 0.6 : 0.85)
+        let penguinsPositionY = geometry.size.height * (isCompact ? 0.6 : 0.64)
+        let polarBearWidth = geometry.size.width * (isCompact ? 0.4 : 0.6)
+        let polarBearPositionX = geometry.size.width * (isCompact ? 0.2 : 0.14)
+        let polarBearPositionY = geometry.size.height * (isCompact ? 0.55 : 0.62)
+        let giftWidth = geometry.size.width * (isCompact ? 0.33 : 0.45)
+        let giftPositionY = geometry.size.height * (isCompact ? 0.4 : 0.45)
+        let textFontSize: CGFloat = isCompact ? 16 : 48
+        let textPositionY = geometry.size.height * (isCompact ? 0.76 : 0.85)
+
+        ZStack {
+            // Show different content based on `currentMessageIndex`
+            if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
+                Image("Outro_HBD_Banner")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: bannerWidth)
+                    .position(x: geometry.size.width / 2, y: bannerPositionY)
+                    .allowsHitTesting(false)
+
+                IdleBalloonView()
+
+                // Arctic Fox View
+                ArcticFoxView(isPlay: .constant(true))
+                    .frame(width: foxWidth)
+                    .position(x: foxPositionX, y: foxPositionY)
+
+                // Baby Fox View
+                BabyFoxView(isPlay: .constant(true))
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: babyFoxWidth)
+                    .position(x: babyFoxPositionX, y: babyFoxPositionY)
+
+                // Penguins View
+                PenguinsView()
+                    .frame(width: penguinsWidth)
+                    .position(x: geometry.size.width / 2, y: penguinsPositionY)
+
+                // Polar Bear View
+                PolarBearOnlyView()
+                    .frame(width: polarBearWidth)
+                    .position(x: polarBearPositionX, y: polarBearPositionY)
+
+            } else if viewModel.currentMessageIndex == 2 {
+                // Gift Interaction View
+                Image("Outro_Gift")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: giftWidth)
+                    .position(x: geometry.size.width / 2, y: giftPositionY)
+                    .scaleEffect(viewModel.isTapped ? 1.2 : 1.0)
+                    .animation(.easeInOut(duration: 0.4), value: viewModel.isTapped)
+                    .onTapGesture {
+                        if viewModel.currentMessageIndex == 2 {
+                            viewModel.handleTap(tapDelay: 0.5, upperLimit: 3, isOutro: true)
                         }
                     }
-                    
-                    RewardAnimationView()
+
+                // Gift instruction text
+                Text("Tekan Hadiah untuk membuka!")
+                    .font(.custom("PilcrowRoundedVariable-Regular", size: textFontSize))
+                    .foregroundStyle(.black)
+                    .opacity(0.5)
+                    .fontWeight(.bold)
+                    .position(x: geometry.size.width / 2, y: textPositionY)
+
+            } else if viewModel.currentMessageIndex == 3 {
+                // Starburst Animation View
+                Group {
+                    Image("Outro_Starburst")
+                        .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.4)
+                        .frame(width: geometry.size.width * (isCompact ? 0.27 : 0.7))
+                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                        .rotationEffect(.degrees(viewModel.rotation))
+                        .scaleEffect(viewModel.scale)
                 }
-            }
-        } else {
-            ZStack {
-                //                Image("Outro_Background")
-                //                    .resizable()
-                //                    .scaledToFill()
-                //                    .ignoresSafeArea()
-                
-                if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
-                    Image("Outro_HBD_Banner")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.65)
-                        .position(x: geometry.size.width / 2, y: geometry.size.width * 0.065)
-                    
-                    IdleBalloonView()
-                    
-                    ArcticFoxView(isPlay: .constant(true))
-                        .frame(width: geometry.size.width * 0.45)
-                        .position(x: geometry.size.width * 0.9, y: geometry.size.height * 0.64)
-                    
-                    BabyFoxView(isPlay: .constant(true))
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.5)
-                        .position(x: geometry.size.width * 0.8, y: geometry.size.height * 0.75)
-                    
-                    PenguinsView()
-                        .frame(width: geometry.size.width * 0.85)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.64)
-                    
-                    PolarBearOnlyView()
-                        .frame(width: geometry.size.width * 0.6)
-                        .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.62)
-                    
-                } else if viewModel.currentMessageIndex == 2 {
-                    Image("Outro_Gift")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.45)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.45)
-                        .scaleEffect(viewModel.isTapped ? 1.2 : 1.0)
-                        .animation(.easeInOut(duration: 0.4), value: viewModel.isTapped)
-                        .onTapGesture {
-                            if viewModel.currentMessageIndex == 2 {
-                                viewModel.handleTap(tapDelay: 0.5, upperLimit: 3, isOutro: true)
-                            }
-                        }
-                    
-                    Text("Tekan Hadiah untuk membuka!")
-                        .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
-                        .foregroundStyle(.black)
-                        .opacity(0.5)
-                        .fontWeight(.bold)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
-                    
-                } else if viewModel.currentMessageIndex == 3 {
-                    Group {
-                        Image("Outro_Starburst")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.7)
-                            .rotationEffect(.degrees(viewModel.rotation))
-                            .scaleEffect(viewModel.scale)
+                .onAppear {
+                    withAnimation(Animation.linear(duration: 8).repeatForever(autoreverses: false)) {
+                        viewModel.rotation = 360
                     }
-                    .onAppear {
-                        withAnimation(Animation.linear(duration: 8).repeatForever(autoreverses: false)) {
-                            viewModel.rotation = 360
-                        }
-                        withAnimation(Animation.easeInOut(duration: 2)) {
-                            viewModel.scale = 1.5
-                        }
+                    withAnimation(Animation.easeInOut(duration: 2)) {
+                        viewModel.scale = 1.5
                     }
-                    
-                    RewardAnimationView()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width * 0.65)
                 }
+
+                RewardAnimationView()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geometry.size.width * (isCompact ? 0.4 : 0.65))
             }
         }
     }
@@ -607,1639 +449,4 @@ struct QuestionView: View {
 
 //#Preview {
 //    QuestionView(sequenceLevel: 1, parameter: .home)
-//}
-
-
-//preview ngapa banyak gini anjing, device udah ada tinggal run
-struct Question1View: View {
-    
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    
-    // Constants
-    let backgroundScale: CGFloat = 1.2
-    
-    ///MARK: Bottom View
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    var body: some View {
-        GeometryReader { geometry in
-            // Constants
-            let penguinWidth = geometry.size.width * (isCompact ? 0.6 : 0.8)
-            let penguinHeight = geometry.size.height * (isCompact ? 0.57 : 0.65)
-            let unavailablePenguinWidth = geometry.size.width * (isCompact ? 0.08 : 0.1)
-            let unavailablePenguinXPositions = isCompact ? [0.28, 0.71] : [0.22, 0.77]
-            let unavailablePenguinYPosition = geometry.size.height * (isCompact ? 0.59 : 0.68)
-            
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q1_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text("3 - 5 = 2")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                PenguinsView()
-                    .frame(width: penguinWidth)
-                    .position(x: geometry.size.width / 2, y: penguinHeight)
-                
-                ForEach(0..<unavailablePenguinXPositions.count) { index in
-                    Image("Q1_UnavailablePenguin")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: unavailablePenguinWidth)
-                        .position(x: geometry.size.width * unavailablePenguinXPositions[index],
-                                  y: unavailablePenguinYPosition)
-                }
-            }
-        }
-    }
-}
-
-//#Preview {
-
-//    Question1View()
-//}
-
-struct Question2View: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 1
-    
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    
-    // Constants
-    let backgroundScale: CGFloat = 1.2
-    
-    ///MARK: Bottom View
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    var body: some View {
-        ///Problem String
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q2_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.1)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text("3 - 5 = 2")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                ///Children
-                //Constants
-                let imageWidth: CGFloat = isCompact ? geometry.size.width * 0.23 : geometry.size.width * 0.30
-                let tableWidth: CGFloat = isCompact ? geometry.size.width * 0.35 : geometry.size.width * 0.45
-                let imagePositionX: CGFloat = isCompact ? geometry.size.width * 0.235 : geometry.size.width / 5.5
-                let imagePositionY: CGFloat = isCompact ? geometry.size.height * 0.46 : geometry.size.height * 0.442
-                let tablePositionX: CGFloat = isCompact ? geometry.size.width * 0.23 : geometry.size.width * 0.175
-                let tablePositionY: CGFloat = isCompact ? geometry.size.height * 0.13 : geometry.size.height * 0.1
-                let penguinFrameWidth: CGFloat = isCompact ? geometry.size.width * 0.6 : geometry.size.width * 0.8
-                let penguinPositionY: CGFloat = isCompact ? geometry.size.height * 0.58 : geometry.size.height * 0.65
-                
-                HStack {
-                    VStack {
-                        Image(currentMessageIndex > 1 ? "" : "Q2_Hats")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: imageWidth)
-                            .position(x: imagePositionX, y: imagePositionY)
-                        
-                        Image("Q2_Table")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: tableWidth)
-                            .position(x: tablePositionX, y: tablePositionY)
-                    }
-                    
-                    (currentMessageIndex > 1 ? AnyView(PenguinsHatView()) : AnyView(PenguinsView()))
-                        .frame(width: penguinFrameWidth)
-                        .position(x: geometry.size.width / 5.5, y: penguinPositionY)
-                }
-                
-                
-            }
-        }
-    }
-}
-
-#Preview(body: {
-    Question2View()
-})
-
-struct Question3View: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 3
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    let backgroundScale: CGFloat = 1.2
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q2_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text("3 - 5 = 2")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.25)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                ///Children
-                if isCompact {
-                    VStack {
-                        switch currentMessageIndex {
-                        case ..<2:
-                            IdleBalloonView()
-                        case 2:
-                            FlyingBalloonView()
-                        default:
-                            IdleBalloon2View()
-                        }
-                    }
-                } else {
-                    VStack {
-                        switch currentMessageIndex {
-                        case ..<2:
-                            IdleBalloonView()
-                        case 2:
-                            FlyingBalloonView()
-                        default:
-                            IdleBalloon2View()
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-//#Preview(body: {
-//    Question3View()
-//})
-
-struct Question4View: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 0
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    let backgroundScale: CGFloat = 1.2
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q4_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text("3 - 5 = 2")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                ///Children
-                let isInitialMessage = currentMessageIndex < 1
-                let imageName = isInitialMessage ? "Q4_8Cakes" : "Q4_6Cakes"
-                let frameWidth = geometry.size.width * (isCompact ? 0.5 : 0.75)
-                let positionY = geometry.size.height * (isCompact ? 0.55 : 0.6)
-                
-                HStack {
-                    Image(imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: frameWidth)
-                        .position(x: geometry.size.width / 2, y: positionY)
-                }
-            }
-        }
-    }
-}
-
-//#Preview(body: {
-//    Question4View()
-//})
-
-struct Question5View: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 4
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    let backgroundScale: CGFloat = 1.2
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    
-    /// MARK: SOAL NOMOR 5: Cakes & Flies
-    @State var flyPositions: [(x: CGFloat, y: CGFloat)] = [
-        (x: 0.1, y: 0.6),
-        (x: 0.16, y: 0.3),
-        (x: 0.2, y: 0.7),
-        (x: 0.3, y: 0.25),
-        (x: 0.5, y: 0.45),
-        (x: 0.45, y: 0.71),
-        (x: 0.8, y: 0.7),
-        (x: 0.75, y: 0.3),
-        (x: 0.9, y: 0.5)
-    ]
-    
-    var flyCount: Int {
-        return (currentMessageIndex >= 4) ? 2 : flyPositions.count
-    }
-    
-    func flyPosition(for index: Int, geometry: GeometryProxy) -> (x: CGFloat, y: CGFloat) {
-        let position = flyPositions[index]
-        return (x: geometry.size.width * position.x, y: geometry.size.height * position.y)
-    }
-    
-    func flyAnimation(for index: Int, geometry: GeometryProxy) {
-        let startPosition = flyPositions[index]
-        let animation = Animation.easeInOut(duration: Double.random(in: 2...5))
-            .repeatForever(autoreverses: true)
-        
-        withAnimation(animation) {
-            flyPositions[index] = (
-                x: startPosition.x + CGFloat.random(in: -0.1...0.1),
-                y: startPosition.y + CGFloat.random(in: -0.1...0.1)
-            )
-        }
-    }
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q4_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text("?")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                ///Children
-                if isCompact {
-                    ZStack {
-                        Image("Q5_2Cakes")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.4)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
-                        
-                        ForEach(0..<flyCount, id: \.self) { index in
-                            Image("Q5_Fly\(index + 1)")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.045)
-                                .position(x: flyPosition(for: index, geometry: geometry).x,
-                                          y: flyPosition(for: index, geometry: geometry).y)
-                                .onAppear {
-                                    flyAnimation(for: index, geometry: geometry)
-                                }
-                        }
-                    }
-                } else {
-                    ZStack {
-                        Image("Q5_2Cakes")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.55)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
-                        
-                        ForEach(0..<flyCount, id: \.self) { index in
-                            Image("Q5_Fly\(index + 1)")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.05)
-                                .position(x: flyPosition(for: index, geometry: geometry).x,
-                                          y: flyPosition(for: index, geometry: geometry).y)
-                                .onAppear {
-                                    flyAnimation(for: index, geometry: geometry)
-                                }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-//#Preview(body: {
-//    Question5View()
-//})
-
-struct Question6View: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 3
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    let backgroundScale: CGFloat = 1.2
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    @State var isPlaying: Bool = false
-    @State var babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
-        (x: 0.456, y: 0.64),
-        (x: 0.568, y: 0.66),
-        (x: 0.202, y: 0.60),
-        (x: 0.105, y: 0.64),
-        (x: 0.78, y: 0.65),
-        (x: 0.89, y: 0.6)
-    ]
-    
-    var foxCount: Int {
-        return (currentMessageIndex < 3) ? 2 : babyFoxPositions.count
-    }
-    
-    func babyFoxPosition(for index: Int, geometry: GeometryProxy) -> (x: CGFloat, y: CGFloat) {
-        let position = babyFoxPositions[index]
-        return (x: geometry.size.width * position.x, y: geometry.size.height * position.y)
-    }
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q6_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text(" 4 + 4 + 2 = 8")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                if isCompact {
-                    ZStack {
-                        HStack {
-                            ArcticFoxView(isPlay: $isPlaying)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.35)
-                                .position(x: geometry.size.width / 3, y: geometry.size.height * 0.53)
-                                .onTapGesture {
-                                    isPlaying.toggle()
-                                }
-                            
-                            ArcticFoxView(isPlay: $isPlaying)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.35)
-                                .position(x: geometry.size.width / 6, y: geometry.size.height * 0.55)
-                                .onTapGesture {
-                                    isPlaying.toggle()
-                                }
-                        }
-                        
-                        ForEach(0..<foxCount, id: \.self) { index in
-                            BabyFoxView(isPlay: $isPlaying)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.4)
-                                .position(x: babyFoxPosition(for: index, geometry: geometry).x,
-                                          y: babyFoxPosition(for: index, geometry: geometry).y)
-                                .onTapGesture {
-                                    isPlaying.toggle()
-                                }
-                        }
-                    }
-                } else {
-                    ZStack {
-                        HStack {
-                            ArcticFoxView(isPlay: $isPlaying)
-                                .aspectRatio(contentMode: .fit)
-                                .position(x: geometry.size.width / 3, y: geometry.size.height * 0.6)
-                                .onTapGesture {
-                                    isPlaying.toggle()
-                                }
-                            
-                            ArcticFoxView(isPlay: $isPlaying)
-                                .aspectRatio(contentMode: .fit)
-                                .position(x: geometry.size.width / 5, y: geometry.size.height * 0.6)
-                                .onTapGesture {
-                                    isPlaying.toggle()
-                                }
-                        }
-                        
-                        ForEach(0..<foxCount, id: \.self) { index in
-                            BabyFoxView(isPlay: $isPlaying)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.1)
-                                .position(x: babyFoxPosition(for: index, geometry: geometry).x,
-                                          y: babyFoxPosition(for: index, geometry: geometry).y)
-                                .onTapGesture {
-                                    isPlaying.toggle()
-                                }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-//#Preview(body: {
-//    Question6View()
-//})
-
-struct Question7View: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 4
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    let backgroundScale: CGFloat = 1.2
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    
-    @State var tapCount = 0
-    @State var isTapped = false
-    
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q7_Background")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text(" 4 + 4 + 2 = 8")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                ///Children
-                if isCompact {
-                    ZStack {
-                        if currentMessageIndex < 3 {
-                            Image("Q7_iPhonePinataRope")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 1.2)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.26)
-                        }
-                        
-                        if currentMessageIndex < 2 {
-                            Image("Q7_Pinata")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.25)
-                                .position(x: geometry.size.width * 0.502, y: geometry.size.height * 0.45)
-                                .scaleEffect(isTapped ? 1.2 : 1.0)
-                                .animation(.easeInOut(duration: 0.2), value: isTapped)
-                                .rotationEffect(.degrees(-10))
-                            
-                            
-                            if currentMessageIndex == 1 {
-                                Text("Tekan 5x untuk memecahkan pinata!")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 16))
-                                    .foregroundStyle(.black)
-                                    .opacity(0.5)
-                                    .fontWeight(.bold)
-                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
-                            }
-                            
-                            
-                        } else if currentMessageIndex < 3 {
-                            PinataView()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.45)
-                                .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.45)
-                        } else if currentMessageIndex < 4 {
-                            Image("Q7_20Candies")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.7)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.64)
-                        } else {
-                            Image("Q7_15Candies")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.5)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.62)
-                        }
-                    }
-                } else {
-                    ZStack {
-                        if currentMessageIndex < 3 {
-                            Image("Q7_PinataRope")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 1.05)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.16)
-                        }
-                        
-                        if currentMessageIndex < 2 {
-                            Image("Q7_Pinata")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.40)
-                                .position(x: geometry.size.width * 0.505, y: geometry.size.height * 0.505)
-                                .scaleEffect(isTapped ? 1.2 : 1.0)
-                                .animation(.easeInOut(duration: 0.2), value: isTapped)
-                                .rotationEffect(.degrees(-10))
-                            
-                            
-                            if currentMessageIndex == 1 {
-                                Text("Tekan 5x untuk memecahkan pinata!")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
-                                    .foregroundStyle(.black)
-                                    .opacity(0.5)
-                                    .fontWeight(.bold)
-                                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
-                            }
-                            
-                            
-                        } else if currentMessageIndex < 3 {
-                            PinataView()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.8)
-                                .position(x: geometry.size.width * 0.515, y: geometry.size.height * 0.495)
-                        } else if currentMessageIndex < 4 {
-                            Image("Q7_20Candies")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.9)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
-                        } else {
-                            Image("Q7_15Candies")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.70)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.75)
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-//#Preview(body: {
-//    Question7View()
-//})
-
-struct Question8View: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 3
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    let backgroundScale: CGFloat = 1.2
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q7_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text(" 4 + 4 + 2 = 8")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-                
-                /// Children
-                if isCompact {
-                    if currentMessageIndex < 2 {
-                        PolarBearView(key: "isOpen", value: false)
-                            .frame(width: geometry.size.width * 0.5)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.45)
-                    } else {
-                        PolarBearView(key: "isOpen", value: true)
-                            .frame(width: geometry.size.width * 0.38)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
-                    }
-                } else {
-                    if currentMessageIndex < 2 {
-                        PolarBearView(key: "isOpen", value: false)
-                            .frame(width: geometry.size.width * 0.7)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.55)
-                    } else {
-                        PolarBearView(key: "isOpen", value: true)
-                            .frame(width: geometry.size.width * 0.6)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
-                    }
-                }
-                
-            }
-        }
-    }
-}
-
-//#Preview(body: {
-//    Question8View()
-//})
-
-struct OutroView: View {
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State var currentMessageIndex = 2
-    var isCompact: Bool {
-        verticalSizeClass == .compact
-    }
-    let backgroundScale: CGFloat = 1.2
-    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-    
-    
-    /// MARK: SOAL NOMOR 9: Outro
-    @State var rotation: Double = 0
-    @State var scale: CGFloat = 0.5
-    @State var isTapped = false
-    @State var tapCount = 0
-    
-    
-    ///MARK: SHARED
-    func handleTap(tapThreshold: Int? = nil, tapDelay: Double = 0.5, upperLimit: Int = 2) {
-        isTapped = true
-        
-        if let threshold = tapThreshold {
-            tapCount += 1
-            if tapCount >= threshold {
-                tapCount = 0
-                moveToNextMessage(upperLimit: upperLimit)
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + tapDelay) {
-            self.isTapped = false
-            if tapThreshold == nil {
-                self.moveToNextMessage(upperLimit: upperLimit)
-            }
-        }
-    }
-    
-    private func moveToNextMessage(upperLimit: Int) {
-        if currentMessageIndex < upperLimit {
-            currentMessageIndex += 1
-        }
-    }
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Group {
-                    //MARK: Background
-                    Image("Q7_iPhoneBackground")
-                        .resizable()
-                        .frame(width: geometry.size.width * backgroundScale,
-                               height: geometry.size.height * backgroundScale)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                    
-                    ///MARK:HomeButton
-                    if isCompact {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-                        }
-                    } else {
-                        Button {
-                        } label: {
-                            Image("HomeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-                        }
-                    }
-                    
-                    ///Problem String
-                    HStack {
-                        ZStack(alignment: .topLeading) {
-                            VStack(spacing: 0) {
-                                Text(" 4 + 4 + 2 = 8")
-                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .padding(.bottom, 0)
-                            }
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.9)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-                    
-                    
-                    
-                    ///MARK: Bottom Background iPhone
-                    HStack {
-                        FlippyRiveView(riveInput: $riveInput)
-                            .frame(width: geometry.size.width * 0.25)
-                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-                        
-                        ZStack(alignment: .leading) {
-                            Image("MessagePlaceholder")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                            
-                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-                                .fontWeight(.bold)
-                                .padding(.leading, 20)
-                                .padding(.bottom, 10)
-                                .lineLimit(nil)
-                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-                        }
-                        
-                        Button(action: {
-                        }, label: {
-                            Image("CorrectButton")
-                                .resizable()
-                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-                        })
-                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-                    }
-                }
-            }
-            /// Children
-            if isCompact {
-                ZStack {
-                    //                        Image("Outro_iPhoneBackground")
-                    //                            .resizable()
-                    //                            .scaledToFill()
-                    //                            .ignoresSafeArea()
-                    
-                    if currentMessageIndex < 2 || currentMessageIndex == 4 {
-                        Image("Outro_HBD_Banner")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.65)
-                            .position(x: geometry.size.width / 2, y: geometry.size.width * 0.065)
-                        
-                        IdleBalloonView()
-                        
-                        ArcticFoxView(isPlay: .constant(true))
-                            .frame(width: geometry.size.width * 0.4)
-                            .position(x: geometry.size.width * 0.8, y: geometry.size.height * 0.55)
-                        
-                        BabyFoxView(isPlay: .constant(true))
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.4)
-                            .position(x: geometry.size.width * 0.72, y: geometry.size.height * 0.7)
-                        
-                        PenguinsView()
-                            .frame(width: geometry.size.width * 0.6)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.6)
-                        
-                        PolarBearOnlyView()
-                            .frame(width: geometry.size.width * 0.4)
-                            .position(x: geometry.size.width * 0.2, y: geometry.size.height * 0.55)
-                        
-                    } else if currentMessageIndex == 2 {
-                        Image("Outro_Gift")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.33)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.4)
-                            .scaleEffect(isTapped ? 1.2 : 1.0)
-                            .animation(.easeInOut(duration: 0.4), value: isTapped)
-                            .onTapGesture {
-                                if currentMessageIndex == 2 {
-                                    handleTap(tapDelay: 0.5, upperLimit: 3)
-                                }
-                            }
-                        
-                        Text("Tekan Hadiah untuk membuka!")
-                            .font(.custom("PilcrowRoundedVariable-Regular", size: 16))
-                            .foregroundStyle(.black)
-                            .opacity(0.5)
-                            .fontWeight(.bold)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height * 0.76)
-                        
-                    } else if currentMessageIndex == 3 {
-                        Group {
-                            Image("Outro_Starburst")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.27)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                                .rotationEffect(.degrees(rotation))
-                                .scaleEffect(scale)
-                        }
-                        .onAppear {
-                            withAnimation(Animation.linear(duration: 8).repeatForever(autoreverses: false)) {
-                                rotation = 360
-                            }
-                            withAnimation(Animation.easeInOut(duration: 2)) {
-                                scale = 1.5
-                            }
-                        }
-                        
-                        RewardAnimationView()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width * 0.4)
-                    }
-                }
-            } else {
-                //                    ZStack {
-                //                        Image("Outro_Background")
-                //                            .resizable()
-                //                            .scaledToFill()
-                //                            .ignoresSafeArea()
-                //
-                //                        if viewModel.currentMessageIndex < 2 || viewModel.currentMessageIndex == 4 {
-                //                            Image("Outro_HBD_Banner")
-                //                                .resizable()
-                //                                .aspectRatio(contentMode: .fit)
-                //                                .frame(width: geometry.size.width * 0.65)
-                //                                .position(x: geometry.size.width / 2, y: geometry.size.width * 0.065)
-                //
-                //                            IdleBalloonView()
-                //
-                //                            ArcticFoxView(isPlay: .constant(true))
-                //                                .frame(width: geometry.size.width * 0.45)
-                //                                .position(x: geometry.size.width * 0.9, y: geometry.size.height * 0.64)
-                //
-                //                            BabyFoxView(isPlay: .constant(true))
-                //                                .aspectRatio(contentMode: .fit)
-                //                                .frame(width: geometry.size.width * 0.5)
-                //                                .position(x: geometry.size.width * 0.8, y: geometry.size.height * 0.75)
-                //
-                //                            PenguinsView()
-                //                                .frame(width: geometry.size.width * 0.85)
-                //                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.64)
-                //
-                //                            PolarBearOnlyView()
-                //                                .frame(width: geometry.size.width * 0.6)
-                //                                .position(x: geometry.size.width * 0.14, y: geometry.size.height * 0.62)
-                //
-                //                        } else if viewModel.currentMessageIndex == 2 {
-                //                            Image("Outro_Gift")
-                //                                .resizable()
-                //                                .aspectRatio(contentMode: .fit)
-                //                                .frame(width: geometry.size.width * 0.45)
-                //                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.45)
-                //                                .scaleEffect(viewModel.isTapped ? 1.2 : 1.0)
-                //                                .animation(.easeInOut(duration: 0.4), value: viewModel.isTapped)
-                //                                .onTapGesture {
-                //                                    if viewModel.currentMessageIndex == 2 {
-                //                                        viewModel.handleTap(tapDelay: 0.5, upperLimit: 3)
-                //                                    }
-                //                                }
-                //
-                //                            Text("Tekan Hadiah untuk membuka!")
-                //                                .font(.custom("PilcrowRoundedVariable-Regular", size: 48))
-                //                                .foregroundStyle(.black)
-                //                                .opacity(0.5)
-                //                                .fontWeight(.bold)
-                //                                .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
-                //
-                //                        } else if viewModel.currentMessageIndex == 3 {
-                //                            Group {
-                //                                Image("Outro_Starburst")
-                //                                    .resizable()
-                //                                    .aspectRatio(contentMode: .fit)
-                //                                    .frame(width: geometry.size.width * 0.7)
-                //                                    .rotationEffect(.degrees(viewModel.rotation))
-                //                                    .scaleEffect(viewModel.scale)
-                //                            }
-                //                            .onAppear {
-                //                                withAnimation(Animation.linear(duration: 8).repeatForever(autoreverses: false)) {
-                //                                    viewModel.rotation = 360
-                //                                }
-                //                                withAnimation(Animation.easeInOut(duration: 2)) {
-                //                                    viewModel.scale = 1.5
-                //                                }
-                //                            }
-                //
-                //                            RewardAnimationView()
-                //                                .aspectRatio(contentMode: .fit)
-                //                                .frame(width: geometry.size.width * 0.65)
-                //                        }
-                //                    }
-            }
-            
-        }
-    }
-}
-
-//#Preview(body: {
-//    OutroView()
-//})
-
-//struct IntroView: View {
-//
-//    @Environment(\.verticalSizeClass) var verticalSizeClass
-//
-//    var isCompact: Bool {
-//        verticalSizeClass == .compact
-//    }
-//
-//    // Constants
-//    let backgroundScale: CGFloat = 1.2
-//
-//    ///MARK: Bottom View
-//    @State var riveInput: [FlippyRiveInput] = [FlippyRiveInput(key: .talking, value: FlippyValue.float(2.0))]
-//
-//    var body: some View {
-//        GeometryReader { geometry in
-//            // Constants
-//            let penguinWidth = geometry.size.width * (isCompact ? 0.6 : 0.8)
-//            let penguinHeight = geometry.size.height * (isCompact ? 0.57 : 0.65)
-//            let unavailablePenguinWidth = geometry.size.width * (isCompact ? 0.08 : 0.1)
-//            let unavailablePenguinXPositions = isCompact ? [0.28, 0.71] : [0.22, 0.77]
-//            let unavailablePenguinYPosition = geometry.size.height * (isCompact ? 0.59 : 0.68)
-//
-//            ZStack {
-//                Group {
-//                    //MARK: Background
-//                    Image("Q1_iPhoneBackground")
-//                        .resizable()
-//                        .frame(width: geometry.size.width * backgroundScale,
-//                               height: geometry.size.height * backgroundScale)
-//                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-//
-//                    ///MARK:HomeButton
-//                    if isCompact {
-//                        Button {
-//                        } label: {
-//                            Image("HomeButton")
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                                .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.2)
-//                                .position(x: geometry.size.width * 0.01, y: geometry.size.height * 0.13)
-//                        }
-//                    } else {
-//                        Button {
-//                        } label: {
-//                            Image("HomeButton")
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                                .frame(width: geometry.size.width * 0.15, height: geometry.size.height * 0.15)
-//                                .position(x: geometry.size.width * 0.06, y: geometry.size.height * 0.06)
-//                        }
-//                    }
-//
-//                    ///Problem String
-//                    HStack {
-//                        ZStack(alignment: .topLeading) {
-//                            VStack(spacing: 0) {
-//                                Text("3 - 5 = 2")
-//                                    .font(.custom("PilcrowRoundedVariable-Regular", size: 96))
-//                                    .fontWeight(.heavy)
-//                                    .foregroundColor(.white)
-//                                    .multilineTextAlignment(.center)
-//                                    .padding(.top, 16)
-//                                    .padding(.horizontal, 16)
-//                                    .padding(.bottom, 0)
-//                            }
-//                        }
-//                    }
-//                    .frame(width: geometry.size.width * 0.9)
-//                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.2)
-//
-//
-//
-//                    ///MARK: Bottom Background iPhone
-//                    HStack {
-//                        FlippyRiveView(riveInput: $riveInput)
-//                            .frame(width: geometry.size.width * 0.25)
-//                            .position(x: geometry.size.width * 0.02, y: geometry.size.height * 0.92)
-//
-//                        ZStack(alignment: .leading) {
-//                            Image("MessagePlaceholder")
-//                                .resizable()
-//                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.25)
-//                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-//
-//                            Text("Namun, sayangnya ada 2 temanku yang tidak bisa hadir.")
-//                                .font(.custom("PilcrowRoundedVariable-Regular", size: 24))
-//                                .fontWeight(.bold)
-//                                .padding(.leading, 20)
-//                                .padding(.bottom, 10)
-//                                .lineLimit(nil)
-//                                .frame(width: geometry.size.width * 0.7, alignment: .leading)
-//                                .multilineTextAlignment(.leading)
-//                                .position(x: geometry.size.width * 0.15, y: geometry.size.height * 0.92)
-//                        }
-//
-//                        Button(action: {
-//                        }, label: {
-//                            Image("CorrectButton")
-//                                .resizable()
-//                                .frame(width: geometry.size.width * 0.17, height: geometry.size.width * 0.1)
-//                        })
-//                        .position(x: geometry.size.width * 0.3, y: geometry.size.height * 0.97)
-//                    }
-//                }
-//
-//                PenguinsView()
-//                    .frame(width: penguinWidth)
-//                    .position(x: geometry.size.width / 2, y: penguinHeight)
-//
-//                ForEach(0..<unavailablePenguinXPositions.count) { index in
-//                    Image("Q1_UnavailablePenguin")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: unavailablePenguinWidth)
-//                        .position(x: geometry.size.width * unavailablePenguinXPositions[index],
-//                                  y: unavailablePenguinYPosition)
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//#Preview {
-//    IntroView()
 //}
