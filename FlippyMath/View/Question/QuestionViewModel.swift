@@ -518,16 +518,6 @@ class QuestionViewModel: ObservableObject {
     
     /// MARK: SOAL NOMOR 6: Arctic Fox
     @Published var isPlaying: Bool = false
-    
-    //    @Published var babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
-    //        (x: 0.476, y: 0.74),
-    //        (x: 0.588, y: 0.76),
-    //        (x: 0.222, y: 0.70),
-    //        (x: 0.125, y: 0.74),
-    //        (x: 0.8, y: 0.75),
-    //        (x: 0.909, y: 0.7)
-    //    ]
-    //    
     @Published var babyFoxPositions: [(x: CGFloat, y: CGFloat)] = [
         (x: 0.456, y: 0.64),
         (x: 0.568, y: 0.66),
