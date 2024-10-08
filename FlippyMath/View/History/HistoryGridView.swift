@@ -124,6 +124,7 @@ struct HistoryGridView: View {
                     Image("HomeButton")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width * 0.11, height:verticalSizeClass == .compact ? nil : geometry.size.height * 0.15)
 
                 })
                 .frame(width: verticalSizeClass == .compact ?  geometry.size.width * 0.12 : geometry.size.width * 0.11, height: verticalSizeClass == .compact ? geometry.size.height * 0.2 : geometry.size.height * 0.15)
