@@ -126,8 +126,9 @@ struct HistoryGridView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width * 0.11, height:verticalSizeClass == .compact ? nil : geometry.size.height * 0.15)
 
-
-                }).position(x:verticalSizeClass == .compact ? geometry.size.width * 0.03 : geometry.size.width * 0.06, y:  geometry.size.height * 0.08)
+                })
+                .frame(width: verticalSizeClass == .compact ?  geometry.size.width * 0.12 : geometry.size.width * 0.11, height: verticalSizeClass == .compact ? geometry.size.height * 0.2 : geometry.size.height * 0.15)
+                .position(x:verticalSizeClass == .compact ? geometry.size.width * 0.03 : geometry.size.width * 0.06, y: verticalSizeClass == .compact ? geometry.size.height * 0.1 : geometry.size.height * 0.08)
                 
                     .onDisappear(perform: {
                         viewModel.clearNavigation()
