@@ -141,8 +141,8 @@
 		D97277D12C82C32E00B72266 /* pinata2.riv in Resources */ = {isa = PBXBuildFile; fileRef = D97277D02C82C32E00B72266 /* pinata2.riv */; };
 		D97277D32C82F22E00B72266 /* pinata.riv in Resources */ = {isa = PBXBuildFile; fileRef = D97277D22C82F22E00B72266 /* pinata.riv */; };
 		D99187672C76830900BAB2EF /* penguins.riv in Resources */ = {isa = PBXBuildFile; fileRef = D99187662C76830900BAB2EF /* penguins.riv */; };
+		D994E9E12CB5620600685F85 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D994E9DF2CB5620600685F85 /* DataModel.xcdatamodeld */; };
 		D99B6AF32C718ADE00A60CD2 /* FlyingBalloonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */; };
-		D9B095342C8DF41C0097AAF6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D9B095322C8DF41C0097AAF6 /* DataModel.xcdatamodeld */; };
 		D9C4120F2C75C1500049C81F /* flyingballoon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412062C75C1500049C81F /* flyingballoon.riv */; };
 		D9C412112C75C1500049C81F /* arcticfox.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C412082C75C1500049C81F /* arcticfox.riv */; };
 		D9C412132C75C1500049C81F /* balloon.riv in Resources */ = {isa = PBXBuildFile; fileRef = D9C4120A2C75C1500049C81F /* balloon.riv */; };
@@ -282,8 +282,8 @@
 		D97277D02C82C32E00B72266 /* pinata2.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinata2.riv; sourceTree = "<group>"; };
 		D97277D22C82F22E00B72266 /* pinata.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinata.riv; sourceTree = "<group>"; };
 		D99187662C76830900BAB2EF /* penguins.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = penguins.riv; sourceTree = "<group>"; };
+		D994E9E02CB5620600685F85 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D99B6AF22C718ADE00A60CD2 /* FlyingBalloonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingBalloonView.swift; sourceTree = "<group>"; };
-		D9B095332C8DF41C0097AAF6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D9C412062C75C1500049C81F /* flyingballoon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = flyingballoon.riv; sourceTree = "<group>"; };
 		D9C412082C75C1500049C81F /* arcticfox.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = arcticfox.riv; sourceTree = "<group>"; };
 		D9C4120A2C75C1500049C81F /* balloon.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = balloon.riv; sourceTree = "<group>"; };
@@ -526,7 +526,7 @@
 		13B75FB42C705C0A00EBFCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D9B095322C8DF41C0097AAF6 /* DataModel.xcdatamodeld */,
+				D994E9DF2CB5620600685F85 /* DataModel.xcdatamodeld */,
 				13B75FCC2C705E8B00EBFCD1 /* MathQuestionJSON.swift */,
 				13B75FCE2C705E8B00EBFCD1 /* QuestionData.swift */,
 				13B75FCD2C705E8B00EBFCD1 /* SnowData.swift */,
@@ -870,6 +870,7 @@
 				D91002BB2C77290300E65051 /* (null) in Sources */,
 				133573BF2C70C140007696A8 /* HistoryGridView.swift in Sources */,
 				D934AF912C6F3EBC00D41B9A /* FlippyMathApp.swift in Sources */,
+				D994E9E12CB5620600685F85 /* DataModel.xcdatamodeld in Sources */,
 				D3B103852C7662D200F61FD4 /* NavigationRoute.swift in Sources */,
 				13B75F8A2C7059A100EBFCD1 /* TypewriterText.swift in Sources */,
 				13B75FC32C705E3100EBFCD1 /* Inject.swift in Sources */,
@@ -897,7 +898,6 @@
 				13B75FD22C705E8B00EBFCD1 /* SnowData.swift in Sources */,
 				D91002B82C7685D800E65051 /* BalloonView.swift in Sources */,
 				13B75FCA2C705E8300EBFCD1 /* CoreDataManager.swift in Sources */,
-				D9B095342C8DF41C0097AAF6 /* DataModel.xcdatamodeld in Sources */,
 				13B75FE02C705F9900EBFCD1 /* CustomVideoPlayerView.swift in Sources */,
 				13B75FD92C705E9700EBFCD1 /* DataService.swift in Sources */,
 			);
@@ -1031,9 +1031,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = FQKMQV25PZ;
+				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -1053,13 +1053,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.childhood.FlippyMath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1072,9 +1072,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlippyMath/Preview Content\"";
-				DEVELOPMENT_TEAM = FQKMQV25PZ;
+				DEVELOPMENT_TEAM = 7R7X9XJ9WV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlippyMath/Info.plist;
@@ -1094,13 +1094,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.childhood.FlippyMath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1204,14 +1204,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		D9B095322C8DF41C0097AAF6 /* DataModel.xcdatamodeld */ = {
+		D994E9DF2CB5620600685F85 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D9B095332C8DF41C0097AAF6 /* DataModel.xcdatamodel */,
+				D994E9E02CB5620600685F85 /* DataModel.xcdatamodel */,
 			);
-			currentVersion = D9B095332C8DF41C0097AAF6 /* DataModel.xcdatamodel */;
-			name = DataModel.xcdatamodeld;
-			path = "/Users/rajeshtriadinoftarizal/Documents/Xcode/Mini Challenge 2/Flippy_Math/FlippyMath/Data/Model/DataModel.xcdatamodeld";
+			currentVersion = D994E9E02CB5620600685F85 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
